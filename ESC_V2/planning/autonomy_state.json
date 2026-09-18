@@ -1,0 +1,38 @@
+{
+  "revision": "AUTO-00",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "mode": "AUTONOMOUS_GATED",
+  "current_gate": "G0",
+  "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
+  "selection_rule": "highest_priority_unblocked_dependency_opening_task",
+  "write_policy": {
+    "allow_branch": "uav-rebaseline",
+    "deny_main": true,
+    "allow_reversible_commits": true,
+    "allow_release_without_user_approval": false
+  },
+  "evidence_policy": {
+    "unknown_values": "OPEN_OR_NULL",
+    "physical_test_claim_without_measurement": false,
+    "flight_qualification_claim_without_gate_closure": false,
+    "erc_drc_equals_functional_validation": false
+  },
+  "stop_conditions": [
+    "USER_PRODUCT_DECISION_REQUIRED",
+    "PHYSICAL_MEASUREMENT_REQUIRED",
+    "PRIMARY_SOURCE_UNAVAILABLE",
+    "SAFETY_CRITICAL_UNKNOWN",
+    "FOOTPRINT_OR_PINOUT_UNVERIFIED",
+    "PRODUCTION_RELEASE_REQUIRES_APPROVAL",
+    "FLIGHT_TEST_GATE_NOT_REACHED"
+  ],
+  "next_focus": [
+    "UAV mission and mass envelope",
+    "rotor/thrust architecture trade study",
+    "real propulsion benchmark",
+    "battery architecture",
+    "ESC electrical envelope"
+  ],
+  "notes": "State file is a coordination record, not engineering evidence. Technical closure must reference requirement/source/calculation/simulation/test evidence."
+}
