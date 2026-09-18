@@ -6,6 +6,16 @@ Bu projenin hedef uygulaması **70–100 kg faydalı yük hedefli ağır kaldır
 
 Aktif gereksinim kaynağı: `design_basis.json` (`B1-UAV-REBASELINE`). UAV hedefi aktiftir; ancak ürün **henüz flight-qualified değildir**. Uçuş yeterliliği ancak propulsion sizing, elektriksel/termal doğrulama, firmware, PCB, prototip ve fiziksel test kapıları tamamlandıktan sonra değerlendirilebilir.
 
+## Aktif çalışma dosyaları
+
+- **Ürün geliştirme planı:** `planning/UAV_PRODUCT_PLAN.md`
+- **Aktif UAV backlog:** `planning/uav_backlog.json`
+- **Faz 2 / Faz 3 / B1 izlenebilirlik matrisi:** `planning/UAV_TRACEABILITY.md`
+- **Rebaseline design authority:** `planning/UAV_REBASELINE.md`
+- **Aktif sistem gereksinimleri:** `design_basis.json`
+
+Bu beş dosya `uav-rebaseline` branch'inde yeni ürün geliştirme akışının otoritesidir. Eski 3 kW roadmap ve dashboard tarihsel ilerleme kaydı olarak korunur.
+
 ### Tasarım dondurma kararı
 
 Mevcut 3 kW / 13S / Golden Motor HPM3000B / 80 A RMS B1 değerleri artık **UAV baseline değil, yalnız legacy candidate/reference** kabul edilir. Rotor sayısı, toplam kalkış kütlesi, thrust margin, motor/propeller çalışma noktaları, batarya seri sayısı ve gerçek ESC sürekli/tepe güç-akım zarfı yeniden boyutlandırılmadan şu işler nihai tasarım olarak ilerletilmez:
@@ -26,20 +36,18 @@ Mevcut şema, kontrol PCB PoC'u, doğrulama betikleri ve B1 hata düzeltmeleri k
 
 14.09.2026 tarihli B1 şema: `hardware_b1/ESC_3kW_B1.kicad_pro`. B1 içinde LM5164 RON bağlantı düzeltmesi, kartlar arası net denetimi ve ERC kontrolleri gibi yeniden kullanılabilir mühendislik çalışmaları vardır; bunlar yeni UAV zarfında yeniden yeterlilik kontrolüne tabi tutulacaktır.
 
-## UAV yeniden bazlandırma sırası
+## Geçiş kapıları
 
-1. Görev profili ve toplam kalkış kütlesi zarfı.
-2. Rotor sayısı ve emniyet/thrust marjı.
-3. Motor + pervane seçim/benchmark ve hover/max-thrust çalışma noktaları.
-4. Batarya gerilimi ve akım mimarisi.
-5. ESC sürekli/tepe gerilim, faz akımı, DC akımı ve güç zarfı.
-6. MOSFET/topoloji/gate-driver kayıp-SOA değerlendirmesi.
-7. DC-link, koruma, sensing ve termal tasarım.
-8. Firmware kontrol/fault mimarisi.
-9. Güç + kontrol PCB tasarımı, DRC/DFM ve üretim paketi.
-10. Kademeli bench + motor/propulsion doğrulaması.
+1. **G0 — Mission Freeze:** payload/MTOW/görev/çevre zarfı.
+2. **G1 — System Electrical Freeze:** rotor + motor/prop + battery + gerçek ESC electrical envelope.
+3. **G2 — ESC Architecture Freeze:** semiconductor, topology, PWM, MCU, gate-driver, sensing, fault, thermal architecture.
+4. **G3 — Schematic Design Review:** yeni UAV şeması, kritik BOM ve hesaplar kapalı.
+5. **G4 — Firmware Bench Ready:** buildable firmware, timing/fault testleri.
+6. **G5 — Prototype Release:** control + power PCB, DFM ve üretim paketi.
+7. **G6 — Propulsion Verified:** düşük enerji, switching ve guarded dyno/prop testleri geçti.
+8. **G7 — Flight Test Ready:** araç entegrasyonu ve failsafe readiness review tamam.
 
-Bu maddeler kapanmadan mevcut B1'in 3 kW/13S değerleri nihai ürün gereksinimi olarak kabul edilmez.
+G1 kapanmadan 13S/3 kW/80 A/100 V gibi eski sayılar nihai ürün gereksinimi sayılmaz. G6 kapanmadan uçuş testi temel güç elektroniği doğrulama yöntemi olarak kullanılmaz.
 
 ## Korunan tarihsel A2/B1 kayıtları
 
