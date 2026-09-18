@@ -1,11 +1,41 @@
 {
-  "revision": "AUTO-00",
+  "revision": "AUTO-STATE-01",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
-  "mode": "AUTONOMOUS_GATED",
+  "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
+  "last_run_status": "READY_FOR_NEXT_RUN",
   "current_gate": "G0",
   "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "selection_rule": "highest_priority_unblocked_dependency_opening_task",
+  "current_task": "G0_G1_PROPULSION_SIZING_AND_EVIDENCE",
+  "selection_rule": "highest_priority_unblocked_dependency_opening_task_then_continue_same_run",
+  "completed_this_run": [
+    "created_AUTONOMOUS_HANDOFF_protocol",
+    "extended_cross_run_continuity_policy",
+    "configured_same_run_next_task_progression"
+  ],
+  "blocked_tasks": [
+    {
+      "task": "freeze_G0_mission_mass_envelope",
+      "reason": "airframe_mass_battery_mass_nominal_payload_flight_duration_environment_and_failure_policy_not_yet_frozen",
+      "blocking_scope": "full_G0_freeze_only"
+    }
+  ],
+  "next_candidates": [
+    "source_backed_heavy_uav_propulsion_benchmark",
+    "parametric_rotor_thrust_trade_study",
+    "battery_voltage_architecture_trade_study",
+    "ESC_electrical_envelope_parametric_model",
+    "B1_requalification_precheck"
+  ],
+  "last_verified_gate": "REBASELINE_INIT",
+  "evidence_refs": [
+    "design_basis.json",
+    "planning/UAV_PRODUCT_PLAN.md",
+    "planning/UAV_REBASELINE.md",
+    "planning/UAV_TRACEABILITY.md",
+    "planning/mission_requirements.json",
+    "planning/AUTONOMOUS_HANDOFF.md"
+  ],
   "write_policy": {
     "allow_branch": "uav-rebaseline",
     "deny_main": true,
@@ -16,7 +46,21 @@
     "unknown_values": "OPEN_OR_NULL",
     "physical_test_claim_without_measurement": false,
     "flight_qualification_claim_without_gate_closure": false,
-    "erc_drc_equals_functional_validation": false
+    "erc_drc_equals_functional_validation": false,
+    "verify_handoff_against_repository_each_run": true
+  },
+  "continuity_policy": {
+    "read_handoff_first": true,
+    "verify_against_repository": true,
+    "continue_to_next_task_in_same_run": true,
+    "switch_tasks_when_blocked": true,
+    "update_handoff_at_end_of_every_run": true,
+    "update_state_at_end_of_every_run": true,
+    "filler_commits_forbidden": true,
+    "unknown_values_remain_open": true,
+    "physical_validation_must_not_be_invented": true,
+    "main_merge_requires_user_approval": true,
+    "production_release_requires_user_approval": true
   },
   "stop_conditions": [
     "USER_PRODUCT_DECISION_REQUIRED",
@@ -27,12 +71,6 @@
     "PRODUCTION_RELEASE_REQUIRES_APPROVAL",
     "FLIGHT_TEST_GATE_NOT_REACHED"
   ],
-  "next_focus": [
-    "UAV mission and mass envelope",
-    "rotor/thrust architecture trade study",
-    "real propulsion benchmark",
-    "battery architecture",
-    "ESC electrical envelope"
-  ],
+  "no_progress_policy": "If a critical-path task is blocked, move to another safe independent task. If no safe task exists, perform a consistency/verification audit and record BLOCKED_NO_SAFE_WORK with exact required input; never fabricate progress or create filler changes.",
   "notes": "State file is a coordination record, not engineering evidence. Technical closure must reference requirement/source/calculation/simulation/test evidence."
 }
