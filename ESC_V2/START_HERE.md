@@ -1,27 +1,53 @@
-# ESC 3 kW — güncel B1 geliştirme / A2 arşiv
+# ESC V2 — UAV yeniden bazlandırma / B1 korunan referans
 
-**PCB başladı:** [Kontrol kartı KiCad ilk yerleşim](pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb) · [Görünüm](pcb_b1/control/placement.png). PLAN-05: 38 bileşen / 192 pad kontrolü; yönlendirme henüz yok. 128 açık bağlantı ve 6 serigrafi ihlali kaldı; üretim paketi değildir.
+## 19.09.2026 — P0 yön düzeltmesi
 
-**[HTML proje ve operasyon panosu](dashboard/index.html)** — PLAN-04, ekip bulguları, yapılan değişiklikler, sprintler ve gerçek kanıt dosyaları. DR-002: LM5164 RON düzeltmesi; 742 kontrol / ERC 0. [Ekip çalışma düzeni](planning/EKIP_CALISMA_DUZENI.md).
+Bu projenin hedef uygulaması **70–100 kg faydalı yük hedefli ağır kaldırma / zirai çok rotorlu UAV için ESC geliştirmesidir**. Önceki B1 tasarım temeli yanlışlıkla `bench_and_general_purpose_ground_drive_not_flight_qualified` varsayımına oturtulmuştur. Bu varsayım artık aktif tasarım temeli değildir.
 
-**Agile yol haritası ve yapılacaklar:** [PLAN-03](planning/AGILE_ROADMAP.md). Asıl takip kaydı: `planning/backlog.json`. Sprint 1: ESC-01 tasarım zarfı tamamlandı; ESC-05 ve ESC-03 uygulamada. 25 açık ana iş, 4 tamamlanmış kayıt ve 61 BOM alt işi. [Uygulama ve iyileştirme kararları](planning/SPRINT_01_UYGULAMA.md).
+Aktif gereksinim kaynağı: `design_basis.json` (`B1-UAV-REBASELINE`). UAV hedefi aktiftir; ancak ürün **henüz flight-qualified değildir**. Uçuş yeterliliği ancak propulsion sizing, elektriksel/termal doğrulama, firmware, PCB, prototip ve fiziksel test kapıları tamamlandıktan sonra değerlendirilebilir.
 
-[Tamamlama takvimi](planning/TAMAMLAMA_TAKVIMI.md) · [Otomatik devam kaydı](planning/CHECKPOINT.md). Altı saatte bir kullanım limiti kontrolüyle devam otomasyonu oluşturuldu.
+### Tasarım dondurma kararı
 
-14.09.2026: Güncel şema `hardware_b1/ESC_3kW_B1.kicad_pro`; açıklamalar `hardware_b1/README.md`.
-Çizim ve üretim kuralları `pcb_b1/TASARIM_KURALLARI.md`; uygulanabilir KiCad kuralları `hardware_b1/ESC_3kW_B1.kicad_dru`.
-B1 pin38 TEMP_MOTOR'dur; A2 pin38 GND olduğundan kart/kablo revizyonları karıştırılmaz.
-B1: 741 şema kontrolü, sıfır ERC ihlali, 32 kartlar arası netin denetimi. Ürün PCB routing ve üretim onayı henüz tamamlanmadı.
+Mevcut 3 kW / 13S / Golden Motor HPM3000B / 80 A RMS B1 değerleri artık **UAV baseline değil, yalnız legacy candidate/reference** kabul edilir. Rotor sayısı, toplam kalkış kütlesi, thrust margin, motor/propeller çalışma noktaları, batarya seri sayısı ve gerçek ESC sürekli/tepe güç-akım zarfı yeniden boyutlandırılmadan şu işler nihai tasarım olarak ilerletilmez:
 
-## Korunan A2 inceleme paketi
+- güç PCB yerleşimi ve routing,
+- DC-link ve güç konektörü boyutlandırması,
+- MOSFET sayısı / gerilim sınıfı / termal çözümün dondurulması,
+- şönt ve akım ölçüm aralığının dondurulması,
+- üretim BOM'u ve Gerber release.
 
-- **KiCad:** `hardware_a2/ESC_3kW_A2.kicad_pro`
-- **PDF şemalar:** `ESC_3kW_A2_semalar.pdf`
-- **Tarayıcıda inceleme:** `hardware_a2/inceleme.html`
-- **Tasarım açıklamaları:** `hardware_a2/README.md`
-- **Açık işler ve kabul kriterleri:** `hardware_a2/release_register.json`
-- **Kontrol sonuçları:** `verification/a2_checks.json`
+Mevcut şema, kontrol PCB PoC'u, doğrulama betikleri ve B1 hata düzeltmeleri korunur; UAV yeniden incelemesinden geçen bölümler yeni revizyona taşınır.
 
-A2 önceki inceleme revizyonudur. `hardware` klasörü A1 referansını ve jeneratörlerin okuduğu elektriksel kaynak tanımını içerir; bağımlılık nedeniyle korunmuştur.
+## Mevcut B1 referans durumu
 
-A2 bir mühendislik inceleme revizyonudur. Üretim BOM'u, PCB, firmware ve fiziksel güç doğrulaması tamamlanmamıştır. Web stok kayıtları sipariş veya rezervasyon anlamına gelmez.
+**Kontrol PCB başladı:** [Kontrol kartı KiCad ilk yerleşim](pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb) · [Görünüm](pcb_b1/control/placement.png). Kontrol kartı kısmi PoC durumundadır; üretim/enerji verme onayı değildir.
+
+**[HTML proje ve operasyon panosu](dashboard/index.html)** mevcut tarihsel B1 ilerlemesini gösterir. Dashboard ve eski roadmap içindeki 3 kW/13S tamamlanmış çalışma zarfı kayıtları UAV rebaseline tamamlanana kadar güncel design authority olarak kullanılmaz.
+
+14.09.2026 tarihli B1 şema: `hardware_b1/ESC_3kW_B1.kicad_pro`. B1 içinde LM5164 RON bağlantı düzeltmesi, kartlar arası net denetimi ve ERC kontrolleri gibi yeniden kullanılabilir mühendislik çalışmaları vardır; bunlar yeni UAV zarfında yeniden yeterlilik kontrolüne tabi tutulacaktır.
+
+## UAV yeniden bazlandırma sırası
+
+1. Görev profili ve toplam kalkış kütlesi zarfı.
+2. Rotor sayısı ve emniyet/thrust marjı.
+3. Motor + pervane seçim/benchmark ve hover/max-thrust çalışma noktaları.
+4. Batarya gerilimi ve akım mimarisi.
+5. ESC sürekli/tepe gerilim, faz akımı, DC akımı ve güç zarfı.
+6. MOSFET/topoloji/gate-driver kayıp-SOA değerlendirmesi.
+7. DC-link, koruma, sensing ve termal tasarım.
+8. Firmware kontrol/fault mimarisi.
+9. Güç + kontrol PCB tasarımı, DRC/DFM ve üretim paketi.
+10. Kademeli bench + motor/propulsion doğrulaması.
+
+Bu maddeler kapanmadan mevcut B1'in 3 kW/13S değerleri nihai ürün gereksinimi olarak kabul edilmez.
+
+## Korunan tarihsel A2/B1 kayıtları
+
+- A2 KiCad: `hardware_a2/ESC_3kW_A2.kicad_pro`
+- B1 KiCad: `hardware_b1/ESC_3kW_B1.kicad_pro`
+- A2 PDF: `ESC_3kW_A2_semalar.pdf`
+- B1 elektriksel denetimler: `verification/b1_checks.json`
+- B1 elektriksel ekip incelemesi: `verification/team_electrical/review.md`
+- PCB kuralları: `pcb_b1/TASARIM_KURALLARI.md`
+
+A2/B1 dosyaları silinmez; tarihsel mühendislik kanıtı ve yeniden kullanım kaynağı olarak korunur.
