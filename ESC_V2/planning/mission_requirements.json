@@ -1,0 +1,68 @@
+{
+  "revision": "MISSION-00",
+  "date": "2026-09-19",
+  "status": "OPEN_G0",
+  "application": "heavy_lift_agricultural_multirotor_uav",
+  "requirements": {
+    "payload": {
+      "min_kg": 70,
+      "nominal_kg": null,
+      "max_kg": 100,
+      "status": "USER_TARGET"
+    },
+    "airframe_empty_mass_kg": null,
+    "battery_mass_kg": null,
+    "mission_equipment_mass_kg": null,
+    "gross_takeoff_mass": {
+      "min_kg": null,
+      "nominal_kg": null,
+      "max_kg": null
+    },
+    "flight_profile": {
+      "target_total_flight_time_min": null,
+      "target_hover_time_min": null,
+      "takeoff_climb_duration_s": null,
+      "cruise_or_translation_duration_min": null,
+      "reserve_energy_fraction": null
+    },
+    "environment": {
+      "minimum_ambient_c": null,
+      "maximum_ambient_c": null,
+      "maximum_operating_altitude_m": null,
+      "maximum_wind_m_s": null,
+      "rain_dust_ingress_target": null
+    },
+    "vehicle": {
+      "rotor_count": null,
+      "coaxial_allowed": null,
+      "maximum_vehicle_span_m": null,
+      "degraded_operation_requirement": null,
+      "single_motor_failure_requirement": null
+    },
+    "control_and_interface": {
+      "flight_controller_interface": "CAN_CANDIDATE",
+      "arming_interface": null,
+      "telemetry_update_rate_hz": null,
+      "command_timeout_ms": null
+    },
+    "serviceability": {
+      "field_replaceable_esc": null,
+      "field_replaceable_motor": null,
+      "target_esc_mass_g": null,
+      "target_cost_per_esc": null
+    }
+  },
+  "assumption_policy": {
+    "rule": "Unknown mission parameters remain null until provided, researched or explicitly approved as engineering assumptions.",
+    "payload_interpretation": "70-100 kg is currently treated as payload target, not MTOW.",
+    "flight_qualification": "No flight qualification claim is made from this requirements file."
+  },
+  "g0_acceptance": [
+    "nominal payload defined",
+    "airframe/battery/equipment mass estimate defined",
+    "MTOW min/nom/max calculated",
+    "flight/hover duration defined",
+    "environmental envelope defined",
+    "failure/degraded-mode requirement defined or explicitly waived"
+  ]
+}
