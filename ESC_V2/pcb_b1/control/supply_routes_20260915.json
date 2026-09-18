@@ -1,0 +1,156 @@
+{
+  "connections": [
+    {
+      "from": "C1802.1",
+      "to": "U1701.16",
+      "net": "+3V3",
+      "path_mm": [
+        [
+          46.8,
+          49.45
+        ],
+        [
+          47.4,
+          49.45
+        ],
+        [
+          48.1,
+          48.75
+        ],
+        [
+          49.325,
+          48.75
+        ]
+      ]
+    },
+    {
+      "from": "C1802.2",
+      "to": "U1701.15",
+      "net": "GND",
+      "path_mm": [
+        [
+          46.8,
+          47.55
+        ],
+        [
+          47.4,
+          47.55
+        ],
+        [
+          48.1,
+          48.25
+        ],
+        [
+          49.325,
+          48.25
+        ]
+      ]
+    },
+    {
+      "from": "C1803.1",
+      "to": "U1701.32",
+      "net": "+3V3",
+      "path_mm": [
+        [
+          59.45,
+          54.0
+        ],
+        [
+          59.45,
+          52.5
+        ],
+        [
+          58.75,
+          51.8
+        ],
+        [
+          58.75,
+          50.675
+        ]
+      ]
+    },
+    {
+      "from": "C1803.2",
+      "to": "U1701.31",
+      "net": "GND",
+      "path_mm": [
+        [
+          57.55,
+          54.0
+        ],
+        [
+          57.55,
+          52.5
+        ],
+        [
+          58.25,
+          51.8
+        ],
+        [
+          58.25,
+          50.675
+        ]
+      ]
+    },
+    {
+      "from": "C1804.1",
+      "to": "U1701.48",
+      "net": "+3V3",
+      "path_mm": [
+        [
+          63.5,
+          40.55
+        ],
+        [
+          62.6,
+          40.55
+        ],
+        [
+          61.9,
+          41.25
+        ],
+        [
+          60.675,
+          41.25
+        ]
+      ]
+    },
+    {
+      "from": "C1804.2",
+      "to": "U1701.47",
+      "net": "GND",
+      "path_mm": [
+        [
+          63.5,
+          42.45
+        ],
+        [
+          62.6,
+          42.45
+        ],
+        [
+          61.9,
+          41.75
+        ],
+        [
+          60.675,
+          41.75
+        ]
+      ]
+    }
+  ],
+  "pad_nets_unchanged": true,
+  "checked_pads": 192,
+  "track_count": 22,
+  "scope": "Three local digital bypass pairs; supply distribution and ground plane still incomplete.",
+  "corrections": [
+    "C1808 moved out of C1803 courtyard",
+    "Pad exits extended before 45 degree bends",
+    "Rotated references restored to horizontal"
+  ],
+  "final_verified": true,
+  "drc_violations": 0,
+  "unconnected_items": 120,
+  "board_sha256": "fe092e6bfe226d225a2701e10bd8cdbf626747aa19c98b5377dbec7b3c6da99a",
+  "verification": "Saved PCB reopened; 192 pad nets equal prior placement manifest; six new paths verified segment by segment; zero reported DRC violations; no exclusions added."
+}

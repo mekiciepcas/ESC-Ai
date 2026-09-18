@@ -1,0 +1,23 @@
+{
+  "revision": "A2",
+  "assumptions": "Nominal resistor calculations, NOT worst-case electrical qualification",
+  "voltage_ratio": 0.0321955003878976,
+  "adc_54_6v": 1.757874321179209,
+  "adc_80v": 2.5756400310318077,
+  "oc_low_v": 0.9141274238227146,
+  "oc_high_v": 2.385872576177285,
+  "oc_nominal_a": 147.17451523545702,
+  "bus_ov_nominal_v": 58.57074010327022,
+  "divider_filter_hz": 37776.11019674317,
+  "bulk_energy_j": 2.1017178000000003,
+  "bleed_to_5v_seconds": 337.07403181466304,
+  "current_shunt_upper_bound_w": 3.2,
+  "future_precharge_example": {
+    "scope": "330 ohm unloaded-capacitor example ONLY, no implemented precharge circuit",
+    "resistance_ohm": 330,
+    "initial_current_a": 0.16545454545454547,
+    "initial_power_w": 9.033818181818182,
+    "time_to_99_percent_s": 2.1427856010000004,
+    "load_caveat": "Auxiliary power draw can prevent charging to 99 percent; size with actual load."
+  }
+}

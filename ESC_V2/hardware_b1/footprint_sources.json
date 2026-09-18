@@ -1,0 +1,29 @@
+{
+  "TI_RTA0040B_6x6_P0.5_EP4.15": {
+    "source": "https://www.ti.com/lit/ds/symlink/drv8353f.pdf",
+    "revision": "B",
+    "drawing": "RTA0040B 4219112/A 07/2018",
+    "source_pages_1_based": [
+      80,
+      81,
+      82
+    ],
+    "body_mm": [
+      6,
+      6
+    ],
+    "pitch_mm": 0.5,
+    "pad_center_span_mm": 5.8,
+    "pad_mm": [
+      0.6,
+      0.22
+    ],
+    "EP_mm": [
+      4.15,
+      4.15
+    ],
+    "paste_coverage_percent": 71.53491072724631,
+    "thermal_vias": "PCB placement pending; filled/plugged/tented process to be agreed",
+    "status": "DIMENSIONED_FROM_DATASHEET_NOT_ASSEMBLY_QUALIFIED"
+  }
+}

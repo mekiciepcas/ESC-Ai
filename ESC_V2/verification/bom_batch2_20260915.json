@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-15",
+  "changed": {
+    "C701": "C0805C102J5GACTU",
+    "C801": "C0805C102J5GACTU",
+    "C901": "C0805C102J5GACTU",
+    "C1001": "C0805C102J5GACTU",
+    "C1101": "C0805C102J5GACTU",
+    "C1102": "C0805C102J5GACTU",
+    "C1103": "C0805C102J5GACTU",
+    "C1201": "C0805C103J5GACTU",
+    "C1202": "C0805C103J5GACTU",
+    "C1203": "C0805C103J5GACTU",
+    "C1805": "C0805C475K8RACTU",
+    "C2301": "C0805C103J5GACTU",
+    "C2302": "C0805C103J5GACTU",
+    "C2303": "C0805C103J5GACTU"
+  },
+  "count": 14,
+  "all_schematic_nets_and_values_unchanged": true,
+  "pcb_pad_nets_unchanged": true,
+  "pcb_updated": [
+    "C1805"
+  ],
+  "other_13_scope": "Schematic only: power PCB does not yet exist",
+  "source_urls": [
+    "https://search.kemet.com/download/specsheet/C0805C102J5GACTU",
+    "https://search.kemet.com/download/specsheet/C0805C103J5GACTU",
+    "https://search.kemet.com/download/specsheet/C0805C475K8RACTU",
+    "https://www.digikey.com/en/products/detail/kemet/C0805C102J5GACTU/411135",
+    "https://www.digikey.com/en/products/detail/kemet/C0805C103J5GACTU/2211711",
+    "https://www.digikey.com/en/products/detail/kemet/C0805C475K8RACTU/3317450"
+  ],
+  "limits": [
+    "Stock is a consulted listing, not a reservation",
+    "C1805 effective DC-biased capacitance and transient response require test",
+    "ADC settling, reference startup and protection dynamics remain open",
+    "No production certification or physical validation claimed"
+  ]
+}

@@ -1,0 +1,1 @@
+(fp_lib_table (lib (name "ESC_B1") (type "KiCad") (uri "${KIPRJMOD}/ESC_B1.pretty") (options "") (descr "Local engineering footprints")))

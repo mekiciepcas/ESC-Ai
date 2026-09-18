@@ -1,0 +1,19 @@
+{
+  "refs": {
+    "J1901": 5,
+    "J2001": 3,
+    "J2002": 3,
+    "J2003": 2,
+    "J2101": 5
+  },
+  "pad_nets_and_positions_unchanged": true,
+  "pitch_mm": 2.54,
+  "drill_mm": 1.1,
+  "readback": "PASS",
+  "scope": "Unkeyed PoC headers, not final locking harness",
+  "sources": [
+    "https://www.we-online.com/components/products/datasheet/61300211121.pdf",
+    "https://www.we-online.com/components/products/datasheet/61300311121.pdf",
+    "https://www.we-online.com/components/products/datasheet/61300511121.pdf"
+  ]
+}

@@ -1,0 +1,1320 @@
+[
+  {
+    "value": "DC LINK INPUT",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J1"
+    ],
+    "notes": [
+      "From external fused, precharged, reverse-polarity-protected DC input assembly; not raw battery."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "MOTOR U V W",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J2"
+    ],
+    "notes": [
+      "High current terminal system: mechanical selection pending."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "EXTERNAL BRAKE MODULE",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J3"
+    ],
+    "notes": [
+      "Regen energy clamp/chopper sizing and interface remain release blockers."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "470u 100V bulk",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C1",
+      "C2",
+      "C3"
+    ],
+    "notes": [
+      "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending."
+    ],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2u 100V X7R",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C4",
+      "C5",
+      "C6"
+    ],
+    "notes": [
+      "At each half bridge; effective capacitance under bias required."
+    ],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100k 0.25W",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1"
+    ],
+    "notes": [
+      "Bleed only; discharge time must be checked before service."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "CSD19536KTT",
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "references": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4",
+      "Q5",
+      "Q6",
+      "Q7",
+      "Q8",
+      "Q9",
+      "Q10",
+      "Q11",
+      "Q12"
+    ],
+    "notes": [
+      "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor."
+    ],
+    "quantity": 12,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7R gate",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2",
+      "R4",
+      "R6",
+      "R8",
+      "R12",
+      "R14",
+      "R16",
+      "R18",
+      "R22",
+      "R24",
+      "R26",
+      "R28"
+    ],
+    "notes": [
+      "Starting value, tune with VGS/VDS measurements."
+    ],
+    "quantity": 12,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "47k G-S",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R3",
+      "R5",
+      "R7",
+      "R9",
+      "R13",
+      "R15",
+      "R17",
+      "R19",
+      "R23",
+      "R25",
+      "R27",
+      "R29"
+    ],
+    "notes": [],
+    "quantity": 12,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "0.5mR Kelvin",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "RS1",
+      "RS2",
+      "RS3"
+    ],
+    "notes": [
+      "4-terminal symbol. 5W minimum candidate class; exact pad numbering, MPN and pulse rating pending."
+    ],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "0R NET-TIE ONLY",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "R10",
+      "R11",
+      "R20",
+      "R21",
+      "R30",
+      "R31"
+    ],
+    "notes": [
+      "Replace by net tie at shunt sense terminal in PCB.",
+      "Replace by net tie at shunt sense terminal in PCB; not a discrete routing shortcut."
+    ],
+    "quantity": 6,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 100V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C7",
+      "C8",
+      "C9"
+    ],
+    "notes": [],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "DRV8353FSRTAR",
+    "mpn": "DRV8353FSRTAR",
+    "footprint": "",
+    "references": [
+      "U1"
+    ],
+    "notes": [
+      "F variant selected for supply evidence. RTA0040 footprint must be checked against mechanical drawing; not assigned by package-name guess."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "47n 100V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C10"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1u 25V",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C11",
+      "C12"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1u 10V",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C13",
+      "C36"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 25V",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C14"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10u 25V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C15",
+      "C34"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 10V",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C16"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "4.7k pull-up",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R32",
+      "R33"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k pull-up",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R34"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k pull-down",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R35"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "47k pull-down",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R36",
+      "R37",
+      "R38",
+      "R39",
+      "R40",
+      "R41"
+    ],
+    "notes": [],
+    "quantity": 6,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "49.9k 0.1%",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R42",
+      "R43",
+      "R46",
+      "R47",
+      "R50",
+      "R51",
+      "R54",
+      "R55"
+    ],
+    "notes": [],
+    "quantity": 8,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "3.32k 0.1%",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R44",
+      "R48",
+      "R52",
+      "R56"
+    ],
+    "notes": [],
+    "quantity": 4,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1k ADC series",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R45",
+      "R49",
+      "R53",
+      "R57"
+    ],
+    "notes": [],
+    "quantity": 4,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1n C0G",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C17",
+      "C18",
+      "C19",
+      "C20",
+      "C21",
+      "C22",
+      "C23"
+    ],
+    "notes": [
+      "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay."
+    ],
+    "quantity": 7,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "BAT54H upper",
+    "mpn": "BAT54H",
+    "footprint": "",
+    "references": [
+      "D1",
+      "D3",
+      "D5",
+      "D7"
+    ],
+    "notes": [
+      "Clamp leakage and 3V3 rail backfeed require worst-case review."
+    ],
+    "quantity": 4,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "BAT54H lower",
+    "mpn": "BAT54H",
+    "footprint": "",
+    "references": [
+      "D2",
+      "D4",
+      "D6",
+      "D8"
+    ],
+    "notes": [],
+    "quantity": 4,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100R ADC",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R58",
+      "R59",
+      "R60"
+    ],
+    "notes": [],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k 0.1%",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R61",
+      "R63",
+      "R92",
+      "R93",
+      "R96"
+    ],
+    "notes": [],
+    "quantity": 5,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "NTC 10k B3435",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "R62",
+      "R64"
+    ],
+    "notes": [
+      "MPN, tolerance and actual placement pending; firmware must use selected curve."
+    ],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10n",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C24",
+      "C25",
+      "C26"
+    ],
+    "notes": [],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "MOTOR TEMP",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J4"
+    ],
+    "notes": [
+      "Sensor type not yet confirmed; A1 assumes resistance sensor for interface review only."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k provision",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R65"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1k",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R66",
+      "R86",
+      "R88",
+      "R90"
+    ],
+    "notes": [],
+    "quantity": 4,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "LM5164DDAT",
+    "mpn": "LM5164DDAT",
+    "footprint": "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias",
+    "references": [
+      "U2"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "68uH >=1.5A",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "L1"
+    ],
+    "notes": [
+      "Effective L, saturation current, DCR and footprint pending exact MPN."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2u 160V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C27"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 160V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C28"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "22u 25V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C29",
+      "C30"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2n C0G",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C31"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100k",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R67",
+      "R75"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "453k",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R68"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "49.9k",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R69"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "453k ripple",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R70"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "3.3n",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C32"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "56p C0G",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C33"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1M UVLO",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R71"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100k UVLO",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R72"
+    ],
+    "notes": [
+      "Aux powers early for diagnostics; this is NOT the traction undervoltage cutoff."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R73",
+      "R76",
+      "R78",
+      "R80",
+      "R81"
+    ],
+    "notes": [],
+    "quantity": 5,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "FAN 12V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J5"
+    ],
+    "notes": [
+      "Fan <=0.2A continuous budget. Inrush must be measured."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "TPS62160DGKR",
+    "mpn": "TPS62160DGKR",
+    "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
+    "references": [
+      "U3"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "2.2uH >=1.5A",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "L2"
+    ],
+    "notes": [
+      "Check DC bias and saturation against converter peak current."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "22u 10V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C35"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "523k",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R74"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "TLV75533PDBVR",
+    "mpn": "TLV75533PDBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "references": [
+      "U4"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7u 10V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C37",
+      "C38"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "0R analog link",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R77"
+    ],
+    "notes": [
+      "Optional ferrite only after analog rail impedance review."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C39"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "STM32G474RET3",
+    "mpn": "STM32G474RET3",
+    "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+    "references": [
+      "U5"
+    ],
+    "notes": [
+      "PG10 must remain NRST option. PB8 BOOT0 option bytes reviewed before flashing. Verify AF/ADC schedule before PCB."
+    ],
+    "quantity": 1,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n at VDD",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C40",
+      "C41",
+      "C42",
+      "C43"
+    ],
+    "notes": [],
+    "quantity": 4,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "4.7u",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C44"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n at VBAT",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C45"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1u VDDA",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C46"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n VDDA",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C47"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n VREF",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C48"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n reset",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C49"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k BOOT0",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R79"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "SWD",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J6"
+    ],
+    "notes": [
+      "VTref only; avoid powering rail from two sources."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "8MHz 3V3 CMOS oscillator",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "Y1"
+    ],
+    "notes": [
+      "4-pad 3225 oscillator candidate; pinout and MPN pending. HSE BYPASS mode."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n oscillator",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C50"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1k LED",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R82"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "LED GREEN",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "D9"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "SN65HVD230DR",
+    "mpn": "SN65HVD230DR",
+    "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+    "references": [
+      "U6"
+    ],
+    "notes": [
+      "Classic CAN only, not CAN FD. TVS array selection pending."
+    ],
+    "quantity": 1,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k slope",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R83"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n CAN",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C51"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "120R DNP",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R84"
+    ],
+    "notes": [
+      "Fit only at bus end; DNP by default."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "CAN",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J7"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "UART 3V3",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J8"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "RC PWM 3V3",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J9"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "HALL 5V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J10"
+    ],
+    "notes": [
+      "Interface requires open-collector Hall outputs; push-pull sensor needs level conversion."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "4.7k 3V3 pull-up",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R85",
+      "R87",
+      "R89"
+    ],
+    "notes": [],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1n",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C52",
+      "C53",
+      "C54"
+    ],
+    "notes": [],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "TLV1704PWR",
+    "mpn": "TLV1704PWR",
+    "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+    "references": [
+      "U7",
+      "U8"
+    ],
+    "notes": [
+      "Comparator delay plus CSA settling is not a guaranteed short-circuit limit; MOSFET VDS protection remains primary."
+    ],
+    "quantity": 2,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n comparator",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C55",
+      "C56"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "26.1k 0.1%",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R91",
+      "R94"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10n reference",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C57",
+      "C58",
+      "C59"
+    ],
+    "notes": [],
+    "quantity": 3,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "7.50k 0.1%",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R95"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2k fault pull-up",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R97"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "BAT54H fault OR",
+    "mpn": "BAT54H",
+    "footprint": "",
+    "references": [
+      "D10"
+    ],
+    "notes": [
+      "Verify diode VOL + DRV sink voltage meets latch CLR and MCU BKIN VIL."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "BAT54H reset OR",
+    "mpn": "BAT54H",
+    "footprint": "",
+    "references": [
+      "D11"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "BAT54H PG OR",
+    "mpn": "BAT54H",
+    "footprint": "",
+    "references": [
+      "D12",
+      "D13"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "SN74LVC1G74DCUR",
+    "mpn": "SN74LVC1G74DCUR",
+    "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+    "references": [
+      "U9"
+    ],
+    "notes": [
+      "Fault clears Q. Re-arm requires deliberate rising edge with fault absent. Power-up state not assumed."
+    ],
+    "quantity": 1,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "0R driver wake",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R98"
+    ],
+    "notes": [
+      "Wake DRV first with PWM inhibited. Configure CSA and wait for healthy fault net, then arm latch."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n latch",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C60"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "EMERGENCY STOP",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J11"
+    ],
+    "notes": [
+      "Shorting contact clears latch; wire-break detection not implemented."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "SN74LVC1G08DBVR",
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "references": [
+      "U10",
+      "U11",
+      "U12",
+      "U13",
+      "U14",
+      "U15"
+    ],
+    "notes": [
+      "Latch low forces all DRV PWM inputs low; no automatic retry on fault release."
+    ],
+    "quantity": 6,
+    "release_status": "PART_SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "47k reset default",
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R99",
+      "R100",
+      "R101",
+      "R102",
+      "R103",
+      "R104"
+    ],
+    "notes": [],
+    "quantity": 6,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n logic",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C61",
+      "C62",
+      "C63",
+      "C64",
+      "C65",
+      "C66"
+    ],
+    "notes": [],
+    "quantity": 6,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "POWER CARD 2x20",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J12"
+    ],
+    "notes": [
+      "Mate to control card pin-for-pin; connector and viewing direction not released."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "CONTROL CARD 2x20",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J13"
+    ],
+    "notes": [
+      "Same system nets model mating harness; PCB partition documented in README."
+    ],
+    "quantity": 1,
+    "release_status": "REVIEW_REQUIRED"
+  }
+]

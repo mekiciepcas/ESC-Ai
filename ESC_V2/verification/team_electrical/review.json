@@ -1,0 +1,461 @@
+{
+  "review_date": "2026-09-14",
+  "reviewer": "Electrical review AI agent",
+  "scope": "B1 exported connectivity and selected datasheets; no laboratory measurement or human approval",
+  "inputs": {
+    "hardware_b1\\connection_manifest.json": "87627e39c2e938abbdca59875ba55a26ce10b1b2786a7d5eaec2b62e172e986f",
+    "verification\\ESC_3kW_B1.net": "0d840b363e2eda4b5ad1e42af0ef78d6c3c149e562f99125d56a58edddaf494e",
+    "planning\\precharge_checks.json": "c3f9ddcc6b6bef40b43c5b60fce5010131d05f3024d10f04bab8eead35f18c2c"
+  },
+  "findings": [
+    {
+      "id": "ELEC-01",
+      "priority": "P0",
+      "classification": "CONFIRMED_CONNECTION_ERROR",
+      "title": "LM5164 RON direnci yanlış besleme hattına bağlı",
+      "evidence": [
+        {
+          "ref": "U1301",
+          "page": "08_AUX_12V",
+          "value": "LM5164DDAT",
+          "manifest_nets": {
+            "1": "GND",
+            "2": "VBUS",
+            "3": "BUCK_UVLO",
+            "4": "BUCK_RON",
+            "5": "BUCK_FB",
+            "6": "PG_12V",
+            "7": "BUCK_BST",
+            "8": "BUCK_SW",
+            "9": "GND"
+          },
+          "exported_nets": {
+            "1": "GND",
+            "2": "VBUS",
+            "3": "BUCK_UVLO",
+            "4": "BUCK_RON",
+            "5": "BUCK_FB",
+            "6": "PG_12V",
+            "7": "BUCK_BST",
+            "8": "BUCK_SW",
+            "9": "GND"
+          }
+        },
+        {
+          "ref": "R1301",
+          "page": "08_AUX_12V",
+          "value": "100k",
+          "manifest_nets": {
+            "1": "VBUS",
+            "2": "BUCK_RON"
+          },
+          "exported_nets": {
+            "1": "VBUS",
+            "2": "BUCK_RON"
+          }
+        }
+      ],
+      "observation": "R1301.1=VBUS, R1301.2=BUCK_RON ve U1301.4=BUCK_RON; hem manifest hem KiCad netlist aynı bağlantıyı içeriyor.",
+      "consequence": "Zamanlama girişinin üretici bağlantı şartı sağlanmıyor; yardımcı kaynağın çalıştığı kabul edilemez. ERC geçişi bu işlevsel hatayı saptamaz.",
+      "correction": "R1301 pin1 bağlantısını GND yap; jeneratör kaynağını da düzelt. Gerçek netlistten RON-GND bağlantısını denetleyen regresyon ekle. 100k değerinin frekans/ripple hesabını tekrar çalıştır.",
+      "acceptance": "Üretici pin tablosuyla eşleşen yeni netlist ve ERC; düşük enerjili yardımcı kaynak testi ayrıca bekler.",
+      "sources": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/lm5164.pdf",
+          "section": "Rev D, Table 4-1 pin4; Figure7-1"
+        }
+      ]
+    },
+    {
+      "id": "ELEC-02",
+      "priority": "P1",
+      "classification": "CONFIRMED_DESIGN_GAP_CONDITIONAL_FAILURE",
+      "title": "Ön şarj sırasında yardımcı yükün engellenmesi tanımlı değil",
+      "evidence": [
+        {
+          "ref": "U1301",
+          "page": "08_AUX_12V",
+          "value": "LM5164DDAT",
+          "manifest_nets": {
+            "1": "GND",
+            "2": "VBUS",
+            "3": "BUCK_UVLO",
+            "4": "BUCK_RON",
+            "5": "BUCK_FB",
+            "6": "PG_12V",
+            "7": "BUCK_BST",
+            "8": "BUCK_SW",
+            "9": "GND"
+          },
+          "exported_nets": {
+            "1": "GND",
+            "2": "VBUS",
+            "3": "BUCK_UVLO",
+            "4": "BUCK_RON",
+            "5": "BUCK_FB",
+            "6": "PG_12V",
+            "7": "BUCK_BST",
+            "8": "BUCK_SW",
+            "9": "GND"
+          }
+        },
+        {
+          "ref": "R1401",
+          "page": "08_AUX_12V_2",
+          "value": "1M UVLO",
+          "manifest_nets": {
+            "1": "VBUS",
+            "2": "BUCK_UVLO"
+          },
+          "exported_nets": {
+            "1": "VBUS",
+            "2": "BUCK_UVLO"
+          }
+        },
+        {
+          "ref": "R1402",
+          "page": "08_AUX_12V_2",
+          "value": "100k UVLO",
+          "manifest_nets": {
+            "1": "BUCK_UVLO",
+            "2": "GND"
+          },
+          "exported_nets": {
+            "1": "BUCK_UVLO",
+            "2": "GND"
+          }
+        },
+        {
+          "ref": "U1501",
+          "page": "09_AUX_LOGIC",
+          "value": "TPS62160DGKR",
+          "manifest_nets": {
+            "1": "GND",
+            "2": "+12V",
+            "3": "+12V",
+            "4": "GND",
+            "5": "FB_5V",
+            "6": "+5V",
+            "7": "SW_5V",
+            "8": "PG_5V"
+          },
+          "exported_nets": {
+            "1": "GND",
+            "2": "+12V",
+            "3": "+12V",
+            "4": "GND",
+            "5": "FB_5V",
+            "6": "+5V",
+            "7": "SW_5V",
+            "8": "PG_5V"
+          }
+        },
+        {
+          "ref": "J1401",
+          "page": "08_AUX_12V_2",
+          "value": "FAN 12V",
+          "manifest_nets": {
+            "1": "+12V",
+            "2": "GND"
+          },
+          "exported_nets": {
+            "1": "+12V",
+            "2": "GND"
+          }
+        },
+        {
+          "ref": "J101",
+          "page": "01_DC_LINK",
+          "value": "DC LINK INPUT",
+          "manifest_nets": {
+            "1": "VBUS",
+            "2": "GND"
+          },
+          "exported_nets": {
+            "1": "VBUS",
+            "2": "GND"
+          }
+        }
+      ],
+      "observation": "BUCK_UVLO yalnız VBUS 1M/100k bölücüsünden sürülüyor. FAN sürekli +12V bağlı; TPS62160 EN de +12V. Ön şarj tamamlandı sinyali veya yük engelleme elemanı yok.",
+      "consequence": "22 ohm aday ve 39V kaynakta yüzde95 hedefi sabit giriş yükü 88.6mA altında gerektiriyor. Bu sınır üzerindeki gerçek yardımcı yük şarjı engelleyebilir; gerçek yük akımı henüz ölçülmedi.",
+      "correction": "Ön şarj tamamlanana kadar fan/yardımcı yükleri engelleyen ya da ayrı kontrol beslemesi sağlayan mimariyi seç. MCU kapalıyken MCU komutu bekleyen başlangıç kilitlenmesi oluşturma. Gerilime bağlı yük, histerezis ve zaman aşımı modeli ekle.",
+      "acceptance": "39–54.6V aralığında en kötü yük/tolerans hesabı, enerji ve tekrar deneme sınırı; ardından ön şarj test kaydı.",
+      "sources": [
+        {
+          "path": "planning/precharge_checks.json"
+        },
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/lm5164.pdf",
+          "section": "RevD Table4-1 and6.3.9"
+        }
+      ]
+    },
+    {
+      "id": "ELEC-03",
+      "priority": "P1",
+      "classification": "CONFIRMED_VERIFICATION_GAP_NOT_PROVEN_FAILURE",
+      "title": "Diyotlu fault/reset zincirinin düşük seviye marjı kapanmamış",
+      "evidence": [
+        {
+          "ref": "D2401",
+          "page": "16_FAULT_LATCH",
+          "value": "BAT54H fault OR",
+          "manifest_nets": {
+            "1": "DRV_FAULT_N",
+            "2": "HARD_FAULT_N"
+          },
+          "exported_nets": {
+            "1": "DRV_FAULT_N",
+            "2": "HARD_FAULT_N"
+          }
+        },
+        {
+          "ref": "D2402",
+          "page": "16_FAULT_LATCH",
+          "value": "BAT54H reset OR",
+          "manifest_nets": {
+            "1": "NRST",
+            "2": "HARD_FAULT_N"
+          },
+          "exported_nets": {
+            "1": "NRST",
+            "2": "HARD_FAULT_N"
+          }
+        },
+        {
+          "ref": "D2403",
+          "page": "16_FAULT_LATCH",
+          "value": "BAT54H PG OR",
+          "manifest_nets": {
+            "1": "PG_12V",
+            "2": "HARD_FAULT_N"
+          },
+          "exported_nets": {
+            "1": "PG_12V",
+            "2": "HARD_FAULT_N"
+          }
+        },
+        {
+          "ref": "D2404",
+          "page": "16_FAULT_LATCH",
+          "value": "BAT54H PG OR",
+          "manifest_nets": {
+            "1": "PG_5V",
+            "2": "HARD_FAULT_N"
+          },
+          "exported_nets": {
+            "1": "PG_5V",
+            "2": "HARD_FAULT_N"
+          }
+        },
+        {
+          "ref": "R2401",
+          "page": "16_FAULT_LATCH",
+          "value": "2.2k fault pull-up",
+          "manifest_nets": {
+            "1": "HARD_FAULT_N",
+            "2": "+3V3"
+          },
+          "exported_nets": {
+            "1": "HARD_FAULT_N",
+            "2": "+3V3"
+          }
+        },
+        {
+          "ref": "R1801",
+          "page": "11_MCU_SUPPORT",
+          "value": "10k",
+          "manifest_nets": {
+            "1": "NRST",
+            "2": "+3V3"
+          },
+          "exported_nets": {
+            "1": "NRST",
+            "2": "+3V3"
+          }
+        },
+        {
+          "ref": "U2401",
+          "page": "16_FAULT_LATCH",
+          "value": "SN74LVC1G74DCUR",
+          "manifest_nets": {
+            "1": "ARM_CLK",
+            "2": "+3V3",
+            "3": null,
+            "4": "GND",
+            "5": "LATCH_STATE",
+            "6": "HARD_FAULT_N",
+            "7": "+3V3",
+            "8": "+3V3"
+          },
+          "exported_nets": {
+            "1": "ARM_CLK",
+            "2": "+3V3",
+            "3": "unconnected-(U2401-Qn-Pad3)",
+            "4": "GND",
+            "5": "LATCH_STATE",
+            "6": "HARD_FAULT_N",
+            "7": "+3V3",
+            "8": "+3V3"
+          }
+        },
+        {
+          "ref": "U1701",
+          "page": "10_MCU",
+          "value": "STM32G474RET3",
+          "manifest_nets": {
+            "1": "+3V3",
+            "2": null,
+            "3": null,
+            "4": null,
+            "5": "HSE_IN",
+            "6": null,
+            "7": "NRST",
+            "8": "V_BUS_ADC",
+            "9": "V_A_ADC",
+            "10": "V_B_ADC",
+            "11": "V_C_ADC",
+            "12": "I_A_ADC",
+            "13": "I_B_ADC",
+            "14": "I_C_ADC",
+            "15": "GND",
+            "16": "+3V3",
+            "17": "TEMP_FET",
+            "18": "TEMP_PCB",
+            "19": null,
+            "20": null,
+            "21": null,
+            "22": "DRV_CS_N",
+            "23": "ARM_CLK",
+            "24": "TEMP_MOTOR",
+            "25": null,
+            "26": "PG_12V",
+            "27": "GND",
+            "28": "+3V3A",
+            "29": "+3V3A",
+            "30": "PG_5V",
+            "31": "GND",
+            "32": "+3V3",
+            "33": "DRV_FAULT_N",
+            "34": "HARD_FAULT_N",
+            "35": "MCU_PWM_LA",
+            "36": "MCU_PWM_LB",
+            "37": "MCU_PWM_LC",
+            "38": "HALL_A",
+            "39": "HALL_B",
+            "40": "HALL_C",
+            "41": "RUN_REQUEST",
+            "42": "MCU_PWM_HA",
+            "43": "MCU_PWM_HB",
+            "44": "MCU_PWM_HC",
+            "45": "CAN_RX",
+            "46": "CAN_TX",
+            "47": "GND",
+            "48": "+3V3",
+            "49": "SWDIO",
+            "50": "SWCLK",
+            "51": "RC_PWM",
+            "52": "UART_TX",
+            "53": "UART_RX",
+            "54": "STATUS_LED",
+            "55": "LATCH_STATE",
+            "56": "SPI_SCK",
+            "57": "SPI_MISO",
+            "58": "SPI_MOSI",
+            "59": null,
+            "60": null,
+            "61": "BOOT0",
+            "62": null,
+            "63": "GND",
+            "64": "+3V3"
+          },
+          "exported_nets": {
+            "1": "+3V3",
+            "2": "unconnected-(U1701-PC13-Pad2)",
+            "3": "unconnected-(U1701-PC14-Pad3)",
+            "4": "unconnected-(U1701-PC15-Pad4)",
+            "5": "HSE_IN",
+            "6": "unconnected-(U1701-PF1-Pad6)",
+            "7": "NRST",
+            "8": "V_BUS_ADC",
+            "9": "V_A_ADC",
+            "10": "V_B_ADC",
+            "11": "V_C_ADC",
+            "12": "I_A_ADC",
+            "13": "I_B_ADC",
+            "14": "I_C_ADC",
+            "15": "GND",
+            "16": "+3V3",
+            "17": "TEMP_FET",
+            "18": "TEMP_PCB",
+            "19": "unconnected-(U1701-PA5-Pad19)",
+            "20": "unconnected-(U1701-PA6-Pad20)",
+            "21": "unconnected-(U1701-PA7-Pad21)",
+            "22": "DRV_CS_N",
+            "23": "ARM_CLK",
+            "24": "TEMP_MOTOR",
+            "25": "unconnected-(U1701-PB1-Pad25)",
+            "26": "PG_12V",
+            "27": "GND",
+            "28": "+3V3A",
+            "29": "+3V3A",
+            "30": "PG_5V",
+            "31": "GND",
+            "32": "+3V3",
+            "33": "DRV_FAULT_N",
+            "34": "HARD_FAULT_N",
+            "35": "MCU_PWM_LA",
+            "36": "MCU_PWM_LB",
+            "37": "MCU_PWM_LC",
+            "38": "HALL_A",
+            "39": "HALL_B",
+            "40": "HALL_C",
+            "41": "RUN_REQUEST",
+            "42": "MCU_PWM_HA",
+            "43": "MCU_PWM_HB",
+            "44": "MCU_PWM_HC",
+            "45": "CAN_RX",
+            "46": "CAN_TX",
+            "47": "GND",
+            "48": "+3V3",
+            "49": "SWDIO",
+            "50": "SWCLK",
+            "51": "RC_PWM",
+            "52": "UART_TX",
+            "53": "UART_RX",
+            "54": "STATUS_LED",
+            "55": "LATCH_STATE",
+            "56": "SPI_SCK",
+            "57": "SPI_MISO",
+            "58": "SPI_MOSI",
+            "59": "unconnected-(U1701-PB6-Pad59)",
+            "60": "unconnected-(U1701-PB7-Pad60)",
+            "61": "BOOT0",
+            "62": "unconnected-(U1701-PB9-Pad62)",
+            "63": "GND",
+            "64": "+3V3"
+          }
+        }
+      ],
+      "observation": "D2401–4 anotları HARD_FAULT_N; katotları DRV_FAULT_N, NRST, PG_12V, PG_5V. HARD_FAULT_N, U2401.6 CLR ve U1701.34 BKIN girişlerini sürüyor. R2401 2.2k ek sink yükü getiriyor.",
+      "consequence": "Düşük seviye, kaynak VOL + diyot VF toplamıdır. SN74LVC1G74 3–3.6V beslemede VIL üst sınırı 0.8V. BAT54H 25C tablosu tek başına soğuk/sıcak çalışma marjını ve güç geçişlerini kanıtlamaz. Kesin arıza iddiası yok.",
+      "correction": "Her kaynak için toplam pull-up akımı, garantili VOL, sıcaklıkta VF, CLR/BKIN eşikleri ve minimum reset darbesini bütçele. Marj kanıtlanamazsa diyot ağı yerine uygun aktif mantık/supervisor kullan. NRST sürücü akımı ve BOR/option-byte davranışını ayrıca doğrula.",
+      "acceptance": "Tüm kaynaklar için pozitif worst-case gürültü marjı ve açılış/brownout/reset sırasında PWM inhibit kanıtı; MCU reseti tek başına dış latch başlangıcının kanıtı sayılmaz.",
+      "sources": [
+        {
+          "url": "https://www.ti.com/lit/ds/symlink/sn74lvc1g74.pdf",
+          "section": "6.3 Recommended Operating Conditions"
+        },
+        {
+          "url": "https://assets.nexperia.com/documents/data-sheet/BAT54H.pdf",
+          "section": "Pinning and Table7"
+        },
+        {
+          "url": "https://www.st.com/resource/en/datasheet/stm32g474re.pdf",
+          "section": "5.3.15 NRST"
+        }
+      ]
+    }
+  ]
+}

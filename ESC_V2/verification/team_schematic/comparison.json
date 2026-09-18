@@ -1,0 +1,15 @@
+{
+  "before_connected_pins": 734,
+  "after_connected_pins": 734,
+  "connectivity_changes": [
+    {
+      "ref": "R1301",
+      "pin": "1",
+      "before": "VBUS",
+      "after": "GND"
+    }
+  ],
+  "erc_before": 0,
+  "erc_after": 0,
+  "scope": "Graphics readability and explicit reviewed electrical corrections; no standards certification."
+}

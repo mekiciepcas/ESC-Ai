@@ -1,0 +1,3783 @@
+[
+  {
+    "ref": "J1",
+    "page": "01_DC_link",
+    "kind": "CONN2",
+    "value": "DC LINK INPUT",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "From external fused, precharged, reverse-polarity-protected DC input assembly; not raw battery.",
+    "x": 76.2,
+    "y": 48.26
+  },
+  {
+    "ref": "J2",
+    "page": "01_DC_link",
+    "kind": "CONN3",
+    "value": "MOTOR U V W",
+    "nets": {
+      "1": "PH_A",
+      "2": "PH_B",
+      "3": "PH_C"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "High current terminal system: mechanical selection pending.",
+    "x": 205.74,
+    "y": 48.26
+  },
+  {
+    "ref": "J3",
+    "page": "01_DC_link",
+    "kind": "CONN2",
+    "value": "EXTERNAL BRAKE MODULE",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Regen energy clamp/chopper sizing and interface remain release blockers.",
+    "x": 335.28,
+    "y": 48.26
+  },
+  {
+    "ref": "C1",
+    "page": "01_DC_link",
+    "kind": "C",
+    "value": "470u 100V bulk",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending.",
+    "x": 76.2,
+    "y": 80.01
+  },
+  {
+    "ref": "C2",
+    "page": "01_DC_link",
+    "kind": "C",
+    "value": "470u 100V bulk",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending.",
+    "x": 205.74,
+    "y": 80.01
+  },
+  {
+    "ref": "C3",
+    "page": "01_DC_link",
+    "kind": "C",
+    "value": "470u 100V bulk",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending.",
+    "x": 335.28,
+    "y": 80.01
+  },
+  {
+    "ref": "C4",
+    "page": "01_DC_link",
+    "kind": "C",
+    "value": "2.2u 100V X7R",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "At each half bridge; effective capacitance under bias required.",
+    "x": 76.2,
+    "y": 109.22
+  },
+  {
+    "ref": "C5",
+    "page": "01_DC_link",
+    "kind": "C",
+    "value": "2.2u 100V X7R",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "At each half bridge; effective capacitance under bias required.",
+    "x": 205.74,
+    "y": 109.22
+  },
+  {
+    "ref": "C6",
+    "page": "01_DC_link",
+    "kind": "C",
+    "value": "2.2u 100V X7R",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "At each half bridge; effective capacitance under bias required.",
+    "x": 335.28,
+    "y": 109.22
+  },
+  {
+    "ref": "R1",
+    "page": "01_DC_link",
+    "kind": "R",
+    "value": "100k 0.25W",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Bleed only; discharge time must be checked before service.",
+    "x": 76.2,
+    "y": 138.43
+  },
+  {
+    "ref": "#FLG1",
+    "page": "01_DC_link",
+    "kind": "FLAG",
+    "value": "VBUS",
+    "nets": {
+      "1": "VBUS"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 140.97
+  },
+  {
+    "ref": "#FLG2",
+    "page": "01_DC_link",
+    "kind": "FLAG",
+    "value": "GND",
+    "nets": {
+      "1": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 140.97
+  },
+  {
+    "ref": "Q1",
+    "page": "02_phase_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHA_1",
+      "2": "VBUS",
+      "3": "PH_A"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 76.2,
+    "y": 48.26
+  },
+  {
+    "ref": "R2",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHA",
+      "2": "GHA_1"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "R3",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHA_1",
+      "2": "PH_A"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "Q2",
+    "page": "02_phase_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHA_2",
+      "2": "VBUS",
+      "3": "PH_A"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 205.74,
+    "y": 77.47
+  },
+  {
+    "ref": "R4",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHA",
+      "2": "GHA_2"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R5",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHA_2",
+      "2": "PH_A"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 80.01
+  },
+  {
+    "ref": "Q3",
+    "page": "02_phase_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLA_1",
+      "2": "PH_A",
+      "3": "SHUNT_A_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 335.28,
+    "y": 106.68
+  },
+  {
+    "ref": "R6",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLA",
+      "2": "GLA_1"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 109.22
+  },
+  {
+    "ref": "R7",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLA_1",
+      "2": "SHUNT_A_P"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 109.22
+  },
+  {
+    "ref": "Q4",
+    "page": "02_phase_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLA_2",
+      "2": "PH_A",
+      "3": "SHUNT_A_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 76.2,
+    "y": 140.97
+  },
+  {
+    "ref": "R8",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLA",
+      "2": "GLA_2"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 138.43
+  },
+  {
+    "ref": "R9",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLA_2",
+      "2": "SHUNT_A_P"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 138.43
+  },
+  {
+    "ref": "RS1",
+    "page": "02_phase_A",
+    "kind": "SHUNT",
+    "value": "0.5mR Kelvin",
+    "nets": {
+      "1": "SHUNT_A_P",
+      "2": "GND",
+      "3": "IS_A_P",
+      "4": "IS_A_N"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "4-terminal symbol. 5W minimum candidate class; exact pad numbering, MPN and pulse rating pending.",
+    "x": 205.74,
+    "y": 170.18
+  },
+  {
+    "ref": "R10",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "0R NET-TIE ONLY",
+    "nets": {
+      "1": "SHUNT_A_P",
+      "2": "IS_A_P"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Replace by net tie at shunt sense terminal in PCB; not a discrete routing shortcut.",
+    "x": 335.28,
+    "y": 167.64
+  },
+  {
+    "ref": "R11",
+    "page": "02_phase_A",
+    "kind": "R",
+    "value": "0R NET-TIE ONLY",
+    "nets": {
+      "1": "GND",
+      "2": "IS_A_N"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Replace by net tie at shunt sense terminal in PCB.",
+    "x": 76.2,
+    "y": 172.72
+  },
+  {
+    "ref": "C7",
+    "page": "02_phase_A",
+    "kind": "C",
+    "value": "100n 100V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 196.85
+  },
+  {
+    "ref": "Q5",
+    "page": "02_phase_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHB_1",
+      "2": "VBUS",
+      "3": "PH_B"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 76.2,
+    "y": 48.26
+  },
+  {
+    "ref": "R12",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHB",
+      "2": "GHB_1"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "R13",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHB_1",
+      "2": "PH_B"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "Q6",
+    "page": "02_phase_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHB_2",
+      "2": "VBUS",
+      "3": "PH_B"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 205.74,
+    "y": 77.47
+  },
+  {
+    "ref": "R14",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHB",
+      "2": "GHB_2"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R15",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHB_2",
+      "2": "PH_B"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 80.01
+  },
+  {
+    "ref": "Q7",
+    "page": "02_phase_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLB_1",
+      "2": "PH_B",
+      "3": "SHUNT_B_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 335.28,
+    "y": 106.68
+  },
+  {
+    "ref": "R16",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLB",
+      "2": "GLB_1"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 109.22
+  },
+  {
+    "ref": "R17",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLB_1",
+      "2": "SHUNT_B_P"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 109.22
+  },
+  {
+    "ref": "Q8",
+    "page": "02_phase_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLB_2",
+      "2": "PH_B",
+      "3": "SHUNT_B_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 76.2,
+    "y": 140.97
+  },
+  {
+    "ref": "R18",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLB",
+      "2": "GLB_2"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 138.43
+  },
+  {
+    "ref": "R19",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLB_2",
+      "2": "SHUNT_B_P"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 138.43
+  },
+  {
+    "ref": "RS2",
+    "page": "02_phase_B",
+    "kind": "SHUNT",
+    "value": "0.5mR Kelvin",
+    "nets": {
+      "1": "SHUNT_B_P",
+      "2": "GND",
+      "3": "IS_B_P",
+      "4": "IS_B_N"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "4-terminal symbol. 5W minimum candidate class; exact pad numbering, MPN and pulse rating pending.",
+    "x": 205.74,
+    "y": 170.18
+  },
+  {
+    "ref": "R20",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "0R NET-TIE ONLY",
+    "nets": {
+      "1": "SHUNT_B_P",
+      "2": "IS_B_P"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Replace by net tie at shunt sense terminal in PCB; not a discrete routing shortcut.",
+    "x": 335.28,
+    "y": 167.64
+  },
+  {
+    "ref": "R21",
+    "page": "02_phase_B",
+    "kind": "R",
+    "value": "0R NET-TIE ONLY",
+    "nets": {
+      "1": "GND",
+      "2": "IS_B_N"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Replace by net tie at shunt sense terminal in PCB.",
+    "x": 76.2,
+    "y": 172.72
+  },
+  {
+    "ref": "C8",
+    "page": "02_phase_B",
+    "kind": "C",
+    "value": "100n 100V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 196.85
+  },
+  {
+    "ref": "Q9",
+    "page": "02_phase_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHC_1",
+      "2": "VBUS",
+      "3": "PH_C"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 76.2,
+    "y": 48.26
+  },
+  {
+    "ref": "R22",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHC",
+      "2": "GHC_1"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "R23",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHC_1",
+      "2": "PH_C"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "Q10",
+    "page": "02_phase_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHC_2",
+      "2": "VBUS",
+      "3": "PH_C"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 205.74,
+    "y": 77.47
+  },
+  {
+    "ref": "R24",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHC",
+      "2": "GHC_2"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R25",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHC_2",
+      "2": "PH_C"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 80.01
+  },
+  {
+    "ref": "Q11",
+    "page": "02_phase_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLC_1",
+      "2": "PH_C",
+      "3": "SHUNT_C_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 335.28,
+    "y": 106.68
+  },
+  {
+    "ref": "R26",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLC",
+      "2": "GLC_1"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 109.22
+  },
+  {
+    "ref": "R27",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLC_1",
+      "2": "SHUNT_C_P"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 109.22
+  },
+  {
+    "ref": "Q12",
+    "page": "02_phase_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLC_2",
+      "2": "PH_C",
+      "3": "SHUNT_C_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "x": 76.2,
+    "y": 140.97
+  },
+  {
+    "ref": "R28",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLC",
+      "2": "GLC_2"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements.",
+    "x": 205.74,
+    "y": 138.43
+  },
+  {
+    "ref": "R29",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLC_2",
+      "2": "SHUNT_C_P"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 138.43
+  },
+  {
+    "ref": "RS3",
+    "page": "02_phase_C",
+    "kind": "SHUNT",
+    "value": "0.5mR Kelvin",
+    "nets": {
+      "1": "SHUNT_C_P",
+      "2": "GND",
+      "3": "IS_C_P",
+      "4": "IS_C_N"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "4-terminal symbol. 5W minimum candidate class; exact pad numbering, MPN and pulse rating pending.",
+    "x": 205.74,
+    "y": 170.18
+  },
+  {
+    "ref": "R30",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "0R NET-TIE ONLY",
+    "nets": {
+      "1": "SHUNT_C_P",
+      "2": "IS_C_P"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Replace by net tie at shunt sense terminal in PCB; not a discrete routing shortcut.",
+    "x": 335.28,
+    "y": 167.64
+  },
+  {
+    "ref": "R31",
+    "page": "02_phase_C",
+    "kind": "R",
+    "value": "0R NET-TIE ONLY",
+    "nets": {
+      "1": "GND",
+      "2": "IS_C_N"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Replace by net tie at shunt sense terminal in PCB.",
+    "x": 76.2,
+    "y": 172.72
+  },
+  {
+    "ref": "C9",
+    "page": "02_phase_C",
+    "kind": "C",
+    "value": "100n 100V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 196.85
+  },
+  {
+    "ref": "U1",
+    "page": "03_gate_driver",
+    "kind": "DRV",
+    "value": "DRV8353FSRTAR",
+    "nets": {
+      "1": "CPL",
+      "2": "CPH",
+      "3": "+12V",
+      "4": "VBUS",
+      "5": "VCP",
+      "6": "GHA",
+      "7": "PH_A",
+      "8": "GLA",
+      "9": "IS_A_P",
+      "10": "IS_A_N",
+      "11": "IS_B_N",
+      "12": "IS_B_P",
+      "13": "GLB",
+      "14": "PH_B",
+      "15": "GHB",
+      "16": "GHC",
+      "17": "PH_C",
+      "18": "GLC",
+      "19": "IS_C_P",
+      "20": "IS_C_N",
+      "21": "I_C_RAW",
+      "22": "I_B_RAW",
+      "23": "I_A_RAW",
+      "24": "+3V3A",
+      "25": "GND",
+      "26": "DRV_FAULT_N",
+      "27": "SPI_MISO",
+      "28": "SPI_MOSI",
+      "29": "SPI_SCK",
+      "30": "DRV_CS_N",
+      "31": "DRV_ENABLE",
+      "32": "PWM_HA",
+      "33": "PWM_LA",
+      "34": "PWM_HB",
+      "35": "PWM_LB",
+      "36": "PWM_HC",
+      "37": "PWM_LC",
+      "38": "DRV_DVDD",
+      "39": "GND",
+      "40": "DRV_VGLS",
+      "41": "GND"
+    },
+    "mpn": "DRV8353FSRTAR",
+    "footprint": "",
+    "note": "F variant selected for supply evidence. RTA0040 footprint must be checked against mechanical drawing; not assigned by package-name guess.",
+    "x": 76.2,
+    "y": 72.39
+  },
+  {
+    "ref": "C10",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "47n 100V",
+    "nets": {
+      "1": "CPH",
+      "2": "CPL"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C11",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "1u 25V",
+    "nets": {
+      "1": "VCP",
+      "2": "VBUS"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "C12",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "1u 25V",
+    "nets": {
+      "1": "DRV_VGLS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "C13",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "1u 10V",
+    "nets": {
+      "1": "DRV_DVDD",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "C14",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "100n 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "C15",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "10u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "C16",
+    "page": "03_gate_driver",
+    "kind": "C",
+    "value": "100n 10V",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 128.27
+  },
+  {
+    "ref": "R32",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "4.7k pull-up",
+    "nets": {
+      "1": "SPI_MISO",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 133.35
+  },
+  {
+    "ref": "R33",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "4.7k pull-up",
+    "nets": {
+      "1": "DRV_FAULT_N",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 133.35
+  },
+  {
+    "ref": "R34",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "10k pull-up",
+    "nets": {
+      "1": "DRV_CS_N",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 157.48
+  },
+  {
+    "ref": "R35",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "10k pull-down",
+    "nets": {
+      "1": "DRV_ENABLE",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 162.56
+  },
+  {
+    "ref": "R36",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_HA",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 162.56
+  },
+  {
+    "ref": "R37",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_LA",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 186.69
+  },
+  {
+    "ref": "R38",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_HB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 191.77
+  },
+  {
+    "ref": "R39",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_LB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 191.77
+  },
+  {
+    "ref": "R40",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_HC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 215.9
+  },
+  {
+    "ref": "R41",
+    "page": "03_gate_driver",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_LC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 220.98
+  },
+  {
+    "ref": "R42",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "VBUS",
+      "2": "V_BUS_MID"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 45.72
+  },
+  {
+    "ref": "R43",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_BUS_MID",
+      "2": "V_BUS_DIV"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "R44",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_BUS_DIV",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "R45",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_BUS_DIV",
+      "2": "V_BUS_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 74.93
+  },
+  {
+    "ref": "C17",
+    "page": "04_voltage_sensing",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_BUS_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay.",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "D1",
+    "page": "04_voltage_sensing",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_BUS_ADC"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "D2",
+    "page": "04_voltage_sensing",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_BUS_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 76.2,
+    "y": 104.14
+  },
+  {
+    "ref": "R46",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "PH_A",
+      "2": "V_A_MID"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "R47",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_A_MID",
+      "2": "V_A_DIV"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "R48",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_A_DIV",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 133.35
+  },
+  {
+    "ref": "R49",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_A_DIV",
+      "2": "V_A_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 133.35
+  },
+  {
+    "ref": "C18",
+    "page": "04_voltage_sensing",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_A_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay.",
+    "x": 335.28,
+    "y": 133.35
+  },
+  {
+    "ref": "D3",
+    "page": "04_voltage_sensing",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_A_ADC"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "x": 76.2,
+    "y": 162.56
+  },
+  {
+    "ref": "D4",
+    "page": "04_voltage_sensing",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_A_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 162.56
+  },
+  {
+    "ref": "R50",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "PH_B",
+      "2": "V_B_MID"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 162.56
+  },
+  {
+    "ref": "R51",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_B_MID",
+      "2": "V_B_DIV"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 191.77
+  },
+  {
+    "ref": "R52",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_B_DIV",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 191.77
+  },
+  {
+    "ref": "R53",
+    "page": "04_voltage_sensing",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_B_DIV",
+      "2": "V_B_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 191.77
+  },
+  {
+    "ref": "C19",
+    "page": "04_voltage_sensing_2",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_B_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay.",
+    "x": 76.2,
+    "y": 45.72
+  },
+  {
+    "ref": "D5",
+    "page": "04_voltage_sensing_2",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_B_ADC"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "D6",
+    "page": "04_voltage_sensing_2",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_B_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "R54",
+    "page": "04_voltage_sensing_2",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "PH_C",
+      "2": "V_C_MID"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 74.93
+  },
+  {
+    "ref": "R55",
+    "page": "04_voltage_sensing_2",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_C_MID",
+      "2": "V_C_DIV"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "R56",
+    "page": "04_voltage_sensing_2",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_C_DIV",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R57",
+    "page": "04_voltage_sensing_2",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_C_DIV",
+      "2": "V_C_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 104.14
+  },
+  {
+    "ref": "C20",
+    "page": "04_voltage_sensing_2",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_C_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay.",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "D7",
+    "page": "04_voltage_sensing_2",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_C_ADC"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "D8",
+    "page": "04_voltage_sensing_2",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_C_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 76.2,
+    "y": 133.35
+  },
+  {
+    "ref": "R58",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "100R ADC",
+    "nets": {
+      "1": "I_A_RAW",
+      "2": "I_A_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 45.72
+  },
+  {
+    "ref": "C21",
+    "page": "05_current_and_temperature",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "I_A_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "R59",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "100R ADC",
+    "nets": {
+      "1": "I_B_RAW",
+      "2": "I_B_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "C22",
+    "page": "05_current_and_temperature",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "I_B_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 74.93
+  },
+  {
+    "ref": "R60",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "100R ADC",
+    "nets": {
+      "1": "I_C_RAW",
+      "2": "I_C_ADC"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "C23",
+    "page": "05_current_and_temperature",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "I_C_ADC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R61",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "TEMP_FET"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 104.14
+  },
+  {
+    "ref": "R62",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "NTC 10k B3435",
+    "nets": {
+      "1": "TEMP_FET",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "MPN, tolerance and actual placement pending; firmware must use selected curve.",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "C24",
+    "page": "05_current_and_temperature",
+    "kind": "C",
+    "value": "10n",
+    "nets": {
+      "1": "TEMP_FET",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "R63",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "TEMP_PCB"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 133.35
+  },
+  {
+    "ref": "R64",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "NTC 10k B3435",
+    "nets": {
+      "1": "TEMP_PCB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "MPN, tolerance and actual placement pending; firmware must use selected curve.",
+    "x": 205.74,
+    "y": 133.35
+  },
+  {
+    "ref": "C25",
+    "page": "05_current_and_temperature",
+    "kind": "C",
+    "value": "10n",
+    "nets": {
+      "1": "TEMP_PCB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 133.35
+  },
+  {
+    "ref": "J4",
+    "page": "05_current_and_temperature",
+    "kind": "CONN2",
+    "value": "MOTOR TEMP",
+    "nets": {
+      "1": "TEMP_MOTOR_RAW",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Sensor type not yet confirmed; A1 assumes resistance sensor for interface review only.",
+    "x": 76.2,
+    "y": 165.1
+  },
+  {
+    "ref": "R65",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "10k provision",
+    "nets": {
+      "1": "+3V3A",
+      "2": "TEMP_MOTOR_RAW"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 162.56
+  },
+  {
+    "ref": "R66",
+    "page": "05_current_and_temperature",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "TEMP_MOTOR_RAW",
+      "2": "TEMP_MOTOR"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 162.56
+  },
+  {
+    "ref": "C26",
+    "page": "05_current_and_temperature",
+    "kind": "C",
+    "value": "10n",
+    "nets": {
+      "1": "TEMP_MOTOR",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 191.77
+  },
+  {
+    "ref": "U2",
+    "page": "06_aux_12V",
+    "kind": "BUCK12",
+    "value": "LM5164DDAT",
+    "nets": {
+      "1": "GND",
+      "2": "VBUS",
+      "3": "BUCK_UVLO",
+      "4": "BUCK_RON",
+      "5": "BUCK_FB",
+      "6": "PG_12V",
+      "7": "BUCK_BST",
+      "8": "BUCK_SW",
+      "9": "GND"
+    },
+    "mpn": "LM5164DDAT",
+    "footprint": "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias",
+    "note": "",
+    "x": 76.2,
+    "y": 52.07
+  },
+  {
+    "ref": "L1",
+    "page": "06_aux_12V",
+    "kind": "L",
+    "value": "68uH >=1.5A",
+    "nets": {
+      "1": "BUCK_SW",
+      "2": "+12V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Effective L, saturation current, DCR and footprint pending exact MPN.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C27",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "2.2u 160V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "C28",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "100n 160V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "C29",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "22u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "C30",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "22u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 76.2,
+    "y": 87.63
+  },
+  {
+    "ref": "C31",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "2.2n C0G",
+    "nets": {
+      "1": "BUCK_BST",
+      "2": "BUCK_SW"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "R67",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "100k",
+    "nets": {
+      "1": "VBUS",
+      "2": "BUCK_RON"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "R68",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "453k",
+    "nets": {
+      "1": "+12V",
+      "2": "BUCK_FB"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 116.84
+  },
+  {
+    "ref": "R69",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "49.9k",
+    "nets": {
+      "1": "BUCK_FB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 133.35
+  },
+  {
+    "ref": "R70",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "453k ripple",
+    "nets": {
+      "1": "BUCK_SW",
+      "2": "BUCK_RIPPLE"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 133.35
+  },
+  {
+    "ref": "C32",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "3.3n",
+    "nets": {
+      "1": "BUCK_RIPPLE",
+      "2": "+12V"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 146.05
+  },
+  {
+    "ref": "C33",
+    "page": "06_aux_12V",
+    "kind": "C",
+    "value": "56p C0G",
+    "nets": {
+      "1": "BUCK_RIPPLE",
+      "2": "BUCK_FB"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 162.56
+  },
+  {
+    "ref": "R71",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "1M UVLO",
+    "nets": {
+      "1": "VBUS",
+      "2": "BUCK_UVLO"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 162.56
+  },
+  {
+    "ref": "R72",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "100k UVLO",
+    "nets": {
+      "1": "BUCK_UVLO",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Aux powers early for diagnostics; this is NOT the traction undervoltage cutoff.",
+    "x": 76.2,
+    "y": 175.26
+  },
+  {
+    "ref": "R73",
+    "page": "06_aux_12V",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "PG_12V",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 191.77
+  },
+  {
+    "ref": "J5",
+    "page": "06_aux_12V",
+    "kind": "CONN2",
+    "value": "FAN 12V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Fan <=0.2A continuous budget. Inrush must be measured.",
+    "x": 335.28,
+    "y": 194.31
+  },
+  {
+    "ref": "U3",
+    "page": "07_aux_5V_3V3",
+    "kind": "BUCK5",
+    "value": "TPS62160DGKR",
+    "nets": {
+      "1": "GND",
+      "2": "+12V",
+      "3": "+12V",
+      "4": "GND",
+      "5": "FB_5V",
+      "6": "+5V",
+      "7": "SW_5V",
+      "8": "PG_5V"
+    },
+    "mpn": "TPS62160DGKR",
+    "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
+    "note": "",
+    "x": 76.2,
+    "y": 50.8
+  },
+  {
+    "ref": "L2",
+    "page": "07_aux_5V_3V3",
+    "kind": "L",
+    "value": "2.2uH >=1.5A",
+    "nets": {
+      "1": "SW_5V",
+      "2": "+5V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Check DC bias and saturation against converter peak current.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C34",
+    "page": "07_aux_5V_3V3",
+    "kind": "C",
+    "value": "10u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "C35",
+    "page": "07_aux_5V_3V3",
+    "kind": "C",
+    "value": "22u 10V",
+    "nets": {
+      "1": "+5V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "R74",
+    "page": "07_aux_5V_3V3",
+    "kind": "R",
+    "value": "523k",
+    "nets": {
+      "1": "+5V",
+      "2": "FB_5V"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R75",
+    "page": "07_aux_5V_3V3",
+    "kind": "R",
+    "value": "100k",
+    "nets": {
+      "1": "FB_5V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 85.09
+  },
+  {
+    "ref": "R76",
+    "page": "07_aux_5V_3V3",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "PG_5V",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "U4",
+    "page": "07_aux_5V_3V3",
+    "kind": "LDO",
+    "value": "TLV75533PDBVR",
+    "nets": {
+      "1": "+5V",
+      "2": "GND",
+      "3": "+5V",
+      "4": null,
+      "5": "+3V3"
+    },
+    "mpn": "TLV75533PDBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "",
+    "x": 335.28,
+    "y": 107.95
+  },
+  {
+    "ref": "C36",
+    "page": "07_aux_5V_3V3",
+    "kind": "C",
+    "value": "1u 10V",
+    "nets": {
+      "1": "+5V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 114.3
+  },
+  {
+    "ref": "C37",
+    "page": "07_aux_5V_3V3",
+    "kind": "C",
+    "value": "4.7u 10V",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 133.35
+  },
+  {
+    "ref": "R77",
+    "page": "07_aux_5V_3V3",
+    "kind": "R",
+    "value": "0R analog link",
+    "nets": {
+      "1": "+3V3",
+      "2": "+3V3A"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Optional ferrite only after analog rail impedance review.",
+    "x": 335.28,
+    "y": 140.97
+  },
+  {
+    "ref": "C38",
+    "page": "07_aux_5V_3V3",
+    "kind": "C",
+    "value": "4.7u 10V",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 76.2,
+    "y": 143.51
+  },
+  {
+    "ref": "C39",
+    "page": "07_aux_5V_3V3",
+    "kind": "C",
+    "value": "100n",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 162.56
+  },
+  {
+    "ref": "U5",
+    "page": "08_MCU",
+    "kind": "MCU",
+    "value": "STM32G474RET3",
+    "nets": {
+      "1": "+3V3",
+      "2": null,
+      "3": null,
+      "4": null,
+      "5": "HSE_IN",
+      "6": null,
+      "7": "NRST",
+      "8": "V_BUS_ADC",
+      "9": "V_A_ADC",
+      "10": "V_B_ADC",
+      "11": "V_C_ADC",
+      "12": "I_A_ADC",
+      "13": "I_B_ADC",
+      "14": "I_C_ADC",
+      "15": "GND",
+      "16": "+3V3",
+      "17": "TEMP_FET",
+      "18": "TEMP_PCB",
+      "19": null,
+      "20": null,
+      "21": null,
+      "22": "DRV_CS_N",
+      "23": "ARM_CLK",
+      "24": "TEMP_MOTOR",
+      "25": null,
+      "26": "PG_12V",
+      "27": "GND",
+      "28": "+3V3A",
+      "29": "+3V3A",
+      "30": "PG_5V",
+      "31": "GND",
+      "32": "+3V3",
+      "33": "DRV_FAULT_N",
+      "34": "HARD_FAULT_N",
+      "35": "MCU_PWM_LA",
+      "36": "MCU_PWM_LB",
+      "37": "MCU_PWM_LC",
+      "38": "HALL_A",
+      "39": "HALL_B",
+      "40": "HALL_C",
+      "41": "RUN_REQUEST",
+      "42": "MCU_PWM_HA",
+      "43": "MCU_PWM_HB",
+      "44": "MCU_PWM_HC",
+      "45": "CAN_RX",
+      "46": "CAN_TX",
+      "47": "GND",
+      "48": "+3V3",
+      "49": "SWDIO",
+      "50": "SWCLK",
+      "51": "RC_PWM",
+      "52": "UART_TX",
+      "53": "UART_RX",
+      "54": "STATUS_LED",
+      "55": "LATCH_STATE",
+      "56": "SPI_SCK",
+      "57": "SPI_MISO",
+      "58": "SPI_MOSI",
+      "59": null,
+      "60": null,
+      "61": "BOOT0",
+      "62": null,
+      "63": "GND",
+      "64": "+3V3"
+    },
+    "mpn": "STM32G474RET3",
+    "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+    "note": "PG10 must remain NRST option. PB8 BOOT0 option bytes reviewed before flashing. Verify AF/ADC schedule before PCB.",
+    "x": 76.2,
+    "y": 86.36
+  },
+  {
+    "ref": "C40",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C41",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "C42",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "C43",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "C44",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "4.7u",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 104.14
+  },
+  {
+    "ref": "C45",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n at VBAT",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "C46",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "1u VDDA",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 133.35
+  },
+  {
+    "ref": "C47",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n VDDA",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 133.35
+  },
+  {
+    "ref": "C48",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n VREF",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 156.21
+  },
+  {
+    "ref": "R78",
+    "page": "08_MCU",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "NRST",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 162.56
+  },
+  {
+    "ref": "C49",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n reset",
+    "nets": {
+      "1": "NRST",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 162.56
+  },
+  {
+    "ref": "R79",
+    "page": "08_MCU",
+    "kind": "R",
+    "value": "10k BOOT0",
+    "nets": {
+      "1": "BOOT0",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 185.42
+  },
+  {
+    "ref": "R80",
+    "page": "08_MCU",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "ARM_CLK",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 191.77
+  },
+  {
+    "ref": "R81",
+    "page": "08_MCU",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "RUN_REQUEST",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 191.77
+  },
+  {
+    "ref": "J6",
+    "page": "08_MCU",
+    "kind": "CONN5",
+    "value": "SWD",
+    "nets": {
+      "1": "+3V3",
+      "2": "SWDIO",
+      "3": "GND",
+      "4": "SWCLK",
+      "5": "NRST"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "VTref only; avoid powering rail from two sources.",
+    "x": 76.2,
+    "y": 218.44
+  },
+  {
+    "ref": "Y1",
+    "page": "08_MCU",
+    "kind": "OSC",
+    "value": "8MHz 3V3 CMOS oscillator",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND",
+      "3": "HSE_IN",
+      "4": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "4-pad 3225 oscillator candidate; pinout and MPN pending. HSE BYPASS mode.",
+    "x": 205.74,
+    "y": 223.52
+  },
+  {
+    "ref": "C50",
+    "page": "08_MCU",
+    "kind": "C",
+    "value": "100n oscillator",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 220.98
+  },
+  {
+    "ref": "R82",
+    "page": "08_MCU_2",
+    "kind": "R",
+    "value": "1k LED",
+    "nets": {
+      "1": "+3V3",
+      "2": "LED_A"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 45.72
+  },
+  {
+    "ref": "D9",
+    "page": "08_MCU_2",
+    "kind": "DIODE",
+    "value": "LED GREEN",
+    "nets": {
+      "1": "STATUS_LED",
+      "2": "LED_A"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "U6",
+    "page": "09_comms",
+    "kind": "CAN",
+    "value": "SN65HVD230DR",
+    "nets": {
+      "1": "CAN_TX",
+      "2": "GND",
+      "3": "+3V3",
+      "4": "CAN_RX",
+      "5": null,
+      "6": "CAN_L",
+      "7": "CAN_H",
+      "8": "CAN_RS"
+    },
+    "mpn": "SN65HVD230DR",
+    "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+    "note": "Classic CAN only, not CAN FD. TVS array selection pending.",
+    "x": 76.2,
+    "y": 50.8
+  },
+  {
+    "ref": "R83",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "10k slope",
+    "nets": {
+      "1": "CAN_RS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C51",
+    "page": "09_comms",
+    "kind": "C",
+    "value": "100n CAN",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "R84",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "120R DNP",
+    "nets": {
+      "1": "CAN_H",
+      "2": "CAN_L"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Fit only at bus end; DNP by default.",
+    "x": 205.74,
+    "y": 74.93
+  },
+  {
+    "ref": "J7",
+    "page": "09_comms",
+    "kind": "CONN3",
+    "value": "CAN",
+    "nets": {
+      "1": "GND",
+      "2": "CAN_H",
+      "3": "CAN_L"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 77.47
+  },
+  {
+    "ref": "J8",
+    "page": "09_comms",
+    "kind": "CONN3",
+    "value": "UART 3V3",
+    "nets": {
+      "1": "GND",
+      "2": "UART_RX",
+      "3": "UART_TX"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 76.2,
+    "y": 87.63
+  },
+  {
+    "ref": "J9",
+    "page": "09_comms",
+    "kind": "CONN2",
+    "value": "RC PWM 3V3",
+    "nets": {
+      "1": "GND",
+      "2": "RC_PWM"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 106.68
+  },
+  {
+    "ref": "J10",
+    "page": "09_comms",
+    "kind": "CONN5",
+    "value": "HALL 5V",
+    "nets": {
+      "1": "+5V",
+      "2": "GND",
+      "3": "HALL_A_EXT",
+      "4": "HALL_B_EXT",
+      "5": "HALL_C_EXT"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Interface requires open-collector Hall outputs; push-pull sensor needs level conversion.",
+    "x": 335.28,
+    "y": 113.03
+  },
+  {
+    "ref": "R85",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "4.7k 3V3 pull-up",
+    "nets": {
+      "1": "+3V3",
+      "2": "HALL_A_EXT"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 119.38
+  },
+  {
+    "ref": "R86",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "HALL_A_EXT",
+      "2": "HALL_A"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 138.43
+  },
+  {
+    "ref": "C52",
+    "page": "09_comms",
+    "kind": "C",
+    "value": "1n",
+    "nets": {
+      "1": "HALL_A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 146.05
+  },
+  {
+    "ref": "R87",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "4.7k 3V3 pull-up",
+    "nets": {
+      "1": "+3V3",
+      "2": "HALL_B_EXT"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 148.59
+  },
+  {
+    "ref": "R88",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "HALL_B_EXT",
+      "2": "HALL_B"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 167.64
+  },
+  {
+    "ref": "C53",
+    "page": "09_comms",
+    "kind": "C",
+    "value": "1n",
+    "nets": {
+      "1": "HALL_B",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 175.26
+  },
+  {
+    "ref": "R89",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "4.7k 3V3 pull-up",
+    "nets": {
+      "1": "+3V3",
+      "2": "HALL_C_EXT"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 177.8
+  },
+  {
+    "ref": "R90",
+    "page": "09_comms",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "HALL_C_EXT",
+      "2": "HALL_C"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 196.85
+  },
+  {
+    "ref": "C54",
+    "page": "09_comms",
+    "kind": "C",
+    "value": "1n",
+    "nets": {
+      "1": "HALL_C",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 204.47
+  },
+  {
+    "ref": "U7",
+    "page": "10_hardware_trip",
+    "kind": "COMP",
+    "value": "TLV1704PWR",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "HARD_FAULT_N",
+      "3": "+3V3A",
+      "4": "OC_LOW",
+      "5": "I_A_RAW",
+      "6": "I_A_RAW",
+      "7": "OC_HIGH",
+      "8": "OC_LOW",
+      "9": "I_B_RAW",
+      "10": "I_B_RAW",
+      "11": "OC_HIGH",
+      "12": "GND",
+      "13": "HARD_FAULT_N",
+      "14": "HARD_FAULT_N"
+    },
+    "mpn": "TLV1704PWR",
+    "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+    "note": "Comparator delay plus CSA settling is not a guaranteed short-circuit limit; MOSFET VDS protection remains primary.",
+    "x": 76.2,
+    "y": 54.61
+  },
+  {
+    "ref": "U8",
+    "page": "10_hardware_trip",
+    "kind": "COMP",
+    "value": "TLV1704PWR",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "HARD_FAULT_N",
+      "3": "+3V3A",
+      "4": "OC_LOW",
+      "5": "I_C_RAW",
+      "6": "I_C_RAW",
+      "7": "OC_HIGH",
+      "8": "V_BUS_DIV",
+      "9": "OV_REF",
+      "10": "GND",
+      "11": "+3V3A",
+      "12": "GND",
+      "13": null,
+      "14": "HARD_FAULT_N"
+    },
+    "mpn": "TLV1704PWR",
+    "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+    "note": "Comparator delay plus CSA settling is not a guaranteed short-circuit limit; MOSFET VDS protection remains primary.",
+    "x": 205.74,
+    "y": 54.61
+  },
+  {
+    "ref": "C55",
+    "page": "10_hardware_trip",
+    "kind": "C",
+    "value": "100n comparator",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "C56",
+    "page": "10_hardware_trip",
+    "kind": "C",
+    "value": "100n comparator",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "R91",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "26.1k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "OC_LOW"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 92.71
+  },
+  {
+    "ref": "R92",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "OC_LOW",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 92.71
+  },
+  {
+    "ref": "R93",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "OC_HIGH"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 104.14
+  },
+  {
+    "ref": "R94",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "26.1k 0.1%",
+    "nets": {
+      "1": "OC_HIGH",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 121.92
+  },
+  {
+    "ref": "C57",
+    "page": "10_hardware_trip",
+    "kind": "C",
+    "value": "10n reference",
+    "nets": {
+      "1": "OC_LOW",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 121.92
+  },
+  {
+    "ref": "C58",
+    "page": "10_hardware_trip",
+    "kind": "C",
+    "value": "10n reference",
+    "nets": {
+      "1": "OC_HIGH",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 133.35
+  },
+  {
+    "ref": "R95",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "7.50k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "OV_REF"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 151.13
+  },
+  {
+    "ref": "R96",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "OV_REF",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 151.13
+  },
+  {
+    "ref": "C59",
+    "page": "10_hardware_trip",
+    "kind": "C",
+    "value": "10n reference",
+    "nets": {
+      "1": "OV_REF",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 162.56
+  },
+  {
+    "ref": "R97",
+    "page": "10_hardware_trip",
+    "kind": "R",
+    "value": "2.2k fault pull-up",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 180.34
+  },
+  {
+    "ref": "D10",
+    "page": "10_hardware_trip",
+    "kind": "DIODE",
+    "value": "BAT54H fault OR",
+    "nets": {
+      "1": "DRV_FAULT_N",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "Verify diode VOL + DRV sink voltage meets latch CLR and MCU BKIN VIL.",
+    "x": 205.74,
+    "y": 180.34
+  },
+  {
+    "ref": "D11",
+    "page": "10_hardware_trip",
+    "kind": "DIODE",
+    "value": "BAT54H reset OR",
+    "nets": {
+      "1": "NRST",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 335.28,
+    "y": 191.77
+  },
+  {
+    "ref": "D12",
+    "page": "10_hardware_trip",
+    "kind": "DIODE",
+    "value": "BAT54H PG OR",
+    "nets": {
+      "1": "PG_12V",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 76.2,
+    "y": 209.55
+  },
+  {
+    "ref": "D13",
+    "page": "10_hardware_trip",
+    "kind": "DIODE",
+    "value": "BAT54H PG OR",
+    "nets": {
+      "1": "PG_5V",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H",
+    "footprint": "",
+    "note": "",
+    "x": 205.74,
+    "y": 209.55
+  },
+  {
+    "ref": "U9",
+    "page": "10_hardware_trip_2",
+    "kind": "LATCH",
+    "value": "SN74LVC1G74DCUR",
+    "nets": {
+      "1": "ARM_CLK",
+      "2": "+3V3",
+      "3": null,
+      "4": "GND",
+      "5": "LATCH_STATE",
+      "6": "HARD_FAULT_N",
+      "7": "+3V3",
+      "8": "+3V3"
+    },
+    "mpn": "SN74LVC1G74DCUR",
+    "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+    "note": "Fault clears Q. Re-arm requires deliberate rising edge with fault absent. Power-up state not assumed.",
+    "x": 76.2,
+    "y": 50.8
+  },
+  {
+    "ref": "R98",
+    "page": "10_hardware_trip_2",
+    "kind": "R",
+    "value": "0R driver wake",
+    "nets": {
+      "1": "RUN_REQUEST",
+      "2": "DRV_ENABLE"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Wake DRV first with PWM inhibited. Configure CSA and wait for healthy fault net, then arm latch.",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C60",
+    "page": "10_hardware_trip_2",
+    "kind": "C",
+    "value": "100n latch",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "J11",
+    "page": "10_hardware_trip_2",
+    "kind": "CONN2",
+    "value": "EMERGENCY STOP",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Shorting contact clears latch; wire-break detection not implemented.",
+    "x": 205.74,
+    "y": 77.47
+  },
+  {
+    "ref": "U10",
+    "page": "11_PWM_interlock",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_HA",
+      "3": "GND",
+      "4": "PWM_HA",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "x": 76.2,
+    "y": 49.53
+  },
+  {
+    "ref": "R99",
+    "page": "11_PWM_interlock",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_HA",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 45.72
+  },
+  {
+    "ref": "C61",
+    "page": "11_PWM_interlock",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 45.72
+  },
+  {
+    "ref": "U11",
+    "page": "11_PWM_interlock",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_LA",
+      "3": "GND",
+      "4": "PWM_LA",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "x": 205.74,
+    "y": 78.74
+  },
+  {
+    "ref": "R100",
+    "page": "11_PWM_interlock",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_LA",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 74.93
+  },
+  {
+    "ref": "C62",
+    "page": "11_PWM_interlock",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 82.55
+  },
+  {
+    "ref": "U12",
+    "page": "11_PWM_interlock",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_HB",
+      "3": "GND",
+      "4": "PWM_HB",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "x": 335.28,
+    "y": 107.95
+  },
+  {
+    "ref": "R101",
+    "page": "11_PWM_interlock",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_HB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 111.76
+  },
+  {
+    "ref": "C63",
+    "page": "11_PWM_interlock",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 111.76
+  },
+  {
+    "ref": "U13",
+    "page": "11_PWM_interlock",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_LB",
+      "3": "GND",
+      "4": "PWM_LB",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "x": 76.2,
+    "y": 144.78
+  },
+  {
+    "ref": "R102",
+    "page": "11_PWM_interlock",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_LB",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 140.97
+  },
+  {
+    "ref": "C64",
+    "page": "11_PWM_interlock",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 140.97
+  },
+  {
+    "ref": "U14",
+    "page": "11_PWM_interlock",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_HC",
+      "3": "GND",
+      "4": "PWM_HC",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "x": 205.74,
+    "y": 173.99
+  },
+  {
+    "ref": "R103",
+    "page": "11_PWM_interlock",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_HC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 335.28,
+    "y": 170.18
+  },
+  {
+    "ref": "C65",
+    "page": "11_PWM_interlock",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 177.8
+  },
+  {
+    "ref": "U15",
+    "page": "11_PWM_interlock",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_LC",
+      "3": "GND",
+      "4": "PWM_LC",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "x": 335.28,
+    "y": 203.2
+  },
+  {
+    "ref": "R104",
+    "page": "11_PWM_interlock",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_LC",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "",
+    "x": 76.2,
+    "y": 207.01
+  },
+  {
+    "ref": "C66",
+    "page": "11_PWM_interlock",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "x": 205.74,
+    "y": 207.01
+  },
+  {
+    "ref": "J12",
+    "page": "12_board_interface",
+    "kind": "CONN40",
+    "value": "POWER CARD 2x20",
+    "nets": {
+      "1": "GND",
+      "2": "+3V3",
+      "3": "GND",
+      "4": "+3V3A",
+      "5": "MCU_PWM_HA",
+      "6": "MCU_PWM_LA",
+      "7": "GND",
+      "8": "MCU_PWM_HB",
+      "9": "MCU_PWM_LB",
+      "10": "GND",
+      "11": "MCU_PWM_HC",
+      "12": "MCU_PWM_LC",
+      "13": "GND",
+      "14": "RUN_REQUEST",
+      "15": "ARM_CLK",
+      "16": "LATCH_STATE",
+      "17": "HARD_FAULT_N",
+      "18": "DRV_FAULT_N",
+      "19": "DRV_CS_N",
+      "20": "SPI_SCK",
+      "21": "SPI_MOSI",
+      "22": "SPI_MISO",
+      "23": "GND",
+      "24": "I_A_ADC",
+      "25": "I_B_ADC",
+      "26": "I_C_ADC",
+      "27": "GND",
+      "28": "V_BUS_ADC",
+      "29": "V_A_ADC",
+      "30": "V_B_ADC",
+      "31": "V_C_ADC",
+      "32": "GND",
+      "33": "TEMP_FET",
+      "34": "TEMP_PCB",
+      "35": "PG_12V",
+      "36": "PG_5V",
+      "37": "NRST",
+      "38": "GND",
+      "39": "GND",
+      "40": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Mate to control card pin-for-pin; connector and viewing direction not released.",
+    "x": 76.2,
+    "y": 71.12
+  },
+  {
+    "ref": "J13",
+    "page": "12_board_interface",
+    "kind": "CONN40",
+    "value": "CONTROL CARD 2x20",
+    "nets": {
+      "1": "GND",
+      "2": "+3V3",
+      "3": "GND",
+      "4": "+3V3A",
+      "5": "MCU_PWM_HA",
+      "6": "MCU_PWM_LA",
+      "7": "GND",
+      "8": "MCU_PWM_HB",
+      "9": "MCU_PWM_LB",
+      "10": "GND",
+      "11": "MCU_PWM_HC",
+      "12": "MCU_PWM_LC",
+      "13": "GND",
+      "14": "RUN_REQUEST",
+      "15": "ARM_CLK",
+      "16": "LATCH_STATE",
+      "17": "HARD_FAULT_N",
+      "18": "DRV_FAULT_N",
+      "19": "DRV_CS_N",
+      "20": "SPI_SCK",
+      "21": "SPI_MOSI",
+      "22": "SPI_MISO",
+      "23": "GND",
+      "24": "I_A_ADC",
+      "25": "I_B_ADC",
+      "26": "I_C_ADC",
+      "27": "GND",
+      "28": "V_BUS_ADC",
+      "29": "V_A_ADC",
+      "30": "V_B_ADC",
+      "31": "V_C_ADC",
+      "32": "GND",
+      "33": "TEMP_FET",
+      "34": "TEMP_PCB",
+      "35": "PG_12V",
+      "36": "PG_5V",
+      "37": "NRST",
+      "38": "GND",
+      "39": "GND",
+      "40": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Same system nets model mating harness; PCB partition documented in README.",
+    "x": 205.74,
+    "y": 71.12
+  },
+  {
+    "ref": "#FLG3",
+    "page": "12_board_interface",
+    "kind": "FLAG",
+    "value": "+12V",
+    "nets": {
+      "1": "+12V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Derived rail after buck inductor / analog link. Flags declare actual source, not a separate supply.",
+    "x": 335.28,
+    "y": 48.26
+  },
+  {
+    "ref": "#FLG4",
+    "page": "12_board_interface",
+    "kind": "FLAG",
+    "value": "+5V",
+    "nets": {
+      "1": "+5V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Derived rail after buck inductor / analog link. Flags declare actual source, not a separate supply.",
+    "x": 335.28,
+    "y": 82.55
+  },
+  {
+    "ref": "#FLG5",
+    "page": "12_board_interface",
+    "kind": "FLAG",
+    "value": "+3V3A",
+    "nets": {
+      "1": "+3V3A"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Derived rail after buck inductor / analog link. Flags declare actual source, not a separate supply.",
+    "x": 335.28,
+    "y": 116.84
+  }
+]

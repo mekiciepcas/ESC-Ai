@@ -1,0 +1,179 @@
+{
+  "entries": [
+    {
+      "id": "CHG-01",
+      "date": "2026-09-14",
+      "title": "LM5164 RON bağlantısı GND olarak düzeltildi",
+      "status": "VERIFIED_SCHEMATIC",
+      "files": [
+        "hardware_b1/build_b1.py",
+        "hardware_b1/08_AUX_12V.kicad_sch",
+        "verification/team_schematic/comparison.json"
+      ],
+      "verification": [
+        "734 bağlı pin içinde yalnız R1301.1 VBUS → GND değişti",
+        "742 kontrol, ERC 0; fiziksel yardımcı kaynak testi açık"
+      ]
+    },
+    {
+      "id": "CHG-02",
+      "date": "2026-09-14",
+      "title": "Bobin, MOSFET gövde diyodu ve bulk polarite gösterimleri iyileştirildi",
+      "status": "VERIFIED_DRAWING",
+      "files": [
+        "hardware_b1/ESC_B1.kicad_sym",
+        "verification/team_schematic/phase.png",
+        "verification/team_schematic/bulk.png",
+        "verification/team_schematic/inductor.png"
+      ],
+      "verification": [
+        "Grafik değişiklikleri elektriksel netleri korudu",
+        "Üç sayfa görsel incelendi; bütün semboller için normatif uygunluk iddiası yok"
+      ]
+    },
+    {
+      "id": "CHG-03",
+      "date": "2026-09-14",
+      "title": "B1 değişikliklerinin ve proje ayarlarının yeniden üretimde korunması",
+      "status": "IMPLEMENTED",
+      "files": [
+        "pcb_b1/tools/prepare_b1.py",
+        "hardware_b1/build_b1.py",
+        "planning/publish_progress.py"
+      ],
+      "verification": [
+        "Mevcut B1 üzerinde göç komutu yazmadan reddedildi",
+        "B1 jeneratörü mevcut .kicad_pro dosyasını korur"
+      ]
+    },
+    {
+      "id": "CHG-04",
+      "date": "2026-09-14",
+      "title": "Kaynaklardan yeniden üretilen HTML operasyon panosu",
+      "status": "IMPLEMENTED",
+      "files": [
+        "dashboard/index.html",
+        "dashboard/build_dashboard.py",
+        "planning/team_review.json"
+      ],
+      "verification": [
+        "Backlog, BOM ve doğrulama raporları tek görünümde",
+        "Altı saatlik otomasyon promptu HTML güncellemesini içerir"
+      ]
+    },
+    {
+      "id": "CHG-05",
+      "date": "2026-09-14",
+      "title": "Gerçek kontrol PCB ilk yerleşimi oluşturuldu",
+      "status": "INITIAL_PLACEMENT_UNROUTED",
+      "files": [
+        "pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb",
+        "pcb_b1/control/placement_report.json",
+        "pcb_b1/control/placement.png",
+        "pcb_b1/control/drc_placement.json"
+      ],
+      "verification": [
+        "192 pad-net eşleşmesi",
+        "38 bileşen + 4 delik, 100×80mm / 4 katman",
+        "128 açık bağlantı ve 6 silk çakışması; üretim hazır değil"
+      ]
+    },
+    {
+      "id": "CHG-06",
+      "date": "2026-09-15",
+      "title": "Kontrol PoC ilk iki bypass bağlantısı ve yazı düzeltmeleri",
+      "status": "PARTIAL_ROUTING_VERIFIED",
+      "files": [
+        "pcb_b1/control/first_routes_20260915.json",
+        "pcb_b1/control/silk_fix_20260915.json",
+        "pcb_b1/control/drc_placement.json"
+      ],
+      "verification": [
+        "192 pad neti aynı",
+        "4 iz segmenti; 128 yerine 126 açık bağlantı",
+        "Yerleşim/yönlendirme DRC 0 ihlal; ürün ve fiziksel PoC henüz tamam değil"
+      ]
+    },
+    {
+      "id": "CHG-07",
+      "date": "2026-09-15",
+      "title": "Üç ek dijital MCU bypass çifti yönlendirildi ve çakışmalar giderildi",
+      "status": "PARTIAL_ROUTING_VERIFIED",
+      "files": [
+        "pcb_b1/control/supply_routes_20260915.json",
+        "pcb_b1/control/drc_placement.json"
+      ],
+      "verification": [
+        "192 pad-net eşleşmesi korundu; kaydedilmiş PCB yeniden açıldı",
+        "22 iz segmenti, 126 → 120 açık bağlantı",
+        "İlk kontroldeki 32 ihlal, geometri düzeltmeleriyle 0 oldu; kural bastırılmadı",
+        "PoC-01 devam ediyor; takvim beklemeden kapasiteye göre ilerleme"
+      ]
+    },
+    {
+      "id": "CHG-08",
+      "date": "2026-09-15",
+      "title": "Kontrol PoC BOM önceliği ve 13 açık kalem ayrıştırıldı",
+      "status": "BOM_QUALIFICATION_PENDING",
+      "files": [
+        "planning/control_bom_triage.json"
+      ],
+      "verification": [
+        "Sistem 61, kontrol kartı 13 açık kalem; kapanan 0",
+        "İki eski kondansatör adayında distribütör obsolete kaydı bulundu; tasarıma alınmadı",
+        "Üretici kodu, stok, pin ve kılıf kontrolleri tamamlanmadan satın alınabilir BOM onayı yok"
+      ]
+    },
+    {
+      "id": "CHG-09",
+      "date": "2026-09-15",
+      "title": "Dört pasif bileşenin MPN bilgisi şema ve PCB tasarımına işlendi",
+      "status": "IMPLEMENTED_VERIFIED",
+      "files": [
+        "hardware_b1/build_b1.py",
+        "verification/bom_passives_20260915.json",
+        "pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb"
+      ],
+      "verification": [
+        "C1807 Murata GRM21BR71C105KA01K; C2101/2/3 KEMET C0805C102J5GACTU",
+        "742 kontrol, ERC 0; netler aynı",
+        "PCB DRC 0, 120 açık bağlantı; MPN alanları gizlendi",
+        "BOM sistem 61 → 57; kontrol 13 → 9"
+      ]
+    },
+    {
+      "id": "CHG-10",
+      "date": "2026-09-15",
+      "title": "14 ek BOM bileşeni seçildi ve KiCad tasarımına işlendi",
+      "status": "IMPLEMENTED_VERIFIED",
+      "files": [
+        "hardware_b1/build_b1.py",
+        "verification/bom_batch2_20260915.json",
+        "pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb"
+      ],
+      "verification": [
+        "7 ADC filtresi: KEMET C0805C102J5GACTU",
+        "6 sıcaklık/referans filtresi: KEMET C0805C103J5GACTU",
+        "C1805: KEMET C0805C475K8RACTU, PCB MPN eşitlendi",
+        "Nominal değerler ve bütün şema netleri korundu; 742 kontrol ve 32 arayüz neti geçti",
+        "ERC 0; PCB DRC 0 / 120 açık; BOM 57 → 43; kontrol 9 → 8",
+        "LED ve osilatör seçimi bu pakette tamamlanmadı"
+      ]
+    },
+    {
+      "id": "CHG-11",
+      "date": "2026-09-16",
+      "title": "Beş kontrol konektörü şema/PCB ve yerel kütüphanede tamamlandı",
+      "status": "IMPLEMENTED_VERIFIED",
+      "files": [
+        "verification/headers_20260916.json",
+        "pcb_b1/control/apply_headers_20260916.py"
+      ],
+      "verification": [
+        "Wurth 2/3/5 pin PoC başlıkları; üretici nominal delik çapı 1.10mm uygulandı",
+        "742 kontrol, ERC0, 32 arayüz neti; PCB DRC0/120 açık",
+        "BOM 43 → 38; kontrol 8 → 3; kilitli nihai kablo bağlantısı kapsam dışı"
+      ]
+    }
+  ]
+}

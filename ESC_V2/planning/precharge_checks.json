@@ -1,0 +1,109 @@
+{
+  "status": "PRELIMINARY_MODEL_NOT_APPROVED_COMPONENT_SELECTION",
+  "capacitance_f": 0.00141,
+  "candidate_resistance_ohm": 22.0,
+  "target_fraction": 0.95,
+  "initial_current_at_54_6_v_a": 2.481818181818182,
+  "initial_resistor_power_w": 135.50727272727275,
+  "no_load_full_charge_resistor_energy_j": 2.1017178000000003,
+  "maximum_constant_load_for_95_percent_at_39_v_a": 0.08863636363636364,
+  "samples": [
+    {
+      "source_v": 39,
+      "assumed_aux_current_a": 0,
+      "time_to_95_percent_s": 0.09292761512564476,
+      "reachable": true
+    },
+    {
+      "source_v": 39,
+      "assumed_aux_current_a": 0.05,
+      "time_to_95_percent_s": 0.11779752069000249,
+      "reachable": true
+    },
+    {
+      "source_v": 39,
+      "assumed_aux_current_a": 0.1,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 39,
+      "assumed_aux_current_a": 0.2,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 39,
+      "assumed_aux_current_a": 0.5,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 44,
+      "assumed_aux_current_a": 0,
+      "time_to_95_percent_s": 0.09292761512564476,
+      "reachable": true
+    },
+    {
+      "source_v": 44,
+      "assumed_aux_current_a": 0.05,
+      "time_to_95_percent_s": 0.11364368226294161,
+      "reachable": true
+    },
+    {
+      "source_v": 44,
+      "assumed_aux_current_a": 0.1,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 44,
+      "assumed_aux_current_a": 0.2,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 44,
+      "assumed_aux_current_a": 0.5,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 54.6,
+      "assumed_aux_current_a": 0,
+      "time_to_95_percent_s": 0.09292761512564476,
+      "reachable": true
+    },
+    {
+      "source_v": 54.6,
+      "assumed_aux_current_a": 0.05,
+      "time_to_95_percent_s": 0.10829397284436362,
+      "reachable": true
+    },
+    {
+      "source_v": 54.6,
+      "assumed_aux_current_a": 0.1,
+      "time_to_95_percent_s": 0.14249920647392716,
+      "reachable": true
+    },
+    {
+      "source_v": 54.6,
+      "assumed_aux_current_a": 0.2,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    },
+    {
+      "source_v": 54.6,
+      "assumed_aux_current_a": 0.5,
+      "time_to_95_percent_s": null,
+      "reachable": false
+    }
+  ],
+  "limitations": [
+    "C is provisional; rerun after DC-link BOM sizing",
+    "Actual buck load is voltage dependent; constant-current model only brackets scenarios",
+    "Resistor pulse curve, retry duty, tolerances and short-circuit timeout not qualified",
+    "No contactor, fuse or reverse-polarity component selected",
+    "Do not use this model as permission to energize hardware"
+  ]
+}

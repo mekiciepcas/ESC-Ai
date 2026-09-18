@@ -1,0 +1,657 @@
+{
+  "status": "PARTIAL_ROUTING_POC_NOT_FOR_FABRICATION",
+  "size_mm": [
+    100,
+    80
+  ],
+  "copper_layers": 4,
+  "intended_layers": [
+    "F.Cu signal",
+    "In1.Cu GND (not poured)",
+    "In2.Cu power/signal (not poured)",
+    "B.Cu signal"
+  ],
+  "electrical_footprints": 38,
+  "mounting_holes": 4,
+  "net_count": 52,
+  "checked_pads": 192,
+  "track_count": 22,
+  "provisional_packages": [
+    {
+      "ref": "Y1901",
+      "footprint": "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm",
+      "status": "PLACEMENT_ENVELOPE_ONLY_MPN_NOT_APPROVED",
+      "reason": "B1 symbol had no assigned package; dimensions and pin mapping must match selected orderable part before routing freeze"
+    },
+    {
+      "ref": "D1901",
+      "footprint": "LED_SMD:LED_0805_2012Metric",
+      "status": "PLACEMENT_ENVELOPE_ONLY_MPN_NOT_APPROVED",
+      "reason": "B1 symbol had no assigned package; dimensions and pin mapping must match selected orderable part before routing freeze"
+    },
+    {
+      "ref": "J2702",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical",
+      "status": "PLACEMENT_ENVELOPE_ONLY_MPN_NOT_APPROVED",
+      "reason": "B1 symbol had no assigned package; dimensions and pin mapping must match selected orderable part before routing freeze"
+    }
+  ],
+  "placed": [
+    {
+      "ref": "U1701",
+      "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+      "at_mm": [
+        55.0,
+        45.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": "HSE_IN",
+        "6": null,
+        "7": "NRST",
+        "8": "V_BUS_ADC",
+        "9": "V_A_ADC",
+        "10": "V_B_ADC",
+        "11": "V_C_ADC",
+        "12": "I_A_ADC",
+        "13": "I_B_ADC",
+        "14": "I_C_ADC",
+        "15": "GND",
+        "16": "+3V3",
+        "17": "TEMP_FET",
+        "18": "TEMP_PCB",
+        "19": null,
+        "20": null,
+        "21": null,
+        "22": "DRV_CS_N",
+        "23": "ARM_CLK",
+        "24": "TEMP_MOTOR",
+        "25": null,
+        "26": "PG_12V",
+        "27": "GND",
+        "28": "+3V3A",
+        "29": "+3V3A",
+        "30": "PG_5V",
+        "31": "GND",
+        "32": "+3V3",
+        "33": "DRV_FAULT_N",
+        "34": "HARD_FAULT_N",
+        "35": "MCU_PWM_LA",
+        "36": "MCU_PWM_LB",
+        "37": "MCU_PWM_LC",
+        "38": "HALL_A",
+        "39": "HALL_B",
+        "40": "HALL_C",
+        "41": "RUN_REQUEST",
+        "42": "MCU_PWM_HA",
+        "43": "MCU_PWM_HB",
+        "44": "MCU_PWM_HC",
+        "45": "CAN_RX",
+        "46": "CAN_TX",
+        "47": "GND",
+        "48": "+3V3",
+        "49": "SWDIO",
+        "50": "SWCLK",
+        "51": "RC_PWM",
+        "52": "UART_TX",
+        "53": "UART_RX",
+        "54": "STATUS_LED",
+        "55": "LATCH_STATE",
+        "56": "SPI_SCK",
+        "57": "SPI_MISO",
+        "58": "SPI_MOSI",
+        "59": null,
+        "60": null,
+        "61": "BOOT0",
+        "62": null,
+        "63": "GND",
+        "64": "+3V3"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1801",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        52.2,
+        36.5
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1802",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        46.8,
+        48.5
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 90.0
+    },
+    {
+      "ref": "C1803",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        58.5,
+        54.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 180.0
+    },
+    {
+      "ref": "C1804",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        63.5,
+        41.5
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": -90.0
+    },
+    {
+      "ref": "C1805",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        69.0,
+        32.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1806",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        47.0,
+        33.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1807",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        51.0,
+        55.0
+      ],
+      "nets": {
+        "1": "+3V3A",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1808",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        54.0,
+        59.0
+      ],
+      "nets": {
+        "1": "+3V3A",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1809",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        63.0,
+        59.0
+      ],
+      "nets": {
+        "1": "+3V3A",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R1801",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        40.0,
+        45.0
+      ],
+      "nets": {
+        "1": "NRST",
+        "2": "+3V3"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1810",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        40.0,
+        49.0
+      ],
+      "nets": {
+        "1": "NRST",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R1802",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        68.0,
+        39.0
+      ],
+      "nets": {
+        "1": "BOOT0",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R1901",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        70.0,
+        45.0
+      ],
+      "nets": {
+        "1": "ARM_CLK",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R1902",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        70.0,
+        49.0
+      ],
+      "nets": {
+        "1": "RUN_REQUEST",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "J1901",
+      "footprint": "ESC_B1:WE_61300511121_1x05_P2.54_Drill1.10",
+      "at_mm": [
+        37.0,
+        76.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "SWDIO",
+        "3": "GND",
+        "4": "SWCLK",
+        "5": "NRST"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "Y1901",
+      "footprint": "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm",
+      "at_mm": [
+        41.0,
+        40.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND",
+        "3": "HSE_IN",
+        "4": "+3V3"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C1901",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        40.0,
+        36.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R1903",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        89.0,
+        70.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "LED_A"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "D1901",
+      "footprint": "LED_SMD:LED_0805_2012Metric",
+      "at_mm": [
+        94.0,
+        70.0
+      ],
+      "nets": {
+        "1": "STATUS_LED",
+        "2": "LED_A"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "U2001",
+      "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+      "at_mm": [
+        29.0,
+        32.0
+      ],
+      "nets": {
+        "1": "CAN_TX",
+        "2": "GND",
+        "3": "+3V3",
+        "4": "CAN_RX",
+        "5": null,
+        "6": "CAN_L",
+        "7": "CAN_H",
+        "8": "CAN_RS"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2001",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        28.0,
+        25.0
+      ],
+      "nets": {
+        "1": "CAN_RS",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C2001",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        36.0,
+        37.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2002",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        22.0,
+        28.0
+      ],
+      "nets": {
+        "1": "CAN_H",
+        "2": "CAN_L"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "J2001",
+      "footprint": "ESC_B1:WE_61300311121_1x03_P2.54_Drill1.10",
+      "at_mm": [
+        17.0,
+        28.0
+      ],
+      "nets": {
+        "1": "GND",
+        "2": "CAN_H",
+        "3": "CAN_L"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "J2002",
+      "footprint": "ESC_B1:WE_61300311121_1x03_P2.54_Drill1.10",
+      "at_mm": [
+        17.0,
+        47.0
+      ],
+      "nets": {
+        "1": "GND",
+        "2": "UART_RX",
+        "3": "UART_TX"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "J2003",
+      "footprint": "ESC_B1:WE_61300211121_1x02_P2.54_Drill1.10",
+      "at_mm": [
+        17.0,
+        64.0
+      ],
+      "nets": {
+        "1": "GND",
+        "2": "RC_PWM"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "J2101",
+      "footprint": "ESC_B1:WE_61300511121_1x05_P2.54_Drill1.10",
+      "at_mm": [
+        78.0,
+        76.0
+      ],
+      "nets": {
+        "1": "+5V",
+        "2": "GND",
+        "3": "HALL_A_EXT",
+        "4": "HALL_B_EXT",
+        "5": "HALL_C_EXT"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2101",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        71.0,
+        65.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "HALL_A_EXT"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2102",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        71.0,
+        60.0
+      ],
+      "nets": {
+        "1": "HALL_A_EXT",
+        "2": "HALL_A"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C2101",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        71.0,
+        56.0
+      ],
+      "nets": {
+        "1": "HALL_A",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2103",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        77.0,
+        65.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "HALL_B_EXT"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2104",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        77.0,
+        60.0
+      ],
+      "nets": {
+        "1": "HALL_B_EXT",
+        "2": "HALL_B"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C2102",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        77.0,
+        56.0
+      ],
+      "nets": {
+        "1": "HALL_B",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2105",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        83.0,
+        65.0
+      ],
+      "nets": {
+        "1": "+3V3",
+        "2": "HALL_C_EXT"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "R2106",
+      "footprint": "Resistor_SMD:R_0805_2012Metric",
+      "at_mm": [
+        83.0,
+        60.0
+      ],
+      "nets": {
+        "1": "HALL_C_EXT",
+        "2": "HALL_C"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "C2103",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "at_mm": [
+        83.0,
+        56.0
+      ],
+      "nets": {
+        "1": "HALL_C",
+        "2": "GND"
+      },
+      "rotation_deg": 0.0
+    },
+    {
+      "ref": "J2702",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical",
+      "at_mm": [
+        102.0,
+        24.0
+      ],
+      "nets": {
+        "1": "GND",
+        "2": "+3V3",
+        "3": "GND",
+        "4": "+3V3A",
+        "5": "MCU_PWM_HA",
+        "6": "MCU_PWM_LA",
+        "7": "GND",
+        "8": "MCU_PWM_HB",
+        "9": "MCU_PWM_LB",
+        "10": "GND",
+        "11": "MCU_PWM_HC",
+        "12": "MCU_PWM_LC",
+        "13": "GND",
+        "14": "RUN_REQUEST",
+        "15": "ARM_CLK",
+        "16": "LATCH_STATE",
+        "17": "HARD_FAULT_N",
+        "18": "DRV_FAULT_N",
+        "19": "DRV_CS_N",
+        "20": "SPI_SCK",
+        "21": "SPI_MOSI",
+        "22": "SPI_MISO",
+        "23": "GND",
+        "24": "I_A_ADC",
+        "25": "I_B_ADC",
+        "26": "I_C_ADC",
+        "27": "GND",
+        "28": "V_BUS_ADC",
+        "29": "V_A_ADC",
+        "30": "V_B_ADC",
+        "31": "V_C_ADC",
+        "32": "GND",
+        "33": "TEMP_FET",
+        "34": "TEMP_PCB",
+        "35": "PG_12V",
+        "36": "PG_5V",
+        "37": "NRST",
+        "38": "TEMP_MOTOR",
+        "39": "+5V",
+        "40": "GND"
+      },
+      "rotation_deg": 0.0
+    }
+  ],
+  "source_manifest_sha256": "72adf7e8c73d813c1d34b384f826ee44b2c04f2df6e2e622d483e45e9f36f40b",
+  "refinement": "Moved interboard header inside outline, separated CAN capacitor courtyard, relocated references; all pad nets preserved.",
+  "drc_violations": 0,
+  "unconnected_items": 120,
+  "drc_scope": "Four digital MCU bypass pairs only; analog/VBAT and complete distribution still open",
+  "board_sha256": "4c4c5647391bceb25bb2301374978d4bb2d9744a0b5314b92d63927255b2e6d6"
+}

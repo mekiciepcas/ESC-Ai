@@ -1,0 +1,103 @@
+{
+  "id": "DR-002",
+  "date": "2026-09-14",
+  "type": "Agentlar arası tasarım gözden geçirmesi; insan toplantısı veya fiziksel test değil",
+  "participants": [
+    "Entegrasyon / ana agent",
+    "Şema uygulama agentı",
+    "Elektriksel inceleme agentı",
+    "HTML uygulama agentı"
+  ],
+  "findings": [
+    {
+      "id": "ELEC-01",
+      "severity": "P0",
+      "title": "LM5164 RON bağlantısı",
+      "decision": "R1301.1 VBUS yerine GND; netlistte tek beklenen değişiklik ve niyet regresyonu gerekli. 100k frekans/ripple ve fiziksel test ayrıca açık.",
+      "status": "CLOSED_DIGITAL_SCOPE",
+      "owner": "Şema uygulama + entegrasyon",
+      "evidence": [
+        "verification/team_electrical/review.json",
+        "verification/team_schematic/comparison.json"
+      ],
+      "tasks": [
+        "ESC-07"
+      ]
+    },
+    {
+      "id": "ELEC-02",
+      "severity": "P1",
+      "title": "Ön şarj sırasında yardımcı yük kontrolü eksik",
+      "decision": "MCU kapalıyken MCU komutu beklemeyen bağımsız ön şarj mimarisi; yardımcı yük, timeout ve yeniden deneme analiziyle kapat.",
+      "status": "OPEN",
+      "owner": "Güç tasarımı",
+      "evidence": [
+        "verification/team_electrical/review.json",
+        "planning/precharge_checks.json"
+      ],
+      "tasks": [
+        "ESC-03"
+      ]
+    },
+    {
+      "id": "ELEC-03",
+      "severity": "P1",
+      "title": "Fault/reset düşük seviye marjı kanıtlanmadı",
+      "decision": "Kaynak VOL + diyot VF, tüm pull-up yükü, sıcaklık, CLR/BKIN eşiği ve güç sıralaması bütçesini çıkar; gerekirse aktif mantığa geç. Kesin arıza iddiası yok.",
+      "status": "OPEN",
+      "owner": "Elektriksel tasarım",
+      "evidence": [
+        "verification/team_electrical/review.json"
+      ],
+      "tasks": [
+        "ESC-16",
+        "ESC-20"
+      ]
+    },
+    {
+      "id": "DRAW-01",
+      "severity": "P1",
+      "title": "Bobin, gövde diyodu ve elektrolitik polarite okunurluğu",
+      "decision": "B1 özel sembolleri iyileştir; IEC 60617 tam uygunluğu ile eşitleme.",
+      "status": "CLOSED_DIGITAL_SCOPE",
+      "owner": "Şema uygulama",
+      "evidence": [
+        "verification/team_schematic/comparison.json"
+      ],
+      "tasks": [
+        "ESC-05"
+      ]
+    },
+    {
+      "id": "CFG-01",
+      "severity": "P1",
+      "title": "Yeniden üretimin tasarım değişikliklerini ezmesi",
+      "decision": "A2→B1 göçü mevcut B1 üzerinde reddedilir; B1 jeneratörü mevcut proje ayarını korur.",
+      "status": "CLOSED_DIGITAL_SCOPE",
+      "owner": "Entegrasyon ve şema uygulama",
+      "evidence": [
+        "pcb_b1/tools/prepare_b1.py"
+      ],
+      "tasks": [
+        "ESC-05"
+      ]
+    },
+    {
+      "id": "POC-DEC-01",
+      "severity": "P0",
+      "title": "Çalışabilir kontrol PoC önceliği",
+      "decision": "Kullanıcı yönlendirmesiyle kontrol besleme/SWD/clock/arayüz yoluna öncelik; kapsamlı sembol standardizasyonu ertelendi. Enerji ve koruma kontrolleri ertelenmedi.",
+      "status": "ADOPTED_USER_DIRECTION",
+      "owner": "Entegrasyon",
+      "evidence": [
+        "planning/POC_HEDEFI.md",
+        "pcb_b1/control/first_routes_20260915.json"
+      ],
+      "tasks": [
+        "POC-01",
+        "ESC-03"
+      ]
+    }
+  ],
+  "schedule_impact": "ESC-07 yardımcı kaynak frekans/ripple işi ve ESC-16 fault marjı işi netleştirildi. Güncel tarih hedefleri değişmedi; bulgular kapanmadan tasarım sabitleme kapısı geçilemez."
+}

@@ -1,0 +1,40 @@
+{
+  "status": "calculated_estimates_not_measured",
+  "pack": {
+    "cell_count": 104,
+    "nominal_v": 46.800000000000004,
+    "full_v": 54.6,
+    "typ_capacity_ah": 36.0,
+    "typ_energy_wh": 1684.8000000000002,
+    "cell_current_at_system_limit_a": 11.25,
+    "cell_only_pack_resistance_estimate_ohm": 0.024375,
+    "cell_only_heat_at_system_limit_w": 197.4375
+  },
+  "power": {
+    "motor_input_w": 3409.090909090909,
+    "battery_terminal_power_w": 3514.526710402999,
+    "inverter_loss_w": 105.43580131209,
+    "battery_current_by_terminal_voltage_a": {
+      "39": 90.1160694975128,
+      "44": 79.87560705461361,
+      "46.800000000000004": 75.09672458126066,
+      "54.6": 64.368621069652
+    },
+    "nominal_energy_runtime_min_ideal": 28.762905600000003,
+    "shaft_torque_at_reference_speed_nm": 7.16197243913529
+  },
+  "thermal": {
+    "fet_conduction_loss_estimate_w": 38.4,
+    "heatsink_to_ambient_max_k_per_w": 0.3333333333333333
+  },
+  "measurement": {
+    "adc_at_max_check_v": 2.5756400310318077,
+    "adc_at_full_pack_v": 1.757874321179209,
+    "ideal_bus_adc_fullscale_v": 102.49879518072288,
+    "current_volts_per_amp": 0.005,
+    "amp_outputs_at_range_endpoints_v": [
+      0.8999999999999999,
+      2.4
+    ]
+  }
+}

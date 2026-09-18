@@ -1,0 +1,912 @@
+{
+  "status": "MODEL_CHECKS_PASS_NOT_PHYSICAL_VALIDATION",
+  "checks": [
+    "39V torque release remains zero",
+    "44V full target",
+    "42V derating",
+    "75C half power",
+    "80C inhibit",
+    "1000rpm torque cap",
+    "invalid measurement inhibit",
+    "all samples within DC power budget",
+    "sinusoidal RMS target below instantaneous software target"
+  ],
+  "samples": [
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 38,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 39,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 300.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 300.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 300.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 300.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 150.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 150.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 40,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 900.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 900.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 450.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 42,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 44,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 46.8,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 375.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 54.6,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 1500,
+      "voltage_v": 55,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 38,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 39,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 600.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 600.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 600.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 600.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 300.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 300.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 40,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1800.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1800.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 900.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 42,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 3000.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 3000.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 44,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 3000.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 3000.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 46.8,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 3000.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 3000.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 750.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 1500.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 54.6,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 40,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 40,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 70,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 70,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 75,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 75,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 80,
+      "rpm": 1000,
+      "shaft_command_ceiling_w": 0.0
+    },
+    {
+      "stage_w": 3000,
+      "voltage_v": 55,
+      "baseplate_c": 80,
+      "rpm": 4000,
+      "shaft_command_ceiling_w": 0.0
+    }
+  ]
+}

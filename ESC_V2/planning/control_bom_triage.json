@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-15",
+  "scope": "Control PoC BOM priority",
+  "open_system_count": 38,
+  "open_control_count": 3,
+  "closed_this_pass": 5,
+  "items": [
+    {
+      "ref": "C1805",
+      "value": "4.7u",
+      "missing": [],
+      "status": "MPN_IMPLEMENTED_AND_DIGITALLY_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "C1807",
+      "value": "1u VDDA",
+      "missing": [],
+      "status": "MPN_IMPLEMENTED_AND_DIGITALLY_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "J1901",
+      "value": "SWD",
+      "missing": [],
+      "status": "POC_HEADER_IMPLEMENTED_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "Y1901",
+      "value": "8MHz 3V3 CMOS oscillator",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "status": "OPEN_NOT_QUALIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "D1901",
+      "value": "LED GREEN",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "status": "OPEN_NOT_QUALIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "J2001",
+      "value": "CAN",
+      "missing": [],
+      "status": "POC_HEADER_IMPLEMENTED_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "J2002",
+      "value": "UART 3V3",
+      "missing": [],
+      "status": "POC_HEADER_IMPLEMENTED_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "J2003",
+      "value": "RC PWM 3V3",
+      "missing": [],
+      "status": "POC_HEADER_IMPLEMENTED_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "J2101",
+      "value": "HALL 5V",
+      "missing": [],
+      "status": "POC_HEADER_IMPLEMENTED_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "C2101",
+      "value": "1n",
+      "missing": [],
+      "status": "MPN_IMPLEMENTED_AND_DIGITALLY_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "C2102",
+      "value": "1n",
+      "missing": [],
+      "status": "MPN_IMPLEMENTED_AND_DIGITALLY_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "C2103",
+      "value": "1n",
+      "missing": [],
+      "status": "MPN_IMPLEMENTED_AND_DIGITALLY_VERIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    },
+    {
+      "ref": "J2702",
+      "value": "CONTROL CARD 2x20",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "status": "OPEN_NOT_QUALIFIED",
+      "required_checks": [
+        "manufacturer specification",
+        "lifecycle and distributor availability",
+        "footprint and pin mapping",
+        "electrical suitability"
+      ]
+    }
+  ],
+  "screened_candidates": [
+    {
+      "mpn": "GRM21BR71C475KA73L",
+      "source": "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71C475KA73L/1033258",
+      "decision": "DO_NOT_SELECT_PENDING_MANUFACTURER_LIFECYCLE_CHECK",
+      "finding": "Distributor lists obsolete"
+    },
+    {
+      "mpn": "GRM21BR71H105KA12L",
+      "source": "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71H105KA12L/1244326",
+      "decision": "DO_NOT_SELECT_PENDING_MANUFACTURER_LIFECYCLE_CHECK",
+      "finding": "Distributor lists obsolete"
+    },
+    {
+      "mpn": "GRM21BR71C105KA01L",
+      "source": "https://www.murata.com/en-us/products/productdetail?partno=GRM21BR71C105KA01%23",
+      "decision": "C1807_CANDIDATE_ONLY",
+      "finding": "Manufacturer page: 1uF 16V 0805, lifecycle and stock not qualified"
+    }
+  ]
+}

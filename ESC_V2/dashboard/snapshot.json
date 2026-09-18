@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-09-16T06:05:21+03:00",
+  "plan_revision": "PLAN-07",
+  "task_count": 31,
+  "done_count": 5,
+  "bom_open_count": 38,
+  "pcb_files": [
+    "pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb"
+  ]
+}

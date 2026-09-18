@@ -1,0 +1,1422 @@
+{
+  "revision": "PLAN-07",
+  "date": "2026-09-15",
+  "baseline": "B1",
+  "sprint_duration": "2 haftalık planlama kutusu; teslim taahhüdü değil",
+  "tasks": [
+    {
+      "id": "ESC-01",
+      "sprint": 1,
+      "title": "Çalışma zarfını ve 1.5/3 kW geçiş koşullarını sabitle",
+      "priority": "P0",
+      "owner": "Codex — sistem",
+      "story_points": 3,
+      "status": "DONE",
+      "dependencies": [],
+      "source_risks": [
+        "R09"
+      ],
+      "acceptance": "13S gerilim aralığı, batarya/faz akımları, ortam sıcaklığı, sürekli/tepe süreleri ve derating eğrisi aynı tasarım temelinde tanımlı; 3 kW mil gücü ile DC giriş gücü ayrılmış.",
+      "evidence": [
+        "SPRINT_01_UYGULAMA.md",
+        "envelope_checks.json",
+        "../design_basis.json"
+      ],
+      "blocked_reason": null,
+      "completion_scope": "Engineering envelope defined; no physical performance approval"
+    },
+    {
+      "id": "ESC-02",
+      "sprint": 1,
+      "title": "Motor, batarya ve test düzeneği numune planı",
+      "priority": "P0",
+      "owner": "Codex plan; kullanıcı numune/ölçüm",
+      "story_points": 3,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-01"
+      ],
+      "source_risks": [
+        "R09"
+      ],
+      "acceptance": "Motor varyantı, Hall/sıcaklık arayüzü, BMS enerji kabulü ve gerekli ölçüm cihazları listeli; numune temin süresi ve ölçülecek parametreler kayıtlı. Satın alma ayrı kullanıcı kararı.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-03",
+      "sprint": 1,
+      "title": "Giriş sigorta, ön şarj ve ayırma tasarımını tamamla",
+      "priority": "P0",
+      "owner": "Codex — güç",
+      "story_points": 8,
+      "status": "IN_PROGRESS",
+      "dependencies": [
+        "ESC-01"
+      ],
+      "source_risks": [
+        "R01"
+      ],
+      "acceptance": "Şema, DC kesme kapasitesi, kablo/sigorta I²t koordinasyonu, ön şarj direnç darbe enerjisi ve yardımcı yükle şarj süresi hesapları tamam; ters kutup davranışı tanımlı. DR-002 ELEC-02: MCU kapalıyken MCU komutu beklemeyen ön şarj yük engelleme mimarisini seç.",
+      "evidence": [
+        "precharge_checks.json"
+      ],
+      "blocked_reason": null,
+      "remaining": "Yardımcı beslemenin ön şarjda yükü, direnç pulse/timeout, sigorta/ayırıcı/ters kutup seçimi ve şema açık."
+    },
+    {
+      "id": "ESC-04",
+      "sprint": 1,
+      "title": "Geri sürülme ve BMS açılması için enerji yönetimi seç",
+      "priority": "P0",
+      "owner": "Codex — sistem/güç",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-01"
+      ],
+      "source_risks": [
+        "R02"
+      ],
+      "acceptance": "Yük ataleti bilinmeyen alanlar açıkça sınırlandırılmış; geçici enerji zarfına göre fren/enerji kabul yolu, bileşen gerilim marjı ve şema tanımlı. OV trip, gerilim kelepçesi olarak kabul edilmez.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-05",
+      "sprint": 1,
+      "title": "Standart ve şema çizim incelemesini tamamla",
+      "priority": "P1",
+      "owner": "Codex — donanım",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [],
+      "source_risks": [
+        "R07"
+      ],
+      "acceptance": "IEC/IPC referans sürümleri ve erişim sınırları kayıtlı; özel sembol geometrileri, polarite, birimler, NC, sayfa referansları incelenmiş; uygulanamayan maddeler açık listede. Tam uygunluk iddiası yalnız kanıtla. Bobin/gövde diyodu/polarite ve proje ayarı koruma değişikliklerini kanıtla; kalan özel semboller açık.",
+      "evidence": [
+        "SPRINT_01_UYGULAMA.md"
+      ],
+      "blocked_reason": null,
+      "remaining": "PoC önceliğiyle kapsamlı sembol standardizasyonu ertelendi; kritik elektriksel kontroller devam eder."
+    },
+    {
+      "id": "ESC-06",
+      "sprint": 2,
+      "title": "DC-link kondansatör bankasını ripple ve ömürle boyutlandır",
+      "priority": "P0",
+      "owner": "Codex — güç",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-01",
+        "ESC-04"
+      ],
+      "source_risks": [
+        "R03"
+      ],
+      "acceptance": "PWM çalışma zarfında kondansatör RMS akımı, DC bias, ESR kaybı ve ömür hesabı mevcut; tam MPN ve land pattern seçili. 3×470 µF başlangıç varsayımı hesap olmadan korunmaz.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-07",
+      "sprint": 2,
+      "title": "Yardımcı besleme ve küçük pasif seçimlerini kapat",
+      "priority": "P0",
+      "owner": "Codex — donanım",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-01",
+        "ESC-03"
+      ],
+      "source_risks": [
+        "R03"
+      ],
+      "acceptance": "12/5/3.3 V yük bütçeleri, bobin doyma/RMS, kapasitör DC bias ve regülatör ripple/kararlılık hesapları tamam; ilgili BOM alt işleri kanıtla kapanmış. DR-002 ELEC-01 sonrası 100k RON frekans/ripple hesabını ve yardımcı kaynak testini doğrula.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-08",
+      "sprint": 2,
+      "title": "Şönt, terminal, konektör ve mekanik arayüzleri kesinleştir",
+      "priority": "P0",
+      "owner": "Codex — PCB/mekanik",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-01",
+        "ESC-02"
+      ],
+      "source_risks": [
+        "R03",
+        "R07"
+      ],
+      "acceptance": "Dört uçlu şönt sense/power yönü, konektör akımı/pin1/bakış yönü, terminal montajı ve PCB zarfı ölçülendirilmiş; B1 pin38 uyumsuzluğu montaj belgesinde görünür.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-09",
+      "sprint": 2,
+      "title": "CAN, Hall, RC ve servis port korumalarını tasarla",
+      "priority": "P0",
+      "owner": "Codex — donanım",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-02"
+      ],
+      "source_risks": [
+        "R05"
+      ],
+      "acceptance": "ESD elemanlarının clamp gerilimi IC sınırlarıyla koordineli; Hall çıkış tipi, kablo kopması ve servis besleme geri akışı değerlendirilmiş; şemaya işlenmiş.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-10",
+      "sprint": 2,
+      "title": "BOM ve footprint çift yönlü denetimini tamamla",
+      "priority": "P0",
+      "owner": "Codex — donanım/tedarik",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-06",
+        "ESC-07",
+        "ESC-08",
+        "ESC-09"
+      ],
+      "source_risks": [
+        "R03",
+        "R08"
+      ],
+      "acceptance": "61 başlangıç BOM alt işi ve sonradan eklenen parçalar dahil eksik alan sıfır; tüm MPN/pad numaraları veri sayfasıyla karşılaştırılmış; DNP ve muadil yeterlilik seviyesi kayıtlı. Aile kodu tek başına sipariş kanıtı değil.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-11",
+      "sprint": 2,
+      "title": "Termal yapı, bakır ve güç bağlantılarını hesapla",
+      "priority": "P0",
+      "owner": "Codex — güç/mekanik",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-06",
+        "ESC-08"
+      ],
+      "source_risks": [
+        "R07"
+      ],
+      "acceptance": "MOSFET/şönt/kondansatör kayıpları, PCB-via-TIM-soğutucu termal yolu ve bağlantı daralmaları incelenmiş; 1.5 ve 3 kW için sıcaklık bütçeleri ve ölçüm noktaları tanımlı. PCB NTC ile taban plakası sıcaklığı korelasyonu hesap/ölçüm planıyla tanımlı veya ayrı sensör seçili.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-12",
+      "sprint": 3,
+      "title": "Güç kartı yerleşimini tamamla",
+      "priority": "P0",
+      "owner": "Codex — PCB",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-03",
+        "ESC-04",
+        "ESC-05",
+        "ESC-10",
+        "ESC-11"
+      ],
+      "source_risks": [
+        "R07"
+      ],
+      "acceptance": "Gerçek footprintlerle güç döngüsü, paralel kol simetrisi, gate dönüşü ve Kelvin yerleşimi hazır; mekanik/soğutucu keepout ve kritik yerleşim incelemesi kayıtlı.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-13",
+      "sprint": 3,
+      "title": "Kontrol kartı yerleşimini tamamla",
+      "priority": "P1",
+      "owner": "Codex — PCB",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-05",
+        "ESC-10"
+      ],
+      "source_risks": [
+        "R07"
+      ],
+      "acceptance": "MCU bypass, analog dönüş, CAN/servis ve konektör yerleşimleri tamam; iki kart zarfı, pin1 ve montaj erişimi doğrulanmış.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-14",
+      "sprint": 3,
+      "title": "Kartları yönlendir ve elektriksel/mekanik PCB denetimini kapat",
+      "priority": "P0",
+      "owner": "Codex — PCB",
+      "story_points": 13,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-12",
+        "ESC-13"
+      ],
+      "source_risks": [
+        "R07"
+      ],
+      "acceptance": "Açık bağlantı ve kısa devre sıfır; açıklık, courtyard, kenar ve delik hataları giderilmiş; bütün istisnalar gerekçeli; şema-PCB pin/net eşleşmesi ve kritik akım yolu incelemesi tamam.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-15",
+      "sprint": 3,
+      "title": "Firmware pin ve zamanlama temelini kur",
+      "priority": "P0",
+      "owner": "Codex — gömülü",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-09",
+        "ESC-10"
+      ],
+      "source_risks": [
+        "R06"
+      ],
+      "acceptance": "Pin sözleşmesiyle derleme tutarlı; PWM/ADC tetikleme, dead-time ve örnekleme pencereleri hesaplanmış; kart başlatma iskeleti derleniyor.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-16",
+      "sprint": 4,
+      "title": "Arıza durum makinesi ve düşük güç test yazılımı",
+      "priority": "P0",
+      "owner": "Codex — gömülü",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-15"
+      ],
+      "source_risks": [
+        "R06",
+        "R04"
+      ],
+      "acceptance": "Başlatma, CSA kalibrasyonu, fault latch, haberleşme kaybı ve yeniden başlatma durumları uygulanmış; yazılım testleri kayıtlı; donanım testi yapılmamış alanlar ayrı. DR-002 ELEC-03: VOL+VF worst-case düşük seviye marjı, CLR/BKIN ve brownout sıralamasını bütçele.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-17",
+      "sprint": 4,
+      "title": "DFM incelemesi ve prototip üretim paketini hazırla",
+      "priority": "P0",
+      "owner": "Codex paket; kullanıcı üretici iletişimi",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-14"
+      ],
+      "source_risks": [
+        "R03",
+        "R07"
+      ],
+      "acceptance": "Gerber/drill yeniden görüntülenmiş; stackup, stencil, BOM, yerleştirme, montaj ve revizyon manifesti tutarlı; üretici DFM bulguları kapanmış. Kullanıcı üretim/sipariş kararı verir.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-18",
+      "sprint": 4,
+      "title": "Prototip numuneyi üret ve montaj giriş kontrolünü yap",
+      "priority": "P0",
+      "owner": "Kullanıcı — tedarik/fiziksel kontrol",
+      "story_points": 3,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-17"
+      ],
+      "source_risks": [
+        "R08"
+      ],
+      "acceptance": "Gerçek kart/montaj numunesi mevcut; revizyon, parça/polarite, kısa devre ve kritik bağlantı ölçümleri kayıtlı. Süre üretici/teslimata bağlı.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-19",
+      "sprint": 4,
+      "title": "Motor ve batarya parametrelerini ölç",
+      "priority": "P0",
+      "owner": "Kullanıcı ölçüm; Codex değerlendirme",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-02"
+      ],
+      "source_risks": [
+        "R09"
+      ],
+      "acceptance": "Rs, Ld/Lq veya uygun eşdeğerleri, Ke, kutup çifti, Hall sırası, sıcaklık sensörü ve BMS davranışı raporlu; çalışma zarfı saparsa tasarım değişikliği açılmış.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-20",
+      "sprint": 5,
+      "title": "Akım sınırlı ilk enerji ve donanım koruma testleri",
+      "priority": "P0",
+      "owner": "Kullanıcı ölçüm; Codex test planı",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-16",
+        "ESC-18"
+      ],
+      "source_risks": [
+        "R01",
+        "R04",
+        "R06"
+      ],
+      "acceptance": "Besleme sıralaması, reset, kilitli fault, tüm PWM kapatma ve sensör doğruluğu ölçülmüş; beklenmeyen anahtarlama yok; başarısız kriterler hata kaydıyla giderilmiş. NTC/taban plakası sıcaklık eşlemesi doğrulanmış; yanlış sensör değeriyle termal izin verilmiyor.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-21",
+      "sprint": 5,
+      "title": "Hall/FOC kontrolünü gerçek motorda devreye al",
+      "priority": "P0",
+      "owner": "Codex firmware; kullanıcı tezgâh",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-19",
+        "ESC-20"
+      ],
+      "source_risks": [
+        "R06",
+        "R09"
+      ],
+      "acceptance": "Hall sırası ve akım polaritesi doğrulanmış; düşük enerji/yüksüz başlatma, kararlı akım kontrolü ve haberleşme kaybı testleri geçilmiş.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-22",
+      "sprint": 5,
+      "title": "Anahtarlama ve 1.5 kW yük doğrulaması",
+      "priority": "P0",
+      "owner": "Kullanıcı ölçüm; Codex değerlendirme",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-21"
+      ],
+      "source_risks": [
+        "R04",
+        "R07"
+      ],
+      "acceptance": "VGS/VDS taşması, fault gecikmesi, akım/gerilim sınırları ve tanımlı ortamda termal kararlılık ölçülmüş; 1.5 kW mil gücü doğrulanmış. Yalnız DC giriş wattı yeterli değil.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-23",
+      "sprint": 6,
+      "title": "3 kW ve enerji yönetimi sınır testleri",
+      "priority": "P0",
+      "owner": "Kullanıcı ölçüm; Codex değerlendirme",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-22",
+        "ESC-04"
+      ],
+      "source_risks": [
+        "R02",
+        "R04",
+        "R07"
+      ],
+      "acceptance": "Önceden tanımlı test düzeneğinde 3 kW mil gücü, termal marj, derating ve dolu batarya/BMS ayırma enerji senaryoları geçilmiş; geçmezse 1.5 kW ürün kapsamı veya yeni revizyon kararı kayıtlı.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-24",
+      "sprint": 6,
+      "title": "EMC ve kullanım ortamına özgü doğrulama",
+      "priority": "P1",
+      "owner": "Codex plan; kullanıcı/laboratuvar ölçüm",
+      "story_points": 8,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-22"
+      ],
+      "source_risks": [
+        "R05",
+        "R07"
+      ],
+      "acceptance": "Hedef ürün kullanımına göre uygulanacak testler ve seviyeler kesin; ön uyumluluk/ESD ve çevre test raporları mevcut; kalan resmi uygunluk işleri açıkça ayrılmış.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-25",
+      "sprint": 6,
+      "title": "Revizyon kapanışı ve ürün teslim dosyası",
+      "priority": "P0",
+      "owner": "Codex dokümantasyon; kullanıcı kabul",
+      "story_points": 5,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-23",
+        "ESC-24",
+        "ESC-26"
+      ],
+      "source_risks": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09"
+      ],
+      "acceptance": "Kritik hata açık değil; doğrulanan güç sınıfı açık; üretim dosyası, firmware etiketi, kalibrasyon, test raporu, montaj ve servis talimatları aynı revizyona ait. Seri tedarik kanıtları tamam.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-26",
+      "sprint": 2,
+      "title": "Kritik tedarik ve muadil stratejisini doğrula",
+      "priority": "P1",
+      "owner": "Codex araştırma; kullanıcı tedarik teyidi",
+      "story_points": 3,
+      "status": "TODO",
+      "dependencies": [
+        "ESC-08"
+      ],
+      "source_risks": [
+        "R08"
+      ],
+      "acceptance": "MCU/driver/MOSFET/şönt için adet ve ülke bazlı yetkili kanal kaydı, ömür döngüsü ve muadil doğrulama planı mevcut; stok görüntüsü rezervasyon sayılmaz.",
+      "evidence": [],
+      "blocked_reason": null
+    },
+    {
+      "id": "DONE-01",
+      "sprint": 0,
+      "title": "B1 şema kontrol tabanı",
+      "priority": "P1",
+      "owner": "Codex",
+      "story_points": null,
+      "status": "DONE",
+      "dependencies": [],
+      "source_risks": [],
+      "acceptance": "Yalnız belirtilen rapor kapsamındaki kontrol tamam; ürün doğrulaması değildir.",
+      "evidence": [
+        "../verification/b1_checks.json"
+      ],
+      "blocked_reason": null
+    },
+    {
+      "id": "DONE-02",
+      "sprint": 0,
+      "title": "Motor sıcaklığı arayüz düzeltmesi ve 32 net denetimi",
+      "priority": "P1",
+      "owner": "Codex",
+      "story_points": null,
+      "status": "DONE",
+      "dependencies": [],
+      "source_risks": [],
+      "acceptance": "Yalnız belirtilen rapor kapsamındaki kontrol tamam; ürün doğrulaması değildir.",
+      "evidence": [
+        "../pcb_b1/verification/interface_audit.json"
+      ],
+      "blocked_reason": null
+    },
+    {
+      "id": "DONE-03",
+      "sprint": 0,
+      "title": "KiCad kural motorunun negatif testleri",
+      "priority": "P1",
+      "owner": "Codex",
+      "story_points": null,
+      "status": "DONE",
+      "dependencies": [],
+      "source_risks": [],
+      "acceptance": "Yalnız belirtilen rapor kapsamındaki kontrol tamam; ürün doğrulaması değildir.",
+      "evidence": [
+        "../pcb_b1/verification/rule_validation.json"
+      ],
+      "blocked_reason": null
+    },
+    {
+      "id": "ESC-13-P0",
+      "sprint": 1,
+      "title": "Kontrol kartı ilk yerleşim ve pad-net aktarımı",
+      "priority": "P1",
+      "owner": "Codex — PCB",
+      "story_points": 3,
+      "status": "DONE",
+      "dependencies": [
+        "ESC-01"
+      ],
+      "source_risks": [
+        "R07"
+      ],
+      "acceptance": "İlk mekanik yerleşim dosyası ve pad-net denetimi mevcut; aday kılıflar açık. ESC-13 nihai yerleşim kabulünün yerine geçmez.",
+      "evidence": [
+        "../pcb_b1/control/placement_report.json",
+        "../pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb"
+      ],
+      "blocked_reason": null
+    },
+    {
+      "id": "POC-01",
+      "sprint": 1,
+      "title": "Kontrol PoC: besleme, programlama ve temel arayüzler",
+      "priority": "P0",
+      "owner": "Codex tasarım; kullanıcı fiziksel test",
+      "story_points": 8,
+      "status": "IN_PROGRESS",
+      "dependencies": [
+        "ESC-01"
+      ],
+      "source_risks": [
+        "R03",
+        "R06",
+        "R07"
+      ],
+      "acceptance": "Denetlenmiş kontrol şeması/PCB, doğrulanmış düşük gerilim besleme yöntemi, derlenmiş ilk firmware ve gerçek SWD/UART/CAN test kanıtı. İlk izler görevi kapatmaz.",
+      "evidence": [
+        "POC_HEDEFI.md",
+        "../pcb_b1/control/first_routes_20260915.json"
+      ],
+      "blocked_reason": null
+    }
+  ],
+  "bom_subtasks": [
+    {
+      "id": "BOM-J101",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J101",
+      "value": "DC LINK INPUT",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J102",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J102",
+      "value": "MOTOR U V W",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J103",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J103",
+      "value": "EXTERNAL BRAKE MODULE",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C101",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C101",
+      "value": "470u 100V bulk",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C102",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C102",
+      "value": "470u 100V bulk",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C103",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C103",
+      "value": "470u 100V bulk",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C104",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C104",
+      "value": "2.2u 100V X7R",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C105",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C105",
+      "value": "2.2u 100V X7R",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C106",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C106",
+      "value": "2.2u 100V X7R",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-RS201",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "RS201",
+      "value": "0.5mR 1% Kelvin",
+      "missing": [
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-RS301",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "RS301",
+      "value": "0.5mR 1% Kelvin",
+      "missing": [
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-RS401",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "RS401",
+      "value": "0.5mR 1% Kelvin",
+      "missing": [
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C501",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C501",
+      "value": "47n 100V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C502",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C502",
+      "value": "1u 25V",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C503",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C503",
+      "value": "1u 25V",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C504",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C504",
+      "value": "1u 10V",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C506",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C506",
+      "value": "10u 25V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C701",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C701",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C801",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C801",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C901",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C901",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1001",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1001",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1101",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1101",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1102",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1102",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1103",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1103",
+      "value": "1n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1201",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1201",
+      "value": "10n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1202",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1202",
+      "value": "10n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J1201",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J1201",
+      "value": "MOTOR TEMP",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1203",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1203",
+      "value": "10n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-L1301",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "L1301",
+      "value": "68uH >=1.5A",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1301",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1301",
+      "value": "2.2u 160V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1302",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1302",
+      "value": "100n 160V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1303",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1303",
+      "value": "22u 25V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1304",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1304",
+      "value": "22u 25V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1305",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1305",
+      "value": "2.2n C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1306",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1306",
+      "value": "3.3n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1401",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1401",
+      "value": "56p C0G",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J1401",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J1401",
+      "value": "FAN 12V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-L1501",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "L1501",
+      "value": "2.2uH >=1.5A",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1501",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1501",
+      "value": "10u 25V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1502",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1502",
+      "value": "22u 10V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1503",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1503",
+      "value": "1u 10V",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1504",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1504",
+      "value": "4.7u 10V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1505",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1505",
+      "value": "4.7u 10V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1805",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1805",
+      "value": "4.7u",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C1807",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C1807",
+      "value": "1u VDDA",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J1901",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J1901",
+      "value": "SWD",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-Y1901",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "Y1901",
+      "value": "8MHz 3V3 CMOS oscillator",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-D1901",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "D1901",
+      "value": "LED GREEN",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2001",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2001",
+      "value": "CAN",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2002",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2002",
+      "value": "UART 3V3",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2003",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2003",
+      "value": "RC PWM 3V3",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2101",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2101",
+      "value": "HALL 5V",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C2101",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C2101",
+      "value": "1n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C2102",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C2102",
+      "value": "1n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C2103",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C2103",
+      "value": "1n",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C2301",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C2301",
+      "value": "10n reference",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C2302",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C2302",
+      "value": "10n reference",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-C2303",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "C2303",
+      "value": "10n reference",
+      "missing": [
+        "mpn"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2401",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2401",
+      "value": "EMERGENCY STOP",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2701",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2701",
+      "value": "POWER CARD 2x20",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    },
+    {
+      "id": "BOM-J2702",
+      "parent": "ESC-10",
+      "status": "TODO",
+      "ref": "J2702",
+      "value": "CONTROL CARD 2x20",
+      "missing": [
+        "mpn",
+        "footprint"
+      ],
+      "acceptance": "Eksik alanlar tamam; tam MPN veri sayfası ve pad eşleşme kanıtı kayıtlı.",
+      "evidence": []
+    }
+  ],
+  "execution_record": "SPRINT_01_UYGULAMA.md",
+  "review_decisions": [
+    {
+      "id": "D-01",
+      "finding": "F-01",
+      "status": "CLOSED_DOCUMENTATION",
+      "evidence": [
+        "../design_basis.json",
+        "design_basis_A2_snapshot.json"
+      ]
+    },
+    {
+      "id": "D-02",
+      "finding": "F-02",
+      "status": "OPEN",
+      "tasks": [
+        "ESC-05"
+      ]
+    },
+    {
+      "id": "D-03",
+      "finding": "F-03",
+      "status": "CLOSED_TOOLING",
+      "evidence": [
+        "render_roadmap.py"
+      ]
+    },
+    {
+      "id": "D-04",
+      "finding": "F-04",
+      "status": "OPEN",
+      "tasks": [
+        "ESC-11",
+        "ESC-20"
+      ]
+    }
+  ],
+  "schedule": "TAMAMLAMA_TAKVIMI.md",
+  "team_review": "team_review.json",
+  "execution_priority": "Control PoC first, then low-energy motor PoC; see POC_HEDEFI.md",
+  "execution_policy": "Kullanıcı yönlendirmesi: takvim beklenmez; kapasite ve doğrulama kapılarıyla kontrollü ilerlenir."
+}

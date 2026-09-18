@@ -1,0 +1,2986 @@
+{
+  "status": "SCHEMATIC_REVIEW_NOT_MANUFACTURING_RELEASE",
+  "pages": 29,
+  "symbols": 240,
+  "electrical_components": 235,
+  "nets": 134,
+  "checks_passed": 739,
+  "erc_violations": 0,
+  "default_disabled_erc_checks": [
+    {
+      "description": "Global label only appears once in the schematic",
+      "key": "single_global_label"
+    },
+    {
+      "description": "Four connection points are joined together",
+      "key": "four_way_junction"
+    },
+    {
+      "description": "SPICE model issue",
+      "key": "simulation_model_issue"
+    },
+    {
+      "description": "Assigned footprint doesn't match footprint filters",
+      "key": "footprint_filter"
+    }
+  ],
+  "incomplete_bom_components": 61,
+  "checks": [
+    {
+      "name": "All symbol references unique",
+      "passed": true
+    },
+    {
+      "name": "J101.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "J101.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J102.1 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "J102.2 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "J102.3 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "J103.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "J103.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C101.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C101.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C102.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C102.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C103.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C103.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C104.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C104.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C105.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C105.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C106.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C106.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R101.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "R101.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "Q201.1 -> GHA_1",
+      "passed": true
+    },
+    {
+      "name": "Q201.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "Q201.3 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "R201.1 -> GHA",
+      "passed": true
+    },
+    {
+      "name": "R201.2 -> GHA_1",
+      "passed": true
+    },
+    {
+      "name": "R202.1 -> GHA_1",
+      "passed": true
+    },
+    {
+      "name": "R202.2 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "Q202.1 -> GHA_2",
+      "passed": true
+    },
+    {
+      "name": "Q202.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "Q202.3 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "R203.1 -> GHA",
+      "passed": true
+    },
+    {
+      "name": "R203.2 -> GHA_2",
+      "passed": true
+    },
+    {
+      "name": "R204.1 -> GHA_2",
+      "passed": true
+    },
+    {
+      "name": "R204.2 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "Q203.1 -> GLA_1",
+      "passed": true
+    },
+    {
+      "name": "Q203.2 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "Q203.3 -> SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "name": "R205.1 -> GLA",
+      "passed": true
+    },
+    {
+      "name": "R205.2 -> GLA_1",
+      "passed": true
+    },
+    {
+      "name": "R206.1 -> GLA_1",
+      "passed": true
+    },
+    {
+      "name": "R206.2 -> SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "name": "Q204.1 -> GLA_2",
+      "passed": true
+    },
+    {
+      "name": "Q204.2 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "Q204.3 -> SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "name": "R207.1 -> GLA",
+      "passed": true
+    },
+    {
+      "name": "R207.2 -> GLA_2",
+      "passed": true
+    },
+    {
+      "name": "R208.1 -> GLA_2",
+      "passed": true
+    },
+    {
+      "name": "R208.2 -> SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "name": "RS201.1 -> SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "name": "RS201.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "RS201.3 -> IS_A_P",
+      "passed": true
+    },
+    {
+      "name": "RS201.4 -> IS_A_N",
+      "passed": true
+    },
+    {
+      "name": "C201.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C201.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "Q301.1 -> GHB_1",
+      "passed": true
+    },
+    {
+      "name": "Q301.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "Q301.3 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "R301.1 -> GHB",
+      "passed": true
+    },
+    {
+      "name": "R301.2 -> GHB_1",
+      "passed": true
+    },
+    {
+      "name": "R302.1 -> GHB_1",
+      "passed": true
+    },
+    {
+      "name": "R302.2 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "Q302.1 -> GHB_2",
+      "passed": true
+    },
+    {
+      "name": "Q302.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "Q302.3 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "R303.1 -> GHB",
+      "passed": true
+    },
+    {
+      "name": "R303.2 -> GHB_2",
+      "passed": true
+    },
+    {
+      "name": "R304.1 -> GHB_2",
+      "passed": true
+    },
+    {
+      "name": "R304.2 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "Q303.1 -> GLB_1",
+      "passed": true
+    },
+    {
+      "name": "Q303.2 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "Q303.3 -> SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "name": "R305.1 -> GLB",
+      "passed": true
+    },
+    {
+      "name": "R305.2 -> GLB_1",
+      "passed": true
+    },
+    {
+      "name": "R306.1 -> GLB_1",
+      "passed": true
+    },
+    {
+      "name": "R306.2 -> SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "name": "Q304.1 -> GLB_2",
+      "passed": true
+    },
+    {
+      "name": "Q304.2 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "Q304.3 -> SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "name": "R307.1 -> GLB",
+      "passed": true
+    },
+    {
+      "name": "R307.2 -> GLB_2",
+      "passed": true
+    },
+    {
+      "name": "R308.1 -> GLB_2",
+      "passed": true
+    },
+    {
+      "name": "R308.2 -> SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "name": "RS301.1 -> SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "name": "RS301.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "RS301.3 -> IS_B_P",
+      "passed": true
+    },
+    {
+      "name": "RS301.4 -> IS_B_N",
+      "passed": true
+    },
+    {
+      "name": "C301.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C301.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "Q401.1 -> GHC_1",
+      "passed": true
+    },
+    {
+      "name": "Q401.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "Q401.3 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "R401.1 -> GHC",
+      "passed": true
+    },
+    {
+      "name": "R401.2 -> GHC_1",
+      "passed": true
+    },
+    {
+      "name": "R402.1 -> GHC_1",
+      "passed": true
+    },
+    {
+      "name": "R402.2 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "Q402.1 -> GHC_2",
+      "passed": true
+    },
+    {
+      "name": "Q402.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "Q402.3 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "R403.1 -> GHC",
+      "passed": true
+    },
+    {
+      "name": "R403.2 -> GHC_2",
+      "passed": true
+    },
+    {
+      "name": "R404.1 -> GHC_2",
+      "passed": true
+    },
+    {
+      "name": "R404.2 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "Q403.1 -> GLC_1",
+      "passed": true
+    },
+    {
+      "name": "Q403.2 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "Q403.3 -> SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "name": "R405.1 -> GLC",
+      "passed": true
+    },
+    {
+      "name": "R405.2 -> GLC_1",
+      "passed": true
+    },
+    {
+      "name": "R406.1 -> GLC_1",
+      "passed": true
+    },
+    {
+      "name": "R406.2 -> SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "name": "Q404.1 -> GLC_2",
+      "passed": true
+    },
+    {
+      "name": "Q404.2 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "Q404.3 -> SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "name": "R407.1 -> GLC",
+      "passed": true
+    },
+    {
+      "name": "R407.2 -> GLC_2",
+      "passed": true
+    },
+    {
+      "name": "R408.1 -> GLC_2",
+      "passed": true
+    },
+    {
+      "name": "R408.2 -> SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "name": "RS401.1 -> SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "name": "RS401.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "RS401.3 -> IS_C_P",
+      "passed": true
+    },
+    {
+      "name": "RS401.4 -> IS_C_N",
+      "passed": true
+    },
+    {
+      "name": "C401.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C401.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U501.1 -> CPL",
+      "passed": true
+    },
+    {
+      "name": "U501.2 -> CPH",
+      "passed": true
+    },
+    {
+      "name": "U501.3 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "U501.4 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "U501.5 -> VCP",
+      "passed": true
+    },
+    {
+      "name": "U501.6 -> GHA",
+      "passed": true
+    },
+    {
+      "name": "U501.7 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "U501.8 -> GLA",
+      "passed": true
+    },
+    {
+      "name": "U501.9 -> IS_A_P",
+      "passed": true
+    },
+    {
+      "name": "U501.10 -> IS_A_N",
+      "passed": true
+    },
+    {
+      "name": "U501.11 -> IS_B_N",
+      "passed": true
+    },
+    {
+      "name": "U501.12 -> IS_B_P",
+      "passed": true
+    },
+    {
+      "name": "U501.13 -> GLB",
+      "passed": true
+    },
+    {
+      "name": "U501.14 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "U501.15 -> GHB",
+      "passed": true
+    },
+    {
+      "name": "U501.16 -> GHC",
+      "passed": true
+    },
+    {
+      "name": "U501.17 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "U501.18 -> GLC",
+      "passed": true
+    },
+    {
+      "name": "U501.19 -> IS_C_P",
+      "passed": true
+    },
+    {
+      "name": "U501.20 -> IS_C_N",
+      "passed": true
+    },
+    {
+      "name": "U501.21 -> I_C_RAW",
+      "passed": true
+    },
+    {
+      "name": "U501.22 -> I_B_RAW",
+      "passed": true
+    },
+    {
+      "name": "U501.23 -> I_A_RAW",
+      "passed": true
+    },
+    {
+      "name": "U501.24 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "U501.25 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U501.26 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U501.27 -> SPI_MISO",
+      "passed": true
+    },
+    {
+      "name": "U501.28 -> SPI_MOSI",
+      "passed": true
+    },
+    {
+      "name": "U501.29 -> SPI_SCK",
+      "passed": true
+    },
+    {
+      "name": "U501.30 -> DRV_CS_N",
+      "passed": true
+    },
+    {
+      "name": "U501.31 -> DRV_ENABLE",
+      "passed": true
+    },
+    {
+      "name": "U501.32 -> PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "U501.33 -> PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "U501.34 -> PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "U501.35 -> PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "U501.36 -> PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "U501.37 -> PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "U501.38 -> DRV_DVDD",
+      "passed": true
+    },
+    {
+      "name": "U501.39 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U501.40 -> DRV_VGLS",
+      "passed": true
+    },
+    {
+      "name": "U501.41 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C501.1 -> CPH",
+      "passed": true
+    },
+    {
+      "name": "C501.2 -> CPL",
+      "passed": true
+    },
+    {
+      "name": "C502.1 -> VCP",
+      "passed": true
+    },
+    {
+      "name": "C502.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C503.1 -> DRV_VGLS",
+      "passed": true
+    },
+    {
+      "name": "C503.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C504.1 -> DRV_DVDD",
+      "passed": true
+    },
+    {
+      "name": "C504.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C505.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C505.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C506.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C506.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C507.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C507.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R601.1 -> SPI_MISO",
+      "passed": true
+    },
+    {
+      "name": "R601.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R602.1 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "R602.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R603.1 -> DRV_CS_N",
+      "passed": true
+    },
+    {
+      "name": "R603.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R604.1 -> DRV_ENABLE",
+      "passed": true
+    },
+    {
+      "name": "R604.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R605.1 -> PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "R605.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R606.1 -> PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "R606.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R607.1 -> PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "R607.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R608.1 -> PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "R608.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R609.1 -> PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "R609.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R610.1 -> PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "R610.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R701.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "R701.2 -> V_BUS_MID",
+      "passed": true
+    },
+    {
+      "name": "R702.1 -> V_BUS_MID",
+      "passed": true
+    },
+    {
+      "name": "R702.2 -> V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "name": "R703.1 -> V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "name": "R703.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R704.1 -> V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "name": "R704.2 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "C701.1 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "C701.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "D701.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "D701.2 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "D702.1 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "D702.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R801.1 -> PH_A",
+      "passed": true
+    },
+    {
+      "name": "R801.2 -> V_A_MID",
+      "passed": true
+    },
+    {
+      "name": "R802.1 -> V_A_MID",
+      "passed": true
+    },
+    {
+      "name": "R802.2 -> V_A_DIV",
+      "passed": true
+    },
+    {
+      "name": "R803.1 -> V_A_DIV",
+      "passed": true
+    },
+    {
+      "name": "R803.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R804.1 -> V_A_DIV",
+      "passed": true
+    },
+    {
+      "name": "R804.2 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "C801.1 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "C801.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "D801.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "D801.2 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "D802.1 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "D802.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R901.1 -> PH_B",
+      "passed": true
+    },
+    {
+      "name": "R901.2 -> V_B_MID",
+      "passed": true
+    },
+    {
+      "name": "R902.1 -> V_B_MID",
+      "passed": true
+    },
+    {
+      "name": "R902.2 -> V_B_DIV",
+      "passed": true
+    },
+    {
+      "name": "R903.1 -> V_B_DIV",
+      "passed": true
+    },
+    {
+      "name": "R903.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R904.1 -> V_B_DIV",
+      "passed": true
+    },
+    {
+      "name": "R904.2 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "C901.1 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "C901.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "D901.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "D901.2 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "D902.1 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "D902.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1001.1 -> PH_C",
+      "passed": true
+    },
+    {
+      "name": "R1001.2 -> V_C_MID",
+      "passed": true
+    },
+    {
+      "name": "R1002.1 -> V_C_MID",
+      "passed": true
+    },
+    {
+      "name": "R1002.2 -> V_C_DIV",
+      "passed": true
+    },
+    {
+      "name": "R1003.1 -> V_C_DIV",
+      "passed": true
+    },
+    {
+      "name": "R1003.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1004.1 -> V_C_DIV",
+      "passed": true
+    },
+    {
+      "name": "R1004.2 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1001.1 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1001.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "D1001.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "D1001.2 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "D1002.1 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "D1002.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1101.1 -> I_A_RAW",
+      "passed": true
+    },
+    {
+      "name": "R1101.2 -> I_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1101.1 -> I_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1101.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1102.1 -> I_B_RAW",
+      "passed": true
+    },
+    {
+      "name": "R1102.2 -> I_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1102.1 -> I_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1102.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1103.1 -> I_C_RAW",
+      "passed": true
+    },
+    {
+      "name": "R1103.2 -> I_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1103.1 -> I_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "C1103.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1201.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "R1201.2 -> TEMP_FET",
+      "passed": true
+    },
+    {
+      "name": "R1202.1 -> TEMP_FET",
+      "passed": true
+    },
+    {
+      "name": "R1202.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1201.1 -> TEMP_FET",
+      "passed": true
+    },
+    {
+      "name": "C1201.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1203.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "R1203.2 -> TEMP_PCB",
+      "passed": true
+    },
+    {
+      "name": "R1204.1 -> TEMP_PCB",
+      "passed": true
+    },
+    {
+      "name": "R1204.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1202.1 -> TEMP_PCB",
+      "passed": true
+    },
+    {
+      "name": "C1202.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J1201.1 -> TEMP_MOTOR_RAW",
+      "passed": true
+    },
+    {
+      "name": "J1201.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1205.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "R1205.2 -> TEMP_MOTOR_RAW",
+      "passed": true
+    },
+    {
+      "name": "R1206.1 -> TEMP_MOTOR_RAW",
+      "passed": true
+    },
+    {
+      "name": "R1206.2 -> TEMP_MOTOR",
+      "passed": true
+    },
+    {
+      "name": "C1203.1 -> TEMP_MOTOR",
+      "passed": true
+    },
+    {
+      "name": "C1203.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1301.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1301.2 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "U1301.3 -> BUCK_UVLO",
+      "passed": true
+    },
+    {
+      "name": "U1301.4 -> BUCK_RON",
+      "passed": true
+    },
+    {
+      "name": "U1301.5 -> BUCK_FB",
+      "passed": true
+    },
+    {
+      "name": "U1301.6 -> PG_12V",
+      "passed": true
+    },
+    {
+      "name": "U1301.7 -> BUCK_BST",
+      "passed": true
+    },
+    {
+      "name": "U1301.8 -> BUCK_SW",
+      "passed": true
+    },
+    {
+      "name": "U1301.9 -> GND",
+      "passed": true
+    },
+    {
+      "name": "L1301.1 -> BUCK_SW",
+      "passed": true
+    },
+    {
+      "name": "L1301.2 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C1301.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C1301.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1302.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "C1302.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1303.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C1303.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1304.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C1304.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1305.1 -> BUCK_BST",
+      "passed": true
+    },
+    {
+      "name": "C1305.2 -> BUCK_SW",
+      "passed": true
+    },
+    {
+      "name": "R1301.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "R1301.2 -> BUCK_RON",
+      "passed": true
+    },
+    {
+      "name": "R1302.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "R1302.2 -> BUCK_FB",
+      "passed": true
+    },
+    {
+      "name": "R1303.1 -> BUCK_FB",
+      "passed": true
+    },
+    {
+      "name": "R1303.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1304.1 -> BUCK_SW",
+      "passed": true
+    },
+    {
+      "name": "R1304.2 -> BUCK_RIPPLE",
+      "passed": true
+    },
+    {
+      "name": "C1306.1 -> BUCK_RIPPLE",
+      "passed": true
+    },
+    {
+      "name": "C1306.2 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C1401.1 -> BUCK_RIPPLE",
+      "passed": true
+    },
+    {
+      "name": "C1401.2 -> BUCK_FB",
+      "passed": true
+    },
+    {
+      "name": "R1401.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "R1401.2 -> BUCK_UVLO",
+      "passed": true
+    },
+    {
+      "name": "R1402.1 -> BUCK_UVLO",
+      "passed": true
+    },
+    {
+      "name": "R1402.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1403.1 -> PG_12V",
+      "passed": true
+    },
+    {
+      "name": "R1403.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "J1401.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "J1401.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1501.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1501.2 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "U1501.3 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "U1501.4 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1501.5 -> FB_5V",
+      "passed": true
+    },
+    {
+      "name": "U1501.6 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "U1501.7 -> SW_5V",
+      "passed": true
+    },
+    {
+      "name": "U1501.8 -> PG_5V",
+      "passed": true
+    },
+    {
+      "name": "L1501.1 -> SW_5V",
+      "passed": true
+    },
+    {
+      "name": "L1501.2 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "C1501.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "C1501.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1502.1 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "C1502.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1501.1 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "R1501.2 -> FB_5V",
+      "passed": true
+    },
+    {
+      "name": "R1502.1 -> FB_5V",
+      "passed": true
+    },
+    {
+      "name": "R1502.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1503.1 -> PG_5V",
+      "passed": true
+    },
+    {
+      "name": "R1503.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U1502.1 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "U1502.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1502.3 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "U1502.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1503.1 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "C1503.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1504.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1504.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1504.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R1504.2 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C1505.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C1505.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1601.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C1601.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1701.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U1701.5 -> HSE_IN",
+      "passed": true
+    },
+    {
+      "name": "U1701.7 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "U1701.8 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.9 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.10 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.11 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.12 -> I_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.13 -> I_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.14 -> I_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "U1701.15 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1701.16 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U1701.17 -> TEMP_FET",
+      "passed": true
+    },
+    {
+      "name": "U1701.18 -> TEMP_PCB",
+      "passed": true
+    },
+    {
+      "name": "U1701.22 -> DRV_CS_N",
+      "passed": true
+    },
+    {
+      "name": "U1701.23 -> ARM_CLK",
+      "passed": true
+    },
+    {
+      "name": "U1701.24 -> TEMP_MOTOR",
+      "passed": true
+    },
+    {
+      "name": "U1701.26 -> PG_12V",
+      "passed": true
+    },
+    {
+      "name": "U1701.27 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1701.28 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "U1701.29 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "U1701.30 -> PG_5V",
+      "passed": true
+    },
+    {
+      "name": "U1701.31 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1701.32 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U1701.33 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U1701.34 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U1701.35 -> MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "U1701.36 -> MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "U1701.37 -> MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "U1701.38 -> HALL_A",
+      "passed": true
+    },
+    {
+      "name": "U1701.39 -> HALL_B",
+      "passed": true
+    },
+    {
+      "name": "U1701.40 -> HALL_C",
+      "passed": true
+    },
+    {
+      "name": "U1701.41 -> RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "name": "U1701.42 -> MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "U1701.43 -> MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "U1701.44 -> MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "U1701.45 -> CAN_RX",
+      "passed": true
+    },
+    {
+      "name": "U1701.46 -> CAN_TX",
+      "passed": true
+    },
+    {
+      "name": "U1701.47 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1701.48 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U1701.49 -> SWDIO",
+      "passed": true
+    },
+    {
+      "name": "U1701.50 -> SWCLK",
+      "passed": true
+    },
+    {
+      "name": "U1701.51 -> RC_PWM",
+      "passed": true
+    },
+    {
+      "name": "U1701.52 -> UART_TX",
+      "passed": true
+    },
+    {
+      "name": "U1701.53 -> UART_RX",
+      "passed": true
+    },
+    {
+      "name": "U1701.54 -> STATUS_LED",
+      "passed": true
+    },
+    {
+      "name": "U1701.55 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U1701.56 -> SPI_SCK",
+      "passed": true
+    },
+    {
+      "name": "U1701.57 -> SPI_MISO",
+      "passed": true
+    },
+    {
+      "name": "U1701.58 -> SPI_MOSI",
+      "passed": true
+    },
+    {
+      "name": "U1701.61 -> BOOT0",
+      "passed": true
+    },
+    {
+      "name": "U1701.63 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U1701.64 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1801.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1801.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1802.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1802.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1803.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1803.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1804.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1804.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1805.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1805.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1806.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1806.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1807.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C1807.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1808.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C1808.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C1809.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C1809.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1801.1 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "R1801.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1810.1 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "C1810.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1802.1 -> BOOT0",
+      "passed": true
+    },
+    {
+      "name": "R1802.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1901.1 -> ARM_CLK",
+      "passed": true
+    },
+    {
+      "name": "R1901.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1902.1 -> RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "name": "R1902.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J1901.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "J1901.2 -> SWDIO",
+      "passed": true
+    },
+    {
+      "name": "J1901.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J1901.4 -> SWCLK",
+      "passed": true
+    },
+    {
+      "name": "J1901.5 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "Y1901.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "Y1901.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "Y1901.3 -> HSE_IN",
+      "passed": true
+    },
+    {
+      "name": "Y1901.4 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1901.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C1901.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R1903.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R1903.2 -> LED_A",
+      "passed": true
+    },
+    {
+      "name": "D1901.1 -> STATUS_LED",
+      "passed": true
+    },
+    {
+      "name": "D1901.2 -> LED_A",
+      "passed": true
+    },
+    {
+      "name": "U2001.1 -> CAN_TX",
+      "passed": true
+    },
+    {
+      "name": "U2001.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2001.3 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U2001.4 -> CAN_RX",
+      "passed": true
+    },
+    {
+      "name": "U2001.6 -> CAN_L",
+      "passed": true
+    },
+    {
+      "name": "U2001.7 -> CAN_H",
+      "passed": true
+    },
+    {
+      "name": "U2001.8 -> CAN_RS",
+      "passed": true
+    },
+    {
+      "name": "R2001.1 -> CAN_RS",
+      "passed": true
+    },
+    {
+      "name": "R2001.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2001.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2001.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2002.1 -> CAN_H",
+      "passed": true
+    },
+    {
+      "name": "R2002.2 -> CAN_L",
+      "passed": true
+    },
+    {
+      "name": "J2001.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2001.2 -> CAN_H",
+      "passed": true
+    },
+    {
+      "name": "J2001.3 -> CAN_L",
+      "passed": true
+    },
+    {
+      "name": "J2002.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2002.2 -> UART_RX",
+      "passed": true
+    },
+    {
+      "name": "J2002.3 -> UART_TX",
+      "passed": true
+    },
+    {
+      "name": "J2003.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2003.2 -> RC_PWM",
+      "passed": true
+    },
+    {
+      "name": "J2101.1 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "J2101.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2101.3 -> HALL_A_EXT",
+      "passed": true
+    },
+    {
+      "name": "J2101.4 -> HALL_B_EXT",
+      "passed": true
+    },
+    {
+      "name": "J2101.5 -> HALL_C_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2101.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2101.2 -> HALL_A_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2102.1 -> HALL_A_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2102.2 -> HALL_A",
+      "passed": true
+    },
+    {
+      "name": "C2101.1 -> HALL_A",
+      "passed": true
+    },
+    {
+      "name": "C2101.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2103.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2103.2 -> HALL_B_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2104.1 -> HALL_B_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2104.2 -> HALL_B",
+      "passed": true
+    },
+    {
+      "name": "C2102.1 -> HALL_B",
+      "passed": true
+    },
+    {
+      "name": "C2102.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2105.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2105.2 -> HALL_C_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2106.1 -> HALL_C_EXT",
+      "passed": true
+    },
+    {
+      "name": "R2106.2 -> HALL_C",
+      "passed": true
+    },
+    {
+      "name": "C2103.1 -> HALL_C",
+      "passed": true
+    },
+    {
+      "name": "C2103.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2201.1 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2201.2 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2201.3 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "U2201.4 -> OC_LOW",
+      "passed": true
+    },
+    {
+      "name": "U2201.5 -> I_A_RAW",
+      "passed": true
+    },
+    {
+      "name": "U2201.6 -> I_A_RAW",
+      "passed": true
+    },
+    {
+      "name": "U2201.7 -> OC_HIGH",
+      "passed": true
+    },
+    {
+      "name": "U2201.8 -> OC_LOW",
+      "passed": true
+    },
+    {
+      "name": "U2201.9 -> I_B_RAW",
+      "passed": true
+    },
+    {
+      "name": "U2201.10 -> I_B_RAW",
+      "passed": true
+    },
+    {
+      "name": "U2201.11 -> OC_HIGH",
+      "passed": true
+    },
+    {
+      "name": "U2201.12 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2201.13 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2201.14 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2202.1 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2202.2 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2202.3 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "U2202.4 -> OC_LOW",
+      "passed": true
+    },
+    {
+      "name": "U2202.5 -> I_C_RAW",
+      "passed": true
+    },
+    {
+      "name": "U2202.6 -> I_C_RAW",
+      "passed": true
+    },
+    {
+      "name": "U2202.7 -> OC_HIGH",
+      "passed": true
+    },
+    {
+      "name": "U2202.8 -> V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "name": "U2202.9 -> OV_REF",
+      "passed": true
+    },
+    {
+      "name": "U2202.10 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2202.11 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "U2202.12 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2202.14 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "C2201.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C2201.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2202.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "C2202.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2301.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "R2301.2 -> OC_LOW",
+      "passed": true
+    },
+    {
+      "name": "R2302.1 -> OC_LOW",
+      "passed": true
+    },
+    {
+      "name": "R2302.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2303.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "R2303.2 -> OC_HIGH",
+      "passed": true
+    },
+    {
+      "name": "R2304.1 -> OC_HIGH",
+      "passed": true
+    },
+    {
+      "name": "R2304.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2301.1 -> OC_LOW",
+      "passed": true
+    },
+    {
+      "name": "C2301.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2302.1 -> OC_HIGH",
+      "passed": true
+    },
+    {
+      "name": "C2302.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2305.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "R2305.2 -> OV_REF",
+      "passed": true
+    },
+    {
+      "name": "R2306.1 -> OV_REF",
+      "passed": true
+    },
+    {
+      "name": "R2306.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2303.1 -> OV_REF",
+      "passed": true
+    },
+    {
+      "name": "C2303.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "R2401.1 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "R2401.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "D2401.1 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "D2401.2 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "D2402.1 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "D2402.2 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "D2403.1 -> PG_12V",
+      "passed": true
+    },
+    {
+      "name": "D2403.2 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "D2404.1 -> PG_5V",
+      "passed": true
+    },
+    {
+      "name": "D2404.2 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2401.1 -> ARM_CLK",
+      "passed": true
+    },
+    {
+      "name": "U2401.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U2401.4 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2401.5 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2401.6 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "U2401.7 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "U2401.8 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2402.1 -> RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "name": "R2402.2 -> DRV_ENABLE",
+      "passed": true
+    },
+    {
+      "name": "C2401.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2401.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2401.1 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "J2401.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2501.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2501.2 -> MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "U2501.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2501.4 -> PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "U2501.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2501.1 -> MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "R2501.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2501.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2501.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2502.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2502.2 -> MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "U2502.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2502.4 -> PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "U2502.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2502.1 -> MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "R2502.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2502.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2502.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2503.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2503.2 -> MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "U2503.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2503.4 -> PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "U2503.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2503.1 -> MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "R2503.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2503.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2503.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2601.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2601.2 -> MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "U2601.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2601.4 -> PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "U2601.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2601.1 -> MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "R2601.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2601.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2601.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2602.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2602.2 -> MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "U2602.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2602.4 -> PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "U2602.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2602.1 -> MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "R2602.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2602.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2602.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2603.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "U2603.2 -> MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "U2603.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "U2603.4 -> PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "U2603.5 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "R2603.1 -> MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "R2603.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "C2603.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "C2603.2 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "J2701.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.4 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "J2701.5 -> MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "J2701.6 -> MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "J2701.7 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.8 -> MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "J2701.9 -> MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "J2701.10 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.11 -> MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "J2701.12 -> MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "J2701.13 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.14 -> RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "name": "J2701.15 -> ARM_CLK",
+      "passed": true
+    },
+    {
+      "name": "J2701.16 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "J2701.17 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "J2701.18 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "J2701.19 -> DRV_CS_N",
+      "passed": true
+    },
+    {
+      "name": "J2701.20 -> SPI_SCK",
+      "passed": true
+    },
+    {
+      "name": "J2701.21 -> SPI_MOSI",
+      "passed": true
+    },
+    {
+      "name": "J2701.22 -> SPI_MISO",
+      "passed": true
+    },
+    {
+      "name": "J2701.23 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.24 -> I_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.25 -> I_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.26 -> I_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.27 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.28 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.29 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.30 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.31 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2701.32 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.33 -> TEMP_FET",
+      "passed": true
+    },
+    {
+      "name": "J2701.34 -> TEMP_PCB",
+      "passed": true
+    },
+    {
+      "name": "J2701.35 -> PG_12V",
+      "passed": true
+    },
+    {
+      "name": "J2701.36 -> PG_5V",
+      "passed": true
+    },
+    {
+      "name": "J2701.37 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "J2701.38 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2701.39 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "J2701.40 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.2 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "J2702.3 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.4 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "J2702.5 -> MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "name": "J2702.6 -> MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "name": "J2702.7 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.8 -> MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "name": "J2702.9 -> MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "name": "J2702.10 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.11 -> MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "name": "J2702.12 -> MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "name": "J2702.13 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.14 -> RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "name": "J2702.15 -> ARM_CLK",
+      "passed": true
+    },
+    {
+      "name": "J2702.16 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "J2702.17 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "J2702.18 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "J2702.19 -> DRV_CS_N",
+      "passed": true
+    },
+    {
+      "name": "J2702.20 -> SPI_SCK",
+      "passed": true
+    },
+    {
+      "name": "J2702.21 -> SPI_MOSI",
+      "passed": true
+    },
+    {
+      "name": "J2702.22 -> SPI_MISO",
+      "passed": true
+    },
+    {
+      "name": "J2702.23 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.24 -> I_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.25 -> I_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.26 -> I_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.27 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.28 -> V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.29 -> V_A_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.30 -> V_B_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.31 -> V_C_ADC",
+      "passed": true
+    },
+    {
+      "name": "J2702.32 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.33 -> TEMP_FET",
+      "passed": true
+    },
+    {
+      "name": "J2702.34 -> TEMP_PCB",
+      "passed": true
+    },
+    {
+      "name": "J2702.35 -> PG_12V",
+      "passed": true
+    },
+    {
+      "name": "J2702.36 -> PG_5V",
+      "passed": true
+    },
+    {
+      "name": "J2702.37 -> NRST",
+      "passed": true
+    },
+    {
+      "name": "J2702.38 -> GND",
+      "passed": true
+    },
+    {
+      "name": "J2702.39 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "J2702.40 -> GND",
+      "passed": true
+    },
+    {
+      "name": "TP2801.1 -> VBUS",
+      "passed": true
+    },
+    {
+      "name": "TP2802.1 -> GND",
+      "passed": true
+    },
+    {
+      "name": "TP2803.1 -> +12V",
+      "passed": true
+    },
+    {
+      "name": "TP2804.1 -> +5V",
+      "passed": true
+    },
+    {
+      "name": "TP2805.1 -> +3V3",
+      "passed": true
+    },
+    {
+      "name": "TP2806.1 -> +3V3A",
+      "passed": true
+    },
+    {
+      "name": "TP2807.1 -> HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "TP2808.1 -> LATCH_STATE",
+      "passed": true
+    },
+    {
+      "name": "TP2809.1 -> DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "name": "TP2810.1 -> I_A_RAW",
+      "passed": true
+    },
+    {
+      "name": "TP2811.1 -> I_B_RAW",
+      "passed": true
+    },
+    {
+      "name": "TP2812.1 -> I_C_RAW",
+      "passed": true
+    },
+    {
+      "name": "12 power MOSFETs",
+      "passed": true
+    },
+    {
+      "name": "3 independent Kelvin shunts",
+      "passed": true
+    },
+    {
+      "name": "No fake discrete Kelvin net ties",
+      "passed": true
+    },
+    {
+      "name": "12 test points",
+      "passed": true
+    },
+    {
+      "name": "J2701 Hall supply transferred on pin39",
+      "passed": true
+    },
+    {
+      "name": "J2702 Hall supply transferred on pin39",
+      "passed": true
+    },
+    {
+      "name": "VM separate from VDRAIN",
+      "passed": true
+    },
+    {
+      "name": "PB12 break and asynchronous CLR share fault",
+      "passed": true
+    },
+    {
+      "name": "Six independent PWM inhibit channels",
+      "passed": true
+    },
+    {
+      "name": "U2501 inhibited by latch",
+      "passed": true
+    },
+    {
+      "name": "U2502 inhibited by latch",
+      "passed": true
+    },
+    {
+      "name": "U2503 inhibited by latch",
+      "passed": true
+    },
+    {
+      "name": "U2601 inhibited by latch",
+      "passed": true
+    },
+    {
+      "name": "U2602 inhibited by latch",
+      "passed": true
+    },
+    {
+      "name": "U2603 inhibited by latch",
+      "passed": true
+    },
+    {
+      "name": "KiCad ERC zero violations",
+      "passed": true
+    },
+    {
+      "name": "RTA pads1..41 present",
+      "passed": true
+    },
+    {
+      "name": "RTA EP41 is 4.15mm square",
+      "passed": true
+    },
+    {
+      "name": "Assigned footprints exist",
+      "passed": true
+    }
+  ]
+}

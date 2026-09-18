@@ -1,0 +1,285 @@
+{
+  "01_DC_LINK": {
+    "title": "DC bara / enerji deposu",
+    "notes": [
+      "HEDEF: 39–54.6 V çalışma; 3 kW mil gücü. 44 V altında güç azaltılır.",
+      "Giriş, sigorta + ön şarj + kutup doğrulama düzeneğinden gelir. Doğrudan batarya bağlantısı için yayımlanmadı.",
+      "3 x 470 uF = 1410 uF. 54.6 V üzerinde depolanan enerji yaklaşık 2.10 J.",
+      "100 kohm boşaltma: tau=141 s; 54.6 V → 5 V yaklaşık 337 s. Gerilim ölçülmeden servis yapılmaz.",
+      "Her yarım köprüye 2.2 uF yerel seramik; DC bias ve RMS ripple kontrol edilecek.",
+      "AÇIK R01: giriş modülü. AÇIK R02: geri sürülme / fren enerjisi. PWM kapatmak DC barayı kelepçelemez."
+    ]
+  },
+  "02_PHASE_A": {
+    "title": "Faz A / paralel MOSFET yarım köprüsü",
+    "notes": [
+      "100 V CSD19536KTT; her anahtarda iki paralel MOSFET. Üç faz toplam 12 MOSFET.",
+      "Kalın hatlar güç yolunu gösterir. Her MOSFET kendi 4.7 ohm kapı direncine sahiptir.",
+      "4.7 ohm başlangıç değeridir. VGS, VDS taşması ve açma/kapama kaybıyla ayarlanır.",
+      "Kelvin sense uçları sadece sürücü ölçüm girişlerine gider. Güç akımı sense izi üzerinden geçirilmez.",
+      "0.5 mohm: 80 A sürekli varsayımında I²R=3.2 W üst sınır hesabı. Gerçek şönt RMS akımı PWM ile değişir.",
+      "PCB: paralel kollar simetrik; ortak kaynak endüktansı azaltılır. Tab pin2=Drain. Soğutucu izolasyonu ayrıca tasarlanır.",
+      "AÇIK R03: şönt pad yönü/termal. AÇIK R04: double-pulse ve kısa devre koruma süresi."
+    ]
+  },
+  "02_PHASE_B": {
+    "title": "Faz B / paralel MOSFET yarım köprüsü",
+    "notes": [
+      "100 V CSD19536KTT; her anahtarda iki paralel MOSFET. Üç faz toplam 12 MOSFET.",
+      "Kalın hatlar güç yolunu gösterir. Her MOSFET kendi 4.7 ohm kapı direncine sahiptir.",
+      "4.7 ohm başlangıç değeridir. VGS, VDS taşması ve açma/kapama kaybıyla ayarlanır.",
+      "Kelvin sense uçları sadece sürücü ölçüm girişlerine gider. Güç akımı sense izi üzerinden geçirilmez.",
+      "0.5 mohm: 80 A sürekli varsayımında I²R=3.2 W üst sınır hesabı. Gerçek şönt RMS akımı PWM ile değişir.",
+      "PCB: paralel kollar simetrik; ortak kaynak endüktansı azaltılır. Tab pin2=Drain. Soğutucu izolasyonu ayrıca tasarlanır.",
+      "AÇIK R03: şönt pad yönü/termal. AÇIK R04: double-pulse ve kısa devre koruma süresi."
+    ]
+  },
+  "02_PHASE_C": {
+    "title": "Faz C / paralel MOSFET yarım köprüsü",
+    "notes": [
+      "100 V CSD19536KTT; her anahtarda iki paralel MOSFET. Üç faz toplam 12 MOSFET.",
+      "Kalın hatlar güç yolunu gösterir. Her MOSFET kendi 4.7 ohm kapı direncine sahiptir.",
+      "4.7 ohm başlangıç değeridir. VGS, VDS taşması ve açma/kapama kaybıyla ayarlanır.",
+      "Kelvin sense uçları sadece sürücü ölçüm girişlerine gider. Güç akımı sense izi üzerinden geçirilmez.",
+      "0.5 mohm: 80 A sürekli varsayımında I²R=3.2 W üst sınır hesabı. Gerçek şönt RMS akımı PWM ile değişir.",
+      "PCB: paralel kollar simetrik; ortak kaynak endüktansı azaltılır. Tab pin2=Drain. Soğutucu izolasyonu ayrıca tasarlanır.",
+      "AÇIK R03: şönt pad yönü/termal. AÇIK R04: double-pulse ve kısa devre koruma süresi."
+    ]
+  },
+  "03_DRIVER": {
+    "title": "Üç faz kapı sürücü / SPI / besleme",
+    "notes": [
+      "TI DRV8353FSRTAR; F-SPI varyantı. H donanım varyantı aynı firmware ile kullanılmaz.",
+      "VM=12 V yardımcı besleme. VDRAIN=VBUS. VREF=3V3A; CSA sıfırı nominal VREF/2.",
+      "CPH–CPL: 47 nF. VCP kondansatörü toprağa değil VBUS hattına döner.",
+      "GHA/GLA, GHB/GLB, GHC/GLC faz sayfalarına; SPA/SNA uçları Kelvin sense hatlarına.",
+      "SPI: önce kimlik/durum ve yapılandırma geri okuması. 6-PWM, gain10, OCP ve deglitch değerleri kayıt altına alınır.",
+      "Yerel RTA0040B footprint: 6x6 mm, 0.5 mm pitch, EP=4.15 mm. TI çiziminden oluşturuldu; stencil/via süreci montajcıyla doğrulanacak."
+    ]
+  },
+  "04_DRIVER_DEFAULTS": {
+    "title": "Sürücü / reset anı lojik seviyeleri",
+    "notes": [
+      "ENABLE ve altı PWM girişi donanım pull-down ile varsayılan kapalıdır.",
+      "nFAULT ve SDO open-drain/open-collector çıkışları 3.3 V seviyesine çekilir.",
+      "CS yüksek: SPI pasif. Boşta kalan MCU pinine güvenilmez.",
+      "RUN_REQUEST sürücüyü uyandırır. Anahtarlama izni ayrı LATCH_STATE sinyalidir."
+    ]
+  },
+  "05_SENSE_BUS": {
+    "title": "Gerilim ölçümü / DC bara",
+    "notes": [
+      "Rüst=2 x 49.9 kohm; Ralt=3.32 kohm; oran=0.032196.",
+      "54.6 V → 1.758 V. 80 V kontrol noktası → 2.576 V. ADC referansı 3.3 V.",
+      "1 kohm + 1 nF ADC filtresi. Kaynak empedansı yaklaşık 4.21 kohm; fc yaklaşık 37.8 kHz.",
+      "BAT54H: pin1 katot, pin2 anot. Kelepçe kaçağı ve 3V3A geri beslemesi hata bütçesine dahildir.",
+      "ADC acquisition süresi ve PWM ile örnekleme anı firmware sözleşmesinde belirlenir.",
+      "Bu bölücü 80 V sürekli sistem izni vermez; güç katının geçici rejim marjı ayrıca doğrulanır."
+    ]
+  },
+  "05_SENSE_A": {
+    "title": "Gerilim ölçümü / faz A",
+    "notes": [
+      "Rüst=2 x 49.9 kohm; Ralt=3.32 kohm; oran=0.032196.",
+      "54.6 V → 1.758 V. 80 V kontrol noktası → 2.576 V. ADC referansı 3.3 V.",
+      "1 kohm + 1 nF ADC filtresi. Kaynak empedansı yaklaşık 4.21 kohm; fc yaklaşık 37.8 kHz.",
+      "BAT54H: pin1 katot, pin2 anot. Kelepçe kaçağı ve 3V3A geri beslemesi hata bütçesine dahildir.",
+      "ADC acquisition süresi ve PWM ile örnekleme anı firmware sözleşmesinde belirlenir.",
+      "Bu bölücü 80 V sürekli sistem izni vermez; güç katının geçici rejim marjı ayrıca doğrulanır."
+    ]
+  },
+  "05_SENSE_B": {
+    "title": "Gerilim ölçümü / faz B",
+    "notes": [
+      "Rüst=2 x 49.9 kohm; Ralt=3.32 kohm; oran=0.032196.",
+      "54.6 V → 1.758 V. 80 V kontrol noktası → 2.576 V. ADC referansı 3.3 V.",
+      "1 kohm + 1 nF ADC filtresi. Kaynak empedansı yaklaşık 4.21 kohm; fc yaklaşık 37.8 kHz.",
+      "BAT54H: pin1 katot, pin2 anot. Kelepçe kaçağı ve 3V3A geri beslemesi hata bütçesine dahildir.",
+      "ADC acquisition süresi ve PWM ile örnekleme anı firmware sözleşmesinde belirlenir.",
+      "Bu bölücü 80 V sürekli sistem izni vermez; güç katının geçici rejim marjı ayrıca doğrulanır."
+    ]
+  },
+  "05_SENSE_C": {
+    "title": "Gerilim ölçümü / faz C",
+    "notes": [
+      "Rüst=2 x 49.9 kohm; Ralt=3.32 kohm; oran=0.032196.",
+      "54.6 V → 1.758 V. 80 V kontrol noktası → 2.576 V. ADC referansı 3.3 V.",
+      "1 kohm + 1 nF ADC filtresi. Kaynak empedansı yaklaşık 4.21 kohm; fc yaklaşık 37.8 kHz.",
+      "BAT54H: pin1 katot, pin2 anot. Kelepçe kaçağı ve 3V3A geri beslemesi hata bütçesine dahildir.",
+      "ADC acquisition süresi ve PWM ile örnekleme anı firmware sözleşmesinde belirlenir.",
+      "Bu bölücü 80 V sürekli sistem izni vermez; güç katının geçici rejim marjı ayrıca doğrulanır."
+    ]
+  },
+  "06_CURRENT": {
+    "title": "Faz akımı / ADC filtreleri",
+    "notes": [
+      "SOA/SOB/SOC → 100 ohm / 1 nF → ADC. Filtre köşe frekansı yaklaşık 1.59 MHz.",
+      "0.5 mohm ve CSA gain10: nominal 5 mV/A. Sıfır nominal 1.65 V.",
+      "Yazılım ilk aşama limiti düşük akımdan yükseltilir; hedef anlık faz limiti 120 A.",
+      "ADC: üç şönt düşük taraf ölçümü. Geçerli pencere, minimum darbe ve yeniden kurma algoritması gerektirir.",
+      "Üç ADC kanalının eş zamanlı ölçüldüğü varsayılmaz. ADC1/ADC2 planı ayrıca derlenerek doğrulanacak."
+    ]
+  },
+  "07_TEMPERATURE": {
+    "title": "Sıcaklık / motor sensörü",
+    "notes": [
+      "FET/PCB: TDK NTCG203NH103JT1, 10k %5; B25/85=3650K %3. Eski B3435 varsayımı kaldırıldı; üretici R-T tablosu kullanılır.",
+      "FET sensörü sıcak noktaya yakın fakat elektriksel izolasyon korunarak yerleştirilir.",
+      "Motor girişi direnç tipi sensör varsayar. Hall kablosu ile karıştırılmaz.",
+      "Açık ve kısa sensör arızası algılanır. Motorun gerçek termistör tipi henüz ölçülmedi."
+    ]
+  },
+  "08_AUX_12V": {
+    "title": "DC bara → 12 V yardımcı güç",
+    "notes": [
+      "LM5164DDAT: 100 V giriş sınıfı; A1 DDAR paketleme alternatifi yerine DDAT seçildi.",
+      "68 uH ve Type-3 ripple ağı TI referans topolojisini izler. FB=453k/49.9k; hedef yaklaşık 12.09 V.",
+      "RON=100k. 453k / 3.3n / 56p ripple ağı sıradan RC filtre ile değiştirilmez.",
+      "Fan için 0.2 A başlangıç bütçesi. Kontrol beslemeleri dahil worst-case yük/doyma doğrulanacak.",
+      "EN bölücüsü yardımcı kaynağı başlatır; motor düşük gerilim korumasının yerine geçmez.",
+      "VIN kapasitörü–IC GND sıcak döngüsü kısa. SW bakırı analog ölçüm altında bulunmaz."
+    ]
+  },
+  "08_AUX_12V_2": {
+    "title": "DC bara → 12 V yardımcı güç / devam 2",
+    "notes": [
+      "LM5164DDAT: 100 V giriş sınıfı; A1 DDAR paketleme alternatifi yerine DDAT seçildi.",
+      "68 uH ve Type-3 ripple ağı TI referans topolojisini izler. FB=453k/49.9k; hedef yaklaşık 12.09 V.",
+      "RON=100k. 453k / 3.3n / 56p ripple ağı sıradan RC filtre ile değiştirilmez.",
+      "Fan için 0.2 A başlangıç bütçesi. Kontrol beslemeleri dahil worst-case yük/doyma doğrulanacak.",
+      "EN bölücüsü yardımcı kaynağı başlatır; motor düşük gerilim korumasının yerine geçmez.",
+      "VIN kapasitörü–IC GND sıcak döngüsü kısa. SW bakırı analog ölçüm altında bulunmaz."
+    ]
+  },
+  "09_AUX_LOGIC": {
+    "title": "12 V → 5 V → 3.3 V / analog besleme",
+    "notes": [
+      "TPS62160: 5 V Hall ve lojik ara besleme. FB=523k/100k; nominal 4.984 V.",
+      "TLV75533: 5 V → 3.3 V. 200 mA yükte yaklaşık 0.34 W kayıp; SOT23 termal kontrol gerekli.",
+      "3V3A, 3V3 üzerinden kontrollü tek noktadan beslenir; analog ve güç dönüş yolları yerleşimde ayrılır.",
+      "5 V hattı A2 kart arayüzünde pin39 üzerinden kontrol kartına taşınır. A1 arayüz eksiği kapatıldı."
+    ]
+  },
+  "09_AUX_LOGIC_2": {
+    "title": "12 V → 5 V → 3.3 V / analog besleme / devam 2",
+    "notes": [
+      "TPS62160: 5 V Hall ve lojik ara besleme. FB=523k/100k; nominal 4.984 V.",
+      "TLV75533: 5 V → 3.3 V. 200 mA yükte yaklaşık 0.34 W kayıp; SOT23 termal kontrol gerekli.",
+      "3V3A, 3V3 üzerinden kontrollü tek noktadan beslenir; analog ve güç dönüş yolları yerleşimde ayrılır.",
+      "5 V hattı A2 kart arayüzünde pin39 üzerinden kontrol kartına taşınır. A1 arayüz eksiği kapatıldı."
+    ]
+  },
+  "10_MCU": {
+    "title": "STM32G474 / kontrol çekirdeği",
+    "notes": [
+      "TIM1: PA8/9/10 high; PB13/14/15 complementary low. PB12 donanım break girişi.",
+      "Hall: PC6/7/8 (TIM3). RC: PA15 (TIM2). Bir zamanlayıcının periyodu diğer girişle paylaşılmaz.",
+      "SPI1: PB3/4/5. CAN: PA11/12. UART: PC10/11. SWD: PA13/14.",
+      "PG10 pin7 NRST olarak kalır. Option-byte değiştirilmeden reset davranışı korunur.",
+      "PB8 BOOT0 pull-down. HSE bypass 8 MHz başlangıç seçimi. Saat ağacı CubeMX/derleme ile doğrulanacak.",
+      "RET3 stok kaydı yalnız 4 adet gösterdi; seri üretim tedarik kapısı açık."
+    ]
+  },
+  "11_MCU_SUPPORT": {
+    "title": "MCU / bypass / reset / programlama",
+    "notes": [
+      "Her VDD için 100 nF fiziksel olarak pine yakın; bulk ve analog referans ayrı yerleşir.",
+      "SWD VTref ölçüm referansıdır. İki farklı kaynaktan 3.3 V basılmaz.",
+      "NRST: 10k / 100n. Brown-out ve bağımsız watchdog firmware başlangıcında etkinleştirilir.",
+      "RUN_REQUEST ve ARM_CLK reset boyunca düşük tutulur. İlk açılışta otomatik motor çalıştırma yok."
+    ]
+  },
+  "11_MCU_SUPPORT_2": {
+    "title": "MCU / bypass / reset / programlama / devam 2",
+    "notes": [
+      "Her VDD için 100 nF fiziksel olarak pine yakın; bulk ve analog referans ayrı yerleşir.",
+      "SWD VTref ölçüm referansıdır. İki farklı kaynaktan 3.3 V basılmaz.",
+      "NRST: 10k / 100n. Brown-out ve bağımsız watchdog firmware başlangıcında etkinleştirilir.",
+      "RUN_REQUEST ve ARM_CLK reset boyunca düşük tutulur. İlk açılışta otomatik motor çalıştırma yok."
+    ]
+  },
+  "12_CAN_UART": {
+    "title": "CAN / servis / RC arayüzleri",
+    "notes": [
+      "SN65HVD230 ile Classic CAN. CAN-FD haberleşmesi bu transceiver seçimiyle yayımlanmıyor.",
+      "120 ohm terminasyon DNP; yalnız hat sonunda takılır.",
+      "UART ve RC seviyesi 3.3 V. 5 V push-pull girişi doğrudan uygulanmaz.",
+      "AÇIK R05: konektör tarafı ESD/TVS ve kablo testleri; haberleşme kaybı tork sıfırlar."
+    ]
+  },
+  "13_HALL": {
+    "title": "Motor / Hall sensör arayüzü",
+    "notes": [
+      "Motor Hall beslemesi 5 V; çıkışlar open-collector kabul edildi.",
+      "Pull-up 3.3 V üzerindedir. Push-pull 5 V Hall için seviye dönüştürücü gerekir.",
+      "1k / 1n EMI filtresi ilk değerdir; maksimum elektriksel hızda kenar gecikmesi ölçülür.",
+      "Hall 000/111 ve geçersiz sıra: hata. Gerçek faz/Hall sırası düşük enerjili ölçümle bulunur."
+    ]
+  },
+  "14_TRIP_COMPARATORS": {
+    "title": "Donanım / akım penceresi ve bara aşırı gerilim",
+    "notes": [
+      "6 karşılaştırıcı: üç faz için alt/üst akım penceresi. Ortak çıkış HARD_FAULT_N.",
+      "OC_LOW≈0.914 V; OC_HIGH≈2.386 V. 5mV/A için yaklaşık ±147 A nominal eşik.",
+      "Yedinci karşılaştırıcı VBUS aşırı gerilimi algılar: yaklaşık 58.57 V nominal.",
+      "TLV1704 ve CSA gecikmesi kısa devreyi tek başına garanti etmez. DRV VDS koruması birlikte ayarlanır.",
+      "Kullanılmayan komparatör girişleri tanımlı; çıkışı NC. Eşik toleransları hesap dosyasında."
+    ]
+  },
+  "15_TRIP_REFERENCES": {
+    "title": "Donanım / rasyometrik eşik referansları",
+    "notes": [
+      "Akım referansları 26.1k / 10k ve ters bölücüdür. VREF ile aynı 3V3A kaynağını kullanır.",
+      "Bara OV referansı 7.5k / 10k. Dirençler %0.1 başlangıç şartı.",
+      "10 nF referans filtreleri açılışta yerleşme süresi oluşturur; ölçüm stabil olmadan ARM gönderilmez.",
+      "Komparatör offset, CSA gain/offset ve şönt toleransı nihai eşiğe eklenir."
+    ]
+  },
+  "16_FAULT_LATCH": {
+    "title": "Donanım / arıza hafızası ve yeniden kurma",
+    "notes": [
+      "nFAULT, reset ve güç-good hatları diyot OR ile HARD_FAULT_N hattını aşağı çeker.",
+      "HARD_FAULT_N hem TIM1 BKIN hem asenkron CLR girişine gider.",
+      "Arıza LATCH_STATE değerini sıfırlar. Arıza kalkınca kendiliğinden yeniden başlamaz.",
+      "Başlatma: PWM düşük → RUN_REQUEST → SPI/CSA kontrol → fault sağlıklı → ARM yükselen kenar.",
+      "DRV_ENABLE, latch ile kesilmez: CSA sıfır çıkışından kaynaklanan açılış kilidi önlenir.",
+      "Acil durdurma kontağı kısa devre ederek keser; kablo kopması algılanmaz. Sertifikalı güvenlik fonksiyonu değildir."
+    ]
+  },
+  "17_PWM_INHIBIT": {
+    "title": "Altı PWM / donanımsal izin kapıları",
+    "notes": [
+      "Her AND kapısının A girişi LATCH_STATE; B girişi MCU PWM; çıkış DRV PWM.",
+      "İzin düşükken altı sürücü girişi düşük. DRV 6-PWM modu zorunludur.",
+      "Dead-time TIM1 ve sürücü yapılandırmasında hesaplanır; başlangıç değeri ölçülmeden kesinleşmez.",
+      "Arıza → kapı kesme toplam gecikmesi osiloskopla ölçülür; yazılım kesmesi beklenmez."
+    ]
+  },
+  "17_PWM_INHIBIT_2": {
+    "title": "Altı PWM / donanımsal izin kapıları / devam 2",
+    "notes": [
+      "Her AND kapısının A girişi LATCH_STATE; B girişi MCU PWM; çıkış DRV PWM.",
+      "İzin düşükken altı sürücü girişi düşük. DRV 6-PWM modu zorunludur.",
+      "Dead-time TIM1 ve sürücü yapılandırmasında hesaplanır; başlangıç değeri ölçülmeden kesinleşmez.",
+      "Arıza → kapı kesme toplam gecikmesi osiloskopla ölçülür; yazılım kesmesi beklenmez."
+    ]
+  },
+  "18_BOARD_INTERFACE": {
+    "title": "Güç / kontrol kartı arayüzü",
+    "notes": [
+      "İki konnektör eşleşmiş kablonun sistem modelidir; aynı net isimleri elektriksel olarak ortaktır.",
+      "A2 düzeltme: pin39 +5V; pin40 GND. Pin1 ve bakış yönü fiziksel montaj çiziminde sabitlenecek.",
+      "Güç kartı: köprü, driver, şönt, fault latch, AND kapıları. Kontrol kartı: MCU ve iletişim.",
+      "Yerleşim öncesi iki PCB için netlist ayrılır. Bu birleşik sistem dosyası doğrudan iki PCB üretmez."
+    ]
+  },
+  "19_TEST_POINTS": {
+    "title": "Devreye alma / test erişimi",
+    "notes": [
+      "Önce yardımcı kaynaklar, ardından fault zinciri, sonra düşük gerilim motor deneyi.",
+      "TP VBUS ölçümünde prob gerilim sınıfı ve referansı kontrol edilir.",
+      "İlk motor deneyi batarya yerine akım sınırlı kaynakla; akım limiti kademeli artırılır.",
+      "Ölçüm kaydı: kart revizyonu, firmware hash, motor seri no, batarya/PSU, sıcaklık, dalga şekilleri."
+    ]
+  }
+}

@@ -1,0 +1,1557 @@
+[
+  {
+    "value": "DC LINK INPUT",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J101"
+    ],
+    "notes": [
+      "From external fused, precharged, reverse-polarity-protected DC input assembly; not raw battery."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "MOTOR U V W",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J102"
+    ],
+    "notes": [
+      "High current terminal system: mechanical selection pending."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "EXTERNAL BRAKE MODULE",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J103"
+    ],
+    "notes": [
+      "Regen energy clamp/chopper sizing and interface remain release blockers."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "470u 100V bulk",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C101",
+      "C102",
+      "C103"
+    ],
+    "notes": [
+      "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending."
+    ],
+    "quantity": 3,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2u 100V X7R",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C104",
+      "C105",
+      "C106"
+    ],
+    "notes": [
+      "At each half bridge; effective capacitance under bias required."
+    ],
+    "quantity": 3,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100k 0.25W",
+    "mpn": "RC1206FR-07100KL",
+    "footprint": "Resistor_SMD:R_1206_3216Metric",
+    "references": [
+      "R101"
+    ],
+    "notes": [
+      "Bleed only; discharge time must be checked before service. YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "CSD19536KTT",
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "references": [
+      "Q201",
+      "Q202",
+      "Q203",
+      "Q204",
+      "Q301",
+      "Q302",
+      "Q303",
+      "Q304",
+      "Q401",
+      "Q402",
+      "Q403",
+      "Q404"
+    ],
+    "notes": [
+      "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor."
+    ],
+    "quantity": 12,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7R gate",
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R201",
+      "R203",
+      "R205",
+      "R207",
+      "R301",
+      "R303",
+      "R305",
+      "R307",
+      "R401",
+      "R403",
+      "R405",
+      "R407"
+    ],
+    "notes": [
+      "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 12,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "47k G-S",
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R202",
+      "R204",
+      "R206",
+      "R208",
+      "R302",
+      "R304",
+      "R306",
+      "R308",
+      "R402",
+      "R404",
+      "R406",
+      "R408"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 12,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "0.5mR 1% Kelvin",
+    "mpn": "CSS4J-4026R-L500F",
+    "footprint": "",
+    "references": [
+      "RS201",
+      "RS301",
+      "RS401"
+    ],
+    "notes": [
+      "Bourns CSS4J-4026: 5 W at 130 C terminals. Four-terminal geometry must match local footprint before release."
+    ],
+    "quantity": 3,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 100V",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C201",
+      "C301",
+      "C401"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 3,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "DRV8353FSRTAR",
+    "mpn": "DRV8353FSRTAR",
+    "footprint": "ESC_B1:TI_RTA0040B_6x6_P0.5_EP4.15",
+    "references": [
+      "U501"
+    ],
+    "notes": [
+      "TI DRV8353F Rev B. VM=12V, VDRAIN=DC link. SPI variant; configure 6-PWM and CSA gain10. Local RTA0040B land pattern from TI drawing; assembler review pending."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "47n 100V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C501"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1u 25V",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C502",
+      "C503"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1u 10V",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C504",
+      "C1503"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 25V",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C505"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10u 25V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C506",
+      "C1501"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 10V",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C507"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7k pull-up",
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R601",
+      "R602"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k pull-up",
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R603"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k pull-down",
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R604"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "47k pull-down",
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R605",
+      "R606",
+      "R607",
+      "R608",
+      "R609",
+      "R610"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 6,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "49.9k 0.1%",
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R701",
+      "R702",
+      "R801",
+      "R802",
+      "R901",
+      "R902",
+      "R1001",
+      "R1002"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 8,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "3.32k 0.1%",
+    "mpn": "RT0805BRD073K32L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R703",
+      "R803",
+      "R903",
+      "R1003"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 4,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "1k ADC series",
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R704",
+      "R804",
+      "R904",
+      "R1004"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 4,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "1n C0G",
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C701",
+      "C801",
+      "C901",
+      "C1001",
+      "C1101",
+      "C1102",
+      "C1103"
+    ],
+    "notes": [
+      "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay. BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+      " BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open."
+    ],
+    "quantity": 7,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "BAT54H upper",
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "references": [
+      "D701",
+      "D801",
+      "D901",
+      "D1001"
+    ],
+    "notes": [
+      "Clamp leakage and 3V3 rail backfeed require worst-case review."
+    ],
+    "quantity": 4,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "BAT54H lower",
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "references": [
+      "D702",
+      "D802",
+      "D902",
+      "D1002"
+    ],
+    "notes": [],
+    "quantity": 4,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100R ADC",
+    "mpn": "RC0805FR-07100RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1101",
+      "R1102",
+      "R1103"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 3,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k 0.1%",
+    "mpn": "RT0805BRD0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1201",
+      "R1203",
+      "R2302",
+      "R2303",
+      "R2306"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 5,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "NTC 10k B25/85=3650K",
+    "mpn": "NTCG203NH103JT1",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1202",
+      "R1204"
+    ],
+    "notes": [
+      "TDK production part. 10k +/-5%; B25/85=3650K +/-3%; use manufacturer R-T table, not old B3435 model."
+    ],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10n",
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1201",
+      "C1202",
+      "C1203"
+    ],
+    "notes": [
+      " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items."
+    ],
+    "quantity": 3,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "MOTOR TEMP",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J1201"
+    ],
+    "notes": [
+      "Sensor type not yet confirmed; A1 assumes resistance sensor for interface review only."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "10k provision",
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1205"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "1k",
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1206",
+      "R2102",
+      "R2104",
+      "R2106"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 4,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "LM5164DDAT",
+    "mpn": "LM5164DDAT",
+    "footprint": "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias",
+    "references": [
+      "U1301"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "68uH >=1.5A",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "L1301"
+    ],
+    "notes": [
+      "Effective L, saturation current, DCR and footprint pending exact MPN."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2u 160V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C1301"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n 160V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C1302"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "22u 25V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C1303",
+      "C1304"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "2.2n C0G",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1305"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100k",
+    "mpn": "RC0805FR-07100KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1301",
+      "R1502"
+    ],
+    "notes": [
+      " DR-002 ELEC-01: LM5164 Rev D Table 4-1 requires RON resistor to GND; corrected from VBUS. Frequency/ripple qualification remains open. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "453k",
+    "mpn": "RC0805FR-07453KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1302"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "49.9k",
+    "mpn": "RC0805FR-0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1303"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "453k ripple",
+    "mpn": "RC0805FR-07453KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1304"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "3.3n",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1306"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "56p C0G",
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1401"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "1M UVLO",
+    "mpn": "RC0805FR-071ML",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1401"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100k UVLO",
+    "mpn": "RC0805FR-07100KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1402"
+    ],
+    "notes": [
+      "Aux powers early for diagnostics; this is NOT the traction undervoltage cutoff. YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k",
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1403",
+      "R1503",
+      "R1801",
+      "R1901",
+      "R1902"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 5,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "FAN 12V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J1401"
+    ],
+    "notes": [
+      "Fan <=0.2A continuous budget. Inrush must be measured."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "TPS62160DGKR",
+    "mpn": "TPS62160DGKR",
+    "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
+    "references": [
+      "U1501"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "2.2uH >=1.5A",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "L1501"
+    ],
+    "notes": [
+      "Check DC bias and saturation against converter peak current."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "22u 10V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C1502"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "523k",
+    "mpn": "RC0805FR-07523KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1501"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "TLV75533PDBVR",
+    "mpn": "TLV75533PDBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "references": [
+      "U1502"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7u 10V",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "C1504",
+      "C1505"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "0R analog link",
+    "mpn": "RC0805JR-070RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1504"
+    ],
+    "notes": [
+      "Optional ferrite only after analog rail impedance review. YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1601"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "STM32G474RET3",
+    "mpn": "STM32G474RET3",
+    "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+    "references": [
+      "U1701"
+    ],
+    "notes": [
+      "PG10 must remain NRST option. PB8 BOOT0 option bytes reviewed before flashing. Verify AF/ADC schedule before PCB."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n at VDD",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1801",
+      "C1802",
+      "C1803",
+      "C1804"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 4,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7u",
+    "mpn": "C0805C475K8RACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1805"
+    ],
+    "notes": [
+      " BOM-BATCH2: KEMET 4.7uF +/-10%, 10V X7R 0805 on 3.3V rail. Bulk bypass only; effective capacitance under DC bias and transient response require bench validation."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n at VBAT",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1806"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "1u VDDA",
+    "mpn": "GRM21BR71C105KA01K",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1807"
+    ],
+    "notes": [
+      " BOM-20260915: Murata 1uF +/-10%, 16V X7R, 0805; VDDA 3.3V nominal. Manufacturer in-production family, DigiKey active/stock listing checked. DC-bias and assembled supply validation remain PoC tests."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n VDDA",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1808"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n VREF",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1809"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n reset",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1810"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k BOOT0",
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1802"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "SWD",
+    "mpn": "61300511121",
+    "footprint": "ESC_B1:WE_61300511121_1x05_P2.54_Drill1.10",
+    "references": [
+      "J1901"
+    ],
+    "notes": [
+      "VTref only; avoid powering rail from two sources. BOM-20260916: Wurth WR-PHD PoC header; 2.54mm pitch, 1.10mm nominal finished holes, pin1 square. Unkeyed bench connection, not final locking harness. Verify cable orientation before use."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "8MHz 3V3 CMOS oscillator",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "Y1901"
+    ],
+    "notes": [
+      "4-pad 3225 oscillator candidate; pinout and MPN pending. HSE BYPASS mode."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "100n oscillator",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C1901"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "1k LED",
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R1903"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "LED GREEN",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "D1901"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "SN65HVD230DR",
+    "mpn": "SN65HVD230DR",
+    "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+    "references": [
+      "U2001"
+    ],
+    "notes": [
+      "Classic CAN only, not CAN FD. TVS array selection pending."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10k slope",
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2001"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n CAN",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C2001"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "120R DNP",
+    "mpn": "RC0805FR-07120RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2002"
+    ],
+    "notes": [
+      "Fit only at bus end; DNP by default. YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "CAN",
+    "mpn": "61300311121",
+    "footprint": "ESC_B1:WE_61300311121_1x03_P2.54_Drill1.10",
+    "references": [
+      "J2001"
+    ],
+    "notes": [
+      " BOM-20260916: Wurth WR-PHD PoC header; 2.54mm pitch, 1.10mm nominal finished holes, pin1 square. Unkeyed bench connection, not final locking harness. Verify cable orientation before use."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "UART 3V3",
+    "mpn": "61300311121",
+    "footprint": "ESC_B1:WE_61300311121_1x03_P2.54_Drill1.10",
+    "references": [
+      "J2002"
+    ],
+    "notes": [
+      " BOM-20260916: Wurth WR-PHD PoC header; 2.54mm pitch, 1.10mm nominal finished holes, pin1 square. Unkeyed bench connection, not final locking harness. Verify cable orientation before use."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "RC PWM 3V3",
+    "mpn": "61300211121",
+    "footprint": "ESC_B1:WE_61300211121_1x02_P2.54_Drill1.10",
+    "references": [
+      "J2003"
+    ],
+    "notes": [
+      " BOM-20260916: Wurth WR-PHD PoC header; 2.54mm pitch, 1.10mm nominal finished holes, pin1 square. Unkeyed bench connection, not final locking harness. Verify cable orientation before use."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "HALL 5V",
+    "mpn": "61300511121",
+    "footprint": "ESC_B1:WE_61300511121_1x05_P2.54_Drill1.10",
+    "references": [
+      "J2101"
+    ],
+    "notes": [
+      "Interface requires open-collector Hall outputs; push-pull sensor needs level conversion. BOM-20260916: Wurth WR-PHD PoC header; 2.54mm pitch, 1.10mm nominal finished holes, pin1 square. Unkeyed bench connection, not final locking harness. Verify cable orientation before use."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "4.7k 3V3 pull-up",
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2101",
+      "R2103",
+      "R2105"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 3,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "1n",
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C2101",
+      "C2102",
+      "C2103"
+    ],
+    "notes": [
+      " BOM-20260915: KEMET 1nF +/-5%, 50V C0G, 0805; non-polar Hall input filter. Manufacturer specification and DigiKey active/stock listing checked. Hall signal timing remains a physical PoC validation."
+    ],
+    "quantity": 3,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "TLV1704PWR",
+    "mpn": "TLV1704PWR",
+    "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+    "references": [
+      "U2201",
+      "U2202"
+    ],
+    "notes": [
+      "Comparator delay plus CSA settling is not a guaranteed short-circuit limit; MOSFET VDS protection remains primary."
+    ],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n comparator",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C2201",
+      "C2202"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "26.1k 0.1%",
+    "mpn": "RT0805BRD0726K1L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2301",
+      "R2304"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "10n reference",
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C2301",
+      "C2302",
+      "C2303"
+    ],
+    "notes": [
+      " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items."
+    ],
+    "quantity": 3,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "7.50k 0.1%",
+    "mpn": "RT0805BRD077K50L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2305"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "2.2k fault pull-up",
+    "mpn": "RC0805FR-072K2L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2401"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "BAT54H fault OR",
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "references": [
+      "D2401"
+    ],
+    "notes": [
+      "Verify diode VOL + DRV sink voltage meets latch CLR and MCU BKIN VIL."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "BAT54H reset OR",
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "references": [
+      "D2402"
+    ],
+    "notes": [],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "BAT54H PG OR",
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "references": [
+      "D2403",
+      "D2404"
+    ],
+    "notes": [],
+    "quantity": 2,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "SN74LVC1G74DCUR",
+    "mpn": "SN74LVC1G74DCUR",
+    "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+    "references": [
+      "U2401"
+    ],
+    "notes": [
+      "Fault clears Q. Re-arm requires deliberate rising edge with fault absent. Power-up state not assumed."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "0R driver wake",
+    "mpn": "RC0805JR-070RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2402"
+    ],
+    "notes": [
+      "Wake DRV first with PWM inhibited. Configure CSA and wait for healthy fault net, then arm latch. YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n latch",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C2401"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "EMERGENCY STOP",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J2401"
+    ],
+    "notes": [
+      "Shorting contact clears latch; wire-break detection not implemented."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "SN74LVC1G08DBVR",
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "references": [
+      "U2501",
+      "U2502",
+      "U2503",
+      "U2601",
+      "U2602",
+      "U2603"
+    ],
+    "notes": [
+      "Latch low forces all DRV PWM inputs low; no automatic retry on fault release."
+    ],
+    "quantity": 6,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "47k reset default",
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "references": [
+      "R2501",
+      "R2502",
+      "R2503",
+      "R2601",
+      "R2602",
+      "R2603"
+    ],
+    "notes": [
+      " YAGEO series-code selection; verify individual MPN orderability before procurement."
+    ],
+    "quantity": 6,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "100n logic",
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "references": [
+      "C2501",
+      "C2502",
+      "C2503",
+      "C2601",
+      "C2602",
+      "C2603"
+    ],
+    "notes": [
+      " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies."
+    ],
+    "quantity": 6,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "POWER CARD 2x20",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J2701"
+    ],
+    "notes": [
+      "Mate to control card pin-for-pin; connector and viewing direction not released. B1 pin38 TEMP_MOTOR; pin39 +5V; both connector ends use the same numbering. Not compatible with A2 pin38 GND."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "CONTROL CARD 2x20",
+    "mpn": "",
+    "footprint": "",
+    "references": [
+      "J2702"
+    ],
+    "notes": [
+      "Same system nets model mating harness; PCB partition documented in README. B1 pin38 TEMP_MOTOR; pin39 +5V; both connector ends use the same numbering. Not compatible with A2 pin38 GND."
+    ],
+    "quantity": 1,
+    "status": "REVIEW_REQUIRED"
+  },
+  {
+    "value": "VBUS",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2801"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "GND",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2802"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "+12V",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2803"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "+5V",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2804"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "+3V3",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2805"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "+3V3A",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2806"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "HARD_FAULT_N",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2807"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "LATCH_STATE",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2808"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "DRV_FAULT_N",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2809"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "I_A_RAW",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2810"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "I_B_RAW",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2811"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  },
+  {
+    "value": "I_C_RAW",
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "references": [
+      "TP2812"
+    ],
+    "notes": [
+      "VBUS and switching-node measurements require appropriately rated differential probes."
+    ],
+    "quantity": 1,
+    "status": "SELECTED_NOT_QUALIFIED"
+  }
+]

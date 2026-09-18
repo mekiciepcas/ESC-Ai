@@ -1,0 +1,463 @@
+[
+  {
+    "ref": "J101",
+    "value": "DC LINK INPUT",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J102",
+    "value": "MOTOR U V W",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J103",
+    "value": "EXTERNAL BRAKE MODULE",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C101",
+    "value": "470u 100V bulk",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C102",
+    "value": "470u 100V bulk",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C103",
+    "value": "470u 100V bulk",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C104",
+    "value": "2.2u 100V X7R",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C105",
+    "value": "2.2u 100V X7R",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C106",
+    "value": "2.2u 100V X7R",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "RS201",
+    "value": "0.5mR 1% Kelvin",
+    "missing": [
+      "footprint"
+    ]
+  },
+  {
+    "ref": "RS301",
+    "value": "0.5mR 1% Kelvin",
+    "missing": [
+      "footprint"
+    ]
+  },
+  {
+    "ref": "RS401",
+    "value": "0.5mR 1% Kelvin",
+    "missing": [
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C501",
+    "value": "47n 100V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C502",
+    "value": "1u 25V",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C503",
+    "value": "1u 25V",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C504",
+    "value": "1u 10V",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C506",
+    "value": "10u 25V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C701",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C801",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C901",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1001",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1101",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1102",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1103",
+    "value": "1n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1201",
+    "value": "10n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1202",
+    "value": "10n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "J1201",
+    "value": "MOTOR TEMP",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1203",
+    "value": "10n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "L1301",
+    "value": "68uH >=1.5A",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1301",
+    "value": "2.2u 160V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1302",
+    "value": "100n 160V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1303",
+    "value": "22u 25V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1304",
+    "value": "22u 25V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1305",
+    "value": "2.2n C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1306",
+    "value": "3.3n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1401",
+    "value": "56p C0G",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "J1401",
+    "value": "FAN 12V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "L1501",
+    "value": "2.2uH >=1.5A",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1501",
+    "value": "10u 25V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1502",
+    "value": "22u 10V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1503",
+    "value": "1u 10V",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C1504",
+    "value": "4.7u 10V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1505",
+    "value": "4.7u 10V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1805",
+    "value": "4.7u",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C1807",
+    "value": "1u VDDA",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "J1901",
+    "value": "SWD",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "Y1901",
+    "value": "8MHz 3V3 CMOS oscillator",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "D1901",
+    "value": "LED GREEN",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J2001",
+    "value": "CAN",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J2002",
+    "value": "UART 3V3",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J2003",
+    "value": "RC PWM 3V3",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J2101",
+    "value": "HALL 5V",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "C2101",
+    "value": "1n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C2102",
+    "value": "1n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C2103",
+    "value": "1n",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C2301",
+    "value": "10n reference",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C2302",
+    "value": "10n reference",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "C2303",
+    "value": "10n reference",
+    "missing": [
+      "mpn"
+    ]
+  },
+  {
+    "ref": "J2401",
+    "value": "EMERGENCY STOP",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J2701",
+    "value": "POWER CARD 2x20",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  },
+  {
+    "ref": "J2702",
+    "value": "CONTROL CARD 2x20",
+    "missing": [
+      "mpn",
+      "footprint"
+    ]
+  }
+]

@@ -1,0 +1,4437 @@
+[
+  {
+    "ref": "J101",
+    "page": "01_DC_LINK",
+    "kind": "CONN2",
+    "value": "DC LINK INPUT",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "From external fused, precharged, reverse-polarity-protected DC input assembly; not raw battery.",
+    "baseline_ref": "J1",
+    "x": 78.74,
+    "y": 57.15,
+    "rot": 0
+  },
+  {
+    "ref": "J102",
+    "page": "01_DC_LINK",
+    "kind": "CONN3",
+    "value": "MOTOR U V W",
+    "nets": {
+      "1": "PH_A",
+      "2": "PH_B",
+      "3": "PH_C"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "High current terminal system: mechanical selection pending.",
+    "baseline_ref": "J2",
+    "x": 215.9,
+    "y": 57.15,
+    "rot": 0
+  },
+  {
+    "ref": "J103",
+    "page": "01_DC_LINK",
+    "kind": "CONN2",
+    "value": "EXTERNAL BRAKE MODULE",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Regen energy clamp/chopper sizing and interface remain release blockers.",
+    "baseline_ref": "J3",
+    "x": 78.74,
+    "y": 93.98,
+    "rot": 0
+  },
+  {
+    "ref": "C101",
+    "page": "01_DC_LINK",
+    "kind": "C",
+    "value": "470u 100V bulk",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending.",
+    "baseline_ref": "C1",
+    "x": 215.9,
+    "y": 91.44,
+    "rot": 0
+  },
+  {
+    "ref": "C102",
+    "page": "01_DC_LINK",
+    "kind": "C",
+    "value": "470u 100V bulk",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending.",
+    "baseline_ref": "C2",
+    "x": 215.9,
+    "y": 123.19,
+    "rot": 0
+  },
+  {
+    "ref": "C103",
+    "page": "01_DC_LINK",
+    "kind": "C",
+    "value": "470u 100V bulk",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Provisional total 1410uF; exact ESR/ripple/lifetime and MPN pending.",
+    "baseline_ref": "C3",
+    "x": 78.74,
+    "y": 128.27,
+    "rot": 0
+  },
+  {
+    "ref": "C104",
+    "page": "01_DC_LINK",
+    "kind": "C",
+    "value": "2.2u 100V X7R",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "At each half bridge; effective capacitance under bias required.",
+    "baseline_ref": "C4",
+    "x": 215.9,
+    "y": 154.94,
+    "rot": 0
+  },
+  {
+    "ref": "C105",
+    "page": "01_DC_LINK",
+    "kind": "C",
+    "value": "2.2u 100V X7R",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "At each half bridge; effective capacitance under bias required.",
+    "baseline_ref": "C5",
+    "x": 78.74,
+    "y": 160.02,
+    "rot": 0
+  },
+  {
+    "ref": "C106",
+    "page": "01_DC_LINK",
+    "kind": "C",
+    "value": "2.2u 100V X7R",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "At each half bridge; effective capacitance under bias required.",
+    "baseline_ref": "C6",
+    "x": 215.9,
+    "y": 186.69,
+    "rot": 0
+  },
+  {
+    "ref": "R101",
+    "page": "01_DC_LINK",
+    "kind": "R",
+    "value": "100k 0.25W",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "RC1206FR-07100KL",
+    "footprint": "Resistor_SMD:R_1206_3216Metric",
+    "note": "Bleed only; discharge time must be checked before service. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R1",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 191.77,
+    "rot": 0
+  },
+  {
+    "ref": "#FLG101",
+    "page": "01_DC_LINK",
+    "kind": "FLAG",
+    "value": "VBUS",
+    "nets": {
+      "1": "VBUS"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "#FLG1",
+    "x": 215.9,
+    "y": 220.98,
+    "rot": 0
+  },
+  {
+    "ref": "#FLG102",
+    "page": "01_DC_LINK",
+    "kind": "FLAG",
+    "value": "GND",
+    "nets": {
+      "1": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "#FLG2",
+    "x": 78.74,
+    "y": 226.06,
+    "rot": 0
+  },
+  {
+    "ref": "Q201",
+    "page": "02_PHASE_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHA_1",
+      "2": "VBUS",
+      "3": "PH_A"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q1",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R201",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHA",
+      "2": "GHA_1"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R2",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 71.11999999999999,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R202",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHA_1",
+      "2": "PH_A"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R3",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 88.89999999999999,
+    "y": 104.14,
+    "rot": 270
+  },
+  {
+    "ref": "Q202",
+    "page": "02_PHASE_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHA_2",
+      "2": "VBUS",
+      "3": "PH_A"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q2",
+    "x": 203.2,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R203",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHA",
+      "2": "GHA_2"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R4",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 172.72,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R204",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHA_2",
+      "2": "PH_A"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R5",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 190.5,
+    "y": 104.14,
+    "rot": 270
+  },
+  {
+    "ref": "Q203",
+    "page": "02_PHASE_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLA_1",
+      "2": "PH_A",
+      "3": "SHUNT_A_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q3",
+    "x": 101.6,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R205",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLA",
+      "2": "GLA_1"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R6",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 71.11999999999999,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R206",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLA_1",
+      "2": "SHUNT_A_P"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R7",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 88.89999999999999,
+    "y": 180.33999999999997,
+    "rot": 270
+  },
+  {
+    "ref": "Q204",
+    "page": "02_PHASE_A",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLA_2",
+      "2": "PH_A",
+      "3": "SHUNT_A_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q4",
+    "x": 203.2,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R207",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLA",
+      "2": "GLA_2"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R8",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 172.72,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R208",
+    "page": "02_PHASE_A",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLA_2",
+      "2": "SHUNT_A_P"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R9",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 190.5,
+    "y": 180.33999999999997,
+    "rot": 270
+  },
+  {
+    "ref": "RS201",
+    "page": "02_PHASE_A",
+    "kind": "SHUNT",
+    "value": "0.5mR 1% Kelvin",
+    "nets": {
+      "1": "SHUNT_A_P",
+      "2": "GND",
+      "3": "IS_A_P",
+      "4": "IS_A_N"
+    },
+    "mpn": "CSS4J-4026R-L500F",
+    "footprint": "",
+    "note": "Bourns CSS4J-4026: 5 W at 130 C terminals. Four-terminal geometry must match local footprint before release.",
+    "baseline_ref": "RS1",
+    "x": 152.4,
+    "y": 218.44,
+    "rot": 0
+  },
+  {
+    "ref": "C201",
+    "page": "02_PHASE_A",
+    "kind": "C",
+    "value": "100n 100V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C7",
+    "x": 254,
+    "y": 101.6,
+    "rot": 270
+  },
+  {
+    "ref": "Q301",
+    "page": "02_PHASE_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHB_1",
+      "2": "VBUS",
+      "3": "PH_B"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q5",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R301",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHB",
+      "2": "GHB_1"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R12",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 71.11999999999999,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R302",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHB_1",
+      "2": "PH_B"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R13",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 88.89999999999999,
+    "y": 104.14,
+    "rot": 270
+  },
+  {
+    "ref": "Q302",
+    "page": "02_PHASE_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHB_2",
+      "2": "VBUS",
+      "3": "PH_B"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q6",
+    "x": 203.2,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R303",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHB",
+      "2": "GHB_2"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R14",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 172.72,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R304",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHB_2",
+      "2": "PH_B"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R15",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 190.5,
+    "y": 104.14,
+    "rot": 270
+  },
+  {
+    "ref": "Q303",
+    "page": "02_PHASE_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLB_1",
+      "2": "PH_B",
+      "3": "SHUNT_B_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q7",
+    "x": 101.6,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R305",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLB",
+      "2": "GLB_1"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R16",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 71.11999999999999,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R306",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLB_1",
+      "2": "SHUNT_B_P"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R17",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 88.89999999999999,
+    "y": 180.33999999999997,
+    "rot": 270
+  },
+  {
+    "ref": "Q304",
+    "page": "02_PHASE_B",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLB_2",
+      "2": "PH_B",
+      "3": "SHUNT_B_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q8",
+    "x": 203.2,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R307",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLB",
+      "2": "GLB_2"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R18",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 172.72,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R308",
+    "page": "02_PHASE_B",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLB_2",
+      "2": "SHUNT_B_P"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R19",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 190.5,
+    "y": 180.33999999999997,
+    "rot": 270
+  },
+  {
+    "ref": "RS301",
+    "page": "02_PHASE_B",
+    "kind": "SHUNT",
+    "value": "0.5mR 1% Kelvin",
+    "nets": {
+      "1": "SHUNT_B_P",
+      "2": "GND",
+      "3": "IS_B_P",
+      "4": "IS_B_N"
+    },
+    "mpn": "CSS4J-4026R-L500F",
+    "footprint": "",
+    "note": "Bourns CSS4J-4026: 5 W at 130 C terminals. Four-terminal geometry must match local footprint before release.",
+    "baseline_ref": "RS2",
+    "x": 152.4,
+    "y": 218.44,
+    "rot": 0
+  },
+  {
+    "ref": "C301",
+    "page": "02_PHASE_B",
+    "kind": "C",
+    "value": "100n 100V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C8",
+    "x": 254,
+    "y": 101.6,
+    "rot": 270
+  },
+  {
+    "ref": "Q401",
+    "page": "02_PHASE_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHC_1",
+      "2": "VBUS",
+      "3": "PH_C"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q9",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R401",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHC",
+      "2": "GHC_1"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R22",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 71.11999999999999,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R402",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHC_1",
+      "2": "PH_C"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R23",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 88.89999999999999,
+    "y": 104.14,
+    "rot": 270
+  },
+  {
+    "ref": "Q402",
+    "page": "02_PHASE_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GHC_2",
+      "2": "VBUS",
+      "3": "PH_C"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q10",
+    "x": 203.2,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R403",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GHC",
+      "2": "GHC_2"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R24",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 172.72,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R404",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GHC_2",
+      "2": "PH_C"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R25",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 190.5,
+    "y": 104.14,
+    "rot": 270
+  },
+  {
+    "ref": "Q403",
+    "page": "02_PHASE_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLC_1",
+      "2": "PH_C",
+      "3": "SHUNT_C_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q11",
+    "x": 101.6,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R405",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLC",
+      "2": "GLC_1"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R26",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 71.11999999999999,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R406",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLC_1",
+      "2": "SHUNT_C_P"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R27",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 88.89999999999999,
+    "y": 180.33999999999997,
+    "rot": 270
+  },
+  {
+    "ref": "Q404",
+    "page": "02_PHASE_C",
+    "kind": "NMOS",
+    "value": "CSD19536KTT",
+    "nets": {
+      "1": "GLC_2",
+      "2": "PH_C",
+      "3": "SHUNT_C_P"
+    },
+    "mpn": "CSD19536KTT",
+    "footprint": "Package_TO_SOT_SMD:TO-263-3_TabPin2",
+    "note": "Pin 2 is drain tab. Parallel pair requires symmetric routing and separate gate resistor.",
+    "baseline_ref": "Q12",
+    "x": 203.2,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R407",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "4.7R gate",
+    "nets": {
+      "1": "GLC",
+      "2": "GLC_2"
+    },
+    "mpn": "RC0805FR-074R7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Starting value, tune with VGS/VDS measurements. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R28",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 172.72,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R408",
+    "page": "02_PHASE_C",
+    "kind": "R",
+    "value": "47k G-S",
+    "nets": {
+      "1": "GLC_2",
+      "2": "SHUNT_C_P"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R29",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 190.5,
+    "y": 180.33999999999997,
+    "rot": 270
+  },
+  {
+    "ref": "RS401",
+    "page": "02_PHASE_C",
+    "kind": "SHUNT",
+    "value": "0.5mR 1% Kelvin",
+    "nets": {
+      "1": "SHUNT_C_P",
+      "2": "GND",
+      "3": "IS_C_P",
+      "4": "IS_C_N"
+    },
+    "mpn": "CSS4J-4026R-L500F",
+    "footprint": "",
+    "note": "Bourns CSS4J-4026: 5 W at 130 C terminals. Four-terminal geometry must match local footprint before release.",
+    "baseline_ref": "RS3",
+    "x": 152.4,
+    "y": 218.44,
+    "rot": 0
+  },
+  {
+    "ref": "C401",
+    "page": "02_PHASE_C",
+    "kind": "C",
+    "value": "100n 100V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C9",
+    "x": 254,
+    "y": 101.6,
+    "rot": 270
+  },
+  {
+    "ref": "U501",
+    "page": "03_DRIVER",
+    "kind": "DRV",
+    "value": "DRV8353FSRTAR",
+    "nets": {
+      "1": "CPL",
+      "2": "CPH",
+      "3": "+12V",
+      "4": "VBUS",
+      "5": "VCP",
+      "6": "GHA",
+      "7": "PH_A",
+      "8": "GLA",
+      "9": "IS_A_P",
+      "10": "IS_A_N",
+      "11": "IS_B_N",
+      "12": "IS_B_P",
+      "13": "GLB",
+      "14": "PH_B",
+      "15": "GHB",
+      "16": "GHC",
+      "17": "PH_C",
+      "18": "GLC",
+      "19": "IS_C_P",
+      "20": "IS_C_N",
+      "21": "I_C_RAW",
+      "22": "I_B_RAW",
+      "23": "I_A_RAW",
+      "24": "+3V3A",
+      "25": "GND",
+      "26": "DRV_FAULT_N",
+      "27": "SPI_MISO",
+      "28": "SPI_MOSI",
+      "29": "SPI_SCK",
+      "30": "DRV_CS_N",
+      "31": "DRV_ENABLE",
+      "32": "PWM_HA",
+      "33": "PWM_LA",
+      "34": "PWM_HB",
+      "35": "PWM_LB",
+      "36": "PWM_HC",
+      "37": "PWM_LC",
+      "38": "DRV_DVDD",
+      "39": "GND",
+      "40": "DRV_VGLS",
+      "41": "GND"
+    },
+    "mpn": "DRV8353FSRTAR",
+    "footprint": "ESC_B1:TI_RTA0040B_6x6_P0.5_EP4.15",
+    "note": "TI DRV8353F Rev B. VM=12V, VDRAIN=DC link. SPI variant; configure 6-PWM and CSA gain10. Local RTA0040B land pattern from TI drawing; assembler review pending.",
+    "baseline_ref": "U1",
+    "x": 78.74,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "C501",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "47n 100V",
+    "nets": {
+      "1": "CPH",
+      "2": "CPL"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C10",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C502",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "1u 25V",
+    "nets": {
+      "1": "VCP",
+      "2": "VBUS"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C11",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C503",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "1u 25V",
+    "nets": {
+      "1": "DRV_VGLS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C12",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C504",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "1u 10V",
+    "nets": {
+      "1": "DRV_DVDD",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C13",
+    "x": 78.74,
+    "y": 139.7,
+    "rot": 0
+  },
+  {
+    "ref": "C505",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "100n 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C14",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "C506",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "10u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C15",
+    "x": 78.74,
+    "y": 171.45,
+    "rot": 0
+  },
+  {
+    "ref": "C507",
+    "page": "03_DRIVER",
+    "kind": "C",
+    "value": "100n 10V",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C16",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "R601",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "4.7k pull-up",
+    "nets": {
+      "1": "SPI_MISO",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R32",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R602",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "4.7k pull-up",
+    "nets": {
+      "1": "DRV_FAULT_N",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R33",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R603",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "10k pull-up",
+    "nets": {
+      "1": "DRV_CS_N",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R34",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R604",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "10k pull-down",
+    "nets": {
+      "1": "DRV_ENABLE",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R35",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R605",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_HA",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R36",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "R606",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_LA",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R37",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "R607",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_HB",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R38",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "R608",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_LB",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R39",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "R609",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_HC",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R40",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "R610",
+    "page": "04_DRIVER_DEFAULTS",
+    "kind": "R",
+    "value": "47k pull-down",
+    "nets": {
+      "1": "PWM_LC",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R41",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "R701",
+    "page": "05_SENSE_BUS",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "VBUS",
+      "2": "V_BUS_MID"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R42",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 63.5,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R702",
+    "page": "05_SENSE_BUS",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_BUS_MID",
+      "2": "V_BUS_DIV"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R43",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R703",
+    "page": "05_SENSE_BUS",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_BUS_DIV",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD073K32L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R44",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 132.08,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "R704",
+    "page": "05_SENSE_BUS",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_BUS_DIV",
+      "2": "V_BUS_ADC"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R45",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 170.18,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "C701",
+    "page": "05_SENSE_BUS",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_BUS_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay. BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C17",
+    "x": 208.28,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "D701",
+    "page": "05_SENSE_BUS",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_BUS_ADC"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "baseline_ref": "D1",
+    "x": 238.76,
+    "y": 55.88,
+    "rot": 270
+  },
+  {
+    "ref": "D702",
+    "page": "05_SENSE_BUS",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_BUS_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D2",
+    "x": 238.76,
+    "y": 132.08,
+    "rot": 270
+  },
+  {
+    "ref": "R801",
+    "page": "05_SENSE_A",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "PH_A",
+      "2": "V_A_MID"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R46",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 63.5,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R802",
+    "page": "05_SENSE_A",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_A_MID",
+      "2": "V_A_DIV"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R47",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R803",
+    "page": "05_SENSE_A",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_A_DIV",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD073K32L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R48",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 132.08,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "R804",
+    "page": "05_SENSE_A",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_A_DIV",
+      "2": "V_A_ADC"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R49",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 170.18,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "C801",
+    "page": "05_SENSE_A",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_A_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay. BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C18",
+    "x": 208.28,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "D801",
+    "page": "05_SENSE_A",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_A_ADC"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "baseline_ref": "D3",
+    "x": 238.76,
+    "y": 55.88,
+    "rot": 270
+  },
+  {
+    "ref": "D802",
+    "page": "05_SENSE_A",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_A_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D4",
+    "x": 238.76,
+    "y": 132.08,
+    "rot": 270
+  },
+  {
+    "ref": "R901",
+    "page": "05_SENSE_B",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "PH_B",
+      "2": "V_B_MID"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R50",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 63.5,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R902",
+    "page": "05_SENSE_B",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_B_MID",
+      "2": "V_B_DIV"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R51",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R903",
+    "page": "05_SENSE_B",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_B_DIV",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD073K32L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R52",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 132.08,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "R904",
+    "page": "05_SENSE_B",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_B_DIV",
+      "2": "V_B_ADC"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R53",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 170.18,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "C901",
+    "page": "05_SENSE_B",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_B_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay. BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C19",
+    "x": 208.28,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "D901",
+    "page": "05_SENSE_B",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_B_ADC"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "baseline_ref": "D5",
+    "x": 238.76,
+    "y": 55.88,
+    "rot": 270
+  },
+  {
+    "ref": "D902",
+    "page": "05_SENSE_B",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_B_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D6",
+    "x": 238.76,
+    "y": 132.08,
+    "rot": 270
+  },
+  {
+    "ref": "R1001",
+    "page": "05_SENSE_C",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "PH_C",
+      "2": "V_C_MID"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R54",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 63.5,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R1002",
+    "page": "05_SENSE_C",
+    "kind": "R",
+    "value": "49.9k 0.1%",
+    "nets": {
+      "1": "V_C_MID",
+      "2": "V_C_DIV"
+    },
+    "mpn": "RT0805BRD0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R55",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 101.6,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "R1003",
+    "page": "05_SENSE_C",
+    "kind": "R",
+    "value": "3.32k 0.1%",
+    "nets": {
+      "1": "V_C_DIV",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD073K32L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R56",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 132.08,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "R1004",
+    "page": "05_SENSE_C",
+    "kind": "R",
+    "value": "1k ADC series",
+    "nets": {
+      "1": "V_C_DIV",
+      "2": "V_C_ADC"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R57",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 170.18,
+    "y": 81.28,
+    "rot": 0
+  },
+  {
+    "ref": "C1001",
+    "page": "05_SENSE_C",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "V_C_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "Provisional ~38kHz including divider source impedance; validate ADC acquisition and phase delay. BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C20",
+    "x": 208.28,
+    "y": 111.76,
+    "rot": 270
+  },
+  {
+    "ref": "D1001",
+    "page": "05_SENSE_C",
+    "kind": "DIODE",
+    "value": "BAT54H upper",
+    "nets": {
+      "1": "+3V3A",
+      "2": "V_C_ADC"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "Clamp leakage and 3V3 rail backfeed require worst-case review.",
+    "baseline_ref": "D7",
+    "x": 238.76,
+    "y": 55.88,
+    "rot": 270
+  },
+  {
+    "ref": "D1002",
+    "page": "05_SENSE_C",
+    "kind": "DIODE",
+    "value": "BAT54H lower",
+    "nets": {
+      "1": "V_C_ADC",
+      "2": "GND"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D8",
+    "x": 238.76,
+    "y": 132.08,
+    "rot": 270
+  },
+  {
+    "ref": "R1101",
+    "page": "06_CURRENT",
+    "kind": "R",
+    "value": "100R ADC",
+    "nets": {
+      "1": "I_A_RAW",
+      "2": "I_A_ADC"
+    },
+    "mpn": "RC0805FR-07100RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R58",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1101",
+    "page": "06_CURRENT",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "I_A_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C21",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1102",
+    "page": "06_CURRENT",
+    "kind": "R",
+    "value": "100R ADC",
+    "nets": {
+      "1": "I_B_RAW",
+      "2": "I_B_ADC"
+    },
+    "mpn": "RC0805FR-07100RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R59",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1102",
+    "page": "06_CURRENT",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "I_B_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C22",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R1103",
+    "page": "06_CURRENT",
+    "kind": "R",
+    "value": "100R ADC",
+    "nets": {
+      "1": "I_C_RAW",
+      "2": "I_C_ADC"
+    },
+    "mpn": "RC0805FR-07100RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R60",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C1103",
+    "page": "06_CURRENT",
+    "kind": "C",
+    "value": "1n C0G",
+    "nets": {
+      "1": "I_C_ADC",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 1nF +/-5%, 50V C0G 0805; ADC-side filter, not raw bus/phase. Nominal filter capacitance unchanged; ADC settling validation remains open.",
+    "baseline_ref": "C23",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "R1201",
+    "page": "07_TEMPERATURE",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "TEMP_FET"
+    },
+    "mpn": "RT0805BRD0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R61",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1202",
+    "page": "07_TEMPERATURE",
+    "kind": "R",
+    "value": "NTC 10k B25/85=3650K",
+    "nets": {
+      "1": "TEMP_FET",
+      "2": "GND"
+    },
+    "mpn": "NTCG203NH103JT1",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "TDK production part. 10k +/-5%; B25/85=3650K +/-3%; use manufacturer R-T table, not old B3435 model.",
+    "baseline_ref": "R62",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1201",
+    "page": "07_TEMPERATURE",
+    "kind": "C",
+    "value": "10n",
+    "nets": {
+      "1": "TEMP_FET",
+      "2": "GND"
+    },
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items.",
+    "baseline_ref": "C24",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R1203",
+    "page": "07_TEMPERATURE",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "TEMP_PCB"
+    },
+    "mpn": "RT0805BRD0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R63",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R1204",
+    "page": "07_TEMPERATURE",
+    "kind": "R",
+    "value": "NTC 10k B25/85=3650K",
+    "nets": {
+      "1": "TEMP_PCB",
+      "2": "GND"
+    },
+    "mpn": "NTCG203NH103JT1",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "TDK production part. 10k +/-5%; B25/85=3650K +/-3%; use manufacturer R-T table, not old B3435 model.",
+    "baseline_ref": "R64",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C1202",
+    "page": "07_TEMPERATURE",
+    "kind": "C",
+    "value": "10n",
+    "nets": {
+      "1": "TEMP_PCB",
+      "2": "GND"
+    },
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items.",
+    "baseline_ref": "C25",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "J1201",
+    "page": "07_TEMPERATURE",
+    "kind": "CONN2",
+    "value": "MOTOR TEMP",
+    "nets": {
+      "1": "TEMP_MOTOR_RAW",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Sensor type not yet confirmed; A1 assumes resistance sensor for interface review only.",
+    "baseline_ref": "J4",
+    "x": 78.74,
+    "y": 152.4,
+    "rot": 0
+  },
+  {
+    "ref": "R1205",
+    "page": "07_TEMPERATURE",
+    "kind": "R",
+    "value": "10k provision",
+    "nets": {
+      "1": "+3V3A",
+      "2": "TEMP_MOTOR_RAW"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R65",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "R1206",
+    "page": "07_TEMPERATURE",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "TEMP_MOTOR_RAW",
+      "2": "TEMP_MOTOR"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R66",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1203",
+    "page": "07_TEMPERATURE",
+    "kind": "C",
+    "value": "10n",
+    "nets": {
+      "1": "TEMP_MOTOR",
+      "2": "GND"
+    },
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items.",
+    "baseline_ref": "C26",
+    "x": 78.74,
+    "y": 186.69,
+    "rot": 0
+  },
+  {
+    "ref": "U1301",
+    "page": "08_AUX_12V",
+    "kind": "BUCK12",
+    "value": "LM5164DDAT",
+    "nets": {
+      "1": "GND",
+      "2": "VBUS",
+      "3": "BUCK_UVLO",
+      "4": "BUCK_RON",
+      "5": "BUCK_FB",
+      "6": "PG_12V",
+      "7": "BUCK_BST",
+      "8": "BUCK_SW",
+      "9": "GND"
+    },
+    "mpn": "LM5164DDAT",
+    "footprint": "Package_SO:HSOP-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.1mm_ThermalVias",
+    "note": "",
+    "baseline_ref": "U2",
+    "x": 78.74,
+    "y": 60.96,
+    "rot": 0
+  },
+  {
+    "ref": "L1301",
+    "page": "08_AUX_12V",
+    "kind": "L",
+    "value": "68uH >=1.5A",
+    "nets": {
+      "1": "BUCK_SW",
+      "2": "+12V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Effective L, saturation current, DCR and footprint pending exact MPN.",
+    "baseline_ref": "L1",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1301",
+    "page": "08_AUX_12V",
+    "kind": "C",
+    "value": "2.2u 160V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C27",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1302",
+    "page": "08_AUX_12V",
+    "kind": "C",
+    "value": "100n 160V",
+    "nets": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C28",
+    "x": 78.74,
+    "y": 99.06,
+    "rot": 0
+  },
+  {
+    "ref": "C1303",
+    "page": "08_AUX_12V",
+    "kind": "C",
+    "value": "22u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C29",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C1304",
+    "page": "08_AUX_12V",
+    "kind": "C",
+    "value": "22u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C30",
+    "x": 78.74,
+    "y": 130.81,
+    "rot": 0
+  },
+  {
+    "ref": "C1305",
+    "page": "08_AUX_12V",
+    "kind": "C",
+    "value": "2.2n C0G",
+    "nets": {
+      "1": "BUCK_BST",
+      "2": "BUCK_SW"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C31",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "R1301",
+    "page": "08_AUX_12V",
+    "kind": "R",
+    "value": "100k",
+    "nets": {
+      "1": "GND",
+      "2": "BUCK_RON"
+    },
+    "mpn": "RC0805FR-07100KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " DR-002 ELEC-01: LM5164 Rev D Table 4-1 requires RON resistor to GND; corrected from VBUS. Frequency/ripple qualification remains open. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R67",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 162.56,
+    "rot": 0
+  },
+  {
+    "ref": "R1302",
+    "page": "08_AUX_12V",
+    "kind": "R",
+    "value": "453k",
+    "nets": {
+      "1": "+12V",
+      "2": "BUCK_FB"
+    },
+    "mpn": "RC0805FR-07453KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R68",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1303",
+    "page": "08_AUX_12V",
+    "kind": "R",
+    "value": "49.9k",
+    "nets": {
+      "1": "BUCK_FB",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0749K9L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R69",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 194.31,
+    "rot": 0
+  },
+  {
+    "ref": "R1304",
+    "page": "08_AUX_12V",
+    "kind": "R",
+    "value": "453k ripple",
+    "nets": {
+      "1": "BUCK_SW",
+      "2": "BUCK_RIPPLE"
+    },
+    "mpn": "RC0805FR-07453KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R70",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 213.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1306",
+    "page": "08_AUX_12V",
+    "kind": "C",
+    "value": "3.3n",
+    "nets": {
+      "1": "BUCK_RIPPLE",
+      "2": "+12V"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C32",
+    "x": 78.74,
+    "y": 226.06,
+    "rot": 0
+  },
+  {
+    "ref": "C1401",
+    "page": "08_AUX_12V_2",
+    "kind": "C",
+    "value": "56p C0G",
+    "nets": {
+      "1": "BUCK_RIPPLE",
+      "2": "BUCK_FB"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C33",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1401",
+    "page": "08_AUX_12V_2",
+    "kind": "R",
+    "value": "1M UVLO",
+    "nets": {
+      "1": "VBUS",
+      "2": "BUCK_UVLO"
+    },
+    "mpn": "RC0805FR-071ML",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R71",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1402",
+    "page": "08_AUX_12V_2",
+    "kind": "R",
+    "value": "100k UVLO",
+    "nets": {
+      "1": "BUCK_UVLO",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-07100KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Aux powers early for diagnostics; this is NOT the traction undervoltage cutoff. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R72",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R1403",
+    "page": "08_AUX_12V_2",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "PG_12V",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R73",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "J1401",
+    "page": "08_AUX_12V_2",
+    "kind": "CONN2",
+    "value": "FAN 12V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Fan <=0.2A continuous budget. Inrush must be measured.",
+    "baseline_ref": "J5",
+    "x": 78.74,
+    "y": 120.65,
+    "rot": 0
+  },
+  {
+    "ref": "U1501",
+    "page": "09_AUX_LOGIC",
+    "kind": "BUCK5",
+    "value": "TPS62160DGKR",
+    "nets": {
+      "1": "GND",
+      "2": "+12V",
+      "3": "+12V",
+      "4": "GND",
+      "5": "FB_5V",
+      "6": "+5V",
+      "7": "SW_5V",
+      "8": "PG_5V"
+    },
+    "mpn": "TPS62160DGKR",
+    "footprint": "Package_SO:VSSOP-8_3x3mm_P0.65mm",
+    "note": "",
+    "baseline_ref": "U3",
+    "x": 78.74,
+    "y": 59.69,
+    "rot": 0
+  },
+  {
+    "ref": "L1501",
+    "page": "09_AUX_LOGIC",
+    "kind": "L",
+    "value": "2.2uH >=1.5A",
+    "nets": {
+      "1": "SW_5V",
+      "2": "+5V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Check DC bias and saturation against converter peak current.",
+    "baseline_ref": "L2",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1501",
+    "page": "09_AUX_LOGIC",
+    "kind": "C",
+    "value": "10u 25V",
+    "nets": {
+      "1": "+12V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C34",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1502",
+    "page": "09_AUX_LOGIC",
+    "kind": "C",
+    "value": "22u 10V",
+    "nets": {
+      "1": "+5V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C35",
+    "x": 78.74,
+    "y": 96.52,
+    "rot": 0
+  },
+  {
+    "ref": "R1501",
+    "page": "09_AUX_LOGIC",
+    "kind": "R",
+    "value": "523k",
+    "nets": {
+      "1": "+5V",
+      "2": "FB_5V"
+    },
+    "mpn": "RC0805FR-07523KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R74",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "R1502",
+    "page": "09_AUX_LOGIC",
+    "kind": "R",
+    "value": "100k",
+    "nets": {
+      "1": "FB_5V",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-07100KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R75",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 128.27,
+    "rot": 0
+  },
+  {
+    "ref": "R1503",
+    "page": "09_AUX_LOGIC",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "PG_5V",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R76",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "U1502",
+    "page": "09_AUX_LOGIC",
+    "kind": "LDO",
+    "value": "TLV75533PDBVR",
+    "nets": {
+      "1": "+5V",
+      "2": "GND",
+      "3": "+5V",
+      "4": null,
+      "5": "+3V3"
+    },
+    "mpn": "TLV75533PDBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "",
+    "baseline_ref": "U4",
+    "x": 78.74,
+    "y": 163.83,
+    "rot": 0
+  },
+  {
+    "ref": "C1503",
+    "page": "09_AUX_LOGIC",
+    "kind": "C",
+    "value": "1u 10V",
+    "nets": {
+      "1": "+5V",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": "",
+    "baseline_ref": "C36",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1504",
+    "page": "09_AUX_LOGIC",
+    "kind": "C",
+    "value": "4.7u 10V",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C37",
+    "x": 78.74,
+    "y": 199.39,
+    "rot": 0
+  },
+  {
+    "ref": "R1504",
+    "page": "09_AUX_LOGIC",
+    "kind": "R",
+    "value": "0R analog link",
+    "nets": {
+      "1": "+3V3",
+      "2": "+3V3A"
+    },
+    "mpn": "RC0805JR-070RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Optional ferrite only after analog rail impedance review. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R77",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 213.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1505",
+    "page": "09_AUX_LOGIC",
+    "kind": "C",
+    "value": "4.7u 10V",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "C38",
+    "x": 78.74,
+    "y": 231.14,
+    "rot": 0
+  },
+  {
+    "ref": "C1601",
+    "page": "09_AUX_LOGIC_2",
+    "kind": "C",
+    "value": "100n",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C39",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "U1701",
+    "page": "10_MCU",
+    "kind": "MCU",
+    "value": "STM32G474RET3",
+    "nets": {
+      "1": "+3V3",
+      "2": null,
+      "3": null,
+      "4": null,
+      "5": "HSE_IN",
+      "6": null,
+      "7": "NRST",
+      "8": "V_BUS_ADC",
+      "9": "V_A_ADC",
+      "10": "V_B_ADC",
+      "11": "V_C_ADC",
+      "12": "I_A_ADC",
+      "13": "I_B_ADC",
+      "14": "I_C_ADC",
+      "15": "GND",
+      "16": "+3V3",
+      "17": "TEMP_FET",
+      "18": "TEMP_PCB",
+      "19": null,
+      "20": null,
+      "21": null,
+      "22": "DRV_CS_N",
+      "23": "ARM_CLK",
+      "24": "TEMP_MOTOR",
+      "25": null,
+      "26": "PG_12V",
+      "27": "GND",
+      "28": "+3V3A",
+      "29": "+3V3A",
+      "30": "PG_5V",
+      "31": "GND",
+      "32": "+3V3",
+      "33": "DRV_FAULT_N",
+      "34": "HARD_FAULT_N",
+      "35": "MCU_PWM_LA",
+      "36": "MCU_PWM_LB",
+      "37": "MCU_PWM_LC",
+      "38": "HALL_A",
+      "39": "HALL_B",
+      "40": "HALL_C",
+      "41": "RUN_REQUEST",
+      "42": "MCU_PWM_HA",
+      "43": "MCU_PWM_HB",
+      "44": "MCU_PWM_HC",
+      "45": "CAN_RX",
+      "46": "CAN_TX",
+      "47": "GND",
+      "48": "+3V3",
+      "49": "SWDIO",
+      "50": "SWCLK",
+      "51": "RC_PWM",
+      "52": "UART_TX",
+      "53": "UART_RX",
+      "54": "STATUS_LED",
+      "55": "LATCH_STATE",
+      "56": "SPI_SCK",
+      "57": "SPI_MISO",
+      "58": "SPI_MOSI",
+      "59": null,
+      "60": null,
+      "61": "BOOT0",
+      "62": null,
+      "63": "GND",
+      "64": "+3V3"
+    },
+    "mpn": "STM32G474RET3",
+    "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+    "note": "PG10 must remain NRST option. PB8 BOOT0 option bytes reviewed before flashing. Verify AF/ADC schedule before PCB.",
+    "baseline_ref": "U5",
+    "x": 139.7,
+    "y": 101.6,
+    "rot": 0
+  },
+  {
+    "ref": "C1801",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C40",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1802",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C41",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1803",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C42",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1804",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n at VDD",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C43",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C1805",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "4.7u",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C0805C475K8RACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 4.7uF +/-10%, 10V X7R 0805 on 3.3V rail. Bulk bypass only; effective capacitance under DC bias and transient response require bench validation.",
+    "baseline_ref": "C44",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C1806",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n at VBAT",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C45",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C1807",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "1u VDDA",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "GRM21BR71C105KA01K",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-20260915: Murata 1uF +/-10%, 16V X7R, 0805; VDDA 3.3V nominal. Manufacturer in-production family, DigiKey active/stock listing checked. DC-bias and assembled supply validation remain PoC tests.",
+    "baseline_ref": "C46",
+    "x": 78.74,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "C1808",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n VDDA",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C47",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "C1809",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n VREF",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C48",
+    "x": 78.74,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1801",
+    "page": "11_MCU_SUPPORT",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "NRST",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R78",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "C1810",
+    "page": "11_MCU_SUPPORT",
+    "kind": "C",
+    "value": "100n reset",
+    "nets": {
+      "1": "NRST",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C49",
+    "x": 78.74,
+    "y": 213.36,
+    "rot": 0
+  },
+  {
+    "ref": "R1802",
+    "page": "11_MCU_SUPPORT",
+    "kind": "R",
+    "value": "10k BOOT0",
+    "nets": {
+      "1": "BOOT0",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R79",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 213.36,
+    "rot": 0
+  },
+  {
+    "ref": "R1901",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "ARM_CLK",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R80",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R1902",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "R",
+    "value": "10k",
+    "nets": {
+      "1": "RUN_REQUEST",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R81",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "J1901",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "CONN5",
+    "value": "SWD",
+    "nets": {
+      "1": "+3V3",
+      "2": "SWDIO",
+      "3": "GND",
+      "4": "SWCLK",
+      "5": "NRST"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "VTref only; avoid powering rail from two sources.",
+    "baseline_ref": "J6",
+    "x": 78.74,
+    "y": 90.17,
+    "rot": 0
+  },
+  {
+    "ref": "Y1901",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "OSC",
+    "value": "8MHz 3V3 CMOS oscillator",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND",
+      "3": "HSE_IN",
+      "4": "+3V3"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "4-pad 3225 oscillator candidate; pinout and MPN pending. HSE BYPASS mode.",
+    "baseline_ref": "Y1",
+    "x": 215.9,
+    "y": 88.9,
+    "rot": 0
+  },
+  {
+    "ref": "C1901",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "C",
+    "value": "100n oscillator",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C50",
+    "x": 215.9,
+    "y": 123.19,
+    "rot": 0
+  },
+  {
+    "ref": "R1903",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "R",
+    "value": "1k LED",
+    "nets": {
+      "1": "+3V3",
+      "2": "LED_A"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R82",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 125.73,
+    "rot": 0
+  },
+  {
+    "ref": "D1901",
+    "page": "11_MCU_SUPPORT_2",
+    "kind": "DIODE",
+    "value": "LED GREEN",
+    "nets": {
+      "1": "STATUS_LED",
+      "2": "LED_A"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "D9",
+    "x": 215.9,
+    "y": 154.94,
+    "rot": 0
+  },
+  {
+    "ref": "U2001",
+    "page": "12_CAN_UART",
+    "kind": "CAN",
+    "value": "SN65HVD230DR",
+    "nets": {
+      "1": "CAN_TX",
+      "2": "GND",
+      "3": "+3V3",
+      "4": "CAN_RX",
+      "5": null,
+      "6": "CAN_L",
+      "7": "CAN_H",
+      "8": "CAN_RS"
+    },
+    "mpn": "SN65HVD230DR",
+    "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm",
+    "note": "Classic CAN only, not CAN FD. TVS array selection pending.",
+    "baseline_ref": "U6",
+    "x": 78.74,
+    "y": 59.69,
+    "rot": 0
+  },
+  {
+    "ref": "R2001",
+    "page": "12_CAN_UART",
+    "kind": "R",
+    "value": "10k slope",
+    "nets": {
+      "1": "CAN_RS",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R83",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C2001",
+    "page": "12_CAN_UART",
+    "kind": "C",
+    "value": "100n CAN",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C51",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R2002",
+    "page": "12_CAN_UART",
+    "kind": "R",
+    "value": "120R DNP",
+    "nets": {
+      "1": "CAN_H",
+      "2": "CAN_L"
+    },
+    "mpn": "RC0805FR-07120RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Fit only at bus end; DNP by default. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R84",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 96.52,
+    "rot": 0
+  },
+  {
+    "ref": "J2001",
+    "page": "12_CAN_UART",
+    "kind": "CONN3",
+    "value": "CAN",
+    "nets": {
+      "1": "GND",
+      "2": "CAN_H",
+      "3": "CAN_L"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "J7",
+    "x": 215.9,
+    "y": 120.65,
+    "rot": 0
+  },
+  {
+    "ref": "J2002",
+    "page": "12_CAN_UART",
+    "kind": "CONN3",
+    "value": "UART 3V3",
+    "nets": {
+      "1": "GND",
+      "2": "UART_RX",
+      "3": "UART_TX"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "J8",
+    "x": 78.74,
+    "y": 130.81,
+    "rot": 0
+  },
+  {
+    "ref": "J2003",
+    "page": "12_CAN_UART",
+    "kind": "CONN2",
+    "value": "RC PWM 3V3",
+    "nets": {
+      "1": "GND",
+      "2": "RC_PWM"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "",
+    "baseline_ref": "J9",
+    "x": 215.9,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "J2101",
+    "page": "13_HALL",
+    "kind": "CONN5",
+    "value": "HALL 5V",
+    "nets": {
+      "1": "+5V",
+      "2": "GND",
+      "3": "HALL_A_EXT",
+      "4": "HALL_B_EXT",
+      "5": "HALL_C_EXT"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Interface requires open-collector Hall outputs; push-pull sensor needs level conversion.",
+    "baseline_ref": "J10",
+    "x": 78.74,
+    "y": 58.42,
+    "rot": 0
+  },
+  {
+    "ref": "R2101",
+    "page": "13_HALL",
+    "kind": "R",
+    "value": "4.7k 3V3 pull-up",
+    "nets": {
+      "1": "+3V3",
+      "2": "HALL_A_EXT"
+    },
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R85",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R2102",
+    "page": "13_HALL",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "HALL_A_EXT",
+      "2": "HALL_A"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R86",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C2101",
+    "page": "13_HALL",
+    "kind": "C",
+    "value": "1n",
+    "nets": {
+      "1": "HALL_A",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-20260915: KEMET 1nF +/-5%, 50V C0G, 0805; non-polar Hall input filter. Manufacturer specification and DigiKey active/stock listing checked. Hall signal timing remains a physical PoC validation.",
+    "baseline_ref": "C52",
+    "x": 78.74,
+    "y": 93.98,
+    "rot": 0
+  },
+  {
+    "ref": "R2103",
+    "page": "13_HALL",
+    "kind": "R",
+    "value": "4.7k 3V3 pull-up",
+    "nets": {
+      "1": "+3V3",
+      "2": "HALL_B_EXT"
+    },
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R87",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "R2104",
+    "page": "13_HALL",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "HALL_B_EXT",
+      "2": "HALL_B"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R88",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 125.73,
+    "rot": 0
+  },
+  {
+    "ref": "C2102",
+    "page": "13_HALL",
+    "kind": "C",
+    "value": "1n",
+    "nets": {
+      "1": "HALL_B",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-20260915: KEMET 1nF +/-5%, 50V C0G, 0805; non-polar Hall input filter. Manufacturer specification and DigiKey active/stock listing checked. Hall signal timing remains a physical PoC validation.",
+    "baseline_ref": "C53",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "R2105",
+    "page": "13_HALL",
+    "kind": "R",
+    "value": "4.7k 3V3 pull-up",
+    "nets": {
+      "1": "+3V3",
+      "2": "HALL_C_EXT"
+    },
+    "mpn": "RC0805FR-074K7L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R89",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 157.48,
+    "rot": 0
+  },
+  {
+    "ref": "R2106",
+    "page": "13_HALL",
+    "kind": "R",
+    "value": "1k",
+    "nets": {
+      "1": "HALL_C_EXT",
+      "2": "HALL_C"
+    },
+    "mpn": "RC0805FR-071KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R90",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "C2103",
+    "page": "13_HALL",
+    "kind": "C",
+    "value": "1n",
+    "nets": {
+      "1": "HALL_C",
+      "2": "GND"
+    },
+    "mpn": "C0805C102J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-20260915: KEMET 1nF +/-5%, 50V C0G, 0805; non-polar Hall input filter. Manufacturer specification and DigiKey active/stock listing checked. Hall signal timing remains a physical PoC validation.",
+    "baseline_ref": "C54",
+    "x": 78.74,
+    "y": 189.23,
+    "rot": 0
+  },
+  {
+    "ref": "U2201",
+    "page": "14_TRIP_COMPARATORS",
+    "kind": "COMP",
+    "value": "TLV1704PWR",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "HARD_FAULT_N",
+      "3": "+3V3A",
+      "4": "OC_LOW",
+      "5": "I_A_RAW",
+      "6": "I_A_RAW",
+      "7": "OC_HIGH",
+      "8": "OC_LOW",
+      "9": "I_B_RAW",
+      "10": "I_B_RAW",
+      "11": "OC_HIGH",
+      "12": "GND",
+      "13": "HARD_FAULT_N",
+      "14": "HARD_FAULT_N"
+    },
+    "mpn": "TLV1704PWR",
+    "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+    "note": "Comparator delay plus CSA settling is not a guaranteed short-circuit limit; MOSFET VDS protection remains primary.",
+    "baseline_ref": "U7",
+    "x": 78.74,
+    "y": 63.5,
+    "rot": 0
+  },
+  {
+    "ref": "U2202",
+    "page": "14_TRIP_COMPARATORS",
+    "kind": "COMP",
+    "value": "TLV1704PWR",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "HARD_FAULT_N",
+      "3": "+3V3A",
+      "4": "OC_LOW",
+      "5": "I_C_RAW",
+      "6": "I_C_RAW",
+      "7": "OC_HIGH",
+      "8": "V_BUS_DIV",
+      "9": "OV_REF",
+      "10": "GND",
+      "11": "+3V3A",
+      "12": "GND",
+      "13": null,
+      "14": "HARD_FAULT_N"
+    },
+    "mpn": "TLV1704PWR",
+    "footprint": "Package_SO:TSSOP-14_4.4x5mm_P0.65mm",
+    "note": "Comparator delay plus CSA settling is not a guaranteed short-circuit limit; MOSFET VDS protection remains primary.",
+    "baseline_ref": "U8",
+    "x": 215.9,
+    "y": 63.5,
+    "rot": 0
+  },
+  {
+    "ref": "C2201",
+    "page": "14_TRIP_COMPARATORS",
+    "kind": "C",
+    "value": "100n comparator",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C55",
+    "x": 78.74,
+    "y": 104.14,
+    "rot": 0
+  },
+  {
+    "ref": "C2202",
+    "page": "14_TRIP_COMPARATORS",
+    "kind": "C",
+    "value": "100n comparator",
+    "nets": {
+      "1": "+3V3A",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C56",
+    "x": 215.9,
+    "y": 104.14,
+    "rot": 0
+  },
+  {
+    "ref": "R2301",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "R",
+    "value": "26.1k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "OC_LOW"
+    },
+    "mpn": "RT0805BRD0726K1L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R91",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R2302",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "OC_LOW",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R92",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "R2303",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "OC_HIGH"
+    },
+    "mpn": "RT0805BRD0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R93",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "R2304",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "R",
+    "value": "26.1k 0.1%",
+    "nets": {
+      "1": "OC_HIGH",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD0726K1L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R94",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "C2301",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "C",
+    "value": "10n reference",
+    "nets": {
+      "1": "OC_LOW",
+      "2": "GND"
+    },
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items.",
+    "baseline_ref": "C57",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C2302",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "C",
+    "value": "10n reference",
+    "nets": {
+      "1": "OC_HIGH",
+      "2": "GND"
+    },
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items.",
+    "baseline_ref": "C58",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "R2305",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "R",
+    "value": "7.50k 0.1%",
+    "nets": {
+      "1": "+3V3A",
+      "2": "OV_REF"
+    },
+    "mpn": "RT0805BRD077K50L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R95",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "R2306",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "R",
+    "value": "10k 0.1%",
+    "nets": {
+      "1": "OV_REF",
+      "2": "GND"
+    },
+    "mpn": "RT0805BRD0710KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R96",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "C2303",
+    "page": "15_TRIP_REFERENCES",
+    "kind": "C",
+    "value": "10n reference",
+    "nets": {
+      "1": "OV_REF",
+      "2": "GND"
+    },
+    "mpn": "C0805C103J5GACTU",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " BOM-BATCH2: KEMET 10nF +/-5%, 50V C0G 0805; low-voltage temperature/reference node. Nominal capacitance unchanged; reference startup and protection response remain validation items.",
+    "baseline_ref": "C59",
+    "x": 78.74,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "R2401",
+    "page": "16_FAULT_LATCH",
+    "kind": "R",
+    "value": "2.2k fault pull-up",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "+3V3"
+    },
+    "mpn": "RC0805FR-072K2L",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R97",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "D2401",
+    "page": "16_FAULT_LATCH",
+    "kind": "DIODE",
+    "value": "BAT54H fault OR",
+    "nets": {
+      "1": "DRV_FAULT_N",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "Verify diode VOL + DRV sink voltage meets latch CLR and MCU BKIN VIL.",
+    "baseline_ref": "D10",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "D2402",
+    "page": "16_FAULT_LATCH",
+    "kind": "DIODE",
+    "value": "BAT54H reset OR",
+    "nets": {
+      "1": "NRST",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D11",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "D2403",
+    "page": "16_FAULT_LATCH",
+    "kind": "DIODE",
+    "value": "BAT54H PG OR",
+    "nets": {
+      "1": "PG_12V",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D12",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "D2404",
+    "page": "16_FAULT_LATCH",
+    "kind": "DIODE",
+    "value": "BAT54H PG OR",
+    "nets": {
+      "1": "PG_5V",
+      "2": "HARD_FAULT_N"
+    },
+    "mpn": "BAT54H,115",
+    "footprint": "Diode_SMD:D_SOD-123F",
+    "note": "",
+    "baseline_ref": "D13",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "U2401",
+    "page": "16_FAULT_LATCH",
+    "kind": "LATCH",
+    "value": "SN74LVC1G74DCUR",
+    "nets": {
+      "1": "ARM_CLK",
+      "2": "+3V3",
+      "3": null,
+      "4": "GND",
+      "5": "LATCH_STATE",
+      "6": "HARD_FAULT_N",
+      "7": "+3V3",
+      "8": "+3V3"
+    },
+    "mpn": "SN74LVC1G74DCUR",
+    "footprint": "Package_SO:VSSOP-8_2.3x2mm_P0.5mm",
+    "note": "Fault clears Q. Re-arm requires deliberate rising edge with fault absent. Power-up state not assumed.",
+    "baseline_ref": "U9",
+    "x": 215.9,
+    "y": 123.19,
+    "rot": 0
+  },
+  {
+    "ref": "R2402",
+    "page": "16_FAULT_LATCH",
+    "kind": "R",
+    "value": "0R driver wake",
+    "nets": {
+      "1": "RUN_REQUEST",
+      "2": "DRV_ENABLE"
+    },
+    "mpn": "RC0805JR-070RL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": "Wake DRV first with PWM inhibited. Configure CSA and wait for healthy fault net, then arm latch. YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R98",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "C2401",
+    "page": "16_FAULT_LATCH",
+    "kind": "C",
+    "value": "100n latch",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C60",
+    "x": 215.9,
+    "y": 160.02,
+    "rot": 0
+  },
+  {
+    "ref": "J2401",
+    "page": "16_FAULT_LATCH",
+    "kind": "CONN2",
+    "value": "EMERGENCY STOP",
+    "nets": {
+      "1": "HARD_FAULT_N",
+      "2": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Shorting contact clears latch; wire-break detection not implemented.",
+    "baseline_ref": "J11",
+    "x": 78.74,
+    "y": 184.15,
+    "rot": 0
+  },
+  {
+    "ref": "U2501",
+    "page": "17_PWM_INHIBIT",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_HA",
+      "3": "GND",
+      "4": "PWM_HA",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "baseline_ref": "U10",
+    "x": 78.74,
+    "y": 58.42,
+    "rot": 0
+  },
+  {
+    "ref": "R2501",
+    "page": "17_PWM_INHIBIT",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_HA",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R99",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C2501",
+    "page": "17_PWM_INHIBIT",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C61",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "U2502",
+    "page": "17_PWM_INHIBIT",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_LA",
+      "3": "GND",
+      "4": "PWM_LA",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "baseline_ref": "U11",
+    "x": 78.74,
+    "y": 97.79,
+    "rot": 0
+  },
+  {
+    "ref": "R2502",
+    "page": "17_PWM_INHIBIT",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_LA",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R100",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C2502",
+    "page": "17_PWM_INHIBIT",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C62",
+    "x": 78.74,
+    "y": 133.35,
+    "rot": 0
+  },
+  {
+    "ref": "U2503",
+    "page": "17_PWM_INHIBIT",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_HB",
+      "3": "GND",
+      "4": "PWM_HB",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "baseline_ref": "U12",
+    "x": 215.9,
+    "y": 153.67,
+    "rot": 0
+  },
+  {
+    "ref": "R2503",
+    "page": "17_PWM_INHIBIT",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_HB",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R101",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 165.1,
+    "rot": 0
+  },
+  {
+    "ref": "C2503",
+    "page": "17_PWM_INHIBIT",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C63",
+    "x": 215.9,
+    "y": 189.23,
+    "rot": 0
+  },
+  {
+    "ref": "U2601",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_LB",
+      "3": "GND",
+      "4": "PWM_LB",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "baseline_ref": "U13",
+    "x": 78.74,
+    "y": 58.42,
+    "rot": 0
+  },
+  {
+    "ref": "R2601",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_LB",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R102",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "C2601",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C64",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "U2602",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_HC",
+      "3": "GND",
+      "4": "PWM_HC",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "baseline_ref": "U14",
+    "x": 78.74,
+    "y": 97.79,
+    "rot": 0
+  },
+  {
+    "ref": "R2602",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_HC",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R103",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "C2602",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C65",
+    "x": 78.74,
+    "y": 133.35,
+    "rot": 0
+  },
+  {
+    "ref": "U2603",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "AND",
+    "value": "SN74LVC1G08DBVR",
+    "nets": {
+      "1": "LATCH_STATE",
+      "2": "MCU_PWM_LC",
+      "3": "GND",
+      "4": "PWM_LC",
+      "5": "+3V3"
+    },
+    "mpn": "SN74LVC1G08DBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+    "note": "Latch low forces all DRV PWM inputs low; no automatic retry on fault release.",
+    "baseline_ref": "U15",
+    "x": 215.9,
+    "y": 153.67,
+    "rot": 0
+  },
+  {
+    "ref": "R2603",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "R",
+    "value": "47k reset default",
+    "nets": {
+      "1": "MCU_PWM_LC",
+      "2": "GND"
+    },
+    "mpn": "RC0805FR-0747KL",
+    "footprint": "Resistor_SMD:R_0805_2012Metric",
+    "note": " YAGEO series-code selection; verify individual MPN orderability before procurement.",
+    "baseline_ref": "R104",
+    "selection_evidence": "YAGEO family ordering code; individual orderability and stock not yet verified",
+    "x": 78.74,
+    "y": 165.1,
+    "rot": 0
+  },
+  {
+    "ref": "C2603",
+    "page": "17_PWM_INHIBIT_2",
+    "kind": "C",
+    "value": "100n logic",
+    "nets": {
+      "1": "+3V3",
+      "2": "GND"
+    },
+    "mpn": "C2012X7R2A104K125AA",
+    "footprint": "Capacitor_SMD:C_0805_2012Metric",
+    "note": " TDK 100nF 100V X7R +/-10%, production family; local DC-bias/assembly review applies.",
+    "baseline_ref": "C66",
+    "x": 215.9,
+    "y": 189.23,
+    "rot": 0
+  },
+  {
+    "ref": "J2701",
+    "page": "18_BOARD_INTERFACE",
+    "kind": "CONN40",
+    "value": "POWER CARD 2x20",
+    "nets": {
+      "1": "GND",
+      "2": "+3V3",
+      "3": "GND",
+      "4": "+3V3A",
+      "5": "MCU_PWM_HA",
+      "6": "MCU_PWM_LA",
+      "7": "GND",
+      "8": "MCU_PWM_HB",
+      "9": "MCU_PWM_LB",
+      "10": "GND",
+      "11": "MCU_PWM_HC",
+      "12": "MCU_PWM_LC",
+      "13": "GND",
+      "14": "RUN_REQUEST",
+      "15": "ARM_CLK",
+      "16": "LATCH_STATE",
+      "17": "HARD_FAULT_N",
+      "18": "DRV_FAULT_N",
+      "19": "DRV_CS_N",
+      "20": "SPI_SCK",
+      "21": "SPI_MOSI",
+      "22": "SPI_MISO",
+      "23": "GND",
+      "24": "I_A_ADC",
+      "25": "I_B_ADC",
+      "26": "I_C_ADC",
+      "27": "GND",
+      "28": "V_BUS_ADC",
+      "29": "V_A_ADC",
+      "30": "V_B_ADC",
+      "31": "V_C_ADC",
+      "32": "GND",
+      "33": "TEMP_FET",
+      "34": "TEMP_PCB",
+      "35": "PG_12V",
+      "36": "PG_5V",
+      "37": "NRST",
+      "38": "TEMP_MOTOR",
+      "39": "+5V",
+      "40": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Mate to control card pin-for-pin; connector and viewing direction not released. B1 pin38 TEMP_MOTOR; pin39 +5V; both connector ends use the same numbering. Not compatible with A2 pin38 GND.",
+    "baseline_ref": "J12",
+    "x": 78.74,
+    "y": 80.01,
+    "rot": 0
+  },
+  {
+    "ref": "J2702",
+    "page": "18_BOARD_INTERFACE",
+    "kind": "CONN40",
+    "value": "CONTROL CARD 2x20",
+    "nets": {
+      "1": "GND",
+      "2": "+3V3",
+      "3": "GND",
+      "4": "+3V3A",
+      "5": "MCU_PWM_HA",
+      "6": "MCU_PWM_LA",
+      "7": "GND",
+      "8": "MCU_PWM_HB",
+      "9": "MCU_PWM_LB",
+      "10": "GND",
+      "11": "MCU_PWM_HC",
+      "12": "MCU_PWM_LC",
+      "13": "GND",
+      "14": "RUN_REQUEST",
+      "15": "ARM_CLK",
+      "16": "LATCH_STATE",
+      "17": "HARD_FAULT_N",
+      "18": "DRV_FAULT_N",
+      "19": "DRV_CS_N",
+      "20": "SPI_SCK",
+      "21": "SPI_MOSI",
+      "22": "SPI_MISO",
+      "23": "GND",
+      "24": "I_A_ADC",
+      "25": "I_B_ADC",
+      "26": "I_C_ADC",
+      "27": "GND",
+      "28": "V_BUS_ADC",
+      "29": "V_A_ADC",
+      "30": "V_B_ADC",
+      "31": "V_C_ADC",
+      "32": "GND",
+      "33": "TEMP_FET",
+      "34": "TEMP_PCB",
+      "35": "PG_12V",
+      "36": "PG_5V",
+      "37": "NRST",
+      "38": "TEMP_MOTOR",
+      "39": "+5V",
+      "40": "GND"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Same system nets model mating harness; PCB partition documented in README. B1 pin38 TEMP_MOTOR; pin39 +5V; both connector ends use the same numbering. Not compatible with A2 pin38 GND.",
+    "baseline_ref": "J13",
+    "x": 215.9,
+    "y": 80.01,
+    "rot": 0
+  },
+  {
+    "ref": "#FLG2701",
+    "page": "18_BOARD_INTERFACE",
+    "kind": "FLAG",
+    "value": "+12V",
+    "nets": {
+      "1": "+12V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Derived rail after buck inductor / analog link. Flags declare actual source, not a separate supply.",
+    "baseline_ref": "#FLG3",
+    "x": 78.74,
+    "y": 139.7,
+    "rot": 0
+  },
+  {
+    "ref": "#FLG2702",
+    "page": "18_BOARD_INTERFACE",
+    "kind": "FLAG",
+    "value": "+5V",
+    "nets": {
+      "1": "+5V"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Derived rail after buck inductor / analog link. Flags declare actual source, not a separate supply.",
+    "baseline_ref": "#FLG4",
+    "x": 215.9,
+    "y": 139.7,
+    "rot": 0
+  },
+  {
+    "ref": "#FLG2703",
+    "page": "18_BOARD_INTERFACE",
+    "kind": "FLAG",
+    "value": "+3V3A",
+    "nets": {
+      "1": "+3V3A"
+    },
+    "mpn": "",
+    "footprint": "",
+    "note": "Derived rail after buck inductor / analog link. Flags declare actual source, not a separate supply.",
+    "baseline_ref": "#FLG5",
+    "x": 78.74,
+    "y": 176.53,
+    "rot": 0
+  },
+  {
+    "ref": "TP2801",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "VBUS",
+    "nets": {
+      "1": "VBUS"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 78.74,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "TP2802",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "GND",
+    "nets": {
+      "1": "GND"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 215.9,
+    "y": 54.61,
+    "rot": 0
+  },
+  {
+    "ref": "TP2803",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "+12V",
+    "nets": {
+      "1": "+12V"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 78.74,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "TP2804",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "+5V",
+    "nets": {
+      "1": "+5V"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 215.9,
+    "y": 86.36,
+    "rot": 0
+  },
+  {
+    "ref": "TP2805",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "+3V3",
+    "nets": {
+      "1": "+3V3"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 78.74,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "TP2806",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "+3V3A",
+    "nets": {
+      "1": "+3V3A"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 215.9,
+    "y": 118.11,
+    "rot": 0
+  },
+  {
+    "ref": "TP2807",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "HARD_FAULT_N",
+    "nets": {
+      "1": "HARD_FAULT_N"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 78.74,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "TP2808",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "LATCH_STATE",
+    "nets": {
+      "1": "LATCH_STATE"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 215.9,
+    "y": 149.86,
+    "rot": 0
+  },
+  {
+    "ref": "TP2809",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "DRV_FAULT_N",
+    "nets": {
+      "1": "DRV_FAULT_N"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 78.74,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "TP2810",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "I_A_RAW",
+    "nets": {
+      "1": "I_A_RAW"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 215.9,
+    "y": 181.61,
+    "rot": 0
+  },
+  {
+    "ref": "TP2811",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "I_B_RAW",
+    "nets": {
+      "1": "I_B_RAW"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 78.74,
+    "y": 213.36,
+    "rot": 0
+  },
+  {
+    "ref": "TP2812",
+    "baseline_ref": "",
+    "page": "19_TEST_POINTS",
+    "kind": "TP",
+    "value": "I_C_RAW",
+    "nets": {
+      "1": "I_C_RAW"
+    },
+    "mpn": "PCB TEST PAD",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm",
+    "note": "VBUS and switching-node measurements require appropriately rated differential probes.",
+    "x": 215.9,
+    "y": 213.36,
+    "rot": 0
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "scope": "assembly label correction only; no routing",
+  "moves": [
+    {
+      "reference": "J2003",
+      "layer": "F.Fab",
+      "text_angle_degrees": 0,
+      "at_mm": [
+        27,
+        64
+      ]
+    },
+    {
+      "reference": "J2001",
+      "layer": "F.Fab",
+      "text_angle_degrees": 0,
+      "at_mm": [
+        27,
+        20
+      ]
+    },
+    {
+      "reference": "J2002",
+      "layer": "F.Fab",
+      "text_angle_degrees": 0,
+      "at_mm": [
+        27,
+        43
+      ]
+    }
+  ],
+  "pad_net_map_unchanged": true,
+  "violations": 0,
+  "unconnected_items": 128
+}

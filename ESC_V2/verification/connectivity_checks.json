@@ -1,0 +1,2973 @@
+{
+  "status": "CONNECTIVITY_CHECKS_PASS_NOT_HARDWARE_VALIDATION",
+  "kicad": "10.0.6",
+  "symbols": 234,
+  "electrical_components": 229,
+  "nets": 134,
+  "checks_passed": 736,
+  "erc_violations": 0,
+  "default_disabled_erc_checks": [
+    {
+      "description": "Global label only appears once in the schematic",
+      "key": "single_global_label"
+    },
+    {
+      "description": "Four connection points are joined together",
+      "key": "four_way_junction"
+    },
+    {
+      "description": "SPICE model issue",
+      "key": "simulation_model_issue"
+    },
+    {
+      "description": "Assigned footprint doesn't match footprint filters",
+      "key": "footprint_filter"
+    }
+  ],
+  "checks": [
+    {
+      "check": "J1.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "J1.2=GND",
+      "passed": true
+    },
+    {
+      "check": "J2.1=PH_A",
+      "passed": true
+    },
+    {
+      "check": "J2.2=PH_B",
+      "passed": true
+    },
+    {
+      "check": "J2.3=PH_C",
+      "passed": true
+    },
+    {
+      "check": "J3.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "J3.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C1.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C1.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C2.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C2.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C3.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C3.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C4.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C4.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C5.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C5.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C6.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C6.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R1.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "R1.2=GND",
+      "passed": true
+    },
+    {
+      "check": "Q1.1=GHA_1",
+      "passed": true
+    },
+    {
+      "check": "Q1.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "Q1.3=PH_A",
+      "passed": true
+    },
+    {
+      "check": "R2.1=GHA",
+      "passed": true
+    },
+    {
+      "check": "R2.2=GHA_1",
+      "passed": true
+    },
+    {
+      "check": "R3.1=GHA_1",
+      "passed": true
+    },
+    {
+      "check": "R3.2=PH_A",
+      "passed": true
+    },
+    {
+      "check": "Q2.1=GHA_2",
+      "passed": true
+    },
+    {
+      "check": "Q2.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "Q2.3=PH_A",
+      "passed": true
+    },
+    {
+      "check": "R4.1=GHA",
+      "passed": true
+    },
+    {
+      "check": "R4.2=GHA_2",
+      "passed": true
+    },
+    {
+      "check": "R5.1=GHA_2",
+      "passed": true
+    },
+    {
+      "check": "R5.2=PH_A",
+      "passed": true
+    },
+    {
+      "check": "Q3.1=GLA_1",
+      "passed": true
+    },
+    {
+      "check": "Q3.2=PH_A",
+      "passed": true
+    },
+    {
+      "check": "Q3.3=SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "check": "R6.1=GLA",
+      "passed": true
+    },
+    {
+      "check": "R6.2=GLA_1",
+      "passed": true
+    },
+    {
+      "check": "R7.1=GLA_1",
+      "passed": true
+    },
+    {
+      "check": "R7.2=SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "check": "Q4.1=GLA_2",
+      "passed": true
+    },
+    {
+      "check": "Q4.2=PH_A",
+      "passed": true
+    },
+    {
+      "check": "Q4.3=SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "check": "R8.1=GLA",
+      "passed": true
+    },
+    {
+      "check": "R8.2=GLA_2",
+      "passed": true
+    },
+    {
+      "check": "R9.1=GLA_2",
+      "passed": true
+    },
+    {
+      "check": "R9.2=SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "check": "RS1.1=SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "check": "RS1.2=GND",
+      "passed": true
+    },
+    {
+      "check": "RS1.3=IS_A_P",
+      "passed": true
+    },
+    {
+      "check": "RS1.4=IS_A_N",
+      "passed": true
+    },
+    {
+      "check": "R10.1=SHUNT_A_P",
+      "passed": true
+    },
+    {
+      "check": "R10.2=IS_A_P",
+      "passed": true
+    },
+    {
+      "check": "R11.1=GND",
+      "passed": true
+    },
+    {
+      "check": "R11.2=IS_A_N",
+      "passed": true
+    },
+    {
+      "check": "C7.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C7.2=GND",
+      "passed": true
+    },
+    {
+      "check": "Q5.1=GHB_1",
+      "passed": true
+    },
+    {
+      "check": "Q5.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "Q5.3=PH_B",
+      "passed": true
+    },
+    {
+      "check": "R12.1=GHB",
+      "passed": true
+    },
+    {
+      "check": "R12.2=GHB_1",
+      "passed": true
+    },
+    {
+      "check": "R13.1=GHB_1",
+      "passed": true
+    },
+    {
+      "check": "R13.2=PH_B",
+      "passed": true
+    },
+    {
+      "check": "Q6.1=GHB_2",
+      "passed": true
+    },
+    {
+      "check": "Q6.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "Q6.3=PH_B",
+      "passed": true
+    },
+    {
+      "check": "R14.1=GHB",
+      "passed": true
+    },
+    {
+      "check": "R14.2=GHB_2",
+      "passed": true
+    },
+    {
+      "check": "R15.1=GHB_2",
+      "passed": true
+    },
+    {
+      "check": "R15.2=PH_B",
+      "passed": true
+    },
+    {
+      "check": "Q7.1=GLB_1",
+      "passed": true
+    },
+    {
+      "check": "Q7.2=PH_B",
+      "passed": true
+    },
+    {
+      "check": "Q7.3=SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "check": "R16.1=GLB",
+      "passed": true
+    },
+    {
+      "check": "R16.2=GLB_1",
+      "passed": true
+    },
+    {
+      "check": "R17.1=GLB_1",
+      "passed": true
+    },
+    {
+      "check": "R17.2=SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "check": "Q8.1=GLB_2",
+      "passed": true
+    },
+    {
+      "check": "Q8.2=PH_B",
+      "passed": true
+    },
+    {
+      "check": "Q8.3=SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "check": "R18.1=GLB",
+      "passed": true
+    },
+    {
+      "check": "R18.2=GLB_2",
+      "passed": true
+    },
+    {
+      "check": "R19.1=GLB_2",
+      "passed": true
+    },
+    {
+      "check": "R19.2=SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "check": "RS2.1=SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "check": "RS2.2=GND",
+      "passed": true
+    },
+    {
+      "check": "RS2.3=IS_B_P",
+      "passed": true
+    },
+    {
+      "check": "RS2.4=IS_B_N",
+      "passed": true
+    },
+    {
+      "check": "R20.1=SHUNT_B_P",
+      "passed": true
+    },
+    {
+      "check": "R20.2=IS_B_P",
+      "passed": true
+    },
+    {
+      "check": "R21.1=GND",
+      "passed": true
+    },
+    {
+      "check": "R21.2=IS_B_N",
+      "passed": true
+    },
+    {
+      "check": "C8.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C8.2=GND",
+      "passed": true
+    },
+    {
+      "check": "Q9.1=GHC_1",
+      "passed": true
+    },
+    {
+      "check": "Q9.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "Q9.3=PH_C",
+      "passed": true
+    },
+    {
+      "check": "R22.1=GHC",
+      "passed": true
+    },
+    {
+      "check": "R22.2=GHC_1",
+      "passed": true
+    },
+    {
+      "check": "R23.1=GHC_1",
+      "passed": true
+    },
+    {
+      "check": "R23.2=PH_C",
+      "passed": true
+    },
+    {
+      "check": "Q10.1=GHC_2",
+      "passed": true
+    },
+    {
+      "check": "Q10.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "Q10.3=PH_C",
+      "passed": true
+    },
+    {
+      "check": "R24.1=GHC",
+      "passed": true
+    },
+    {
+      "check": "R24.2=GHC_2",
+      "passed": true
+    },
+    {
+      "check": "R25.1=GHC_2",
+      "passed": true
+    },
+    {
+      "check": "R25.2=PH_C",
+      "passed": true
+    },
+    {
+      "check": "Q11.1=GLC_1",
+      "passed": true
+    },
+    {
+      "check": "Q11.2=PH_C",
+      "passed": true
+    },
+    {
+      "check": "Q11.3=SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "check": "R26.1=GLC",
+      "passed": true
+    },
+    {
+      "check": "R26.2=GLC_1",
+      "passed": true
+    },
+    {
+      "check": "R27.1=GLC_1",
+      "passed": true
+    },
+    {
+      "check": "R27.2=SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "check": "Q12.1=GLC_2",
+      "passed": true
+    },
+    {
+      "check": "Q12.2=PH_C",
+      "passed": true
+    },
+    {
+      "check": "Q12.3=SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "check": "R28.1=GLC",
+      "passed": true
+    },
+    {
+      "check": "R28.2=GLC_2",
+      "passed": true
+    },
+    {
+      "check": "R29.1=GLC_2",
+      "passed": true
+    },
+    {
+      "check": "R29.2=SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "check": "RS3.1=SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "check": "RS3.2=GND",
+      "passed": true
+    },
+    {
+      "check": "RS3.3=IS_C_P",
+      "passed": true
+    },
+    {
+      "check": "RS3.4=IS_C_N",
+      "passed": true
+    },
+    {
+      "check": "R30.1=SHUNT_C_P",
+      "passed": true
+    },
+    {
+      "check": "R30.2=IS_C_P",
+      "passed": true
+    },
+    {
+      "check": "R31.1=GND",
+      "passed": true
+    },
+    {
+      "check": "R31.2=IS_C_N",
+      "passed": true
+    },
+    {
+      "check": "C9.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C9.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U1.1=CPL",
+      "passed": true
+    },
+    {
+      "check": "U1.2=CPH",
+      "passed": true
+    },
+    {
+      "check": "U1.3=+12V",
+      "passed": true
+    },
+    {
+      "check": "U1.4=VBUS",
+      "passed": true
+    },
+    {
+      "check": "U1.5=VCP",
+      "passed": true
+    },
+    {
+      "check": "U1.6=GHA",
+      "passed": true
+    },
+    {
+      "check": "U1.7=PH_A",
+      "passed": true
+    },
+    {
+      "check": "U1.8=GLA",
+      "passed": true
+    },
+    {
+      "check": "U1.9=IS_A_P",
+      "passed": true
+    },
+    {
+      "check": "U1.10=IS_A_N",
+      "passed": true
+    },
+    {
+      "check": "U1.11=IS_B_N",
+      "passed": true
+    },
+    {
+      "check": "U1.12=IS_B_P",
+      "passed": true
+    },
+    {
+      "check": "U1.13=GLB",
+      "passed": true
+    },
+    {
+      "check": "U1.14=PH_B",
+      "passed": true
+    },
+    {
+      "check": "U1.15=GHB",
+      "passed": true
+    },
+    {
+      "check": "U1.16=GHC",
+      "passed": true
+    },
+    {
+      "check": "U1.17=PH_C",
+      "passed": true
+    },
+    {
+      "check": "U1.18=GLC",
+      "passed": true
+    },
+    {
+      "check": "U1.19=IS_C_P",
+      "passed": true
+    },
+    {
+      "check": "U1.20=IS_C_N",
+      "passed": true
+    },
+    {
+      "check": "U1.21=I_C_RAW",
+      "passed": true
+    },
+    {
+      "check": "U1.22=I_B_RAW",
+      "passed": true
+    },
+    {
+      "check": "U1.23=I_A_RAW",
+      "passed": true
+    },
+    {
+      "check": "U1.24=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "U1.25=GND",
+      "passed": true
+    },
+    {
+      "check": "U1.26=DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U1.27=SPI_MISO",
+      "passed": true
+    },
+    {
+      "check": "U1.28=SPI_MOSI",
+      "passed": true
+    },
+    {
+      "check": "U1.29=SPI_SCK",
+      "passed": true
+    },
+    {
+      "check": "U1.30=DRV_CS_N",
+      "passed": true
+    },
+    {
+      "check": "U1.31=DRV_ENABLE",
+      "passed": true
+    },
+    {
+      "check": "U1.32=PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "U1.33=PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "U1.34=PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "U1.35=PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "U1.36=PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "U1.37=PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "U1.38=DRV_DVDD",
+      "passed": true
+    },
+    {
+      "check": "U1.39=GND",
+      "passed": true
+    },
+    {
+      "check": "U1.40=DRV_VGLS",
+      "passed": true
+    },
+    {
+      "check": "U1.41=GND",
+      "passed": true
+    },
+    {
+      "check": "C10.1=CPH",
+      "passed": true
+    },
+    {
+      "check": "C10.2=CPL",
+      "passed": true
+    },
+    {
+      "check": "C11.1=VCP",
+      "passed": true
+    },
+    {
+      "check": "C11.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C12.1=DRV_VGLS",
+      "passed": true
+    },
+    {
+      "check": "C12.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C13.1=DRV_DVDD",
+      "passed": true
+    },
+    {
+      "check": "C13.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C14.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "C14.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C15.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "C15.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C16.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C16.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R32.1=SPI_MISO",
+      "passed": true
+    },
+    {
+      "check": "R32.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R33.1=DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "R33.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R34.1=DRV_CS_N",
+      "passed": true
+    },
+    {
+      "check": "R34.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R35.1=DRV_ENABLE",
+      "passed": true
+    },
+    {
+      "check": "R35.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R36.1=PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "R36.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R37.1=PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "R37.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R38.1=PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "R38.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R39.1=PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "R39.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R40.1=PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "R40.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R41.1=PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "R41.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R42.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "R42.2=V_BUS_MID",
+      "passed": true
+    },
+    {
+      "check": "R43.1=V_BUS_MID",
+      "passed": true
+    },
+    {
+      "check": "R43.2=V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "check": "R44.1=V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "check": "R44.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R45.1=V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "check": "R45.2=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "C17.1=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "C17.2=GND",
+      "passed": true
+    },
+    {
+      "check": "D1.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "D1.2=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "D2.1=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "D2.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R46.1=PH_A",
+      "passed": true
+    },
+    {
+      "check": "R46.2=V_A_MID",
+      "passed": true
+    },
+    {
+      "check": "R47.1=V_A_MID",
+      "passed": true
+    },
+    {
+      "check": "R47.2=V_A_DIV",
+      "passed": true
+    },
+    {
+      "check": "R48.1=V_A_DIV",
+      "passed": true
+    },
+    {
+      "check": "R48.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R49.1=V_A_DIV",
+      "passed": true
+    },
+    {
+      "check": "R49.2=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "C18.1=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "C18.2=GND",
+      "passed": true
+    },
+    {
+      "check": "D3.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "D3.2=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "D4.1=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "D4.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R50.1=PH_B",
+      "passed": true
+    },
+    {
+      "check": "R50.2=V_B_MID",
+      "passed": true
+    },
+    {
+      "check": "R51.1=V_B_MID",
+      "passed": true
+    },
+    {
+      "check": "R51.2=V_B_DIV",
+      "passed": true
+    },
+    {
+      "check": "R52.1=V_B_DIV",
+      "passed": true
+    },
+    {
+      "check": "R52.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R53.1=V_B_DIV",
+      "passed": true
+    },
+    {
+      "check": "R53.2=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "C19.1=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "C19.2=GND",
+      "passed": true
+    },
+    {
+      "check": "D5.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "D5.2=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "D6.1=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "D6.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R54.1=PH_C",
+      "passed": true
+    },
+    {
+      "check": "R54.2=V_C_MID",
+      "passed": true
+    },
+    {
+      "check": "R55.1=V_C_MID",
+      "passed": true
+    },
+    {
+      "check": "R55.2=V_C_DIV",
+      "passed": true
+    },
+    {
+      "check": "R56.1=V_C_DIV",
+      "passed": true
+    },
+    {
+      "check": "R56.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R57.1=V_C_DIV",
+      "passed": true
+    },
+    {
+      "check": "R57.2=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "C20.1=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "C20.2=GND",
+      "passed": true
+    },
+    {
+      "check": "D7.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "D7.2=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "D8.1=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "D8.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R58.1=I_A_RAW",
+      "passed": true
+    },
+    {
+      "check": "R58.2=I_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "C21.1=I_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "C21.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R59.1=I_B_RAW",
+      "passed": true
+    },
+    {
+      "check": "R59.2=I_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "C22.1=I_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "C22.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R60.1=I_C_RAW",
+      "passed": true
+    },
+    {
+      "check": "R60.2=I_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "C23.1=I_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "C23.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R61.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "R61.2=TEMP_FET",
+      "passed": true
+    },
+    {
+      "check": "R62.1=TEMP_FET",
+      "passed": true
+    },
+    {
+      "check": "R62.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C24.1=TEMP_FET",
+      "passed": true
+    },
+    {
+      "check": "C24.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R63.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "R63.2=TEMP_PCB",
+      "passed": true
+    },
+    {
+      "check": "R64.1=TEMP_PCB",
+      "passed": true
+    },
+    {
+      "check": "R64.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C25.1=TEMP_PCB",
+      "passed": true
+    },
+    {
+      "check": "C25.2=GND",
+      "passed": true
+    },
+    {
+      "check": "J4.1=TEMP_MOTOR_RAW",
+      "passed": true
+    },
+    {
+      "check": "J4.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R65.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "R65.2=TEMP_MOTOR_RAW",
+      "passed": true
+    },
+    {
+      "check": "R66.1=TEMP_MOTOR_RAW",
+      "passed": true
+    },
+    {
+      "check": "R66.2=TEMP_MOTOR",
+      "passed": true
+    },
+    {
+      "check": "C26.1=TEMP_MOTOR",
+      "passed": true
+    },
+    {
+      "check": "C26.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U2.1=GND",
+      "passed": true
+    },
+    {
+      "check": "U2.2=VBUS",
+      "passed": true
+    },
+    {
+      "check": "U2.3=BUCK_UVLO",
+      "passed": true
+    },
+    {
+      "check": "U2.4=BUCK_RON",
+      "passed": true
+    },
+    {
+      "check": "U2.5=BUCK_FB",
+      "passed": true
+    },
+    {
+      "check": "U2.6=PG_12V",
+      "passed": true
+    },
+    {
+      "check": "U2.7=BUCK_BST",
+      "passed": true
+    },
+    {
+      "check": "U2.8=BUCK_SW",
+      "passed": true
+    },
+    {
+      "check": "U2.9=GND",
+      "passed": true
+    },
+    {
+      "check": "L1.1=BUCK_SW",
+      "passed": true
+    },
+    {
+      "check": "L1.2=+12V",
+      "passed": true
+    },
+    {
+      "check": "C27.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C27.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C28.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "C28.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C29.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "C29.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C30.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "C30.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C31.1=BUCK_BST",
+      "passed": true
+    },
+    {
+      "check": "C31.2=BUCK_SW",
+      "passed": true
+    },
+    {
+      "check": "R67.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "R67.2=BUCK_RON",
+      "passed": true
+    },
+    {
+      "check": "R68.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "R68.2=BUCK_FB",
+      "passed": true
+    },
+    {
+      "check": "R69.1=BUCK_FB",
+      "passed": true
+    },
+    {
+      "check": "R69.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R70.1=BUCK_SW",
+      "passed": true
+    },
+    {
+      "check": "R70.2=BUCK_RIPPLE",
+      "passed": true
+    },
+    {
+      "check": "C32.1=BUCK_RIPPLE",
+      "passed": true
+    },
+    {
+      "check": "C32.2=+12V",
+      "passed": true
+    },
+    {
+      "check": "C33.1=BUCK_RIPPLE",
+      "passed": true
+    },
+    {
+      "check": "C33.2=BUCK_FB",
+      "passed": true
+    },
+    {
+      "check": "R71.1=VBUS",
+      "passed": true
+    },
+    {
+      "check": "R71.2=BUCK_UVLO",
+      "passed": true
+    },
+    {
+      "check": "R72.1=BUCK_UVLO",
+      "passed": true
+    },
+    {
+      "check": "R72.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R73.1=PG_12V",
+      "passed": true
+    },
+    {
+      "check": "R73.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "J5.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "J5.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U3.1=GND",
+      "passed": true
+    },
+    {
+      "check": "U3.2=+12V",
+      "passed": true
+    },
+    {
+      "check": "U3.3=+12V",
+      "passed": true
+    },
+    {
+      "check": "U3.4=GND",
+      "passed": true
+    },
+    {
+      "check": "U3.5=FB_5V",
+      "passed": true
+    },
+    {
+      "check": "U3.6=+5V",
+      "passed": true
+    },
+    {
+      "check": "U3.7=SW_5V",
+      "passed": true
+    },
+    {
+      "check": "U3.8=PG_5V",
+      "passed": true
+    },
+    {
+      "check": "L2.1=SW_5V",
+      "passed": true
+    },
+    {
+      "check": "L2.2=+5V",
+      "passed": true
+    },
+    {
+      "check": "C34.1=+12V",
+      "passed": true
+    },
+    {
+      "check": "C34.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C35.1=+5V",
+      "passed": true
+    },
+    {
+      "check": "C35.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R74.1=+5V",
+      "passed": true
+    },
+    {
+      "check": "R74.2=FB_5V",
+      "passed": true
+    },
+    {
+      "check": "R75.1=FB_5V",
+      "passed": true
+    },
+    {
+      "check": "R75.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R76.1=PG_5V",
+      "passed": true
+    },
+    {
+      "check": "R76.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U4.1=+5V",
+      "passed": true
+    },
+    {
+      "check": "U4.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U4.3=+5V",
+      "passed": true
+    },
+    {
+      "check": "U4.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C36.1=+5V",
+      "passed": true
+    },
+    {
+      "check": "C36.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C37.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C37.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R77.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R77.2=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C38.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C38.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C39.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C39.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U5.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U5.5=HSE_IN",
+      "passed": true
+    },
+    {
+      "check": "U5.7=NRST",
+      "passed": true
+    },
+    {
+      "check": "U5.8=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.9=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.10=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.11=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.12=I_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.13=I_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.14=I_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "U5.15=GND",
+      "passed": true
+    },
+    {
+      "check": "U5.16=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U5.17=TEMP_FET",
+      "passed": true
+    },
+    {
+      "check": "U5.18=TEMP_PCB",
+      "passed": true
+    },
+    {
+      "check": "U5.22=DRV_CS_N",
+      "passed": true
+    },
+    {
+      "check": "U5.23=ARM_CLK",
+      "passed": true
+    },
+    {
+      "check": "U5.24=TEMP_MOTOR",
+      "passed": true
+    },
+    {
+      "check": "U5.26=PG_12V",
+      "passed": true
+    },
+    {
+      "check": "U5.27=GND",
+      "passed": true
+    },
+    {
+      "check": "U5.28=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "U5.29=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "U5.30=PG_5V",
+      "passed": true
+    },
+    {
+      "check": "U5.31=GND",
+      "passed": true
+    },
+    {
+      "check": "U5.32=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U5.33=DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U5.34=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U5.35=MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "U5.36=MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "U5.37=MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "U5.38=HALL_A",
+      "passed": true
+    },
+    {
+      "check": "U5.39=HALL_B",
+      "passed": true
+    },
+    {
+      "check": "U5.40=HALL_C",
+      "passed": true
+    },
+    {
+      "check": "U5.41=RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "check": "U5.42=MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "U5.43=MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "U5.44=MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "U5.45=CAN_RX",
+      "passed": true
+    },
+    {
+      "check": "U5.46=CAN_TX",
+      "passed": true
+    },
+    {
+      "check": "U5.47=GND",
+      "passed": true
+    },
+    {
+      "check": "U5.48=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U5.49=SWDIO",
+      "passed": true
+    },
+    {
+      "check": "U5.50=SWCLK",
+      "passed": true
+    },
+    {
+      "check": "U5.51=RC_PWM",
+      "passed": true
+    },
+    {
+      "check": "U5.52=UART_TX",
+      "passed": true
+    },
+    {
+      "check": "U5.53=UART_RX",
+      "passed": true
+    },
+    {
+      "check": "U5.54=STATUS_LED",
+      "passed": true
+    },
+    {
+      "check": "U5.55=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U5.56=SPI_SCK",
+      "passed": true
+    },
+    {
+      "check": "U5.57=SPI_MISO",
+      "passed": true
+    },
+    {
+      "check": "U5.58=SPI_MOSI",
+      "passed": true
+    },
+    {
+      "check": "U5.61=BOOT0",
+      "passed": true
+    },
+    {
+      "check": "U5.63=GND",
+      "passed": true
+    },
+    {
+      "check": "U5.64=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C40.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C40.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C41.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C41.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C42.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C42.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C43.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C43.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C44.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C44.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C45.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C45.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C46.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C46.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C47.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C47.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C48.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C48.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R78.1=NRST",
+      "passed": true
+    },
+    {
+      "check": "R78.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C49.1=NRST",
+      "passed": true
+    },
+    {
+      "check": "C49.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R79.1=BOOT0",
+      "passed": true
+    },
+    {
+      "check": "R79.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R80.1=ARM_CLK",
+      "passed": true
+    },
+    {
+      "check": "R80.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R81.1=RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "check": "R81.2=GND",
+      "passed": true
+    },
+    {
+      "check": "J6.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "J6.2=SWDIO",
+      "passed": true
+    },
+    {
+      "check": "J6.3=GND",
+      "passed": true
+    },
+    {
+      "check": "J6.4=SWCLK",
+      "passed": true
+    },
+    {
+      "check": "J6.5=NRST",
+      "passed": true
+    },
+    {
+      "check": "Y1.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "Y1.2=GND",
+      "passed": true
+    },
+    {
+      "check": "Y1.3=HSE_IN",
+      "passed": true
+    },
+    {
+      "check": "Y1.4=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C50.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C50.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R82.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R82.2=LED_A",
+      "passed": true
+    },
+    {
+      "check": "D9.1=STATUS_LED",
+      "passed": true
+    },
+    {
+      "check": "D9.2=LED_A",
+      "passed": true
+    },
+    {
+      "check": "U6.1=CAN_TX",
+      "passed": true
+    },
+    {
+      "check": "U6.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U6.3=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U6.4=CAN_RX",
+      "passed": true
+    },
+    {
+      "check": "U6.6=CAN_L",
+      "passed": true
+    },
+    {
+      "check": "U6.7=CAN_H",
+      "passed": true
+    },
+    {
+      "check": "U6.8=CAN_RS",
+      "passed": true
+    },
+    {
+      "check": "R83.1=CAN_RS",
+      "passed": true
+    },
+    {
+      "check": "R83.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C51.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C51.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R84.1=CAN_H",
+      "passed": true
+    },
+    {
+      "check": "R84.2=CAN_L",
+      "passed": true
+    },
+    {
+      "check": "J7.1=GND",
+      "passed": true
+    },
+    {
+      "check": "J7.2=CAN_H",
+      "passed": true
+    },
+    {
+      "check": "J7.3=CAN_L",
+      "passed": true
+    },
+    {
+      "check": "J8.1=GND",
+      "passed": true
+    },
+    {
+      "check": "J8.2=UART_RX",
+      "passed": true
+    },
+    {
+      "check": "J8.3=UART_TX",
+      "passed": true
+    },
+    {
+      "check": "J9.1=GND",
+      "passed": true
+    },
+    {
+      "check": "J9.2=RC_PWM",
+      "passed": true
+    },
+    {
+      "check": "J10.1=+5V",
+      "passed": true
+    },
+    {
+      "check": "J10.2=GND",
+      "passed": true
+    },
+    {
+      "check": "J10.3=HALL_A_EXT",
+      "passed": true
+    },
+    {
+      "check": "J10.4=HALL_B_EXT",
+      "passed": true
+    },
+    {
+      "check": "J10.5=HALL_C_EXT",
+      "passed": true
+    },
+    {
+      "check": "R85.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R85.2=HALL_A_EXT",
+      "passed": true
+    },
+    {
+      "check": "R86.1=HALL_A_EXT",
+      "passed": true
+    },
+    {
+      "check": "R86.2=HALL_A",
+      "passed": true
+    },
+    {
+      "check": "C52.1=HALL_A",
+      "passed": true
+    },
+    {
+      "check": "C52.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R87.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R87.2=HALL_B_EXT",
+      "passed": true
+    },
+    {
+      "check": "R88.1=HALL_B_EXT",
+      "passed": true
+    },
+    {
+      "check": "R88.2=HALL_B",
+      "passed": true
+    },
+    {
+      "check": "C53.1=HALL_B",
+      "passed": true
+    },
+    {
+      "check": "C53.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R89.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R89.2=HALL_C_EXT",
+      "passed": true
+    },
+    {
+      "check": "R90.1=HALL_C_EXT",
+      "passed": true
+    },
+    {
+      "check": "R90.2=HALL_C",
+      "passed": true
+    },
+    {
+      "check": "C54.1=HALL_C",
+      "passed": true
+    },
+    {
+      "check": "C54.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U7.1=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U7.2=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U7.3=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "U7.4=OC_LOW",
+      "passed": true
+    },
+    {
+      "check": "U7.5=I_A_RAW",
+      "passed": true
+    },
+    {
+      "check": "U7.6=I_A_RAW",
+      "passed": true
+    },
+    {
+      "check": "U7.7=OC_HIGH",
+      "passed": true
+    },
+    {
+      "check": "U7.8=OC_LOW",
+      "passed": true
+    },
+    {
+      "check": "U7.9=I_B_RAW",
+      "passed": true
+    },
+    {
+      "check": "U7.10=I_B_RAW",
+      "passed": true
+    },
+    {
+      "check": "U7.11=OC_HIGH",
+      "passed": true
+    },
+    {
+      "check": "U7.12=GND",
+      "passed": true
+    },
+    {
+      "check": "U7.13=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U7.14=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U8.1=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U8.2=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U8.3=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "U8.4=OC_LOW",
+      "passed": true
+    },
+    {
+      "check": "U8.5=I_C_RAW",
+      "passed": true
+    },
+    {
+      "check": "U8.6=I_C_RAW",
+      "passed": true
+    },
+    {
+      "check": "U8.7=OC_HIGH",
+      "passed": true
+    },
+    {
+      "check": "U8.8=V_BUS_DIV",
+      "passed": true
+    },
+    {
+      "check": "U8.9=OV_REF",
+      "passed": true
+    },
+    {
+      "check": "U8.10=GND",
+      "passed": true
+    },
+    {
+      "check": "U8.11=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "U8.12=GND",
+      "passed": true
+    },
+    {
+      "check": "U8.14=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "C55.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C55.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C56.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "C56.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R91.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "R91.2=OC_LOW",
+      "passed": true
+    },
+    {
+      "check": "R92.1=OC_LOW",
+      "passed": true
+    },
+    {
+      "check": "R92.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R93.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "R93.2=OC_HIGH",
+      "passed": true
+    },
+    {
+      "check": "R94.1=OC_HIGH",
+      "passed": true
+    },
+    {
+      "check": "R94.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C57.1=OC_LOW",
+      "passed": true
+    },
+    {
+      "check": "C57.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C58.1=OC_HIGH",
+      "passed": true
+    },
+    {
+      "check": "C58.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R95.1=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "R95.2=OV_REF",
+      "passed": true
+    },
+    {
+      "check": "R96.1=OV_REF",
+      "passed": true
+    },
+    {
+      "check": "R96.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C59.1=OV_REF",
+      "passed": true
+    },
+    {
+      "check": "C59.2=GND",
+      "passed": true
+    },
+    {
+      "check": "R97.1=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "R97.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "D10.1=DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "D10.2=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "D11.1=NRST",
+      "passed": true
+    },
+    {
+      "check": "D11.2=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "D12.1=PG_12V",
+      "passed": true
+    },
+    {
+      "check": "D12.2=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "D13.1=PG_5V",
+      "passed": true
+    },
+    {
+      "check": "D13.2=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U9.1=ARM_CLK",
+      "passed": true
+    },
+    {
+      "check": "U9.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U9.4=GND",
+      "passed": true
+    },
+    {
+      "check": "U9.5=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U9.6=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "U9.7=+3V3",
+      "passed": true
+    },
+    {
+      "check": "U9.8=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R98.1=RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "check": "R98.2=DRV_ENABLE",
+      "passed": true
+    },
+    {
+      "check": "C60.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C60.2=GND",
+      "passed": true
+    },
+    {
+      "check": "J11.1=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "J11.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U10.1=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U10.2=MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "U10.3=GND",
+      "passed": true
+    },
+    {
+      "check": "U10.4=PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "U10.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R99.1=MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "R99.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C61.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C61.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U11.1=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U11.2=MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "U11.3=GND",
+      "passed": true
+    },
+    {
+      "check": "U11.4=PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "U11.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R100.1=MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "R100.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C62.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C62.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U12.1=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U12.2=MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "U12.3=GND",
+      "passed": true
+    },
+    {
+      "check": "U12.4=PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "U12.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R101.1=MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "R101.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C63.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C63.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U13.1=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U13.2=MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "U13.3=GND",
+      "passed": true
+    },
+    {
+      "check": "U13.4=PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "U13.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R102.1=MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "R102.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C64.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C64.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U14.1=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U14.2=MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "U14.3=GND",
+      "passed": true
+    },
+    {
+      "check": "U14.4=PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "U14.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R103.1=MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "R103.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C65.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C65.2=GND",
+      "passed": true
+    },
+    {
+      "check": "U15.1=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "U15.2=MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "U15.3=GND",
+      "passed": true
+    },
+    {
+      "check": "U15.4=PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "U15.5=+3V3",
+      "passed": true
+    },
+    {
+      "check": "R104.1=MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "R104.2=GND",
+      "passed": true
+    },
+    {
+      "check": "C66.1=+3V3",
+      "passed": true
+    },
+    {
+      "check": "C66.2=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.1=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "J12.3=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.4=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "J12.5=MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "J12.6=MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "J12.7=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.8=MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "J12.9=MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "J12.10=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.11=MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "J12.12=MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "J12.13=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.14=RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "check": "J12.15=ARM_CLK",
+      "passed": true
+    },
+    {
+      "check": "J12.16=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "J12.17=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "J12.18=DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "J12.19=DRV_CS_N",
+      "passed": true
+    },
+    {
+      "check": "J12.20=SPI_SCK",
+      "passed": true
+    },
+    {
+      "check": "J12.21=SPI_MOSI",
+      "passed": true
+    },
+    {
+      "check": "J12.22=SPI_MISO",
+      "passed": true
+    },
+    {
+      "check": "J12.23=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.24=I_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.25=I_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.26=I_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.27=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.28=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.29=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.30=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.31=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "J12.32=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.33=TEMP_FET",
+      "passed": true
+    },
+    {
+      "check": "J12.34=TEMP_PCB",
+      "passed": true
+    },
+    {
+      "check": "J12.35=PG_12V",
+      "passed": true
+    },
+    {
+      "check": "J12.36=PG_5V",
+      "passed": true
+    },
+    {
+      "check": "J12.37=NRST",
+      "passed": true
+    },
+    {
+      "check": "J12.38=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.39=GND",
+      "passed": true
+    },
+    {
+      "check": "J12.40=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.1=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.2=+3V3",
+      "passed": true
+    },
+    {
+      "check": "J13.3=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.4=+3V3A",
+      "passed": true
+    },
+    {
+      "check": "J13.5=MCU_PWM_HA",
+      "passed": true
+    },
+    {
+      "check": "J13.6=MCU_PWM_LA",
+      "passed": true
+    },
+    {
+      "check": "J13.7=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.8=MCU_PWM_HB",
+      "passed": true
+    },
+    {
+      "check": "J13.9=MCU_PWM_LB",
+      "passed": true
+    },
+    {
+      "check": "J13.10=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.11=MCU_PWM_HC",
+      "passed": true
+    },
+    {
+      "check": "J13.12=MCU_PWM_LC",
+      "passed": true
+    },
+    {
+      "check": "J13.13=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.14=RUN_REQUEST",
+      "passed": true
+    },
+    {
+      "check": "J13.15=ARM_CLK",
+      "passed": true
+    },
+    {
+      "check": "J13.16=LATCH_STATE",
+      "passed": true
+    },
+    {
+      "check": "J13.17=HARD_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "J13.18=DRV_FAULT_N",
+      "passed": true
+    },
+    {
+      "check": "J13.19=DRV_CS_N",
+      "passed": true
+    },
+    {
+      "check": "J13.20=SPI_SCK",
+      "passed": true
+    },
+    {
+      "check": "J13.21=SPI_MOSI",
+      "passed": true
+    },
+    {
+      "check": "J13.22=SPI_MISO",
+      "passed": true
+    },
+    {
+      "check": "J13.23=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.24=I_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.25=I_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.26=I_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.27=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.28=V_BUS_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.29=V_A_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.30=V_B_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.31=V_C_ADC",
+      "passed": true
+    },
+    {
+      "check": "J13.32=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.33=TEMP_FET",
+      "passed": true
+    },
+    {
+      "check": "J13.34=TEMP_PCB",
+      "passed": true
+    },
+    {
+      "check": "J13.35=PG_12V",
+      "passed": true
+    },
+    {
+      "check": "J13.36=PG_5V",
+      "passed": true
+    },
+    {
+      "check": "J13.37=NRST",
+      "passed": true
+    },
+    {
+      "check": "J13.38=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.39=GND",
+      "passed": true
+    },
+    {
+      "check": "J13.40=GND",
+      "passed": true
+    },
+    {
+      "check": "Exactly 12 power MOSFETs",
+      "passed": true
+    },
+    {
+      "check": "Driver VM12V separate from drain bus",
+      "passed": true
+    },
+    {
+      "check": "Driver CSA VREF is 3V3 analog, not 1V65",
+      "passed": true
+    },
+    {
+      "check": "MCU hardware break input PB12 wired to fault",
+      "passed": true
+    },
+    {
+      "check": "Asynchronous latch clear wired to fault",
+      "passed": true
+    },
+    {
+      "check": "Six PWM inhibit gates",
+      "passed": true
+    },
+    {
+      "check": "U10 gate controlled by latch",
+      "passed": true
+    },
+    {
+      "check": "U11 gate controlled by latch",
+      "passed": true
+    },
+    {
+      "check": "U12 gate controlled by latch",
+      "passed": true
+    },
+    {
+      "check": "U13 gate controlled by latch",
+      "passed": true
+    },
+    {
+      "check": "U14 gate controlled by latch",
+      "passed": true
+    },
+    {
+      "check": "U15 gate controlled by latch",
+      "passed": true
+    },
+    {
+      "check": "Hall channels on PC6 PC7 PC8",
+      "passed": true
+    },
+    {
+      "check": "RC capture on separate TIM2 PA15",
+      "passed": true
+    },
+    {
+      "check": "No merged main rails",
+      "passed": true
+    },
+    {
+      "check": "KiCad ERC zero violations",
+      "passed": true
+    },
+    {
+      "check": "No project-specific ERC exclusions",
+      "passed": true
+    }
+  ]
+}

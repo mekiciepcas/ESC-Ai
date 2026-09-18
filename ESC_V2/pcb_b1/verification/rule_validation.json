@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "RULE_ENGINE_ONLY_NOT_PRODUCT_PCB",
+  "expected_failures_detected": [
+    "VBUS 1.00mm clearance",
+    "signal 0.20mm minimum track width"
+  ],
+  "reported_violations": 5
+}

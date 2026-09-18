@@ -1,0 +1,809 @@
+ppt/slides/slide1.xml
+48-V, 1.5 kW, >%99 Verimli, 
+3-Faz BLDC/PMSM ESC 
+Tasarım ve Prototip Sonuç Raporu
+
+ppt/slides/slide2.xml
+Tanım
+Proje hedefleri doğrultusunda yüksek verimli hafif ve kullanıcı ihtiyaçlarına cevap verecek farklı birçok kontrol ve uygulama özelliği içeren Elektronik 
+Speed
+ Controller/3-Faz motor sürücü tasarımı ve prototipi aşağıda detayları verilen şekilde hazırlanmış ve üretilmiştir.
+
+ppt/slides/slide3.xml
+Özellikler
+ 
+• 9-V 
+to
+ 58-V  aralığında (14s  li-
+ion
+ 
+battery
+) 30-A RMS devamlı ,400-A anlık akım 
+ • Soğutucu kullanmadan 70mm x 50mm PCB alanı ile  54-V/1.5-kW, 30-ARMS  sağlar
+ • Sensörsüz/sensörlü hem 
+sinüsoidal
+ hem trapezoidal kontrol uygulanabilir 
+ • 54-V/1.5-kW 
+for
+ 20-kHz sinüs kontrol ile  %99 verimlilik sağlar. 
+ • VDS 
+sensing
+ ile 1-μs daha kısa sürede MOSFET aşırı akım koruması sağlar
+ • Gelişmiş  MOSFET kapı koruması ( VGS düşük-voltaj, yüksek-
+voltage
+, 
+gate
+ 
+to
+ 
+source
+ kısa devre ve açık devre )
+ • Güç kartı ve kontrol kartı ayrı tasarımı ile farklı kontrol kartları ile yaygın kullanım 
+ • Çoklu haberleşme seçenekleri ile geniş uygulama alanı(
+PWM,Seri
+ 
+Port,CAN
+)
+• Kullanıcı taleplerine uygun farklı MCU kartları ile çalışma imkanı
+• Çalışma sıcaklık aralığı: -20C - 55C
+                      
+
+ppt/slides/slide4.xml
+Tasarım Detayları
+ESC tasarımı tüm gereksinimleri karşılamak amacı ile güç katı ve MCU kontrol katı olarak iki ayrı PCB şeklinde tasarlanmıştır. 
+ 
+Güç Katı Maksimum verim ve güç için mevcut güç elektroniği elemanları arasından titizlikle seçilmiş ve dayanıklılık, fiyat/özellik , erişim ve imalat kolaylıkları göz önüne alınmıştır.
+MCU kontrol kartı yine aynı faktörler doğrultusunda seçilmiş, daha ekonomik veya daha yüksek performanslı kontrol kartları da kullanılabilir.
+ESC Blok Şeması
+
+ppt/slides/slide5.xml
+Genel Özellikler
+ 
+ 
+Giriş  voltajı
+54-V typ ( 9-V min to 63-V max)
+Çıkış Gücü 
+>1.5-kW
+RMS sarım akımı 
+30-A (20-kHz switching)
+Tepe sarım akımı 
+400-A
+Inverter anahtarlama frekansı 
+20-kHz (Tunable for 5-75kHz)
+Çalışma ısıs 
+–20 C to 55 C
+Efficiency 
+ 54-V, 1.5-kW, 20-kHz de >%99
+Board specification 
+70mm x 50mm, 2-layer, 70u bakır
+Geri besleme sinyalleri 
+DC batarya voltaj, 3 X Motor faz voltaj, 3 X Motor faz akımı 
+Mosfet ve pcb ısıları
+Korumalar 
+Cycle-by-cycle aşırı akım, besleme düşük voltaj, aşırı sıcaklık, MOSFET gate-source açık devre ve kısa devre
+Cooling 
+Serbest hava, soğutucu yok
+Control method 
+ Sensorsüz sinusoidal ve  trapezoidal
+ 
+ 
+
+ppt/slides/slide6.xml
+Güç Katı Tasarım Detayları
+Güç katı blok 
+şemeda
+ da görüleceği üzere ; Besleme giriş ve filtre devresi, 
+mosfet
+ sürücü devresi, güç anahtarlama 
+Mosfet
+ devresi, ve akım gerilim ölçme devresi olarak dört ayrı bölümle tasarlanmıştır. 
+Besleme Giriş ve Filtre Devresi:  
+Batarya giriş bölümünde güç anahtarlama katında oluşan dalgalanmaların elemine edilmesi için, sürekli ve temiz bir DC için 
+kapsitörler
+ ile besleme filtrelenmiştir.
+MCU katı ve kontrol sinyalleri için gereken 3.3v bir dc-dc çevirici ile sağlanmıştır. 
+Dc
+-dc çevirici olarak seçilen LMR36520ADDAR tasarım yapıldığında stoklarda mevcut en uygun ürün iken haziran 2022 tarihinde stoklar sıfırlanmış ve 2024 yılına temin süresi verilmiş olup temin edilememiştir. Kart üzerine düşük güçlü bir 
+regületör
+ ile testler yapılmış olup tasarım revizyonu gerekmektedir. (Maalesef giriş voltajı 60v olan dc-dc çevirici ve 
+regületörlerin
+ neredeyse tamamında malzeme sorunu vardır.)
+
+ppt/slides/slide7.xml
+Mosfet
+ Sürücü Devresi
+Mosfet
+ Sürücü devresi olarak seçilen DRV8353S/H/RTAR mevcut ürünler içinde en uygun fiyat ve özellikleri ile dikkat çeken bir ürün olup sağladığı fayda ve kolaylıklar proje gerekliliklerini fazlası ile karşılamaktadır. Prototip kart da DRV8353HRTAR kullanılmış ve çok başarılı sonuçlar alınmıştır.
+Teknik 
+dökümanda
+ belirtilen bazı özellikleri ile blok şeması aşağıdadır. 
+• 9 to 100-V, Triple half-bridge gate driver
+• Smart gate drive architecture
+– Adjustable slew rate control for EMI performance
+– VGS handshake and minimum dead-time insertion to prevent shoot-through
+– 50-mA to 1-A peak source current
+– 100-mA to 2-A peak sink current
+– 
+dV
+/dt mitigation through strong pulldown
+• Integrated gate driver power supplies
+– High-side 
+doubler
+ charge pump For 100% PWM duty cycle control
+– Low-side linear regulator
+• Integrated triple current shunt amplifiers
+– Adjustable gain (5, 10, 20, 40 V/V)
+
+ppt/slides/slide8.xml
+Mosfet
+ Sürücü Devresi
+– Bidirectional or unidirectional support
+• 6x, 3x, 1x, and independent PWM modes
+– Supports 120° 
+sensored
+ operation
+• SPI or hardware interface available
+• Low-power sleep mode (20 
+μ
+A at VVM = 48-V)
+• Integrated protection features
+– VM undervoltage lockout (UVLO)
+– Gate drive supply undervoltage (GDUV)
+– MOSFET VDS overcurrent protection (OCP)
+– MOSFET shoot-through prevention
+– Gate driver fault (GDF)
+– Thermal warning and shutdown (OTW/OTSD)
+– Fault condition indicator (
+nFAULT
+)
+
+ppt/slides/slide9.xml
+Mosfet
+ Sürücü Devresi
+Teknik 
+dökümanda
+ 
+belirtilen
+ 
+husular
+ 
+göz
+ 
+önüne
+ 
+alınarak
+ 
+hazırlanmış
+ 
+devre
+ 
+şeması
+ 
+aşağıda
+ 
+verilmiştir
+. 
+Projede
+ 3 
+faz
+ AC 
+için
+ 3 
+yarım
+ 
+köprü
+ 
+olarak
+ 
+ayarlanmış
+ 
+ve
+ 3 
+adet
+ 
+akım
+ 
+okumak
+ 
+için
+ 
+yükseltici
+ 
+girişleri
+ 
+kullanılmıştır
+. 
+DRV8353 ile PCB tasarımında birçok özellik az miktarda malzeme kullanılarak elde edilmiş aynı zamanda farklı konfigürasyonlara da imkan sağlanmıştır.
+
+ppt/slides/slide10.xml
+Mosfet
+ Sürücü Devresi
+Koruma
+ 
+ve
+ 
+hata
+ 
+giderme
+/
+bildirme
+ 
+özellikleri
+ :
+Prototip PCB de DRV8353H (hardware 
+config
+) kullanılmış olmakla birlikte S (SPI 
+config
+)  versiyonu da kullanılabilir şekilde tasarlanmıştır.
+
+ppt/slides/slide11.xml
+Güç Anahtarlama 
+Mosfet
+ Devresi
+MOSFET 
+seçiminde
+ :
+• 
+yüksek
+ 
+verimlilik
+ (
+çalışma
+ 
+koşullarında
+ 
+düşük
+ 
+kayıplın
+ MOSFET)
+• 
+Düşük
+  
+fiziki
+ 
+boyutlar
+• İyi 
+Isı
+ 
+kaybı
+• 
+Yüksek
+ 
+Akım
+ 
+kabiliyeti
+• 
+Kısa
+ 
+devre
+ 
+ve
+ 
+zor
+ 
+şartlarda
+ 
+güvenilir
+ 
+bir
+ 
+anahtarlama
+ 
+için
+ 
+gerekli
+ 
+anahtarlama
+ 
+performansı
+.
+Bu 
+özellikleri
+ 
+gözönüne
+ 
+alarak
+ 
+tasarımda
+ 6(+6) CSD19536KTT MOSFET 
+kullanılmıştır
+. MOSFET 100-V 
+kadar
+ 
+ve
+ 
+çok
+ 
+düşük
+ 
+iç
+ 
+direnç
+ (2-m
+Ω )
+ile
+ 
+küçük
+ 
+bir
+ 
+kılıfta
+ (D2PAK (TO-263))  
+tasarım
+ 
+gereklerimizi
+ 
+karşılamıştır
+. 
+Bazı
+ 
+öne
+ 
+çıkan
+ 
+önemli
+ 
+özellikleri
+ 
+aşağıda
+ 
+olup
+ 
+teknik
+ 
+dökümanında
+ 
+tüm
+ 
+özellikleri
+ 
+görülebilir
+.
+
+ppt/slides/slide12.xml
+Güç Anahtarlama 
+Mosfet
+ Devresi
+PCB 
+tasarımında
+ 
+mosfetler
+ 
+iki
+ 
+parelel
+ de 
+çalıştırabilmek
+ 
+için
+ her 
+iki
+ 
+yüzeye
+ 
+yerleştirilmiş
+ 
+bu
+ 
+sayede
+ 
+prototip
+ PCB 
+farklı
+ 
+güçlerde
+ motor 
+sürücü
+ 
+geliştirme
+ 
+çalışmalarımız
+ 
+için
+ de 
+imkan
+ 
+sağlamıştır
+.
+Parelel
+ 
+bağlı
+ 
+çalışma
+ ESC 
+projesi
+ 
+kapsamında
+ 
+denenmemiştir
+.
+
+ppt/slides/slide13.xml
+Güç Anahtarlama 
+Mosfet
+ Devresi
+Devre
+ 
+şeması
+ , test 
+ve
+ 
+termal
+ 
+değerler
+ 
+aşağıda
+ 
+verilmiştir
+.
+
+ppt/slides/slide14.xml
+Güç Anahtarlama 
+Mosfet
+ Devresi
+Devre
+ 
+şeması
+ , test 
+ve
+ 
+termal
+ 
+değerler
+ 
+aşağıda
+ 
+verilmiştir
+.
+
+ppt/slides/slide15.xml
+Güç Anahtarlama 
+Mosfet
+ Devresi
+Devre
+ 
+şeması
+ , test 
+ve
+ 
+termal
+ 
+değerler
+ 
+aşağıda
+ 
+verilmiştir
+.
+
+ppt/slides/slide16.xml
+Akım Gerilim Ölçme Devresi
+Tasarlanan
+ ESC 
+prototip
+ PCB de 
+sensörsüz
+ 
+sürme
+ 
+için
+ 
+gereken
+ DC Bus 
+Voltaj’ı
+, 
+Faz
+ 
+voltajları
+ 
+gerilim
+ 
+bölücü
+ 
+dirençlerle
+ 
+elde
+ 
+edilerek
+ MCU nun ADC 
+girişlerine
+ 
+verilmiştir
+.
+ 
+Bölücü
+ 
+direnç
+ 
+değerleri
+ minimum 
+kayıp
+ 
+için
+ 
+yeterli
+ 
+yüksek
+ 
+değerlerde
+ 
+seçilmiş
+ 
+olup
+,
+ DC Bus 
+için
+ MCU ADC 
+giriş
+ 
+gerilimi
+ 3.3V  a 
+göre
+ 51.7 VDC 54 
+mW
+ 
+lık
+ 
+bir
+ 
+güç
+ 
+ile
+ 
+sağlanmış
+, 
+aynı
+ 
+değerler
+ 
+faz
+ 
+gerilimleri
+ 
+içinde
+ 
+kullanılmıştır
+.
+
+ppt/slides/slide17.xml
+Akım Gerilim Ölçme Devresi
+Faz
+ 
+akımlarının
+ 
+ölçümü
+ 
+için
+ DRV8353 
+dahili
+ 
+yükselteç
+ 
+devresi
+ 
+kullanılarak
+ MCU ADC 
+girişlerine
+ 
+verilmiştir
+. 
+Gerilim
+ 
+ve
+  
+akım
+ 
+sinyalleri
+ 
+pasif
+ lowpass 
+filtre
+ 
+ile
+ 
+filtrelenmiş
+ cut- off 
+frekansları
+ maximum 
+faz
+ 
+frekansları
+ 
+göz
+ 
+önüne
+ 
+alınarak
+ 
+hesaplanmıştır
+.
+DRV8353 
+yükselteç
+ 
+yapısı
+ 
+ve
+ 
+prototip
+ ESC 
+filtre
+ 
+seması
+ 
+aşağıda
+ 
+verilmiştir
+. 
+Kazançlar
+ 
+kullanılan
+ 
+şönt
+ 
+değerlerine
+ 
+bağlı
+ 
+olarak
+ 
+ayarlanabilmektedir
+. 
+
+ppt/slides/slide18.xml
+Akım Gerilim Ölçme Devresi
+
+ppt/slides/slide19.xml
+Tamamlanmış ESC PCB
+
+ppt/slides/slide20.xml
+Kontrol Kart Tasarım Detayları:
+Kontrol
+ 
+kartı
+ 
+Güç
+ 
+kartından
+ 
+ayrılabilir
+ 
+şekilde
+ 
+tasarlanmıştır
+. Bu 
+sayede
+ 
+herhangi
+ 
+bir
+ MCU 
+kullanılabilecek
+ 
+ve
+ 
+çok
+ 
+geniş
+ 
+bir
+ 
+esneklik
+/ 
+kolaylık
+ 
+sağlayacağı
+ 
+öngörülmüştür
+.
+Prototip
+ 
+için
+ 
+en
+ 
+üst
+ 
+seviyede
+ 
+bir
+ 32 bit 100 MHz 
+işlemci
+ 
+seçilerek
+ PCB 
+tasarlanmış
+ 
+böylece
+ ESC 
+nin
+ 
+en
+ 
+verimli
+ 
+ve
+ 
+enzor
+ 
+şartlarda
+ 
+denenmesi
+ 
+mümkün
+ 
+olmuştur
+.
+Seçilen
+ MCU TMS320F280041C 
+nin
+ 
+özelliklerinden
+ ana 
+başlıklar
+ 
+aşağıda
+ 
+olup
+ 
+detayları
+ 
+teknik
+ 
+döküman
+ dan 
+bakılabilir
+.
+MCU 
+kaynaklarından
+ : 
+7 X ADC 
+akım
+ 
+ve
+ 
+gerilim
+ 
+ölçümleri
+ 
+için
+,  6 X PWM 3 
+Faz
+ 
+güç
+ 
+anahtarlam
+ 
+için
+, 5 X GPIO 
+genel
+ 
+amaç
+ 
+ve
+ 
+programlama
+ 
+için
+ 
+kullanılmış
+, 
+haberleşme
+ 
+için
+ 
+ise
+ 
+SPI,SCI,CAN,CAPture
+ 
+karta
+ 
+tasarlanmıştır
+. 
+
+ppt/slides/slide21.xml
+Prototip  Şeması ve PCB 
+
+ppt/slides/slide22.xml
+Prototip  Şeması ve PCB 
+
+ppt/slides/slide23.xml
+Prototip  Şeması ve PCB 

@@ -1,0 +1,11 @@
+{
+  "connections": [
+    "C1801.1 to U1701.64 +3V3",
+    "C1801.2 to U1701.63 GND"
+  ],
+  "segments": 4,
+  "pad_nets_unchanged": true,
+  "drc_violations": 0,
+  "unconnected_items": 126,
+  "scope": "one local bypass pair, not full MCU supply"
+}

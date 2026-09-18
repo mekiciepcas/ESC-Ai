@@ -1,0 +1,120 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-14T17:26:27",
+    "ignored_checks": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "key": "missing_courtyard"
+        },
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        },
+        {
+            "description": "Footprint component type doesn't match footprint pads",
+            "key": "footprint_type_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.6",
+    "schematic_parity": [],
+    "source": "coupon.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Boşluk ihlali (kural 'ESC switching potential separation' açıklık 1.0000 mm; şu anki 0.5000 mm)",
+            "items": [
+                {
+                    "description": "Yol [GND] F.Cu üzerinde, uzunluk 15.0000 mm",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 5.8
+                    },
+                    "uuid": "1d156bc5-d8a8-4fea-9ca4-fb9af5f99092"
+                },
+                {
+                    "description": "Yol [VBUS] F.Cu üzerinde, uzunluk 15.0000 mm",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 5.0
+                    },
+                    "uuid": "a43e9d32-2c54-43aa-add8-43e32b9b2219"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Yol genişliği (kural 'ESC general fabrication' min genişlik 0.2000 mm; gerçek 0.1000 mm)",
+            "items": [
+                {
+                    "description": "Yol [SIGNAL] F.Cu üzerinde, uzunluk 15.0000 mm",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 12.0
+                    },
+                    "uuid": "b7b2390c-3049-4544-b1c3-b1b016d76c14"
+                }
+            ],
+            "severity": "error",
+            "type": "track_width"
+        },
+        {
+            "description": "Track has unconnected end",
+            "items": [
+                {
+                    "description": "Yol [VBUS] F.Cu üzerinde, uzunluk 15.0000 mm",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 5.0
+                    },
+                    "uuid": "a43e9d32-2c54-43aa-add8-43e32b9b2219"
+                }
+            ],
+            "severity": "warning",
+            "type": "track_dangling"
+        },
+        {
+            "description": "Track has unconnected end",
+            "items": [
+                {
+                    "description": "Yol [GND] F.Cu üzerinde, uzunluk 15.0000 mm",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 5.8
+                    },
+                    "uuid": "1d156bc5-d8a8-4fea-9ca4-fb9af5f99092"
+                }
+            ],
+            "severity": "warning",
+            "type": "track_dangling"
+        },
+        {
+            "description": "Track has unconnected end",
+            "items": [
+                {
+                    "description": "Yol [SIGNAL] F.Cu üzerinde, uzunluk 15.0000 mm",
+                    "pos": {
+                        "x": 5.0,
+                        "y": 12.0
+                    },
+                    "uuid": "b7b2390c-3049-4544-b1c3-b1b016d76c14"
+                }
+            ],
+            "severity": "warning",
+            "type": "track_dangling"
+        }
+    ]
+}

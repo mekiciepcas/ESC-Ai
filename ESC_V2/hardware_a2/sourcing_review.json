@@ -1,0 +1,10 @@
+{
+ "review_date":"2026-09-13",
+ "scope":"Webde görüntülenen bilgi; canlı sipariş/rezervasyon, Türkiye sevkiyatı ve ikinci üretici yeterliliği doğrulanmadı.",
+ "parts":[
+  {"mpn":"STM32G474RET3","role":"MCU","displayed_stock":4,"source":"https://www.digikey.com/en/products/detail/stmicroelectronics/STM32G474RET3/11590973","crawl_age":"today","decision":"Prototip adedi için değerlendirilir; seri tedarik riski açık. Arama önbelleğindeki 2269 adetle çeliştiğinden açılan sayfadaki 4 adet esas alındı."},
+  {"mpn":"DRV8353FSRTAR","role":"gate_driver","displayed_stock":2857,"source":"https://www.digikey.com/en/products/detail/texas-instruments/DRV8353FSRTAR/13542552","crawl_age":"last week","decision":"A1/A2 F-SPI seçimi; eski DRV8353S için otomatik firmware/kılıf eşdeğerliği iddiası yok."},
+  {"mpn":"LM5164DDAT","role":"auxiliary_buck","displayed_stock":7120,"source":"https://www.digikey.com/en/products/detail/texas-instruments/LM5164DDAT/9954208","crawl_age":"3 days ago","decision":"DDAR yerine DDAT paketleme seçimi; aynı kaynak ailesi, bağımsız ikinci üretici değil."},
+  {"mpn":"CSS4J-4026R-L500F","role":"Kelvin shunt","displayed_stock":null,"source":"https://www.bourns.com/docs/product-datasheets/css4j-4026.pdf","decision":"Elektriksel aday seçildi. Kesin stok ve pad geometrisi yayıma açık."}
+ ]
+}

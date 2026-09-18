@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-15",
+  "selected": {
+    "C1807": "GRM21BR71C105KA01K",
+    "C2101": "C0805C102J5GACTU",
+    "C2102": "C0805C102J5GACTU",
+    "C2103": "C0805C102J5GACTU"
+  },
+  "schematic_nets_unchanged": true,
+  "pcb_pad_nets_unchanged": true,
+  "pcb_mpn_readback": "PASS",
+  "status": "POC_COMPONENT_SELECTION_NOT_BOARD_RELEASE",
+  "sources": [
+    "https://www.murata.com/en-us/products/productdetail?partno=GRM21BR71C105KA01%23",
+    "https://www.digikey.com/en/products/detail/murata-electronics/GRM21BR71C105KA01K/2546959",
+    "https://search.kemet.com/download/specsheet/C0805C102J5GACTU",
+    "https://www.digikey.com/en/products/detail/kemet/C0805C102J5GACTU/411135"
+  ],
+  "stock_note": "Distributor pages reported active and in stock when consulted; not reserved; purchase-time recheck required."
+}

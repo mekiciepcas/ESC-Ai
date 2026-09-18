@@ -1,0 +1,176 @@
+{
+    "$schema": "https://schemas.kicad.org/erc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-09-13T18:16:51",
+    "ignored_checks": [
+        {
+            "description": "Global label only appears once in the schematic",
+            "key": "single_global_label"
+        },
+        {
+            "description": "Four connection points are joined together",
+            "key": "four_way_junction"
+        },
+        {
+            "description": "SPICE model issue",
+            "key": "simulation_model_issue"
+        },
+        {
+            "description": "Assigned footprint doesn't match footprint filters",
+            "key": "footprint_filter"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning"
+    ],
+    "kicad_version": "10.0.6",
+    "sheets": [
+        {
+            "path": "/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a",
+            "violations": []
+        },
+        {
+            "path": "/DC bara / enerji deposu/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/14d87f68-233f-5a94-9487-d364d30c2140",
+            "violations": []
+        },
+        {
+            "path": "/Faz A / paralel MOSFET yarım köprüsü/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/fc337b66-7ef1-554d-bd04-c82882ab814d",
+            "violations": []
+        },
+        {
+            "path": "/Faz B / paralel MOSFET yarım köprüsü/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/cb5ee15f-a2f1-575e-bc38-e1e915773f65",
+            "violations": []
+        },
+        {
+            "path": "/Faz C / paralel MOSFET yarım köprüsü/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/4ac1b0f7-47ef-5aab-9c8f-14dfcb77b93d",
+            "violations": []
+        },
+        {
+            "path": "/Üç faz kapı sürücü / SPI / besleme/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/6b70f80d-abd8-5bfc-936b-cd719f63ec3a",
+            "violations": []
+        },
+        {
+            "path": "/Sürücü / reset anı lojik seviyeleri/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/70be1da0-75d6-50dc-af9b-a955b1592545",
+            "violations": []
+        },
+        {
+            "path": "/Gerilim ölçümü / DC bara/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/11b448d0-85c9-5a01-ab0e-af6ae3ddae16",
+            "violations": []
+        },
+        {
+            "path": "/Gerilim ölçümü / faz A/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/e94602db-c600-5b94-b080-a13f06b7a10f",
+            "violations": []
+        },
+        {
+            "path": "/Gerilim ölçümü / faz B/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/bb9a1c21-fe78-5b5a-9cc4-8ce27e1490d9",
+            "violations": []
+        },
+        {
+            "path": "/Gerilim ölçümü / faz C/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/8b61f762-bd03-5fa4-a0b5-9b2de125cbb6",
+            "violations": []
+        },
+        {
+            "path": "/Faz akımı / ADC filtreleri/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/b8810774-06e7-594d-9af7-674ff3b421fe",
+            "violations": []
+        },
+        {
+            "path": "/Sıcaklık / motor sensörü/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/8514ef86-6a33-5494-ac78-06f4b0cf8162",
+            "violations": []
+        },
+        {
+            "path": "/DC bara → 12 V yardımcı güç/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/90105f3e-8839-50c9-9a58-4ce325e89266",
+            "violations": []
+        },
+        {
+            "path": "/DC bara → 12 V yardımcı güç / devam 2/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/f4c3af4f-1350-5ba5-a11b-bd2bfa3968c0",
+            "violations": []
+        },
+        {
+            "path": "/12 V → 5 V → 3.3 V / analog besleme/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/cf8b406c-8540-563f-80dd-f368f82e585e",
+            "violations": []
+        },
+        {
+            "path": "/12 V → 5 V → 3.3 V / analog besleme / devam 2/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/f62a9791-6a00-558c-a4dd-892ab3938415",
+            "violations": []
+        },
+        {
+            "path": "/STM32G474 / kontrol çekirdeği/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/7cc5e69e-0bd9-5b81-bd05-6734cbe61d13",
+            "violations": []
+        },
+        {
+            "path": "/MCU / bypass / reset / programlama/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/9b8eb7e5-ca58-58e0-8747-74631f169f1e",
+            "violations": []
+        },
+        {
+            "path": "/MCU / bypass / reset / programlama / devam 2/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/c02f7166-c0c0-561c-9257-cd7245710bee",
+            "violations": []
+        },
+        {
+            "path": "/CAN / servis / RC arayüzleri/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/40c1a8c6-f4a8-5c2b-9b20-4e7b1e1939d9",
+            "violations": []
+        },
+        {
+            "path": "/Motor / Hall sensör arayüzü/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/c5555606-8352-5a2a-be1b-fffd1f09c243",
+            "violations": []
+        },
+        {
+            "path": "/Donanım / akım penceresi ve bara aşırı gerilim/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/ebe9b2ef-d9cb-5bb1-9f38-6f2de1008695",
+            "violations": []
+        },
+        {
+            "path": "/Donanım / rasyometrik eşik referansları/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/773f8ca8-87e3-58c2-9a0c-c41c8e9f8e24",
+            "violations": []
+        },
+        {
+            "path": "/Donanım / arıza hafızası ve yeniden kurma/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/bdeb200f-6376-5d6f-b110-cba518e0d6c6",
+            "violations": []
+        },
+        {
+            "path": "/Altı PWM / donanımsal izin kapıları/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/826a0889-2e4a-5067-b8fa-c075fe8ec70f",
+            "violations": []
+        },
+        {
+            "path": "/Altı PWM / donanımsal izin kapıları / devam 2/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/0af88c4b-7c1a-5195-b713-7db0185c7aab",
+            "violations": []
+        },
+        {
+            "path": "/Güç / kontrol kartı arayüzü/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/d44736a7-224d-5500-a5e2-69d1e98d3bb3",
+            "violations": []
+        },
+        {
+            "path": "/Devreye alma / test erişimi/",
+            "uuid_path": "/18c8cc80-d961-52bf-9e4d-d416bedf6b3a/f67d0047-a5f4-5214-94e6-49492326bc50",
+            "violations": []
+        }
+    ],
+    "source": "ESC_3kW_A2.kicad_sch"
+}
