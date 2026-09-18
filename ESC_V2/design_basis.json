@@ -1,90 +1,99 @@
 {
-  "revision": "B1",
-  "date": "2026-09-14",
-  "status": "preliminary_design_targets_not_validated_hardware",
-  "application_assumption": "bench_and_general_purpose_ground_drive_not_flight_qualified",
-  "motor": {
-    "reference": "Golden Motor HPM3000B 48V air_cooled variant",
-    "shaft_power_target_w": 3000,
-    "reference_speed_rpm": 4000,
-    "efficiency_budget_assumption": 0.88,
-    "phase_resistance_ohm": null,
-    "phase_inductance_h": null,
-    "pole_pairs": null,
-    "hall_sequence": null
-  },
-  "battery": {
-    "reference_cell": "Molicel INR21700-P45B",
-    "series": 13,
-    "parallel": 8,
-    "cell_nominal_v": 3.6,
-    "cell_charge_v": 4.2,
-    "cell_capacity_typ_ah": 4.5,
-    "cell_dc_resistance_estimate_ohm": 0.015,
-    "controller_min_operating_v": 39.0,
-    "full_power_min_v": 44.0,
-    "system_discharge_limit_a": 90,
-    "pack_continuous_capability_target_a": 100,
-    "bms_continuous_capability_target_a": 120,
-    "charger_output_v": 54.6,
-    "charger_current_target_a": 5
-  },
-  "inverter": {
-    "efficiency_budget_assumption": 0.97,
-    "phase_rms_design_target_a": 80,
-    "instantaneous_phase_software_limit_target_a": 120,
-    "current_measurement_range_target_a": 150,
-    "pwm_hz": 20000,
-    "parallel_fets_per_switch": 2,
-    "fet_vds_rating_target_v": 100,
-    "hot_fet_rds_estimate_ohm": 0.004,
-    "heatsink_loss_budget_w": 120,
-    "rated_ambient_target_c": 40,
-    "baseplate_target_c": 80,
-    "mcu_candidate": "STM32G474RET3",
-    "gate_driver_candidate": "DRV8353FSRTAR",
-    "aux_buck_candidate": "LM5164DDAT",
-    "regen_enabled_at_initial_bringup": false
-  },
-  "measurement_preliminary": {
-    "bus_divider_top_ohm": 99800,
-    "bus_divider_bottom_ohm": 3320,
-    "adc_reference_v": 3.3,
-    "bus_check_max_v": 80,
-    "low_side_shunt_ohm": 0.0005,
-    "current_amp_gain": 10
-  },
-  "operating_envelope": {
-    "status": "engineering_target_not_hardware_validated",
-    "power_stages_shaft_w": [
-      1500,
-      3000
-    ],
-    "overload_boost_allowed": false,
-    "continuous_target_acceptance": {
-      "minimum_test_minutes": 60,
-      "final_window_minutes": 15,
-      "maximum_abs_temperature_slope_c_per_min": 0.2,
-      "condition": "both duration and stability required; all component limits apply"
+  "revision": "B1-UAV-REBASELINE",
+  "date": "2026-09-19",
+  "status": "uav_system_requirements_reopened_existing_3kw_design_not_validated_for_flight",
+  "application_assumption": "heavy_lift_agricultural_multirotor_uav_esc_development",
+  "qualification_status": "NOT_FLIGHT_QUALIFIED",
+  "qualification_note": "UAV is the intended application. Flight qualification is not claimed until propulsion sizing, electrical/thermal design, firmware, prototype and physical validation gates are completed.",
+  "system_requirement": {
+    "mission": "agricultural_heavy_lift_multirotor_uav",
+    "payload_target_kg": {
+      "min": 70,
+      "max": 100
     },
-    "voltage_derating": {
-      "zero_at_or_below_v": 39,
-      "full_at_v": 44,
-      "command_inhibit_above_v": 54.6,
-      "undervoltage_reenable_v": 40
+    "vehicle_architecture": "TBD_BY_PROPULSION_SIZING",
+    "rotor_count": null,
+    "gross_takeoff_mass_kg": null,
+    "required_hover_thrust_per_rotor_n": null,
+    "required_max_thrust_per_rotor_n": null,
+    "thrust_margin": null,
+    "propeller_diameter_in": null,
+    "motor_kv": null,
+    "battery_series_count": null,
+    "dc_bus_nominal_v": null,
+    "esc_continuous_power_w": null,
+    "esc_peak_power_w": null,
+    "esc_continuous_phase_current_a": null,
+    "esc_peak_phase_current_a": null,
+    "sizing_status": "OPEN_P0",
+    "sizing_rule": "Do not freeze ESC voltage, current, power, MOSFET count, DC-link, connector, shunt or thermal design before propulsion sizing establishes the motor/propeller/battery operating envelope."
+  },
+  "legacy_b1_candidate": {
+    "status": "REFERENCE_ONLY_NOT_UAV_BASELINE",
+    "reason": "The earlier 3 kW / 13S / Golden Motor baseline was created for a bench/general-purpose ground-drive assumption and does not establish suitability for the requested heavy-lift UAV application.",
+    "reuse_policy": "Retain architecture, circuits and verification assets only where they pass the UAV rebaseline review. Do not continue production routing solely from this candidate.",
+    "motor": {
+      "reference": "Golden Motor HPM3000B 48V air_cooled variant",
+      "shaft_power_target_w": 3000,
+      "reference_speed_rpm": 4000,
+      "efficiency_budget_assumption": 0.88,
+      "phase_resistance_ohm": null,
+      "phase_inductance_h": null,
+      "pole_pairs": null,
+      "hall_sequence": null
     },
-    "baseplate_derating": {
-      "full_at_or_below_c": 70,
-      "zero_at_or_above_c": 80,
-      "measurement_mapping": "PCB NTC correlation or separate baseplate sensor required"
+    "battery": {
+      "reference_cell": "Molicel INR21700-P45B",
+      "series": 13,
+      "parallel": 8,
+      "cell_nominal_v": 3.6,
+      "cell_charge_v": 4.2,
+      "cell_capacity_typ_ah": 4.5,
+      "cell_dc_resistance_estimate_ohm": 0.015,
+      "controller_min_operating_v": 39.0,
+      "full_power_min_v": 44.0,
+      "system_discharge_limit_a": 90,
+      "pack_continuous_capability_target_a": 100,
+      "bms_continuous_capability_target_a": 120,
+      "charger_output_v": 54.6,
+      "charger_current_target_a": 5
     },
-    "reference_torque_nm": {
-      "1500W": 3.5809862196,
-      "3000W": 7.1619724391
+    "inverter": {
+      "efficiency_budget_assumption": 0.97,
+      "phase_rms_design_target_a": 80,
+      "instantaneous_phase_software_limit_target_a": 120,
+      "current_measurement_range_target_a": 150,
+      "pwm_hz": 20000,
+      "parallel_fets_per_switch": 2,
+      "fet_vds_rating_target_v": 100,
+      "hot_fet_rds_estimate_ohm": 0.004,
+      "heatsink_loss_budget_w": 120,
+      "rated_ambient_target_c": 40,
+      "baseplate_target_c": 80,
+      "mcu_candidate": "STM32G474RET3",
+      "gate_driver_candidate": "DRV8353FSRTAR",
+      "aux_buck_candidate": "LM5164DDAT",
+      "regen_enabled_at_initial_bringup": false
     },
-    "maximum_rpm": null,
-    "maximum_rpm_status": "requires motor sample and commutation review before high speed tests",
-    "model": "planning/sprint1_envelope.py",
-    "decision_record": "planning/SPRINT_01_UYGULAMA.md"
-  }
+    "measurement_preliminary": {
+      "bus_divider_top_ohm": 99800,
+      "bus_divider_bottom_ohm": 3320,
+      "adc_reference_v": 3.3,
+      "bus_check_max_v": 80,
+      "low_side_shunt_ohm": 0.0005,
+      "current_amp_gain": 10
+    }
+  },
+  "design_freeze_gates": [
+    "UAV-01 mission and gross-mass envelope",
+    "UAV-02 rotor count and thrust margin",
+    "UAV-03 motor/propeller operating points and source data",
+    "UAV-04 battery voltage/current architecture",
+    "UAV-05 ESC continuous/peak electrical envelope",
+    "UAV-06 semiconductor/topology loss and SOA review",
+    "UAV-07 DC-link, sensing, protection and thermal closure",
+    "UAV-08 firmware control/fault architecture",
+    "UAV-09 PCB layout and manufacturing review",
+    "UAV-10 staged bench and propulsion validation"
+  ]
 }
