@@ -1,8 +1,8 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 19:06+03:00  
+Date: 2026-09-19 19:18+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_PRELIMINARY_DATASHEET_PDS00_CREATED`
+Status: `PROGRESS_PDS01_FROZEN_VALUES_MARKED`
 
 ## Progress percentages
 
@@ -12,50 +12,61 @@ Status: `PROGRESS_PRELIMINARY_DATASHEET_PDS00_CREATED`
 - Major product gates closed: **0/8 = 0%**.
 - U1 KiCad architecture scaffold: **100% structure coverage**.
 - U1 component-bearing production-intent schematic: **0%**.
-- Preliminary engineering datasheet: **100% for the current PDS-00 concept snapshot only**.
 
-Product counters remain unchanged because PDS-00 documents the current evidence state; it does not freeze new product ratings.
+Product counters remain unchanged. This run improved datasheet status clarity only; it did not freeze a new product value.
 
 ## Run summary
 
-The user requested a datasheet while continuing the ESC design. A versioned preliminary engineering datasheet, `ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md`, was created as a controlled concept-stage snapshot. The document explicitly separates user targets, planned architecture, candidates, OPEN requirements and TRADE_ONLY benchmark stress references so the datasheet cannot accidentally be read as a production rating sheet.
+The user requested that frozen data be visibly marked in the preliminary datasheet. Instead of modifying PDS-00 in place, a new controlled revision `ESC_U1_PRELIMINARY_DATASHEET_PDS-01.md` was created.
 
-A four-page PDF derivative was also generated for user delivery and visually inspected page-by-page after rendering. No clipping, overlap or missing-glyph issue was observed.
+PDS-01 uses an explicit status legend:
 
-## Datasheet contents
+- `FROZEN` = accepted product-level requirement/target.
+- `TRADE_ONLY` = benchmark-derived stress-screening value, not a guaranteed rating.
+- `CANDIDATE` = engineering option under evaluation.
+- `OPEN` / `LEGACY` = not frozen.
 
-PDS-00 records:
+## Frozen product-value result
 
-- 70-100 kg as **payload target**, not MTOW.
-- DC operating voltage, phase current, power, PWM and eRPM as **OPEN** product requirements.
-- 81 V, 120 A continuous, 300 A / 3 s and 4.64 kW only as **TRADE_ONLY architecture stress references** from the current benchmark set.
-- 120 V and 150 V MOSFET classes as carried-forward trade candidates; no winner selected.
-- 100 V as legacy/reference comparison, not the preferred primary path for the current ~80 V benchmark screen.
-- Planned 3-phase VSI, FOC/SVPWM-capable control, current/voltage/temperature sensing, hardware trip, PWM inhibit and CAN-family interface direction.
-- Candidate MCU, gate-driver and CAN parts without promoting them to production selection.
-- Mechanical dimensions, mass, cooling, environmental and connector requirements as OPEN.
-- Verification state: scaffold/software-baseline evidence exists, but component-bearing U1 schematic, PCB, physical switching, thermal, EMI, dyno and flight qualification remain NOT RUN / NOT STARTED.
+The current G1 authority has **1 PASS row out of 46**. Therefore the only numerical product value marked as frozen is:
+
+- **70-100 kg payload target bounds** (`G1_REQUIREMENTS_MATRIX.json`, row `G0-01`).
+
+The following remain explicitly non-frozen:
+
+- 81 V architecture stress reference,
+- 120 A continuous bus-current benchmark,
+- 300 A / 3 s peak-current benchmark,
+- 4.64 kW benchmark propulsion power,
+- 120 V / 150 V MOSFET voltage classes,
+- MCU and gate-driver candidates,
+- DC-bus operating voltage,
+- phase RMS/peak current,
+- PWM frequency,
+- eRPM,
+- rotor count,
+- battery series count,
+- mechanical dimensions/mass/cooling/environmental ratings.
 
 ## Files changed
 
-- `planning/ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md` - new versioned preliminary datasheet source.
-- `planning/autonomy_state.json` - AUTO-STATE-37.
+- `planning/ESC_U1_PRELIMINARY_DATASHEET_PDS-01.md` - new versioned datasheet source with explicit frozen-state classification.
+- `planning/autonomy_state.json` - AUTO-STATE-38.
 - `planning/AUTONOMOUS_HANDOFF.md` - this handoff.
 
-No B1/U1 KiCad electrical source, PCB, Gerber, production BOM or release package was modified.
+A new PDF derivative was generated as `ESC_U1_Preliminary_Datasheet_PDS-01_Frozen_Marked.pdf`. It was rendered and visually checked; no clipping/overlap issue was observed. The PDF uses green only for the true frozen product value, orange for trade-only references, yellow for candidates, grey for open/legacy items, and blue for planned/verified tooling-state items.
 
 ## Engineering boundary
 
-PDS-00 is explicitly **not a production datasheet**. `OPEN`, `TRADE_ONLY`, `PLANNED`, `CANDIDATE` and `REVALIDATE` fields are not guaranteed product ratings. The document is intended to align the mechanical, propulsion, battery and ESC co-design while G0/G1 remain open.
+No benchmark value was promoted into a product requirement. No B1/U1 KiCad electrical source, PCB, Gerber, production BOM or release package was modified. `U1-SCH-R001` remains unallocated.
 
 ## Exact next recommended tasks
 
 1. Run the normalized **120 V vs 150 V MOSFET loss comparison** using explicit trade-only sweep points for current, PWM and junction temperature.
 2. Screen gate-driver voltage-domain and gate-current compatibility for both classes.
 3. Build trade-only DC-link/precharge/transient bounding calculations around the current 80 V-class benchmark.
-4. Extract source-backed motor load-curve operating points to begin replacing broad bus-current references with propulsion-linked estimates.
-5. Keep `U1-SCH-R001` unallocated until G1/G2 page readiness closes.
+4. Continue extracting source-backed motor operating points so phase-current requirements can eventually be frozen from propulsion evidence.
 
 ## Next-run briefing
 
-Start with the 120 V versus 150 V loss trade. PDS-00 is now the human-readable concept snapshot and should be revised as PDS-01, PDS-02, etc. rather than silently rewriting released snapshots when major design status changes. Mandatory product metrics remain **100% requirements structure / 2.2% G1 closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
+Use PDS-01 as the current human-readable datasheet snapshot. Do not mark any additional numerical value `FROZEN` until the relevant G0/G1/G2 authority closes it. Mandatory product metrics remain **100% requirements structure / 2.2% G1 closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
