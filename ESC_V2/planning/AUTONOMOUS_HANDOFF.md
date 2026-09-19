@@ -1,106 +1,99 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 19:41+03:00  
+Date: 2026-09-19 19:50+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_PRODUCT_BASELINE_PB01_FROZEN_DASHBOARD_G0_ALIGNED`
+Status: `PROGRESS_PRODUCT_BASELINE_PB02_FROZEN_AND_CI_VERIFIED`
 
 ## Progress percentages
 
 - Requirements planned-domain/schema structure: **12/12 = 100%**.
-- G1 SYSTEM FREEZE value closure: **8/46 PASS = 17.4%**.
-- Backlog tasks explicitly DONE: **1/25 = 4%**.
+- G1 SYSTEM FREEZE value closure: **22/46 PASS = 47.8%**.
+- Backlog tasks explicitly DONE: **2/25 = 8%**.
 - Major product gates closed: **0/8 = 0%**.
 - U1 KiCad architecture scaffold: **100% structure coverage**.
 - U1 component-bearing production-intent schematic: **0%**.
 
-This run materially increased actual product-value closure. It did not claim G0/G1 gate completion or physical verification.
+This run materially advanced the controlled product baseline. It did not claim physical verification, G0/G1 closure or production readiness.
 
 ## Controlled product baseline
 
-`PRODUCT_BASELINE_PB-01.json` is the first controlled partial product baseline. Any change to a frozen PB-01 decision requires a new PB revision or linked engineering change record.
+`PRODUCT_BASELINE_PB-02.json` supersedes PB-01 and inherits all PB-01 frozen decisions. Any change to a PB-02 frozen value requires PB-03 or an explicitly linked engineering-change record.
 
-### PB-01 frozen decisions
+### Newly frozen by PB-02
 
-1. Payload target: **70–100 kg payload**.
-2. Vehicle architecture: **X8 coaxial, four arms, eight independently controlled motor/ESC channels**.
-3. Single motor/ESC failure: **controlled landing required**; continued hover at maximum payload is not required.
-4. Full-charge DC-bus ceiling: **<=80 V**.
-5. Repetitive controlled bus/switching transient ceiling: **<=120 V** at the semiconductor terminal stress domain; repetitive normal operation shall not rely on avalanche.
-6. Power semiconductor voltage class: **>=150 V**; exact MOSFET and parallel count remain open.
-7. Gate-driver architecture: **three independent high-voltage half-bridge drivers**. Legacy `DRV8353FSRTAR` is excluded from the U1 primary baseline; exact driver remains open.
-8. Flight-controller link: **CAN-FD capable with Classic CAN compatibility**; exact bit rate/message map/transceiver remain implementation decisions.
-9. Arming policy: power-up/reset DISARMED; valid FC command may request arm; independent hardware inhibit has final authority; latched fault inhibits PWM; no automatic re-arm.
-10. Core topology: **3-phase BLDC/PMSM + 3-phase two-level six-switch VSI + FOC/SVPWM-capable control**.
+1. **Nominal payload:** 85 kg.
+2. **Operating-empty mass budget:** <=80 kg, excluding variable payload but including propulsion, battery, structure, avionics and fixed mission hardware.
+3. **MTOW design targets:** 150 / 165 / 180 kg for 70 / 85 / 100 kg payload cases.
+4. **Coaxial sizing factor:** 0.85 pending physical correlation; the final vehicle must still meet the frozen thrust requirements regardless of measured interaction.
+5. **Normal static thrust-to-weight:** >=1.6 at maximum design MTOW.
+6. **Propulsion performance class:** 56x20 inch folding propeller, 45KV, 18S, >=27 kgf rated isolated thrust, >=60 kgf isolated max thrust, propulsion-unit mass target <=4.3 kg. Exact production motor/propeller MPN remains open.
+7. **Max-MTOW hover sizing:** 22.5 kgf physical vehicle-share per rotor; 26.471 kgf isolated-equivalent using the 0.85 coaxial factor.
+8. **Normal 1.6 T/W point:** 42.353 kgf isolated-equivalent per rotor at 180 kg MTOW.
+9. **One propulsion-channel loss / controlled landing sizing:** 30.252 kgf isolated-equivalent per remaining rotor at 180 kg MTOW.
+10. **Battery architecture:** 18S high-rate lithium, 66.6 V nominal and 75.6 V full charge, within inherited <=80 V outer ceiling. Pack Ah/Wh and exact cell/pouch remain open.
+11. **ESC DC capability:** >=70 A continuous, >=200 A for >=3 s, >=4.8 kW continuous input and >=11.5 kW short-duration input capability.
+12. **Controller electrical-speed capability:** >=60,000 eRPM.
+
+PB-01 inherited values remain frozen: X8 architecture, eight independent channels, controlled-landing failure policy, <=120 V repetitive controlled switch stress, >=150 V power semiconductor class, independent high-voltage half-bridge gate-driver architecture, CAN-FD/Classic-CAN compatibility, deliberate arming/no-auto-rearm policy, and BLDC/PMSM + two-level VSI + FOC/SVPWM core topology.
+
+## Why the 56-inch / X13-class branch won the sizing baseline
+
+The current manufacturer reference is Hobbywing X13 G2: 56x20 propeller class, 45KV, 18S, 27 kg rated thrust per axis, 60 kg max thrust, 4.185 kg propulsion-unit mass and 25-80 V operating input range. Eight reference propulsion units total 33.48 kg, leaving 46.52 kg inside the frozen 80 kg operating-empty budget for battery, structure, fixed mission equipment, avionics, landing gear and wiring.
+
+At 180 kg MTOW, raw hover share is 22.5 kgf/rotor. Applying the frozen 0.85 coaxial sizing factor gives 26.471 kgf isolated-equivalent, just inside the 27 kgf rated class. This makes the X13-class branch materially lighter than the X15 G2 benchmark while still retaining substantial maximum-thrust headroom.
+
+Source-backed manufacturer-curve interpolation at 69 V gives approximately:
+
+- 26.471 kgf -> 44.23 A, 3.05 kW, 1632 rpm
+- 30.252 kgf -> 54.07 A, 3.73 kW, 1744 rpm
+- 42.353 kgf -> 90.81 A, 6.26 kW, 2058 rpm
+
+These are sizing references from the manufacturer isolated-rotor curve, not physical results from the custom coaxial vehicle.
 
 ## G1 closure impact
 
-The following eight rows are PASS:
+G1 value closure advanced from **8/46 = 17.4%** to **22/46 = 47.8%**.
 
-- `G0-01` payload bounds
-- `G0-13` single propulsion failure policy
-- `G1A-01` X8 coaxial architecture
-- `G1A-02` rotor count = 8
-- `G1C-04` full-charge bus <=80 V
-- `G1C-05` repetitive controlled transient <=120 V
-- `G1-17` FC CAN-FD / Classic CAN-compatible interface
-- `G1-18` arming and re-arm state policy
+Newly closed rows include nominal payload, MTOW targets, hover/max-thrust requirements, thrust margin, 56-inch/45KV propulsion class, >=60 keRPM controller capability, 18S series architecture, nominal bus, continuous/peak DC power and continuous/peak DC current.
 
-G1 value closure is **8/46 = 17.4%**. G0 and G1 remain OPEN because MTOW, mission/energy/environment, thrust, exact motor/propeller, exact battery, current, power, PWM, eRPM, protection thresholds and thermal values remain unresolved.
+Phase RMS/peak current remains deliberately OPEN because DC current is not copied into the phase-current domain.
 
-## Consistency and dashboard evidence
+## Backlog impact
 
-`verify_product_baseline_pb01.py` plus `.github/workflows/product-baseline-pb01.yml` enforce PB-01 consistency across mission requirements, design basis, G1 matrix and progress records.
+`UAV-002 Rotor architecture trade study` is now **DONE** because PB-02 numerically closes rotor count, hover thrust, maximum-thrust capability and thrust margin.
 
-GitHub Actions run `35455224602` completed SUCCESS with the expected PB-01 outputs including X8, rotor count 8, controlled landing, <=80 V bus, <=120 V repetitive transient, >=150 V semiconductor class, CAN-FD compatibility and G1 8/46 = 17.4%.
+Backlog DONE is now **2/25 = 8%**. `UAV-003` remains the other completed task.
 
-A dashboard refresh regression was detected after the baseline update: the static validator failed because `schematic_revision_control_policy_percent` had been omitted from the new autonomy state. The engineering data were correct; the dashboard-state contract was incomplete. `AUTO-STATE-41` restored the missing contract fields. Dashboard run `35455376900` then completed SUCCESS with build and static validation PASS.
+## Verification evidence
 
-After `G0_INPUT_CLOSURE_PACKET.json` was revised to `G0-CLOSURE-02`, the dashboard refreshed again. Current dashboard snapshot shows:
+- `verify_product_baseline_pb02.py` enforces PB-02 consistency across mission requirements, G1 matrix, progress and backlog.
+- `.github/workflows/product-baseline-pb02.yml` runs the checker on relevant changes.
+- GitHub Actions run `35456003134` completed **SUCCESS**.
+- Dashboard refresh run `35456024478` completed **SUCCESS** after the PB-02 state update.
 
-- requirements structure: **100%**
-- G1 value closure: **17.4%**
-- backlog DONE: **4%**
-- schematic revision-control policy: **100%**
-- remaining G0 input fields: **12**
-- next schematic revision: `U1-SCH-R001`
+This verification proves repository consistency only. It is not bench, thermal, EMI, dyno or flight evidence.
 
 ## G0 alignment
 
-`G0_INPUT_CLOSURE_PACKET.json` now marks two former user-input fields as closed by PB-01:
+`G0_INPUT_CLOSURE_PACKET.json` is now `G0-CLOSURE-03`. Nominal payload is no longer an open user input, so the remaining G0 input count is reduced to **11**.
 
-- single motor/ESC failure policy = `controlled_landing`
-- coaxial allowed = `true`
-
-`G0_USER_INPUT_FORM.md` was updated accordingly and now requests only the **12 remaining** real product inputs. It no longer asks the user to re-decide PB-01-frozen architecture/failure values.
-
-## Files materially changed in this productization step
-
-- `planning/PRODUCT_BASELINE_PB-01.json`
-- `planning/mission_requirements.json` -> `MISSION-01`
-- `design_basis.json` -> `U1-PB01-PARTIAL-BASELINE`
-- `planning/G1_REQUIREMENTS_MATRIX.json` -> `G1-MATRIX-04`
-- `planning/REQUIREMENTS_PROGRESS.json` -> `REQ-PROGRESS-02`
-- `planning/verify_product_baseline_pb01.py`
-- `.github/workflows/product-baseline-pb01.yml`
-- `planning/RUN_2026-09-19_1935_PRODUCT_BASELINE_PB01.md`
-- `planning/autonomy_state.json` -> `AUTO-STATE-41`
-- `planning/G0_INPUT_CLOSURE_PACKET.json` -> `G0-CLOSURE-02`
-- `planning/G0_USER_INPUT_FORM.md`
-- dashboard generated snapshot/index/validation through CI
-- `planning/AUTONOMOUS_HANDOFF.md` — this handoff
-
-No B1/U1 electrical schematic source, PCB, Gerber, production BOM or release package was modified. `U1-SCH-R001` remains unallocated.
+Remaining G0 items are: structural/airframe mass allocation, battery mass, fixed mission-equipment mass, total flight time, hover-equivalent time, minimum and maximum ambient, maximum altitude, maximum design wind, ingress target and maximum vehicle span.
 
 ## Exact next recommended tasks
 
-1. Build the PB-01 X8 coaxial **mass/thrust sensitivity loop**, including explicit coaxial interference assumptions and source-backed propulsion-system masses.
-2. From that loop choose a coherent **nominal MTOW working baseline** and calculate hover/peak thrust per rotor.
-3. Select an exact motor/propeller operating region from manufacturer curves and derive DC power/current and RPM/eRPM.
-4. Select exact battery chemistry/series/energy inside the frozen `<=80 V` full-charge boundary.
-5. Freeze continuous/peak DC and phase current, power, PWM and eRPM.
-6. Optimize exact 150 V MOSFET MPN/parallel count, gate-driver MPN/current, sensing, DC-link and thermal design.
-7. Create the next datasheet revision with all PB-01 frozen values visibly marked.
+1. Derive **phase RMS and peak current** from a motor electrical model consistent with the frozen 56x20 / 45KV / 18S class; do not equate DC and phase current.
+2. Freeze **PWM frequency range** using >=60 keRPM requirement, motor inductance evidence and 150 V MOSFET switching-loss/ripple trade.
+3. Close **18S battery energy**: Ah, Wh, minimum loaded bus, sag, reserve and BMS/disconnect behavior from a mission-energy model.
+4. Allocate the frozen **<=80 kg operating-empty mass budget** across propulsion, battery, frame, fixed mission hardware, avionics/wiring and landing gear.
+5. Then select exact **150 V MOSFET MPN + parallel count + high-voltage gate-driver MPN**, followed by current sensing, DC-link, precharge and thermal architecture.
+6. Produce `PDS-02` with all PB-02 frozen values visibly marked.
+
+## Engineering boundary
+
+No B1/U1 component-bearing electrical schematic, PCB, Gerber, production BOM or release package was modified. `U1-SCH-R001` remains unallocated until G1/G2 readiness closes.
 
 ## Next-run briefing
 
-Start from `PRODUCT_BASELINE_PB-01.json`; do not reopen its frozen decisions without a new PB revision or engineering-change record. Product critical path is now `X8 mass loop -> MTOW -> thrust -> motor/prop -> battery -> current/power -> exact power-stage parts`. Mandatory project metrics are **100% requirements structure / 17.4% G1 value closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
+Start from `PRODUCT_BASELINE_PB-02.json`. Do not reopen PB-02 values without PB-03/ECO. Product critical path is now `phase-current model -> PWM -> battery energy/min bus -> exact 150 V power stage -> sensing/DC-link/thermal -> U1-SCH-R001 readiness`.
+
+Mandatory metrics: **Requirements structure 100% / G1 SYSTEM FREEZE 47.8% / Backlog DONE 8% / Major gates 0% / U1 component-bearing schematic 0%**.
