@@ -1,0 +1,30 @@
+name: Verify Product Baseline PB-01
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-01.json'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/design_basis.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/verify_product_baseline_pb01.py'
+      - '.github/workflows/product-baseline-pb01.yml'
+  pull_request:
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-01.json'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/design_basis.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/verify_product_baseline_pb01.py'
+      - '.github/workflows/product-baseline-pb01.yml'
+
+jobs:
+  verify-product-baseline:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify frozen PB-01 consistency
+        run: python3 ESC_V2/planning/verify_product_baseline_pb01.py
