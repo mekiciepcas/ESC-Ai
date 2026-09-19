@@ -1,10 +1,10 @@
-# UAV ESC ürün geliştirme planı — PB-07 rebaseline
+# UAV ESC ürün geliştirme planı — PB-08 common-platform baseline
 
 Tarih: 19.09.2026  
 Branch: `uav-rebaseline`  
 Aktif ürün yönü: **1.5–3.0 kW toplam propulsion giriş gücü sınıfında utility multirotor UAV + custom ESC platformu**.
 
-> PB-01..PB-06 ağır-yük çalışmaları silinmez; tarihsel kanıt olarak korunur. PB-07, 70–100 kg payload / 150–180 kg MTOW / X8 / 18S / 500–1050 A yüksek-akım sayısal kapsamını aktif ürün otoritesi olmaktan çıkarmıştır.
+> PB-01..PB-06 ağır-yük çalışmaları silinmez; tarihsel kanıt olarak korunur. PB-07 ürünü düşük-güç sınıfına rebaseline etti. PB-08 bu yeni ürün için ortak 12S elektrik platformunu ve ESC donanım kapasitesini dondurur.
 
 ## 0. Temel çalışma kuralları
 
@@ -20,12 +20,13 @@ Kurallar:
 - Her `.kicad_sch` değişikliği yeni şema revizyonu ister.
 - Gerber/manufacturing release/main merge explicit user approval olmadan yapılmaz.
 
-## PHASE A — PB-07 system / propulsion freeze
+## PHASE A — PB-08 system / propulsion freeze
 
 ### A1 — Mission + mass envelope
 
 Kontrollü mevcut değerler:
 - toplam propulsion elektriksel güç ailesi: **1.5–3.0 kW**,
+- üst continuous ürün tasarım noktası: **3.0 kW**,
 - nominal mission target: **>=10 min**,
 - gross-pack reserve sizing policy: **>=20%**.
 
@@ -42,7 +43,7 @@ Aktif trade:
 - **Hexa non-coaxial — leading candidate**,
 - **Quad non-coaxial — alternate**.
 
-Current manufacturer curves show the 3 kW study point is roughly a 15–18 kg MTOW exploration band when screened at 1.6 static T/W. This is not yet a frozen MTOW.
+Current manufacturer curves show the 3 kW study point is roughly a 15–18 kg MTOW exploration band when screened at 1.6 static T/W. PB-08 mass roll-up adds a hard decision rule: the Hexa MTOW screen gains 2.025 kg over Quad, therefore the break-even installed mass for each of the two extra propulsion axes is **1.0125 kg/axis** before extra arm/frame mass. Exact custom propulsion-axis and structural mass still decide the winner.
 
 Kapanış G1A:
 - rotor count,
@@ -66,41 +67,46 @@ Kapanış G1B:
 
 ### A4 — Battery architecture
 
-Active candidates:
-- **12S — leading**,
-- **14S — alternate**.
+PB-08 frozen common bus:
+- **12S**,
+- **43.2 V nominal** system convention,
+- **50.4 V full charge**,
+- **36.0 V loaded floor for full rated ESC power**,
+- below 36 V: controlled derating / mission-termination policy required,
+- **>=750 Wh gross rated pack-energy target for the 3 kW upper variant**.
 
-Energy sensitivity for 10 min + 20% gross reserve before pack losses:
-- 1.5 kW constant: 312.5 Wh,
-- 2.0 kW: 416.7 Wh,
-- 2.5 kW: 520.8 Wh,
-- 3.0 kW: 625 Wh.
+Calculation references only:
+- P50B 12S4P preferred 3 kW energy topology,
+- P50B 12S3P lower-power/lightweight reference.
 
-P50B 12S3P/12S4P are calculation candidates only.
+Exact cell/P-count/pack mass/sag/BMS/fuse/disconnect remain OPEN.
 
 Kapanış G1C:
-- S/P count,
-- min/nom/full bus,
-- current/peak duration,
-- energy/mass/sag,
+- exact pack implementation and current/peak duration,
+- mass/sag/SOC-temperature-SOH envelope,
 - BMS/fuse/disconnect/precharge behavior.
 
 ### A5 — Per-ESC electrical envelope
 
-Old PB-06 per-ESC >=4.8 kW / >=11.5 kW and 125–375 A phase-current values are retired.
+PB-08 frozen hardware capability:
+- **>=1.0 kW continuous input per ESC**,
+- **>=1.5 kW for >=3 s per ESC**,
+- **>=30 A continuous DC per ESC**,
+- **>=50 A for >=3 s per ESC**,
+- **>=100 V power-semiconductor class**,
+- **<=75 V repetitive controlled switch-terminal stress target**,
+- no normal repetitive avalanche reliance.
 
-New values will be derived after rotor architecture and battery freeze. Current first-order 3 kW study split:
-- Hexa: ~500 W/axis,
-- Quad: ~750 W/axis.
+These are hardware capability values. Vehicle-level normal aggregate propulsion remains 1.5–3.0 kW; vehicle simultaneous peak policy remains OPEN until rotor/degraded-mode closure.
 
-Kapanış G1:
-- continuous/peak DC power/current,
+Still required for G1:
 - phase RMS/peak current,
 - current-sense range,
 - eRPM,
 - PWM candidate/final value,
-- bus/transient class,
-- environment/protection/thermal limits.
+- pack peak current,
+- environment/protection/thermal limits,
+- DC-link ripple/transient-energy requirements.
 
 ## Active execution sprint — S1R
 
@@ -108,18 +114,19 @@ Authority: `SPRINT_PB07_LOW_POWER_REBASELINE.md`
 
 1. **S1R.1 Product power rebaseline — DONE**
 2. **S1R.2 Quad/Hexa + MTOW/payload — IN PROGRESS**
-3. S1R.3 12S/14S + energy/current/mass
-4. S1R.4 per-ESC envelope + B1/Faz2/Faz3 reuse audit
-5. S1R.5 PWM/semiconductor/protection/thermal pre-freeze
-6. S1R.6 G1 closeout
+3. **S1R.3A common 12S bus + common ESC hardware envelope — DONE in parallel via PB-08**
+4. S1R.3B exact pack energy/current/mass/sag/BMS closure
+5. S1R.4 exact motor/prop + per-ESC phase-current/eRPM + B1/Faz2/Faz3 reuse audit
+6. S1R.5 PWM/semiconductor exact MPN/count/protection/thermal pre-freeze
+7. S1R.6 G1 closeout
 
-A reduction in G1 completion percentage after PB-07 is expected: incompatible heavy-lift values were intentionally reopened.
+The PB-07 rebaseline intentionally reopened incompatible heavy-lift values; PB-08 now restores only those values that can be closed safely without inventing vehicle mass or motor data.
 
 ## PHASE B — ESC architecture freeze
 
 After G1:
 - 3-phase 2-level VSI topology review,
-- exact semiconductor voltage class / MPN / parallel count,
+- exact >=100 V semiconductor MPN / parallel count,
 - gate driver,
 - MCU,
 - phase-current sensing,
@@ -130,7 +137,7 @@ After G1:
 - fault architecture,
 - thermal path.
 
-Special PB-07 action: re-audit B1 because its historical ~3 kW / ~48 V / 100 V device class is now close to the active product power/voltage region. Reuse requires recalculation, not copy/paste.
+Special PB-08 action: re-audit B1 because its historical ~3 kW / ~48 V / 100 V device class is now close to the active platform. Reuse requires recalculation and exact rating checks, not copy/paste.
 
 Kabul kapısı: **G2 — ARCHITECTURE FREEZE**.
 
@@ -201,8 +208,8 @@ Kabul kapısı: **G7 — FLIGHT TEST READY**.
 
 ## Major gates
 
-- G0 Mission freeze — OPEN PB-07
-- G1 System electrical freeze — OPEN PB-07
+- G0 Mission freeze — OPEN PB-08
+- G1 System electrical freeze — OPEN PB-08 partial
 - G2 Architecture freeze — blocked by G1
 - G3 Schematic review — blocked by G2
 - G4 Firmware bench ready — blocked by G2
@@ -212,4 +219,4 @@ Kabul kapısı: **G7 — FLIGHT TEST READY**.
 
 ## Immediate dependency chain
 
-`PB-07 -> Quad/Hexa + MTOW/payload -> 12S/14S + energy -> per-ESC envelope + B1 reuse -> PWM/protection/thermal -> G1 -> G2 -> U1-SCH-R001`
+`PB-08 common 12S/ESC platform -> Quad/Hexa + installed-axis/frame mass -> payload/MTOW -> exact motor/prop + pack implementation -> phase current/eRPM/PWM -> exact MOSFET/driver/sensing/DC-link/protection/thermal -> G1 -> G2 -> U1-SCH-R001`
