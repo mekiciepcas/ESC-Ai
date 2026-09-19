@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T17:10:06+00:00",
-  "source_commit": "d65db9cde2c6",
+  "generated_at": "2026-09-19T17:10:59+00:00",
+  "source_commit": "9c6b6fc6d193",
   "plan_revision": "UAV-PLAN-06",
   "task_count": 25,
   "done_count": 2,
@@ -15,6 +15,6 @@
   "schematic_revision_control_percent": 100.0,
   "missing_g0_inputs": 11,
   "next_schematic_revision": "U1-SCH-R001",
-  "current_task": "PB02_PHASE_CURRENT_PWM_ENERGY_ENVIRONMENT_CLOSURE",
-  "last_run_status": "PROGRESS_U1_RATED_HIGH_PERFORMANCE_STRATEGY_LOCKED"
+  "current_task": "S1_1_PHASE_CURRENT_MODEL_CLOSURE",
+  "last_run_status": "PROGRESS_PLAN_AUDITED_SPRINT_S1_ACTIVATED_TRACEABILITY_ALIGNED"
 }
