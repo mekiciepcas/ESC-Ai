@@ -1,0 +1,74 @@
+name: Schematic Revision Policy
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/hardware_b1/**/*.kicad_sch'
+      - 'ESC_V2/hardware_u1_scaffold/**/*.kicad_sch'
+      - 'ESC_V2/hardware_u1/revisions/**'
+      - 'ESC_V2/planning/SCHEMATIC_VERSIONING_POLICY.md'
+      - 'ESC_V2/planning/SCHEMATIC_REVISION_REGISTER.json'
+      - 'ESC_V2/planning/SCHEMATIC_REVISION_MANIFEST.template.json'
+      - 'ESC_V2/planning/verify_schematic_revision_policy.py'
+      - '.github/workflows/schematic-revision-policy.yml'
+  pull_request:
+    paths:
+      - 'ESC_V2/hardware_b1/**/*.kicad_sch'
+      - 'ESC_V2/hardware_u1_scaffold/**/*.kicad_sch'
+      - 'ESC_V2/hardware_u1/revisions/**'
+      - 'ESC_V2/planning/SCHEMATIC_VERSIONING_POLICY.md'
+      - 'ESC_V2/planning/SCHEMATIC_REVISION_REGISTER.json'
+      - 'ESC_V2/planning/SCHEMATIC_REVISION_MANIFEST.template.json'
+      - 'ESC_V2/planning/verify_schematic_revision_policy.py'
+      - '.github/workflows/schematic-revision-policy.yml'
+  workflow_dispatch:
+
+jobs:
+  enforce-revision-lineage:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine changed files and base revision
+        id: diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=""
+          if [ "${{ github.event_name }}" = "push" ]; then
+            CANDIDATE="${{ github.event.before }}"
+            if [ -n "$CANDIDATE" ] && [ "$CANDIDATE" != "0000000000000000000000000000000000000000" ]; then
+              BASE="$CANDIDATE"
+            fi
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+          fi
+
+          if [ -n "$BASE" ]; then
+            git diff --name-only "$BASE" "${{ github.sha }}" > /tmp/schematic-changed-files.txt
+            echo "base_ref=$BASE" >> "$GITHUB_OUTPUT"
+            echo "has_base=1" >> "$GITHUB_OUTPUT"
+          else
+            : > /tmp/schematic-changed-files.txt
+            echo "base_ref=" >> "$GITHUB_OUTPUT"
+            echo "has_base=0" >> "$GITHUB_OUTPUT"
+          fi
+
+          echo 'Changed files considered by policy checker:'
+          cat /tmp/schematic-changed-files.txt || true
+
+      - name: Validate register and immutable revision policy
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "${{ steps.diff.outputs.has_base }}" = "1" ]; then
+            python3 ESC_V2/planning/verify_schematic_revision_policy.py \
+              --changed-files /tmp/schematic-changed-files.txt \
+              --base-ref "${{ steps.diff.outputs.base_ref }}"
+          else
+            python3 ESC_V2/planning/verify_schematic_revision_policy.py
+          fi
