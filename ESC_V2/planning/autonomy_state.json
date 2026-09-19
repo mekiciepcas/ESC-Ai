@@ -1,41 +1,43 @@
 {
-  "revision":"AUTO-STATE-13",
+  "revision":"AUTO-STATE-14",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_X15_ARCHITECTURE_ELECTRICAL_STRESS_MAP",
+  "last_run_status":"PROGRESS_NONBACKPOWER_HV_SENSE_ARCHITECTURE_TRADE",
   "current_gate":"G0_G1",
-  "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION",
+  "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION_WITH_SAFE_G2_PREWORK",
   "current_task":"G0_INPUT_CLOSURE_AND_G1A_FINAL_SELECTION",
   "completed_this_run":[
-    "verified_prior_handoff_and_X15_curve_against_current_branch",
-    "completed_piecewise_linear_X15_69V_current_power_RPM_mapping_for_T125_T150_T175_quad_hex_octo_hover_1p6x_1p8x_cases",
-    "identified_trade_points_exceeding_X15_published_120A_continuous_ESC_current_without_treating_rating_as_product_requirement",
-    "documented_that_DC_input_current_is_not_phase_current_and_mechanical_RPM_is_not_eRPM",
-    "added_X15_TRADE_OPERATING_MAP_as_traceable_trade_artifact"
+    "verified_prior_handoff_product_plan_traceability_backlog_mission_requirements_and_autonomy_state_against_uav_rebaseline",
+    "defined_derived_nonbackpower_HV_sensing_architecture_requirements",
+    "screened_four_voltage_sense_topology_families_without_selecting_production_MPNs",
+    "classified_B1_rail_referenced_BAT54H_clamp_as_not_default_KEEP_for_U1",
+    "defined_powered_unpowered_and_single_fault_verification_needed_before_G2_sensing_closure"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"electrical_stress_screening_improved_but_actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV004"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV004"},
     {"task":"freeze_UAV_004_operating_point","reason":"final_rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_motor_prop_hover_peak_points"},
     {"task":"derive_phase_current_requirement","reason":"manufacturer_curve_reports_DC_input_current_not_phase_RMS_peak_current","blocking_scope":"UAV006_power_stage_current_freeze"},
-    {"task":"freeze_18S_voltage_domain","reason":"battery_architecture_and_switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"}
+    {"task":"freeze_18S_voltage_domain","reason":"battery_architecture_and_switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
+    {"task":"freeze_voltage_sense_topology","reason":"final_VBUS_transient_accuracy_bandwidth_and_exact_power_off_tolerant_device_evidence_open","blocking_scope":"G2_sensing_architecture_freeze"}
   ],
   "next_candidates":[
-    "draft_nonbackpower_voltage_sense_architecture_candidates_independent_of_final_VBUS",
-    "build_source_backed_semiconductor_candidate_parameter_table_for_100_120_150V_trade_only",
+    "build_primary_source_100V_120V_150V_semiconductor_candidate_parameter_table_for_trade_only",
+    "search_exact_power_off_tolerant_buffer_or_measurement_front_end_candidates_for_nonbackpower_sense_path",
     "derive_architecture_elimination_notes_from_X15_map_without_promoting_trade_cases_to_requirements",
     "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "evidence_refs":[
+    "planning/NON_BACKPOWER_HV_SENSE_ARCHITECTURES.md",
+    "planning/ANALOG_RAIL_BACKPOWER_AUDIT.md",
+    "planning/ADC_CLAMP_INJECTION_CLOSURE.md",
     "planning/X15_TRADE_OPERATING_MAP.md",
-    "planning/x15g2_operating_curve.json",
-    "planning/G0_TRADE_BOUNDING_CASES.md",
-    "planning/rotor_trade_study.md",
-    "planning/X15_SCENARIO_MAPPING.md"
+    "planning/UAV_PRODUCT_PLAN.md",
+    "planning/UAV_TRACEABILITY.md"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"X15 trade mapping now quantifies per-axis DC electrical stress across governed MTOW/rotor cases. T150/T175 quad high-thrust cases exceed the reference X15 120A continuous rating, while T175 hex 1.8x interpolates to 113.5A and all governed octo points remain below 120A. This narrows trade space only; G0/G1A remain open."
+  "notes":"A production-independent sensing architecture trade is now recorded. The U1 sense path must not rely on an unpowered MCU/control rail sinking clamp current. Candidate B (protected buffer with explicit power-off input behavior) or D (measurement front-end with explicit power-off tolerance) are preferred study paths; no device/topology is frozen. G0/G1 remain open."
 }
