@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T20:42:24+00:00",
-  "source_commit": "b14adea6a622",
+  "generated_at": "2026-09-19T20:42:45+00:00",
+  "source_commit": "a62ceb915b40",
   "plan_revision": "UAV-PLAN-09",
   "task_count": 25,
   "done_count": 1,
@@ -13,7 +13,7 @@
   "u1_kicad_scaffold_percent": 100.0,
   "u1_component_bearing_schematic_percent": 0.0,
   "schematic_revision_control_percent": 100.0,
-  "missing_g0_inputs": 11,
+  "missing_g0_inputs": 12,
   "next_schematic_revision": "U1-SCH-R001",
   "current_task": "S1_3_BATTERY_ARCHITECTURE",
   "last_run_status": "PB06_HIGH_CURRENT_PATH_SCREENED_SELECTION_OPEN"
