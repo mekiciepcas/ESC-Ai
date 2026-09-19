@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-PROGRESS-08",
+  "revision": "REQ-PROGRESS-09",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "reporting_policy": "Every user-facing project progress output should report at minimum requirements_structure_percent, g1_system_freeze_percent and backlog_done_percent. Broader engineering percentages must be explicitly labeled estimates.",
@@ -10,23 +10,23 @@
     "meaning": "Planned requirement-domain hierarchy/schema/authority coverage, not product-value closure."
   },
   "g1_system_freeze": {
-    "pass_rows": 6,
+    "pass_rows": 15,
     "required_rows": 48,
-    "open_rows": 42,
-    "percent": 12.5,
+    "open_rows": 33,
+    "percent": 31.3,
     "source": "G1_REQUIREMENTS_MATRIX.json",
-    "note": "PB-07 deliberately reopens heavy-lift-dependent values after the product pivot to a 1.5-3.0 kW aggregate-propulsion family. PASS currently retains only the 10-minute mission target, 20% gross-energy reserve, aggregate 1.5-3.0 kW product direction, CAN-FD/Classic-CAN interface and arming/fault authority. The percentage drop is a controlled rebaseline, not loss of historical evidence."
+    "note": "PB-08 freezes the common 12S bus, 36/43.2/50.4 V loaded/nominal/full values, <=75 V repetitive controlled switch-terminal stress target with >=100 V semiconductor class, and per-ESC >=1.0 kW/30 A continuous plus >=1.5 kW/50 A for >=3 s hardware capability. Quad/Hexa, payload/MTOW, exact motor/prop, pack peak current, phase current, PWM, environment and protection remain open. PASS means controlled value closure, not physical verification."
   },
   "backlog": {
     "done_tasks": 1,
     "total_tasks": 25,
     "done_percent": 4.0,
-    "note": "Only the current low-power propulsion market benchmark remains explicitly DONE. The old heavy-lift rotor architecture task was reopened for PB-07 Quad-vs-Hexa selection."
+    "note": "Only the current low-power propulsion market benchmark is explicitly DONE. Battery/ESC tasks advanced materially under PB-08 but remain IN_PROGRESS because exact pack, rotor architecture, phase current, PWM and protection are not closed."
   },
   "gate_closure": {
     "closed_major_gates": 0,
     "major_gates": 8,
     "percent": 0.0,
-    "note": "G0/G1 are reopened for PB-07 because payload/MTOW, rotor count, battery series count, per-ESC envelope, environment, protection and thermal values must be re-derived."
+    "note": "G0/G1 remain open because payload/MTOW, rotor architecture, exact propulsion, pack implementation/peak current, phase/PWM/environment/protection/thermal requirements remain unresolved."
   }
 }
