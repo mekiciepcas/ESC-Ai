@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-MASTER-06",
+  "revision": "REQ-MASTER-07",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "authority": "ESC_V2/planning/REQUIREMENTS_MASTER.json",
@@ -20,7 +20,7 @@
     {"prefix":"SYS","name":"System scope and governance","gate_owner":"ALL","authority_refs":["UAV_PRODUCT_PLAN.md","mission_requirements.json"],"coverage":"DEFINED"},
     {"prefix":"VEH","name":"Vehicle mission mass and rotor architecture","gate_owner":"G0_G1A","authority_refs":["mission_requirements.json","rotor_trade_study.md"],"coverage":"DEFINED"},
     {"prefix":"PROP","name":"Motor propeller and propulsion operating point","gate_owner":"G1B","authority_refs":["propulsion_benchmark.md","propulsion_operating_points.json"],"coverage":"DEFINED"},
-    {"prefix":"PWR","name":"Battery bus input protection precharge regenerative and auxiliary energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json"],"coverage":"DEFINED"},
+    {"prefix":"PWR","name":"Battery bus input protection precharge regenerative and auxiliary energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","U1_RATED_VARIANT_STRATEGY.md"],"coverage":"DEFINED"},
     {"prefix":"INV","name":"Inverter semiconductor PWM gate drive DC link and thermal power stage","gate_owner":"G1_G2_G3","authority_refs":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","POWER_STAGE_LOSS_MODEL.md","DC_LINK_SELECTION_FRAMEWORK.md"],"coverage":"DEFINED"},
     {"prefix":"SNS","name":"Current voltage and temperature sensing","gate_owner":"G2_G3","authority_refs":["HV_SENSE_OUTPUT_SEQUENCING.md","POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","UAV_TRACEABILITY.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
     {"prefix":"CTRL","name":"MCU motor control timing firmware and watchdog","gate_owner":"G2_G4","authority_refs":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md","CONTROL_PLATFORM_PRETRADE.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md"],"coverage":"DEFINED"},
@@ -46,6 +46,6 @@
     "verification_mapping":"REQUIREMENTS_VERIFICATION_MATRIX.json"
   },
   "required_fields_for_every_child_requirement": ["id","parent/domain","requirement_statement","status","value_or_range","source/evidence","rationale","verification_method","acceptance_criteria","dependencies","revision"],
-  "progress": {"planned_domains":12,"defined_domains":12,"structure_domain_coverage_percent":100.0,"g1_required_rows":46,"g1_pass_rows":1,"g1_system_freeze_value_closure_percent":2.2,"note":"100% refers to the planned requirement-domain/schema structure, not product value closure or verification completion. New derived child requirements may be added without changing this structural metric."},
+  "progress": {"planned_domains":12,"defined_domains":12,"structure_domain_coverage_percent":100.0,"g1_required_rows":46,"g1_pass_rows":22,"g1_system_freeze_value_closure_percent":47.8,"note":"100% refers to the planned requirement-domain/schema structure, not product value closure or verification completion. PB-02 currently closes 22 of 46 G1 authority rows; new derived child requirements may be added without changing structural coverage."},
   "gate_chain": ["G0","G1A","G1B","G1C","G1","G2","G3","G4","G5","G6","G7"]
 }
