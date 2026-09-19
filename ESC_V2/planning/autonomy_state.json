@@ -1,22 +1,18 @@
 {
-  "revision":"AUTO-STATE-32",
+  "revision":"AUTO-STATE-33",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_DASHBOARD_IMPLEMENTATION_AUDITED_AND_HARDENED",
+  "last_run_status":"PROGRESS_B1_PASSIVE_SUPPORT_IDENTITY_AUDITED",
   "current_gate":"G0_G1",
-  "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
+  "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_B1_MIGRATION_EVIDENCE",
   "completed_this_run":[
-    "re_checked_actual_uav_rebaseline_branch_head_and_dashboard_generated_files_instead_of_trusting_prior_status",
-    "verified_dashboard_index_is_current_UAV_rebaseline_view_and_not_legacy_B1_3kW_view",
-    "verified_snapshot_matches_current_uav_backlog_requirements_progress_autonomy_state_G0_packet_and_revision_register_values",
-    "verified_dashboard_refresh_workflow_is_path_scoped_and_generated_dashboard_only commits_do_not_recursively_retrigger_it",
-    "found_validation_json_contained_a_stale_unrelated_pcb_preview_claim_from_the_old_dashboard_validator",
-    "replaced_dashboard_validator_with_source_consistency_legacy_leak_section_link_and_source_commit_checks",
-    "observed_GitHub_Actions_dashboard_run_35449459518_complete_successfully_with_static_source_consistency_and_legacy_leak_PASS",
-    "observed_validator_check_25_task_cards_25_local_links_7_required_sections_and_16_source_fields",
-    "observed_generated_dashboard_commit_f8a373bf31a1c0ae541cc5f0f55bde1f4e6daed5",
-    "kept_browser_visual_validation_explicitly_NOT_PERFORMED_instead_of_claiming_visual inspection"
+    "re_read_and_verified_UAV_PRODUCT_PLAN_UAV_TRACEABILITY_uav_backlog_mission_requirements_REQUIREMENTS_MASTER_REQUIREMENTS_PROGRESS_and_AUTONOMOUS_HANDOFF_against_actual_branch",
+    "confirmed_product_critical_path_remains_blocked_by_real_G0_inputs_and_no_product_values_were_invented",
+    "audited_B1_bom_review_for_exact_passive_support_part_identities_independent_of_open_G1_values",
+    "created_B1_PASSIVE_SUPPORT_IDENTITY_AUDIT_md_classifying_legacy_exact_MPNs_without_promoting_them_to_U1",
+    "recorded_gate_resistor_divider_filter_bleed_and_clamp_network_items_as_REVALIDATE_RECALCULATE_or_REPLACE_IF_REQUIRED_based_on_functional_dependency",
+    "preserved_B1_and_U1_schematic_revision_history_without_component_bearing_U1_allocation"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved","blocking_scope":"G0_and_final_G1A"},
@@ -24,14 +20,13 @@
     {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor_architecture open","blocking_scope":"G1B"},
     {"task":"freeze_battery_and_ESC_envelope","reason":"product propulsion operating point not frozen","blocking_scope":"G1C_G1"},
     {"task":"freeze_G2_architecture","reason":"parent G1 electrical and vehicle interface requirements remain open","blocking_scope":"G2"},
-    {"task":"allocate_U1_SCH_R001","reason":"allocation readiness AR-001 G1 freeze and AR-002 page-level G2 architecture remain OPEN","blocking_scope":"G3"}
+    {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open; component-bearing U1 schematic must not be allocated early","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "consolidate_additive_TR_043_through_latest_into_canonical_UAV_TRACEABILITY_without_dropping_history",
-    "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and_exact_package_identity",
-    "add_non_mutating_tests_for_prepare_u1_schematic_revision_helper_if_safe_without_allocating_R001",
-    "when_actual_G0_inputs_are_available_compute_MTOW_and_close_rotor_thrust_chain",
-    "when_AR_001_and_AR_002_pass_change_allocation_readiness_to_READY_then_allocate_U1_SCH_R001_before_any_component_edit"
+    "audit_remaining_requirement_independent_B1_support_parts_and_exact_package_identity_without_selecting_U1_parts",
+    "consolidate_new_passive_support_audit_into_canonical_traceability_when_safe_without_overwriting_concurrent_history",
+    "add_non_mutating_revision_guard_tests_if_current_repository_helper_exists",
+    "when_actual_G0_inputs_are_available_compute_MTOW_and_close_rotor_thrust_chain"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -40,28 +35,24 @@
     "backlog_done_percent":4.0,
     "major_gate_closure_percent":0.0,
     "u1_kicad_architecture_scaffold_percent":100.0,
-    "u1_kicad_scaffold_parser_erc_validation_percent":100.0,
     "u1_component_bearing_schematic_percent":0.0,
-    "legacy_b1_kicad_reproducible_baseline_audit_percent":100.0,
     "schematic_revision_control_policy_percent":100.0,
-    "schematic_revision_policy_ci_validation_percent":100.0,
-    "future_u1_g3_erc_policy_definition_percent":100.0,
-    "u1_revision_allocation_guard_definition_percent":100.0,
     "dashboard_current_uav_status_integration_percent":100.0,
     "dashboard_auto_refresh_ci_percent":100.0,
     "dashboard_source_consistency_validation_percent":100.0
   },
   "evidence_refs":[
-    "dashboard/build_dashboard.py",
-    "dashboard/index.html",
-    "dashboard/snapshot.json",
-    "dashboard/validation.json",
-    "dashboard/validate_static.py",
-    ".github/workflows/dashboard-refresh.yml",
-    "GitHub Actions run 35449459518 success",
-    "generated dashboard commit f8a373bf31a1c0ae541cc5f0f55bde1f4e6daed5"
+    "UAV_PRODUCT_PLAN.md",
+    "UAV_TRACEABILITY.md",
+    "uav_backlog.json",
+    "mission_requirements.json",
+    "REQUIREMENTS_MASTER.json",
+    "REQUIREMENTS_PROGRESS.json",
+    "hardware_b1/bom_review.json",
+    "B1_SUPPORT_PART_EVIDENCE_AUDIT.md",
+    "B1_PASSIVE_SUPPORT_IDENTITY_AUDIT.md"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"Dashboard implementation was independently re-audited against actual branch files and current source records. A misleading stale pcb_preview field in the old validator was found and removed. The hardened validator now checks 16 source fields, required sections, links, task-card count, stale legacy text and source commit consistency. Browser rendering was not visually tested and is explicitly not claimed. Product electrical progress is unchanged."
+  "notes":"Requirement-independent B1 migration evidence progressed by separating exact legacy passive MPN/footprint identity from U1 qualification. No lifecycle, derating, land-pattern, physical-test or product-selection claim was invented. Product counters remain unchanged because G0/G1 values remain open."
 }
