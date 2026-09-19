@@ -1,78 +1,80 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 10:18+03:00  
+Date: 2026-09-19 10:27+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_ADC_CLAMP_REFERENCE_FET_PRECHARGE_REQUIREMENTS_GATE`
+Status: `PROGRESS_BACKPOWER_G1_AUDIT_BACKLOG_RECONCILIATION`
 
 ## Run summary
-This run verified the exact B1 voltage-sense clamp orientation, quantified powered/unpowered rail-injection screening, added STM32G474 primary-source injection constraints, populated the legacy CSD19536KTT reference row from TI primary data, added a no-guesses precharge/disconnect-energy model, and formalized requirements completion at G1 SYSTEM FREEZE. No vehicle mass, rotor architecture, battery architecture, transient ceiling, semiconductor class, protection MPN or release package was frozen.
+This run converted two previously implicit project risks into auditable engineering state: the B1 voltage-sense clamp now has a documented analog-rail/LDO back-power hazard, and G1 requirements closure now has a machine-readable open-field matrix. The stale backlog was also reconciled so completed propulsion benchmarking is no longer shown as TODO. No vehicle mass, rotor architecture, battery architecture, voltage class, semiconductor MPN, transient ceiling, phase-current rating or production release was frozen.
+
+## Repository state verified at start
+- Prior handoff/status was read and checked against `uav-rebaseline`.
+- `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md`, `uav_backlog.json`, `mission_requirements.json`, `REQUIREMENTS_COMPLETION_CHECKLIST.md`, `design_basis.json` and `autonomy_state.json` were re-read.
+- G0 and G1 remain OPEN; downstream G2+ remains gated.
 
 ## Tasks attempted / completed
-1. Re-read the prior handoff/state and product-plan gate definitions.
-2. Verified B1 source topology: each upper BAT54H has cathode at +3V3A and anode at V_ADC; lower BAT54H has cathode at V_ADC and anode at GND.
-3. Recomputed divider ratio = ~0.0321955 and clamp-source Thevenin resistance including 1 kOhm ADC series = ~4.213 kOhm.
-4. Screened powered clamp current using 3.6 V only as an illustrative clamp node: ~62 uA at 120 V and ~292 uA at 150 V screening cases.
-5. Screened the MCU/3V3A-off hazard: at 75.6 V bus, ideal divider node is ~2.434 V and an illustrative 0.3 V Schottky drop gives ~0.51 mA source-limited current into the dead analog rail. This is not a qualified value.
-6. Recorded ST STM32G474 primary-source guidance that normal-operation injection should be avoided and absolute injected-current characterization limits are not design targets.
-7. Added `ADC_CLAMP_INJECTION_CLOSURE.md`.
-8. Added TI primary-source CSD19536KTT reference parameters: 100 V, 2.4 mOhm max RDS(on) at 10 V, Qg typ 118 nC, Qgd typ 17 nC, package-limited ID 200 A; retained as legacy/reference only.
-9. Added `precharge_energy_model.py`, requiring explicit numeric inputs and leaving disconnect analysis OPEN unless current/stray-L are supplied.
-10. Added `REQUIREMENTS_COMPLETION_CHECKLIST.md`, defining system requirements as baselined only at G1 after G0/G1A/G1B/G1C closure.
-11. Updated machine-readable autonomy state.
+1. Traced the complete B1 analog back-power path from high-voltage measurement input through upper BAT54H into +3V3A, through the 0R analog link into +3V3 and the TLV75533 output.
+2. Verified TI TLV755P Rev. D reverse-current guidance: output bias while input is absent, or VOUT above VIN, is a documented reverse-current condition exceeding the stated VOUT > VIN + 0.3 V absolute-maximum relationship; excessive reverse current can degrade reliability/latch up.
+3. Added `ANALOG_RAIL_BACKPOWER_AUDIT.md` and classified the B1 rail-referenced clamp as `RECALCULATE / REPLACE IF REQUIRED` for the UAV revision.
+4. Added `G1_REQUIREMENTS_MATRIX.json`, leaving unsupported values OPEN and explicitly mapping G0/G1A/G1B/G1C/G1 closure fields.
+5. Corrected the G1 matrix row count before ending this run: 30 explicit rows, 1 PASS and 29 OPEN. The additional derived G1 fields remain separately listed and are not falsely counted as closed.
+6. Updated `UAV_TRACEABILITY.md` with the back-power/LDO evidence and the machine-auditable requirements gate.
+7. Reconciled `uav_backlog.json`: UAV-002 rotor trade moved from TODO to IN_PROGRESS; UAV-003 heavy-lift market benchmark moved to DONE with evidence. UAV-004 remains BLOCKED because final MTOW/rotor architecture is not frozen.
+8. Updated `autonomy_state.json` for the next run.
 
 ## Files changed
-- `planning/ADC_CLAMP_INJECTION_CLOSURE.md` — new
-- `planning/CSD19536KTT_REFERENCE_PARAMETERS.md` — new
-- `planning/precharge_energy_model.py` — new
-- `planning/REQUIREMENTS_COMPLETION_CHECKLIST.md` — new
+- `planning/ANALOG_RAIL_BACKPOWER_AUDIT.md` — new
+- `planning/G1_REQUIREMENTS_MATRIX.json` — new, then count-corrected
+- `planning/UAV_TRACEABILITY.md` — updated
+- `planning/uav_backlog.json` — reconciled
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-- B1 source definitively makes the upper BAT54H an ADC-to-+3V3A rail clamp/backfeed path.
-- The existing high-value divider strongly limits clamp current, but low current alone does not qualify MCU-off behavior because +3V3A/TLV75533/upstream rails may be unintentionally back-powered.
-- STM32 absolute/characterization injection ratings are not accepted as normal-operation design targets.
-- CSD19536KTT is useful as a B1 loss anchor but its 100 V VDS remains unresolved for an 18S UAV bus because 75.6 V full charge leaves only 24.4 V static headroom before transient effects.
-- Requirements completion is now explicitly gated: G1 SYSTEM FREEZE requires G0 mission/MTOW, G1A rotor, G1B propulsion and G1C battery/current/transient evidence plus a non-null traceable ESC electrical envelope.
+- The B1 sensing divider itself can remain a reference concept, but the **BAT54H-to-control-rail clamp implementation is not UAV-qualified**.
+- With VBUS/phase input present while control rails are absent/collapsing, the upper BAT54H can externally bias +3V3A/+3V3 and therefore the TLV75533 output. TI explicitly documents reverse current when an LDO output is biased without established input.
+- Low source current from the high-value divider is useful for screening but does not establish deterministic/safe sequencing; normal-operation design must not rely on absolute-maximum or reverse-conduction behavior.
+- Derived sensing requirement carried forward: **no high-voltage measurement input may create an uncontrolled back-power path into MCU/control supply rails.**
+- Propulsion market benchmarking acceptance is complete: multiple current heavy-lift/agricultural candidates and a source-backed X15 G2 operating curve exist. Selecting the product operating point is a separate task and remains blocked by G0/G1A.
+- Requirements completion is now mechanically inspectable rather than narrative only. The dominant system-freeze blocker remains vehicle-specific G0 inputs, not lack of competitor data.
 
 ## Calculations / evidence added
-- Divider ratio and Thevenin resistance.
-- Powered/unpowered clamp-current screening.
-- ST STM32G474 injection guidance/limits as primary evidence.
-- TI CSD19536KTT primary headline parameters.
-- Parametric RC precharge time/current/power/energy and optional disconnect inductive-energy equations.
-- Requirements completion checklist and critical path.
+- No new product numerical requirement was invented this run.
+- TI TLV755P reverse-current behavior was added as primary-source architecture evidence.
+- G1 matrix records the current explicit closure state as 30 tracked rows: 1 PASS / 29 OPEN. This is an audit status, not an overall project-completion percentage.
 
 ## Assumptions and evidence level
-- 18S full-charge candidate = 75.6 V: prior candidate, not frozen.
-- 120/150 V cases: screening only.
-- 0.3 V BAT54H drop and 3.6 V powered clamp node: illustrative screening assumptions only, not worst-case datasheet guarantees.
-- STM32G474 and CSD19536KTT limits: PRIMARY MANUFACTURER EVIDENCE.
-- No physical measurements performed.
+- 70–100 kg remains the user payload target: USER REQUIREMENT.
+- 18S/75.6 V remains a candidate steady-state family, not frozen: ENGINEERING CANDIDATE.
+- TLV755P reverse-current behavior: PRIMARY MANUFACTURER EVIDENCE.
+- Existing B1 rail topology: REPOSITORY SOURCE EVIDENCE.
+- No physical measurements or qualification tests were performed.
 
 ## Unresolved blockers
-- G0 vehicle mass/mission/environment/failure policy.
-- Final rotor architecture and propulsion operating point.
-- Phase RMS/peak current and final PWM.
-- Harness/PCB inductance plus switching/regen/BMS-disconnect transient ceiling.
-- Exact DC-link capacitor and input protection/clamp sizing.
-- +3V3A/TLV75533/upstream rail behavior during external clamp backfeed.
-- Final semiconductor voltage class and MPN.
+- G0 nominal payload, airframe mass, battery mass, mission-equipment mass and resulting MTOW.
+- Flight/hover duration, reserve-energy requirement and operating environment.
+- Single motor/ESC failure/degraded-mode policy.
+- Final rotor architecture/thrust margin.
+- Final motor/prop hover and peak operating points, phase RMS/peak current and eRPM.
+- Battery series count/min/nom/full-charge/transient envelope.
+- Harness/PCB inductance, switching/regen/BMS-disconnect transient ceiling.
+- Production voltage-sense clamp/power-sequencing architecture and powered/unpowered bench proof.
+- Final semiconductor voltage class/MPN, PWM and DC-link/precharge/clamp sizing.
 
 ## Risks / regressions
-- With VBUS present while control rails are off, the existing upper BAT54H can inject into +3V3A; this must not be ignored in the UAV revision.
-- 100 V legacy MOSFET/driver/aux/DC-link domains remain coupled to the unresolved transient ceiling.
-- G1 cannot honestly close from competitor benchmarks alone; vehicle-specific G0 inputs are required for final product requirements.
+- Current B1 sensing clamps can create a back-power path during abnormal power sequencing; this is now a known design risk rather than an untracked assumption.
+- Existing 100 V MOSFET/DRV8353/LM5164/DC-link domains remain coupled to the unresolved transient ceiling.
+- `G1_REQUIREMENTS_MATRIX.json` currently enumerates the highest-priority explicit fields plus a separate list of additional G1 closure requirements. It should be extended until every checklist item has a row before G1 closure.
 
 ## Exact next recommended tasks
-1. Audit TLV75533 and upstream 5 V rail reverse-current/back-power behavior from primary sources and decide whether B1 clamp architecture is retain/recalculate/replace for UAV.
-2. Continue propulsion evidence and translate selected scenario ranges into phase-current/eRPM/PWM requirement bounds without freezing unsupported values.
-3. Build a source-backed 100/120/150 V semiconductor candidate parameter table for trade-study use only.
-4. Map `REQUIREMENTS_COMPLETION_CHECKLIST.md` directly to null/open fields in `design_basis.json` and traceability so G1 completion is mechanically auditable.
-5. Run the precharge model only when Cbus, precharge target, resistor class, harness inductance/current or other numeric inputs have evidence; do not guess them.
+1. Extend `G1_REQUIREMENTS_MATRIX.json` so the additional DC-current, PWM, sense-range, DC-link, thermal, protection and communication/failsafe requirements become explicit rows rather than a side list.
+2. Establish a controlled G0 assumption process: either obtain user vehicle targets or create bounded `ASSUMPTION_FOR_TRADE_ONLY` cases that cannot silently become baseline requirements.
+3. Use the bounded G0 cases to finish the rotor architecture trade and narrow G1A without pretending final vehicle requirements are known.
+4. Translate the selected trade scenarios into source-backed propulsion current/power/eRPM bounds; do not freeze UAV-004 until G0/G1A are approved.
+5. Continue architecture work that is independent of final G0: upstream +5 V reverse-current assessment, non-backpower voltage-sense topology candidates, and a source-backed 100/120/150 V semiconductor candidate table for trade use only.
 
 ## Dependency chain
-`G0 vehicle inputs -> G1A rotor -> G1B propulsion point -> G1C battery/current/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review -> firmware/PCB -> bench/propulsion validation`
+`G0 vehicle inputs -> G1A rotor -> G1B operating point -> G1C battery/current/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review -> firmware/PCB -> bench/propulsion validation`
 
 ## Next-run briefing
-Start with the +3V3A backfeed closure because the exact diode topology is now known. Then improve G1 auditability by mapping open design-basis fields to the new requirements checklist, and continue propulsion/current evidence in parallel. Treat CSD19536KTT as a 100 V legacy reference, not a UAV selection. Do not turn 120/150 V screening cases into requirements and do not freeze 18S or any protection component until the real transient and vehicle envelope are evidenced.
+First make the G1 matrix exhaustive so requirements closure cannot hide in prose. Then work the G0 blocker explicitly: keep unknown user-specific values OPEN, but define clearly labelled trade-only bounding cases if useful for rotor/propulsion screening. In parallel, continue non-blocked architecture audits. Do not promote 18S, 100/120/150 V screening classes, competitor current ratings or interpolated thrust points into product requirements without the G0/G1 decision chain. The propulsion market benchmark itself is DONE; focus next on product operating-point selection and requirements closure, not collecting redundant benchmark products.
