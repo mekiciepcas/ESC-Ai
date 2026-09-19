@@ -1,0 +1,31 @@
+{
+  "revision": "REQ-PROGRESS-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "reporting_policy": "Every user-facing project progress output should report at minimum requirements_structure_percent, g1_system_freeze_percent and backlog_done_percent. Broader engineering percentages must be explicitly labeled estimates.",
+  "requirements_structure": {
+    "defined_domains": 12,
+    "planned_domains": 12,
+    "percent": 100.0,
+    "meaning": "Planned requirement-domain hierarchy/schema/authority coverage, not product-value closure."
+  },
+  "g1_system_freeze": {
+    "pass_rows": 1,
+    "required_rows": 46,
+    "open_rows": 45,
+    "percent": 2.2,
+    "source": "G1_REQUIREMENTS_MATRIX.json"
+  },
+  "backlog": {
+    "done_tasks": 1,
+    "total_tasks": 25,
+    "done_percent": 4.0,
+    "note": "Conservative metric: only tasks explicitly marked DONE are counted. IN_PROGRESS work and safe G2 prework are not credited."
+  },
+  "gate_closure": {
+    "closed_major_gates": 0,
+    "major_gates": 8,
+    "percent": 0.0,
+    "note": "G0/G1 remain OPEN; G2-G7 are dependency-blocked."
+  }
+}
