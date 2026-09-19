@@ -1,34 +1,36 @@
 {
-  "revision":"AUTO-STATE-28",
+  "revision":"AUTO-STATE-29",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_SCHEMATIC_VERSIONING_POLICY_ENFORCED",
+  "last_run_status":"PROGRESS_REVISION_POLICY_CI_AND_G3_ERC_CONTRACT",
   "current_gate":"G0_G1",
   "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
   "completed_this_run":[
-    "preserved_previous_B1_KiCad_baseline_and_support_part_evidence_state",
-    "recorded_user_direction_that_all_future_schematic_updates_must_use_explicit_versioning",
-    "created_SCHEMATIC_VERSIONING_POLICY_with_immutable_revision_full_hierarchy_snapshot_and_release_rules",
-    "created_SCHEMATIC_REVISION_REGISTER_with_LEGACY_B1_frozen_reference_U1_SCH_R000_scaffold_reference_and_next_component_bearing_revision_U1_SCH_R001",
-    "prohibited_in_place_updates_to_superseded_U1_schematic_revisions",
-    "bound_future_BOM_PCB_ERC_netlist_and_validation_evidence_to_exact_schematic_revision_ids",
-    "kept_G0_G1_G2_product_values_and_component_bearing_U1_schematic_OPEN"
+    "re_read_required_product_plan_traceability_backlog_mission_requirements_master_progress_handoff_state_and_versioning_authorities_against_actual_uav_rebaseline",
+    "created_U1_G3_ERC_POLICY_json_with_explicit_treatment_of_previously_ignored_KiCad_categories_and_revision_specific_waiver_rules",
+    "created_SCHEMATIC_REVISION_MANIFEST_template_json_binding_requirement_change_BOM_PCB_KiCad_ERC_review_physical_validation_and_release_evidence",
+    "created_verify_schematic_revision_policy_py_to_validate_register_revision_directories_manifests_and_changed_file_immutability_rules",
+    "created_lightweight_schematic_revision_policy_GitHub_Actions_workflow_with_full_history_diff_check",
+    "observed_GitHub_Actions_run_35448141446_job_105910551415_success_and_checker_PASS",
+    "verified_checker_reported_zero_allocated_component_bearing_revisions_and_next_revision_U1_SCH_R001",
+    "created_compact_G0_USER_INPUT_FORM_from_existing_null_only_closure_packet_without_defaults_or_competitor_substitution",
+    "recorded_additive_traceability_TR_050_through_TR_054",
+    "kept_all_product_specific_G0_G1_G2_values_and_component_bearing_U1_hardware_open"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"product_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_remain_null","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved; compact user form now exists","blocking_scope":"G0_and_final_G1A"},
     {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"G1A_and_UAV004"},
     {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor_architecture_open","blocking_scope":"G1B"},
     {"task":"freeze_battery_and_ESC_envelope","reason":"product_propulsion_operating_point_not_frozen","blocking_scope":"G1C_G1"},
-    {"task":"freeze_semiconductor_gate_driver_MCU_sensing_DC_link_aux_CAN_architecture","reason":"parent_G1_electrical_and_vehicle_interface_requirements_remain_open","blocking_scope":"G2"},
-    {"task":"populate_component_bearing_hardware_u1","reason":"G1_G2_page_level_architecture_not_frozen","blocking_scope":"G3"},
-    {"task":"promote_TPS62160_or_TLV75533_to_U1_selected","reason":"U1_auxiliary_topology_actual_load_thermal_sequencing_and_partial_power_requirements_not_frozen","blocking_scope":"G2_G3_auxiliary_power"}
+    {"task":"freeze_semiconductor_gate_driver_MCU_sensing_DC_link_aux_CAN_architecture","reason":"parent_G1_electrical_and_vehicle_interface_requirements_remain open","blocking_scope":"G2"},
+    {"task":"allocate_U1_SCH_R001_and_populate_component_bearing_hardware","reason":"G1_G2_page_level_architecture_not_frozen","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "prepare_compact_user_facing_G0_closure_questions_from_existing_G0_INPUT_CLOSURE_PACKET",
-    "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and_exact_package_identity",
-    "review_B1_ERC_ignored_check_categories_and_decide_which_must_be_enabled_or_manually_audited_for_future_U1_G3_contract",
-    "consolidate_TR_043_through_TR_049_into_canonical_UAV_TRACEABILITY_without_dropping_history",
+    "obtain_or_user_approve_values_in_G0_USER_INPUT_FORM_and_write_only_supplied_values_back_to_mission_requirements_and_G0_closure_packet",
+    "consolidate_TR_043_through_TR_054_into_canonical_UAV_TRACEABILITY_without_dropping_history",
+    "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and exact package identity",
+    "prepare_revision_creation_helper_for_U1_SCH_R001_without_allocating_R001_before parent G1_G2 readiness",
     "when_parent_requirements_freeze_allocate_U1_SCH_R001_before_any_component_bearing_schematic_edit"
   ],
   "last_verified_gate":"REBASELINE_INIT",
@@ -41,21 +43,20 @@
     "u1_kicad_scaffold_parser_erc_validation_percent":100.0,
     "u1_component_bearing_schematic_percent":0.0,
     "legacy_b1_kicad_reproducible_baseline_audit_percent":100.0,
-    "schematic_revision_control_policy_percent":100.0
+    "schematic_revision_control_policy_percent":100.0,
+    "schematic_revision_policy_ci_validation_percent":100.0,
+    "future_u1_g3_erc_policy_definition_percent":100.0
   },
   "evidence_refs":[
     "planning/SCHEMATIC_VERSIONING_POLICY.md",
     "planning/SCHEMATIC_REVISION_REGISTER.json",
-    "planning/B1_KICAD_BASELINE_AUDIT.json",
-    "planning/B1_SUPPORT_PART_EVIDENCE_AUDIT.md",
-    "planning/KICAD_CI_VERIFICATION.json",
-    "planning/U1_SCAFFOLD_VERIFICATION.md",
-    "planning/RUN_2026-09-19_1619_TRACEABILITY.md",
-    ".github/workflows/kicad-u1-verify.yml",
-    "hardware_b1/ESC_3kW_B1.kicad_sch",
-    "hardware_b1/fp-lib-table",
-    "hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch",
-    "planning/G0_INPUT_CLOSURE_PACKET.json"
+    "planning/SCHEMATIC_REVISION_MANIFEST.template.json",
+    "planning/verify_schematic_revision_policy.py",
+    "planning/U1_G3_ERC_POLICY.json",
+    "planning/G0_USER_INPUT_FORM.md",
+    "planning/RUN_2026-09-19_1715_TRACEABILITY.md",
+    ".github/workflows/schematic-revision-policy.yml",
+    "GitHub Actions run 35448141446 job 105910551415 PASS"
   ],
   "write_policy":{
     "allow_branch":"uav-rebaseline",
@@ -67,5 +68,5 @@
     "legacy_b1_electrical_source_mutation_allowed":false
   },
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"User-directed schematic versioning is now a hard project rule. Legacy B1 remains immutable. U1-SCH-R000 identifies only the zero-component architecture scaffold reference; the first future component-bearing revision is reserved as U1-SCH-R001 and must be allocated as a complete hierarchical snapshot before any electrical schematic edit. Revision identity does not imply qualification or release approval."
+  "notes":"Revision control is now not only documented but CI-enforced. The observed policy workflow passed on the recorded commit and confirms the register currently has zero component-bearing U1 revisions with U1-SCH-R001 next. Future G3 ERC acceptance now has explicit category-by-category rules. No schematic revision was allocated or edited because the parent product requirements remain open."
 }
