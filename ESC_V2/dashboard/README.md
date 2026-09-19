@@ -1,7 +1,35 @@
-# ESC HTML proje panosu
+# ESC UAV proje dashboard
 
-index.html çevrimdışı açılabilir; tek dosyada CSS/JS/veri içerir. Kanıt bağlantıları yanındaki proje klasörlerini kullanır.
+`index.html` proje durumunu basit dille gösteren çevrimdışı dashboard'dur. Şu bilgileri doğrudan güncel planlama kayıtlarından alır:
 
-Güncelleme: KiCad Python ile ESC_V2/planning/publish_progress.py; şema değiştiyse --verify-schematic. HTML kendi başına dosya izlemez; agent turu yeniden üretir, açık tarayıcı görünümü yenilenir.
+- requirement yapısı yüzdesi,
+- G1 gerçek değer kapanış yüzdesi,
+- backlog DONE yüzdesi,
+- U1 KiCad iskelet / gerçek komponentli şema durumu,
+- son çalışma state'i,
+- aktif blocker'lar,
+- sıradaki işler,
+- eksik G0 araç/görev girdileri,
+- sıradaki şema revizyon numarası,
+- KiCad ve revision-control kanıt kayıtları.
 
-Kaynaklar backlog/BOM/doğrulama/karar/değişiklik kayıtlarıdır. validation.json statik içerik denetimini gösterir. Bu ortamda yerel tarayıcı önizlemesi politika nedeniyle tamamlanamadı.
+## Otomatik güncelleme
+
+`.github/workflows/dashboard-refresh.yml`, `uav-rebaseline` branch'inde planning veya U1 donanım kayıtları değiştiğinde otomatik olarak:
+
+1. `python3 ESC_V2/dashboard/build_dashboard.py`
+2. `python3 ESC_V2/dashboard/validate_static.py`
+3. değişiklik varsa `index.html`, `snapshot.json`, `validation.json` dosyalarını tekrar commit eder.
+
+Generated dashboard commit'i yalnız dashboard çıktılarını değiştirir ve workflow path filtresi nedeniyle yeniden kendi kendini tetiklemez.
+
+## Manuel güncelleme
+
+Repo checkout'u üzerinde:
+
+```bash
+python3 ESC_V2/dashboard/build_dashboard.py
+python3 ESC_V2/dashboard/validate_static.py
+```
+
+Dashboard bilinmeyen mühendislik değerlerini tahmin etmez. `OPEN/null/TBD` alanlar açık kalır. Dashboard yüzdeleri ürün yeterliliği veya fiziksel test sonucu değildir; her kartın açıklaması kendi kapsamını belirtir.
