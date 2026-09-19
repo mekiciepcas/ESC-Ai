@@ -1,0 +1,36 @@
+{
+  "revision": "REQ-VER-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "authority": "REQUIREMENTS_MASTER.json",
+  "rule": "A requirement is not verified merely because it is structurally defined. Physical verification claims require actual test evidence.",
+  "domain_verification": [
+    {"domain":"SYS","primary_methods":["requirements inspection","traceability audit","release/configuration audit"],"gate_evidence":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md"]},
+    {"domain":"VEH","primary_methods":["mass-budget calculation","mission-profile review","rotor/thrust sizing review"],"gate_evidence":["mission_requirements.json","rotor_trade_study.md"]},
+    {"domain":"PROP","primary_methods":["primary manufacturer evidence","operating-point calculation","bench/dyno measurement where manufacturer data is insufficient"],"gate_evidence":["propulsion_benchmark.md","propulsion_operating_points.json"]},
+    {"domain":"PWR","primary_methods":["battery/energy calculation","transient model","protection-interface review","staged bench test"],"gate_evidence":["battery_architecture_pretrade.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","DC_INPUT_PROTECTION_CONTRACT.md"]},
+    {"domain":"INV","primary_methods":["loss/SOA calculation","derating review","thermal model","switching waveform measurement"],"gate_evidence":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","POWER_STAGE_LOSS_MODEL.md","power_stage_loss_calculator.py"]},
+    {"domain":"SNS","primary_methods":["static error budget","dynamic settling/acquisition model","power-sequencing analysis","powered/unpowered bench test"],"gate_evidence":["HV_SENSE_OUTPUT_SEQUENCING.md","hv_sense_error_model.py","hv_sense_dynamic_model.py"]},
+    {"domain":"CTRL","primary_methods":["primary-source MCU trade","timing analysis","SIL/unit tests","firmware profiling","bench timing measurement"],"gate_evidence":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md"]},
+    {"domain":"SAF","primary_methods":["fault tree/FMEA","threshold/latency analysis","fault injection","safe-state verification"],"gate_evidence":["G1_REQUIREMENTS_MATRIX.json","DC_INPUT_PROTECTION_CONTRACT.md"]},
+    {"domain":"IF","primary_methods":["interface-control review","protocol test","arming/failsafe test","connector electrical/mechanical review"],"gate_evidence":["mission_requirements.json","UAV_PRODUCT_PLAN.md"]},
+    {"domain":"ENV","primary_methods":["environmental requirement review","thermal boundary review","planned vibration/ingress qualification where required"],"gate_evidence":["mission_requirements.json","UAV_PRODUCT_PLAN.md"]},
+    {"domain":"MFG","primary_methods":["BOM audit","footprint audit","derating audit","DFM review","configuration audit"],"gate_evidence":["U1_BOM_CANDIDATES.json","UAV_PRODUCT_PLAN.md"]},
+    {"domain":"VER","primary_methods":["low-energy bring-up","oscilloscope switching validation","guarded dyno/prop stand","thermal soak","fault injection","flight-readiness review"],"gate_evidence":["UAV_PRODUCT_PLAN.md"]}
+  ],
+  "g1_child_authority": {
+    "source": "G1_REQUIREMENTS_MATRIX.json",
+    "required_rows": 46,
+    "pass_rows": 1,
+    "open_rows": 45,
+    "closure_rule": "G1 cannot close until every required row is PASS with a numeric/bounded value and evidence reference, and G0/G1A/G1B/G1C parents are closed."
+  },
+  "verification_evidence_levels": {
+    "ANALYSIS": "Source-backed calculation or model only.",
+    "SIMULATION": "Simulation result with stated model/assumptions; not physical validation.",
+    "BENCH": "Measured on hardware under stated bench conditions.",
+    "DYNO_PROP_STAND": "Measured on guarded propulsion test equipment.",
+    "VEHICLE_INTEGRATION": "Measured on integrated UAV; not automatically production qualification.",
+    "QUALIFICATION": "Only used after a defined qualification plan and acceptance evidence are complete."
+  }
+}
