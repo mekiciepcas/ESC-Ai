@@ -1,0 +1,69 @@
+{
+  "manifest_schema_revision": "SCH-MANIFEST-01",
+  "revision_id": null,
+  "parent_revision_id": null,
+  "status": "DRAFT",
+  "created_date": null,
+  "created_time_local": null,
+  "branch": "uav-rebaseline",
+  "creating_commit_sha": null,
+  "reason_for_revision": null,
+  "requirement_refs": [],
+  "decision_refs": [],
+  "source_revision_snapshot": null,
+  "changed_schematic_sheets": [],
+  "electrical_change_summary": [],
+  "component_bom_impact": {
+    "added_mpns": [],
+    "removed_mpns": [],
+    "changed_mpns": [],
+    "open_items": []
+  },
+  "pcb_impact": {
+    "impact_status": "OPEN",
+    "affected_interfaces_or_footprints": [],
+    "requires_new_pcb_revision": null
+  },
+  "verification": {
+    "kicad_version": null,
+    "parser_result": "NOT_PERFORMED",
+    "netlist_export_result": "NOT_PERFORMED",
+    "netlist_artifact": null,
+    "erc_result": "NOT_PERFORMED",
+    "erc_errors": null,
+    "erc_warnings": null,
+    "erc_artifact": null,
+    "ignored_or_suppressed_checks": [],
+    "waiver_refs": [],
+    "interface_audit_result": "NOT_PERFORMED",
+    "bom_footprint_audit_result": "NOT_PERFORMED"
+  },
+  "review": {
+    "review_status": "NOT_REVIEWED",
+    "reviewer": null,
+    "review_date": null,
+    "open_review_items": []
+  },
+  "physical_validation": {
+    "status": "NOT_PERFORMED",
+    "bench_evidence_refs": [],
+    "thermal_evidence_refs": [],
+    "emc_evidence_refs": [],
+    "dyno_evidence_refs": [],
+    "flight_evidence_refs": []
+  },
+  "release": {
+    "release_status": "NOT_RELEASED",
+    "gerbers_released": false,
+    "manufacturing_package_released": false,
+    "main_merge_approved": false,
+    "explicit_user_release_approval_ref": null
+  },
+  "rules": {
+    "unknowns_remain_null_or_open": true,
+    "revision_number_reuse_forbidden": true,
+    "superseded_revision_mutation_forbidden": true,
+    "erc_pass_does_not_imply_release": true,
+    "physical_validation_does_not_carry_forward_automatically": true
+  }
+}
