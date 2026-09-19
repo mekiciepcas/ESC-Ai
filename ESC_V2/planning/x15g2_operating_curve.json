@@ -1,0 +1,38 @@
+{
+  "revision": "CURVE-X15G2-01",
+  "date": "2026-09-19",
+  "status": "SOURCE_BACKED_REFERENCE_NOT_PRODUCT_FREEZE",
+  "source": {
+    "manufacturer": "Hobbywing",
+    "product": "X15 G2",
+    "url": "https://www.hobbywing.com/products/x15-g2",
+    "test_voltage_v": 69,
+    "propeller": "MFP 63x24",
+    "evidence_level": "PRIMARY_MANUFACTURER_SOURCE"
+  },
+  "rows": [
+    {"throttle_pct":34,"thrust_g":14297,"current_a":16.5,"input_power_w":1135.7,"rpm":1000,"efficiency_g_w":12.6,"torque_nm":8.86,"output_power_w":928.0},
+    {"throttle_pct":35,"thrust_g":14894,"current_a":17.3,"input_power_w":1195.5,"rpm":1019,"efficiency_g_w":12.5,"torque_nm":9.22,"output_power_w":984.2},
+    {"throttle_pct":37,"thrust_g":16286,"current_a":19.5,"input_power_w":1344.1,"rpm":1063,"efficiency_g_w":12.1,"torque_nm":10.07,"output_power_w":1120.9},
+    {"throttle_pct":39,"thrust_g":17880,"current_a":22.2,"input_power_w":1529.1,"rpm":1111,"efficiency_g_w":11.7,"torque_nm":11.05,"output_power_w":1285.5},
+    {"throttle_pct":42,"thrust_g":20520,"current_a":27.0,"input_power_w":1866.1,"rpm":1189,"efficiency_g_w":11.0,"torque_nm":12.69,"output_power_w":1580.3},
+    {"throttle_pct":45,"thrust_g":23333,"current_a":32.8,"input_power_w":2260.5,"rpm":1268,"efficiency_g_w":10.3,"torque_nm":14.46,"output_power_w":1920.5},
+    {"throttle_pct":48,"thrust_g":26230,"current_a":39.1,"input_power_w":2698.2,"rpm":1345,"efficiency_g_w":9.7,"torque_nm":16.31,"output_power_w":2296.4},
+    {"throttle_pct":51,"thrust_g":29168,"current_a":45.9,"input_power_w":3170.1,"rpm":1419,"efficiency_g_w":9.2,"torque_nm":18.18,"output_power_w":2701.9},
+    {"throttle_pct":54,"thrust_g":32142,"current_a":53.2,"input_power_w":3673.4,"rpm":1490,"efficiency_g_w":8.8,"torque_nm":20.09,"output_power_w":3135.1},
+    {"throttle_pct":57,"thrust_g":35177,"current_a":61.0,"input_power_w":4212.0,"rpm":1559,"efficiency_g_w":8.4,"torque_nm":22.05,"output_power_w":3599.5},
+    {"throttle_pct":60,"thrust_g":38315,"current_a":69.5,"input_power_w":4795.5,"rpm":1627,"efficiency_g_w":8.0,"torque_nm":24.08,"output_power_w":4101.7},
+    {"throttle_pct":63,"thrust_g":41608,"current_a":78.8,"input_power_w":5438.4,"rpm":1695,"efficiency_g_w":7.7,"torque_nm":26.21,"output_power_w":4651.3},
+    {"throttle_pct":66,"thrust_g":45106,"current_a":89.3,"input_power_w":6159.1,"rpm":1765,"efficiency_g_w":7.3,"torque_nm":28.47,"output_power_w":5262.6},
+    {"throttle_pct":69,"thrust_g":48849,"current_a":101.1,"input_power_w":6978.5,"rpm":1836,"efficiency_g_w":7.0,"torque_nm":30.91,"output_power_w":5941.8},
+    {"throttle_pct":72,"thrust_g":52857,"current_a":114.7,"input_power_w":7917.7,"rpm":1910,"efficiency_g_w":6.7,"torque_nm":33.52,"output_power_w":6703.0},
+    {"throttle_pct":75,"thrust_g":57120,"current_a":130.3,"input_power_w":8994.3,"rpm":1986,"efficiency_g_w":6.4,"torque_nm":36.29,"output_power_w":7546.9},
+    {"throttle_pct":78,"thrust_g":61588,"current_a":148.0,"input_power_w":10214.9,"rpm":2063,"efficiency_g_w":6.0,"torque_nm":39.19,"output_power_w":8466.0},
+    {"throttle_pct":81,"thrust_g":66162,"current_a":167.6,"input_power_w":11564.6,"rpm":2139,"efficiency_g_w":5.7,"torque_nm":42.13,"output_power_w":9436.6},
+    {"throttle_pct":84,"thrust_g":70683,"current_a":188.3,"input_power_w":12993.2,"rpm":2211,"efficiency_g_w":5.4,"torque_nm":44.98,"output_power_w":10414.0},
+    {"throttle_pct":87,"thrust_g":74925,"current_a":208.8,"input_power_w":14405.7,"rpm":2274,"efficiency_g_w":5.2,"torque_nm":47.57,"output_power_w":11326.0},
+    {"throttle_pct":90,"thrust_g":78580,"current_a":227.0,"input_power_w":15662.8,"rpm":2324,"efficiency_g_w":5.0,"torque_nm":49.69,"output_power_w":12091.1},
+    {"throttle_pct":100,"thrust_g":82476,"current_a":246.6,"input_power_w":17018.9,"rpm":2371,"efficiency_g_w":4.8,"torque_nm":51.79,"output_power_w":12858.5}
+  ],
+  "use_rule": "Rows are manufacturer bench data at 69 V; do not extrapolate them to other voltage, altitude, propeller or thermal conditions without an explicit model and validation."
+}
