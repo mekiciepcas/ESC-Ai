@@ -1,37 +1,34 @@
 {
-  "revision":"AUTO-STATE-29",
+  "revision":"AUTO-STATE-30",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_REVISION_POLICY_CI_AND_G3_ERC_CONTRACT",
+  "last_run_status":"PROGRESS_U1_ALLOCATION_GUARD_PREPARED",
   "current_gate":"G0_G1",
   "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
   "completed_this_run":[
-    "re_read_required_product_plan_traceability_backlog_mission_requirements_master_progress_handoff_state_and_versioning_authorities_against_actual_uav_rebaseline",
-    "created_U1_G3_ERC_POLICY_json_with_explicit_treatment_of_previously_ignored_KiCad_categories_and_revision_specific_waiver_rules",
-    "created_SCHEMATIC_REVISION_MANIFEST_template_json_binding_requirement_change_BOM_PCB_KiCad_ERC_review_physical_validation_and_release_evidence",
-    "created_verify_schematic_revision_policy_py_to_validate_register_revision_directories_manifests_and_changed_file_immutability_rules",
-    "created_lightweight_schematic_revision_policy_GitHub_Actions_workflow_with_full_history_diff_check",
-    "observed_GitHub_Actions_run_35448141446_job_105910551415_success_and_checker_PASS",
-    "verified_checker_reported_zero_allocated_component_bearing_revisions_and_next_revision_U1_SCH_R001",
-    "created_compact_G0_USER_INPUT_FORM_from_existing_null_only_closure_packet_without_defaults_or_competitor_substitution",
-    "recorded_additive_traceability_TR_050_through_TR_054",
-    "kept_all_product_specific_G0_G1_G2_values_and_component_bearing_U1_hardware_open"
+    "re_read_required_product_plan_traceability_backlog_mission_requirements_master_progress_handoff_and_state_against_actual_uav_rebaseline_HEAD_c9428523",
+    "verified_product_critical_path_remains_blocked_by_14_real_G0_inputs_and_did_not_substitute_competitor_or_legacy_values",
+    "created_U1_SCHEMATIC_ALLOCATION_READINESS_json_with_explicit_G1_G2_revision_and_G3_evidence_prerequisites",
+    "created_prepare_u1_schematic_revision_py_defaulting_to_dry_run_and_refusing_allocation_unless_readiness_is_READY",
+    "preserved_LEGACY_B1_and_U1_SCH_R000_immutability_and_did_not_allocate_U1_SCH_R001",
+    "recorded_additive_traceability_TR_055_TR_056",
+    "verified_recent_schematic_revision_policy_GitHub_Action_remains_successful"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved; compact user form now exists","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"G1A_and_UAV004"},
-    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor_architecture_open","blocking_scope":"G1B"},
-    {"task":"freeze_battery_and_ESC_envelope","reason":"product_propulsion_operating_point_not_frozen","blocking_scope":"G1C_G1"},
-    {"task":"freeze_semiconductor_gate_driver_MCU_sensing_DC_link_aux_CAN_architecture","reason":"parent_G1_electrical_and_vehicle_interface_requirements_remain open","blocking_scope":"G2"},
-    {"task":"allocate_U1_SCH_R001_and_populate_component_bearing_hardware","reason":"G1_G2_page_level_architecture_not_frozen","blocking_scope":"G3"}
+    {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy open","blocking_scope":"G1A_and_UAV004"},
+    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor architecture open","blocking_scope":"G1B"},
+    {"task":"freeze_battery_and_ESC_envelope","reason":"product propulsion operating point not frozen","blocking_scope":"G1C_G1"},
+    {"task":"freeze_G2_architecture","reason":"parent G1 electrical and vehicle interface requirements remain open","blocking_scope":"G2"},
+    {"task":"allocate_U1_SCH_R001","reason":"allocation readiness AR-001 G1 freeze and AR-002 page-level G2 architecture remain OPEN","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "obtain_or_user_approve_values_in_G0_USER_INPUT_FORM_and_write_only_supplied_values_back_to_mission_requirements_and_G0_closure_packet",
-    "consolidate_TR_043_through_TR_054_into_canonical_UAV_TRACEABILITY_without_dropping_history",
-    "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and exact package identity",
-    "prepare_revision_creation_helper_for_U1_SCH_R001_without_allocating_R001_before parent G1_G2 readiness",
-    "when_parent_requirements_freeze_allocate_U1_SCH_R001_before_any_component_bearing_schematic_edit"
+    "consolidate_additive_TR_043_through_TR_056_into_canonical_UAV_TRACEABILITY_without_dropping_history",
+    "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and_exact_package_identity",
+    "add_non_mutating_tests_for_prepare_u1_schematic_revision_helper_if_safe_without_allocating_R001",
+    "when_actual_G0_inputs_are_available_compute_MTOW_and_close_rotor_thrust_chain",
+    "when_AR_001_and_AR_002_pass_change_allocation_readiness_to_READY_then_allocate_U1_SCH_R001_before_any_component_edit"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -45,28 +42,19 @@
     "legacy_b1_kicad_reproducible_baseline_audit_percent":100.0,
     "schematic_revision_control_policy_percent":100.0,
     "schematic_revision_policy_ci_validation_percent":100.0,
-    "future_u1_g3_erc_policy_definition_percent":100.0
+    "future_u1_g3_erc_policy_definition_percent":100.0,
+    "u1_revision_allocation_guard_definition_percent":100.0
   },
   "evidence_refs":[
-    "planning/SCHEMATIC_VERSIONING_POLICY.md",
+    "planning/U1_SCHEMATIC_ALLOCATION_READINESS.json",
+    "planning/prepare_u1_schematic_revision.py",
+    "planning/RUN_2026-09-19_1724_TRACEABILITY.md",
     "planning/SCHEMATIC_REVISION_REGISTER.json",
-    "planning/SCHEMATIC_REVISION_MANIFEST.template.json",
-    "planning/verify_schematic_revision_policy.py",
+    "planning/SCHEMATIC_VERSIONING_POLICY.md",
     "planning/U1_G3_ERC_POLICY.json",
-    "planning/G0_USER_INPUT_FORM.md",
-    "planning/RUN_2026-09-19_1715_TRACEABILITY.md",
-    ".github/workflows/schematic-revision-policy.yml",
-    "GitHub Actions run 35448141446 job 105910551415 PASS"
+    "GitHub Actions run 35448141446 success"
   ],
-  "write_policy":{
-    "allow_branch":"uav-rebaseline",
-    "deny_main":true,
-    "allow_reversible_commits":true,
-    "allow_release_without_user_approval":false,
-    "schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE",
-    "superseded_schematic_revision_mutation_allowed":false,
-    "legacy_b1_electrical_source_mutation_allowed":false
-  },
+  "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"Revision control is now not only documented but CI-enforced. The observed policy workflow passed on the recorded commit and confirms the register currently has zero component-bearing U1 revisions with U1-SCH-R001 next. Future G3 ERC acceptance now has explicit category-by-category rules. No schematic revision was allocated or edited because the parent product requirements remain open."
+  "notes":"This run reduced future configuration-control risk without allocating a component-bearing schematic. U1-SCH-R001 remains unused. Allocation helper is deliberately fail-closed until explicit machine-readable readiness becomes READY."
 }
