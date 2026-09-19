@@ -1,38 +1,63 @@
 {
-  "revision":"AUTO-STATE-53",
+  "revision":"AUTO-STATE-54",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PB06_HIGH_CURRENT_PATH_SCREENED_SELECTION_OPEN",
-  "current_gate":"G0_G1",
-  "current_task":"S1_3_BATTERY_ARCHITECTURE",
-  "active_sprint":{"id":"S1","status":"ACTIVE","completed_steps":["S1.1_PHASE_CURRENT_MODEL"],"current_step":"S1.3_BATTERY_ARCHITECTURE","parallel_blocked_step":"S1.2_PWM_RIPPLE_SWITCHING_LOSS_PENDING_EXACT_MOTOR_INDUCTANCE"},
+  "last_run_status":"PB07_LOW_POWER_REBASELINE_FROZEN_CI_VERIFIED",
+  "current_gate":"G0_G1_REBASELINED_PB07",
+  "current_task":"S1R_2_ROTOR_ARCHITECTURE_MTOW_PAYLOAD",
+  "active_sprint":{
+    "id":"S1R",
+    "status":"ACTIVE",
+    "completed_steps":["S1R.1_PRODUCT_POWER_REBASELINE"],
+    "current_step":"S1R.2_ROTOR_ARCHITECTURE_MTOW_PAYLOAD"
+  },
   "completed_this_run":[
-    "verified uav-rebaseline branch and PB-06 handoff against repository state",
-    "screened source-backed high-current contactor, current-sensor and connector candidates against 500A continuous / 1050A-3s PB-06 envelope",
-    "created HIGH_CURRENT_PATH_SHORTLIST_PB06.md",
-    "derived path resistance sensitivity: each 0.1 mOhm costs 25W at 500A and 110.25W at 1050A",
-    "kept fuse, service disconnect and exact component selections OPEN because fault-current/thermal/pulse evidence is incomplete",
-    "added TR-053 traceability record"
+    "verified branch continuity and prior PB06 state",
+    "created PB07 low-power propulsion rebaseline using current Hobbywing X8 G2 and T-Motor U8 Lite manufacturer curves",
+    "froze 1.5-3.0 kW aggregate propulsion product-family direction",
+    "explicitly superseded heavy-lift 70-100kg payload X8 18S 500-1050A and high per-ESC current/power numeric scope as active authority while preserving history",
+    "reopened payload MTOW rotor count battery series per-ESC current PWM semiconductor and protection values",
+    "set Hexa as leading architecture candidate with Quad alternate without freezing either",
+    "set 12S as leading battery candidate with 14S alternate without freezing either",
+    "updated mission G1 matrix backlog requirements master/progress G0 closure design basis product plan and traceability",
+    "added PB07 consistency CI and observed successful workflow run 35468304991"
   ],
   "blocked_tasks":[
-    {"task":"freeze_PWM_G1_07","reason":"exact production-motor Ld/Lq/effective ripple inductance remains unavailable; physical measurement or exact manufacturer winding data is required","blocking_scope":"S1.2"},
-    {"task":"freeze_exact_battery_pack","reason":"exact cell/topology, complete pack mass, cold/low-SOC/EOL sag, peak-capable SOC-temperature-SOH envelope and BMS/contactors/fuses require exact-pack design and/or physical evidence","blocking_scope":"S1.3"},
-    {"task":"select_fuse_and_service_disconnect","reason":"credible prospective pack short-circuit current, exact cell topology, time-current/I2t coordination and DC interruption requirements are not yet defined","blocking_scope":"S1.3"},
-    {"task":"close_G0_mass_environment","reason":"airframe battery fixed-equipment mass allocation and numeric environmental envelope remain open","blocking_scope":"G0"},
-    {"task":"close_exact_switching_loss_and_parallel_count","reason":"requires final PWM plus guaranteed hot-resistance policy, switching waveform/energy correlation, transient ZthJC, current sharing and baseplate/TIM model","blocking_scope":"S1.2_S1.5"},
-    {"task":"allocate_U1_SCH_R001","reason":"G1 and page-level G2 architecture remain open","blocking_scope":"G3_AR-001_AR-002"}
+    {"task":"freeze_PB07_rotor_architecture","reason":"Quad vs Hexa must close against propulsion-unit mass, vehicle mass budget, payload and degraded-mode policy","blocking_scope":"S1R.2"},
+    {"task":"freeze_PB07_battery","reason":"12S leading and 14S alternate; exact series/parallel count, average mission power, sag, mass and BMS remain open","blocking_scope":"S1R.3"},
+    {"task":"freeze_PB07_per_ESC_envelope","reason":"requires frozen rotor count, battery bus and exact motor/prop operating point","blocking_scope":"S1R.4"},
+    {"task":"freeze_PWM","reason":"requires exact selected motor winding inductance and switching-loss/ripple study","blocking_scope":"S1R.5"},
+    {"task":"allocate_U1_SCH_R001","reason":"PB07 G1 and required G2 architecture remain open","blocking_scope":"G3_AR-001_AR-002"}
   ],
   "next_candidates":[
-    "build element-by-element busbar/weld/cable/contact resistance and thermal budget using actual geometry candidates",
-    "define credible pack prospective short-circuit-current method and fuse coordination inputs without inventing cell data",
-    "define peak-capable SOC/temperature/SOH envelope and reconcile P50B/P60B/P45B candidates against 54V/500A and 1050A/3s requirements",
-    "obtain exact production motor Ld_Lq or execute MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03 before PWM freeze",
-    "advance S1.4 environment and numeric OV/UV/OCP/OTP/watchdog/failsafe requirements where frozen parents permit"
+    "build PB07 Quad-vs-Hexa mass rollup using source-backed propulsion mass and 12S battery candidates",
+    "derive realistic payload band from the 15-18kg 3kW MTOW screen instead of guessing payload",
+    "compare 12S3P vs 12S4P P50B and 14S alternatives for 10-minute mission energy and current",
+    "re-audit B1 3kW 48V 100V-MOSF DRV8353-class design against PB07 and identify KEEP RECALCULATE REPLACE blocks",
+    "after exact motor selection obtain Ld/Lq and close PWM"
   ],
-  "last_verified_gate":"G1_PARTIAL_PB06_30_OF_47",
-  "progress_percentages":{"requirements_structure_percent":100.0,"g1_system_freeze_percent":63.8,"backlog_done_percent":8.0,"major_gate_closure_percent":0.0,"u1_kicad_architecture_scaffold_percent":100.0,"u1_component_bearing_schematic_percent":0.0,"schematic_revision_control_policy_percent":100.0},
-  "evidence_refs":["PRODUCT_BASELINE_PB-06.json","HIGH_CURRENT_PATH_SHORTLIST_PB06.md","BATTERY_PEAK_CURRENT_DERIVATION_PB06.md","BATTERY_PACK_ARCHITECTURE_MASS_FRAMEWORK_PB06.md","BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","UAV_TRACEABILITY.md","AUTONOMOUS_HANDOFF.md"],
+  "last_verified_gate":"G1_REBASELINED_PB07_6_OF_48",
+  "progress_percentages":{
+    "requirements_structure_percent":100.0,
+    "g1_system_freeze_percent":12.5,
+    "backlog_done_percent":4.0,
+    "major_gate_closure_percent":0.0,
+    "u1_kicad_architecture_scaffold_percent":100.0,
+    "u1_component_bearing_schematic_percent":0.0,
+    "schematic_revision_control_policy_percent":100.0
+  },
+  "evidence_refs":[
+    "PRODUCT_BASELINE_PB-07.json",
+    "LOW_POWER_PROPULSION_REBASELINE_PB07.md",
+    "SPRINT_PB07_LOW_POWER_REBASELINE.md",
+    "mission_requirements.json",
+    "G1_REQUIREMENTS_MATRIX.json",
+    "REQUIREMENTS_PROGRESS.json",
+    "uav_backlog.json",
+    "UAV_TRACEABILITY.md",
+    "design_basis.json"
+  ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_release_without_user_approval":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false}
 }
