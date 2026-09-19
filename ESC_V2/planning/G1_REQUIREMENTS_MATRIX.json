@@ -1,22 +1,22 @@
 {
-  "revision": "G1-MATRIX-06",
+  "revision": "G1-MATRIX-07",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
-  "purpose": "Expose every critical system requirement that must close before G1 SYSTEM FREEZE and record controlled PB-03 product decisions without pretending later verification is complete.",
+  "purpose": "Expose every critical system requirement that must close before G1 SYSTEM FREEZE and record controlled PB-04 product decisions without pretending later verification is complete.",
   "gate_status": "OPEN",
   "completion_rule": "G1 may close only when every REQUIRED row is PASS with a numeric/bounded value and evidence reference, and G0/G1A/G1B/G1C parent gates are closed.",
-  "product_baseline_authority": "PRODUCT_BASELINE_PB-03.json",
-  "summary": {"required_rows":46,"pass":25,"open":21},
+  "product_baseline_authority": "PRODUCT_BASELINE_PB-04.json",
+  "summary": {"required_rows":46,"pass":28,"open":18},
   "rows": [
     {"id":"G0-01","field":"system_requirement.payload_target_kg.min_max","gate":"G0","status":"PASS","value":"70-100 kg payload target","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"]},
     {"id":"G0-02","field":"mission_requirements.requirements.payload.nominal_kg","gate":"G0","status":"PASS","value":"85 kg nominal payload","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Controlled engineering product decision centered in the already frozen 70-100 kg payload range."},
     {"id":"G0-03","field":"mission_requirements.requirements.airframe_empty_mass_kg","gate":"G0","status":"OPEN","blocker":"80 kg combined operating-empty budget is frozen, but structural/battery/fixed-equipment allocation is not yet closed"},
-    {"id":"G0-04","field":"mission_requirements.requirements.battery_mass_kg","gate":"G0","status":"OPEN","blocker":"energy capacity and exact pack remain open"},
+    {"id":"G0-04","field":"mission_requirements.requirements.battery_mass_kg","gate":"G0","status":"OPEN","blocker":"PB-04 gives a 4.47 kWh / 67.1 Ah nominal energy bound, but exact pack chemistry, sag, mass and usable SOC window remain open"},
     {"id":"G0-05","field":"mission_requirements.requirements.mission_equipment_mass_kg","gate":"G0","status":"OPEN","blocker":"fixed equipment mass allocation inside 80 kg budget remains open"},
     {"id":"G0-06","field":"system_requirement.gross_takeoff_mass_kg","gate":"G0","status":"PASS","value":"150 / 165 / 180 kg at 70 / 85 / 100 kg payload","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Design targets from <=80 kg operating-empty budget, not achieved measured masses."},
-    {"id":"G0-07","field":"mission_requirements.requirements.flight_profile.target_total_flight_time_min","gate":"G0","status":"OPEN","blocker":"mission definition"},
-    {"id":"G0-08","field":"mission_requirements.requirements.flight_profile.target_hover_time_min","gate":"G0","status":"OPEN","blocker":"mission definition"},
-    {"id":"G0-09","field":"mission_requirements.requirements.flight_profile.reserve_energy_fraction","gate":"G0","status":"OPEN","blocker":"mission/safety requirement"},
+    {"id":"G0-07","field":"mission_requirements.requirements.flight_profile.target_total_flight_time_min","gate":"G0","status":"PASS","value":">=10 min at 85 kg nominal payload / 165 kg nominal-MTOW reference condition","evidence":["PRODUCT_BASELINE_PB-04.json","MISSION_DURATION_ENERGY_BASELINE_PB04.md","mission_requirements.json"],"note":"Controlled product target, not measured endurance. Current market sanity check includes DJI FlyCart 100 12 min max hover at 149.9 kg under ideal depletion-to-0% conditions."},
+    {"id":"G0-08","field":"mission_requirements.requirements.flight_profile.target_hover_time_min","gate":"G0","status":"PASS","value":">=10 min hover-equivalent first-order energy-sizing reference at 165 kg nominal MTOW","evidence":["PRODUCT_BASELINE_PB-04.json","MISSION_DURATION_ENERGY_BASELINE_PB04.md","mission_requirements.json"],"note":"Used for initial pack sizing until a detailed mission power trace is frozen."},
+    {"id":"G0-09","field":"mission_requirements.requirements.flight_profile.reserve_energy_fraction","gate":"G0","status":"PASS","value":">=20% pack energy sizing reserve beyond nominal mission energy","evidence":["PRODUCT_BASELINE_PB-04.json","MISSION_DURATION_ENERGY_BASELINE_PB04.md","mission_requirements.json"],"note":"Sizing reserve only; not yet BMS SOC cutoff or firmware landing threshold."},
     {"id":"G0-10","field":"mission_requirements.requirements.environment.minimum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
     {"id":"G0-11","field":"mission_requirements.requirements.environment.maximum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
     {"id":"G0-12","field":"mission_requirements.requirements.environment.maximum_operating_altitude_m","gate":"G0","status":"OPEN","blocker":"operating environment"},
@@ -30,11 +30,11 @@
 
     {"id":"G1B-01","field":"system_requirement.propeller_diameter_in","gate":"G1B","status":"PASS","value":"56x20 inch folding-propeller performance class","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Exact production propeller MPN remains open."},
     {"id":"G1B-02","field":"system_requirement.motor_kv","gate":"G1B","status":"PASS","value":"45 rpm/V propulsion performance class","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Exact production motor MPN remains open."},
-    {"id":"G1B-03","field":"system_requirement.electrical_rpm_max","gate":"G1B","status":"PASS","value":"reference class about 52,038 eRPM; controller design capability >=60,000 eRPM","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Based on 42-pole/21-pair reference motor at 2478 rpm manufacturer curve maximum."},
+    {"id":"G1B-03","field":"system_requirement.electrical_rpm_max","gate":"G1B","status":"PASS","value":"controller design capability >=90,000 eRPM; 80 V * 45 rpm/V * 21 pole pairs = 75,600 eRPM no-load linear screen","evidence":["PRODUCT_BASELINE_PB-04.json","ERPM_PWM_TIMING_CORRECTION_PB04.md","mission_requirements.json"],"note":"PB-04 corrects the prior 60 keRPM value, which was based only on a loaded manufacturer curve point. 90 keRPM is controller capability, not expected loaded propeller operating speed."},
 
     {"id":"G1C-01","field":"system_requirement.battery_series_count","gate":"G1C","status":"PASS","value":"18S high-rate lithium architecture","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"]},
-    {"id":"G1C-02","field":"system_requirement.dc_bus_min_v","gate":"G1C","status":"OPEN","blocker":"pack sag/cutoff and full-power derating policy"},
-    {"id":"G1C-03","field":"system_requirement.dc_bus_nominal_v","gate":"G1C","status":"PASS","value":"66.6 V nominal for 18S x 3.7 V nominal cell assumption","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Exact cell/pouch and Ah remain open."},
+    {"id":"G1C-02","field":"system_requirement.dc_bus_min_v","gate":"G1C","status":"OPEN","blocker":"exact pack sag/cutoff, cell choice and full-power derating policy; PB-04 energy bound does not close loaded minimum voltage"},
+    {"id":"G1C-03","field":"system_requirement.dc_bus_nominal_v","gate":"G1C","status":"PASS","value":"66.6 V nominal for 18S x 3.7 V nominal cell assumption","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Exact cell/pouch and final Ah remain open."},
     {"id":"G1C-04","field":"system_requirement.dc_bus_full_charge_v","gate":"G1C","status":"PASS","value":"75.6 V target for 18S x 4.2 V/cell; outer U1 ceiling <=80.0 V DC","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"]},
     {"id":"G1C-05","field":"system_requirement.dc_bus_transient_max_v","gate":"G1C","status":"PASS","value":"<=120.0 V repetitive controlled semiconductor-terminal stress; normal operation shall not rely on avalanche","evidence":["PRODUCT_BASELINE_PB-02.json","DC_BUS_TRANSIENT_REQUIREMENTS.md"]},
 
@@ -44,7 +44,7 @@
     {"id":"G1-04","field":"system_requirement.esc_peak_phase_current_a_and_duration","gate":"G1","status":"PASS","value":">=265 A RMS phase overload for >=3 s; >=375 A instantaneous sinusoidal phase peak capability","evidence":["PRODUCT_BASELINE_PB-03.json","PHASE_CURRENT_MODEL_PB02.md","PHASE_CURRENT_MODEL_PB02.json"],"note":"Design capability requirement, not a measured custom-UAV current."},
     {"id":"G1-05","field":"system_requirement.esc_continuous_dc_current_a","gate":"G1","status":"PASS","value":">=70 A continuous DC input capability","evidence":["PRODUCT_BASELINE_PB-02.json"],"note":"PB-02 manufacturer-curve interpolation gives about 44 A at max-MTOW hover and 54 A at one-channel-loss controlled-landing thrust point at 69 V reference conditions."},
     {"id":"G1-06","field":"system_requirement.esc_peak_dc_current_a_and_duration","gate":"G1","status":"PASS","value":">=200 A for >=3 s","evidence":["PRODUCT_BASELINE_PB-02.json"]},
-    {"id":"G1-07","field":"system_requirement.pwm_frequency_range_hz","gate":"G1","status":"OPEN","blocker":"motor inductance/eRPM + 150 V semiconductor switching-loss trade; Sprint S1.2 active"},
+    {"id":"G1-07","field":"system_requirement.pwm_frequency_range_hz","gate":"G1","status":"OPEN","blocker":"exact production-motor Ld/Lq or equivalent measured ripple inductance remains required. PB-04 narrows preferred analysis to 24-32 kHz with 20/40 kHz as boundary sensitivity points; final PWM is not frozen."},
     {"id":"G1-08","field":"system_requirement.current_sense_range_a","gate":"G1","status":"PASS","value":"minimum bipolar phase-current measurement range -400 A to +400 A","evidence":["PRODUCT_BASELINE_PB-03.json","PHASE_CURRENT_MODEL_PB02.md","PHASE_CURRENT_MODEL_PB02.json"],"note":"Exact shunt/CSA and OCP trip threshold remain G2/S1.4 work; measurement range must not saturate at the 375 A design peak."},
     {"id":"G1-09","field":"system_requirement.dc_link_ripple_current_requirement_a_rms","gate":"G1","status":"OPEN","blocker":"DC current waveform/PWM/propulsion point"},
     {"id":"G1-10","field":"system_requirement.dc_link_transient_energy_requirement_j","gate":"G1","status":"OPEN","blocker":"harness/PCB inductance + regen/BMS disconnect energy"},
@@ -52,7 +52,7 @@
     {"id":"G1-12","field":"system_requirement.baseplate_max_temperature_c","gate":"G1","status":"OPEN","blocker":"thermal architecture/derating policy"},
     {"id":"G1-13","field":"system_requirement.overvoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"exact energy-management thresholds below the 120 V outer ceiling"},
     {"id":"G1-14","field":"system_requirement.undervoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"battery sag/cutoff and propulsion safe-state policy"},
-    {"id":"G1-15","field":"system_requirement.overcurrent_threshold_latency_and_response","gate":"G1","status":"OPEN","blocker":"phase-current envelope is now frozen by PB-03; exact trip threshold/latency still requires protection architecture and false-trip margin"},
+    {"id":"G1-15","field":"system_requirement.overcurrent_threshold_latency_and_response","gate":"G1","status":"OPEN","blocker":"phase-current envelope is frozen; exact trip threshold/latency still requires protection architecture and false-trip margin"},
     {"id":"G1-16","field":"system_requirement.overtemperature_threshold_and_response","gate":"G1","status":"OPEN","blocker":"thermal limits and sensor placement"},
     {"id":"G1-17","field":"system_requirement.flight_controller_communication_interface","gate":"G1","status":"PASS","value":"CAN-FD capable physical layer with Classic CAN compatibility","evidence":["PRODUCT_BASELINE_PB-02.json","CAN_PHYSICAL_LAYER_PRETRADE.md"]},
     {"id":"G1-18","field":"system_requirement.arming_interface_and_state_policy","gate":"G1","status":"PASS","value":"Power-up/reset=DISARMED; valid FC command requests arm; independent hardware inhibit has final authority; latched fault inhibits PWM; no automatic re-arm","evidence":["PRODUCT_BASELINE_PB-02.json"]},
@@ -60,9 +60,12 @@
     {"id":"G1-20","field":"system_requirement.command_timeout_and_failsafe_response","gate":"G1","status":"OPEN","blocker":"command-timeout value and detailed response timing remain open"}
   ],
   "evidence_files": [
+    "PRODUCT_BASELINE_PB-04.json",
     "PRODUCT_BASELINE_PB-03.json",
     "PRODUCT_BASELINE_PB-02.json",
     "PRODUCT_BASELINE_PB-01.json",
+    "MISSION_DURATION_ENERGY_BASELINE_PB04.md",
+    "ERPM_PWM_TIMING_CORRECTION_PB04.md",
     "PHASE_CURRENT_MODEL_PB02.md",
     "PHASE_CURRENT_MODEL_PB02.json",
     "mission_requirements.json",
@@ -71,5 +74,5 @@
     "DC_BUS_TRANSIENT_REQUIREMENTS.md",
     "CAN_PHYSICAL_LAYER_PRETRADE.md"
   ],
-  "anti_hallucination_rule": "PB-03 documented product decisions may close their mapped rows. Remaining OPEN rows stay OPEN. Manufacturer data/modeling is sizing evidence, not physical verification of the final motor, inverter or coaxial vehicle."
+  "anti_hallucination_rule": "PB-04 documented product decisions may close their mapped rows. Remaining OPEN rows stay OPEN. Manufacturer data/modeling is sizing evidence, not physical verification of the final motor, inverter, battery, coaxial vehicle or flight article."
 }
