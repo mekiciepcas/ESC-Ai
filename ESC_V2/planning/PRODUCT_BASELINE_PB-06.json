@@ -1,0 +1,80 @@
+{
+  "revision": "PB-06",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "supersedes": "PRODUCT_BASELINE_PB-05.json",
+  "inherits_all_pb05_frozen_decisions_except_explicit_supersession": true,
+  "purpose": "Advance Sprint S1.3 by freezing the whole-pack short-duration current requirement from the vehicle-level 1.6 T/W propulsion point while keeping exact cell/topology/mechanical implementation open.",
+  "change_control": {
+    "rule": "PB-06 inherits PB-05 unless a PB-06 decision explicitly supersedes an inherited value. Any later change to a PB-06 frozen value requires PB-07 or an explicitly linked engineering change record; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "inherited_baseline": {
+    "authority": "PRODUCT_BASELINE_PB-05.json",
+    "summary": [
+      "70-100 kg payload target; 85 kg nominal",
+      "X8 coaxial / eight independent propulsion channels",
+      "150/165/180 kg MTOW design targets",
+      "normal static thrust-to-weight >=1.6 at max design MTOW",
+      "56x20 inch / 45KV / 18S propulsion performance class",
+      "18S / >=5.0 kWh gross rated pack energy / 75.6 V full charge / <=80 V outer input ceiling",
+      "54.0 V minimum loaded bus for full rated power",
+      ">=500 A continuous whole-pack capability",
+      ">=10 min nominal mission target with 20% gross-energy reserve",
+      ">=70 A continuous and >=200 A for >=3 s per-ESC DC capability",
+      ">=4.8 kW continuous and >=11.5 kW short-duration per-ESC input capability",
+      "<=120 V repetitive controlled semiconductor-terminal stress",
+      ">=150 V power-semiconductor class",
+      ">=125 A RMS continuous phase current, >=265 A RMS for >=3 s and >=375 A instantaneous phase peak",
+      ">=90,000 eRPM controller capability",
+      "CAN-FD capable / Classic-CAN compatible interface",
+      "power-up/reset DISARMED and no automatic re-arm after fault"
+    ]
+  },
+  "new_frozen_decisions": [
+    {
+      "id": "PB-032",
+      "field": "battery_pack_peak_current_a_min",
+      "value": 1050,
+      "unit": "A",
+      "comparison": ">=",
+      "duration_s_min": 3,
+      "status": "FROZEN_DERIVED_PRODUCT_REQUIREMENT",
+      "rationale": "The frozen 1.6 T/W vehicle sizing point requires 42.353 kgf isolated-equivalent thrust per propulsion channel. Interpolation of current Hobbywing X13 G2 69 V + MFP 56x20 manufacturer data gives about 6.264 kW input per channel at this thrust, or about 50.11 kW for eight channels. At the frozen 54.0 V full-rated-power floor this is about 928 A ideal pack current. Applying 10% design allowance gives about 1021 A; requirement rounded upward to >=1050 A for >=3 s.",
+      "evidence": [
+        "BATTERY_PEAK_CURRENT_DERIVATION_PB06.md",
+        "PRODUCT_BASELINE_PB-05.json",
+        "mission_requirements.json"
+      ]
+    }
+  ],
+  "pack_architecture_direction": {
+    "electrical_structure": "single 18S flight pack with internal service segmentation preferred for prototype study",
+    "status": "ARCHITECTURE_DIRECTION_NOT_RELEASED_MECHANICAL_DESIGN",
+    "reason": "500 A continuous / 1050 A short-duration current makes unnecessary external series connectors undesirable because each would carry full pack current.",
+    "evidence": ["BATTERY_PACK_ARCHITECTURE_MASS_FRAMEWORK_PB06.md"]
+  },
+  "candidate_cell_disposition": {
+    "exact_cell_mpn_frozen": false,
+    "primary_qualification_candidate": "Molicel INR-21700-P50B in an 18S16P calculation topology",
+    "mass_optimization_candidate": "Molicel INR-21700-P60B in an 18S14P calculation topology",
+    "mature_alternate": "Molicel INR-21700-P45B in an 18S18P calculation topology",
+    "peak_current_note": "At 1050 A the arithmetic current per cell is about 65.6 A for P50B 16P, 75.0 A for P60B 14P and 58.3 A for P45B 18P. These values do not qualify any topology; SOC/temperature/SOH/current-sharing and pack thermal evidence remain mandatory."
+  },
+  "remaining_s1_critical_open_items": [
+    "exact battery cell/pouch MPN, P-count, complete pack mass and service segmentation",
+    "low-SOC/cold/aged sag correlation and hard BMS cutoff behavior",
+    "peak-capable SOC/temperature/SOH envelope for >=1050 A / >=3 s",
+    "busbar/weld/contactors/fuses/service-disconnect/output-connector exact ratings and thermal proof",
+    "PWM frequency/current ripple final closure after exact motor inductance evidence",
+    "environment and thermal design boundaries",
+    "OV/UV/OCP/OTP/watchdog/command-timeout numeric requirements",
+    "exact 150 V MOSFET MPN and parallel count",
+    "exact high-voltage half-bridge gate-driver MPN",
+    "current-sense implementation, DC-link, precharge and thermal architecture"
+  ],
+  "physical_verification_status": "NOT_PERFORMED",
+  "anti_hallucination_rule": "PB-06 peak current is a controlled vehicle-level sizing requirement derived from frozen thrust targets and manufacturer propulsion data. It is not a measured pack capability, cell qualification, thermal result or flight result."
+}
