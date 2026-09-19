@@ -1,0 +1,26 @@
+name: Verify PB-03 Phase Current
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PHASE_CURRENT_MODEL_PB02.md'
+      - 'ESC_V2/planning/PHASE_CURRENT_MODEL_PB02.json'
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-03.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/verify_phase_current_pb03.py'
+      - '.github/workflows/phase-current-pb03.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify phase-current model and authorities
+        run: python ESC_V2/planning/verify_phase_current_pb03.py
