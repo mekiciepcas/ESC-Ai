@@ -1,34 +1,30 @@
 {
-  "revision":"AUTO-STATE-38",
+  "revision":"AUTO-STATE-39",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_PDS01_FROZEN_VALUES_MARKED",
+  "last_run_status":"PROGRESS_SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE",
   "current_gate":"G0_G1",
-  "current_task":"NORMALIZED_120V_150V_POWER_STAGE_LOSS_AND_GATE_DRIVE_PRETRADE",
+  "current_task":"GATE_DRIVER_VOLTAGE_DOMAIN_COMPATIBILITY_PRETRADE",
   "completed_this_run":[
-    "verified_current_uav_rebaseline_branch_and_requirements_freeze_authority_before marking datasheet values",
-    "created_versioned_ESC_U1_PRELIMINARY_DATASHEET_PDS_01_md_instead_of overwriting PDS_00",
-    "marked_only_70_100kg_payload_target_bounds_as_FROZEN because G1_REQUIREMENTS_MATRIX_row_G0_01_is_the_only_PASS_product_value_row",
-    "kept_81V_120A_300A_3s_4640W_as_TRADE_ONLY_not_product_ratings",
-    "kept_120V_150V_power_device_classes_and_MCU_gate_driver_options_as_CANDIDATE_not frozen selections",
-    "kept_all_mechanical_environment_voltage_phase_current_PWM_eRPM_and_production_rating_fields_OPEN",
-    "generated_and_render_verified_color_coded_PDS_01_PDF_with_frozen_trade_candidate_open_legend",
-    "preserved_product_progress_counters_and_did_not_allocate_U1_SCH_R001"
+    "verified UAV_PRODUCT_PLAN UAV_TRACEABILITY uav_backlog mission_requirements REQUIREMENTS_MASTER REQUIREMENTS_PROGRESS and AUTONOMOUS_HANDOFF against repository state",
+    "added SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE.md",
+    "normalized same-package current-generation 120V and 150V MOSFET headline resistance gate-charge and static-voltage-margin evidence without inventing product current PWM or temperature",
+    "recorded PRETRADE-SEM-01 to preserve a 150V-capable architecture path while retaining 120V as an efficiency candidate",
+    "kept both voltage classes non-frozen pending G1 VBUS transient phase-current PWM and thermal closure"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; product-specific mass, mission and environment values remain unresolved","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW, span and motor-out policy remain open; trade-only sweeps may proceed","blocking_scope":"G1A_and_UAV004"},
-    {"task":"freeze_phase_current_and_switch_current","reason":"exact motor/prop operating point and modulation/control waveform are not frozen","blocking_scope":"G1_power_stage_current"},
-    {"task":"freeze_semiconductor_voltage_class","reason":"final battery and transient ceiling remain open; 120V and 150V are candidate classes only","blocking_scope":"G2_power_stage"},
+    {"task":"freeze_G0_mission_mass_envelope","reason":"product-specific mass mission environment and degraded-operation inputs remain null","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW span and motor-out policy remain open","blocking_scope":"G1A_and_UAV004"},
+    {"task":"freeze_phase_current_and_switch_current","reason":"exact motor/prop operating point and modulation waveform are not frozen","blocking_scope":"G1_power_stage_current"},
+    {"task":"freeze_semiconductor_voltage_class","reason":"battery/transient ceiling PWM hot operating point SOA and thermal path remain open","blocking_scope":"G2_power_stage"},
     {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "run normalized 120V versus 150V MOSFET loss comparison at explicit trade-only current PWM and junction-temperature sweep points",
-    "screen gate-driver voltage-domain compatibility for both carried-forward power-stage classes",
-    "build trade-only DC-link transient and precharge bounding model around the 80V-class reference",
-    "extract manufacturer motor load-curve points to replace broad bus-current references with operating-point-linked estimates",
-    "calculate propulsion-system mass sensitivity across 4_6_8 rotor concepts"
+    "screen gate-driver voltage-domain and source-sink-current compatibility for the surviving 120V and 150V paths",
+    "extend normalized loss model with explicit parameter-sweep input file while keeping all sweep points TRADE_ONLY",
+    "build trade-only DC-link transient and precharge bounding model around the 80V-class benchmark",
+    "extract manufacturer motor load-curve points for operating-point-linked current evidence"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -37,25 +33,19 @@
     "backlog_done_percent":4.0,
     "major_gate_closure_percent":0.0,
     "u1_kicad_architecture_scaffold_percent":100.0,
-    "u1_component_bearing_schematic_percent":0.0,
-    "schematic_revision_control_policy_percent":100.0,
-    "dashboard_current_uav_status_integration_percent":100.0,
-    "dashboard_auto_refresh_ci_percent":100.0,
-    "dashboard_source_consistency_validation_percent":100.0,
-    "mechanical_electrical_cotrade_framework_percent":100.0,
-    "propulsion_screening_pretrade_percent":100.0,
-    "esc_electrical_envelope_pretrade_percent":100.0,
-    "esc_pretrade_ci_consistency_validation_percent":100.0,
-    "preliminary_engineering_datasheet_current_scope_percent":100.0
+    "u1_component_bearing_schematic_percent":0.0
   },
   "evidence_refs":[
-    "ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md",
-    "ESC_U1_PRELIMINARY_DATASHEET_PDS-01.md",
-    "G1_REQUIREMENTS_MATRIX.json",
+    "UAV_PRODUCT_PLAN.md",
+    "UAV_TRACEABILITY.md",
+    "uav_backlog.json",
+    "mission_requirements.json",
+    "REQUIREMENTS_MASTER.json",
     "REQUIREMENTS_PROGRESS.json",
-    "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json"
+    "SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md",
+    "SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE.md"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"PDS-01 now makes freeze state visually explicit. Only the 70-100 kg payload target bounds are frozen at product-value level because G1 closure remains 1/46. Trade-only electrical stress references and candidate component classes remain clearly non-frozen."
+  "notes":"The 120V path retains a headline conduction-resistance advantage while the 150V path retains materially larger static VDS margin at the 81V trade reference. Neither class is frozen. Architecture studies must remain compatible with 150V until G1 transient closure provides the first hard discriminator."
 }
