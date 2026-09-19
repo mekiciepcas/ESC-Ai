@@ -1,0 +1,22 @@
+name: Verify PB-04 Consistency
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-04.json'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/REQUIREMENTS_MASTER.json'
+      - 'ESC_V2/planning/verify_pb04_consistency.py'
+      - '.github/workflows/pb04-consistency-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify PB-04 controlled values
+        run: python3 ESC_V2/planning/verify_pb04_consistency.py
