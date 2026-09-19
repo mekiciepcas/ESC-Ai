@@ -1,0 +1,81 @@
+{
+  "revision": "B1-KICAD-AUDIT-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "LEGACY_B1_KICAD_BASELINE_CAPTURED_NOT_U1_QUALIFICATION",
+  "source_schematic": "ESC_V2/hardware_b1/ESC_3kW_B1.kicad_sch",
+  "workflow": {
+    "name": "KiCad U1 Verify",
+    "run_id": 35446577458,
+    "head_sha": "78ae7edf4284f8d53de93bb97f3d25697d2dc9c9",
+    "job_id": 105906426011,
+    "runner_os": "Ubuntu 24.04.5 LTS",
+    "kicad_cli_version": "10.0.6",
+    "conclusion": "success"
+  },
+  "environment_correction": {
+    "repository_fp_lib_table": "contains only ESC_B1 local footprint library",
+    "first_audit_result_before_correction": {
+      "erc_violations": 198,
+      "errors": 0,
+      "warnings": 198,
+      "classification": "all observed warnings were footprint_link_issues caused by missing standard footprint library mappings in headless CI",
+      "missing_library_warning_counts": {
+        "Resistor_SMD": 98,
+        "Capacitor_SMD": 50,
+        "Package_TO_SOT_SMD": 19,
+        "Diode_SMD": 12,
+        "TestPoint": 12,
+        "Package_SO": 6,
+        "Package_QFP": 1
+      }
+    },
+    "ci_only_resolution": {
+      "standard_kicad_footprint_libraries_mapped": 155,
+      "local_library_also_mapped": "ESC_B1",
+      "repository_source_modified_by_audit": false,
+      "rule": "effective fp-lib-table exists only in the CI working copy and is uploaded as evidence"
+    }
+  },
+  "observed_results_after_library_resolution": {
+    "netlist_export_exit_code": 0,
+    "netlist_nonempty": true,
+    "erc_exit_code": 0,
+    "erc_violations": 0,
+    "erc_errors": 0,
+    "erc_warnings": 0,
+    "ignored_erc_checks_reported_by_kicad": [
+      "Global label only appears once in the schematic",
+      "Four connection points are joined together",
+      "SPICE model issue",
+      "Assigned footprint doesn't match footprint filters"
+    ]
+  },
+  "artifact": {
+    "id": 10585184686,
+    "name": "kicad-b1-baseline-audit",
+    "size_bytes": 33412,
+    "digest": "sha256:e634de37cbfadc6fe9703bc5965360813e4a2410d1f90727db4981743c1da47e"
+  },
+  "engineering_interpretation": {
+    "proves": [
+      "KiCad 10.0.6 can parse the complete legacy B1 hierarchical schematic",
+      "KiCad 10.0.6 can export a non-empty netlist from the legacy B1 schematic",
+      "after standard footprint-library resolution, enabled KiCad ERC checks report zero errors and zero warnings"
+    ],
+    "does_not_prove": [
+      "legacy B1 ratings are valid for the heavy-lift UAV rebaseline",
+      "ignored ERC categories are safe or irrelevant",
+      "footprints are manufacturer-land-pattern-qualified",
+      "B1 has passed PCB DRC, thermal, EMI, fault-latency or physical validation",
+      "B1 may be copied directly into U1",
+      "U1 G2 or G3 gates are closed"
+    ]
+  },
+  "migration_use": [
+    "B1 is now a reproducibly parseable electrical reference rather than an unverified text-only source",
+    "U1 migration can compare future component-bearing pages against an actual KiCad-generated B1 netlist",
+    "ignored ERC categories must be reviewed deliberately before any G3 schematic-review claim"
+  ],
+  "anti_hallucination_rule": "The zero enabled ERC messages are a software-baseline result for legacy B1 under the recorded KiCad/library environment. They shall never be translated into U1 electrical qualification or production readiness."
+}
