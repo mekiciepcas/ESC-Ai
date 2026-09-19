@@ -1,39 +1,57 @@
 {
-  "revision":"AUTO-STATE-39",
+  "revision":"AUTO-STATE-40",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE",
+  "last_run_status":"PROGRESS_PRODUCT_BASELINE_PB01_FROZEN_AND_CI_VERIFIED",
   "current_gate":"G0_G1",
-  "current_task":"GATE_DRIVER_VOLTAGE_DOMAIN_COMPATIBILITY_PRETRADE",
+  "current_task":"PB01_PROPULSION_CURRENT_ENERGY_AND_THERMAL_CLOSURE",
   "completed_this_run":[
-    "verified UAV_PRODUCT_PLAN UAV_TRACEABILITY uav_backlog mission_requirements REQUIREMENTS_MASTER REQUIREMENTS_PROGRESS and AUTONOMOUS_HANDOFF against repository state",
-    "added SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE.md",
-    "normalized same-package current-generation 120V and 150V MOSFET headline resistance gate-charge and static-voltage-margin evidence without inventing product current PWM or temperature",
-    "recorded PRETRADE-SEM-01 to preserve a 150V-capable architecture path while retaining 120V as an efficiency candidate",
-    "kept both voltage classes non-frozen pending G1 VBUS transient phase-current PWM and thermal closure"
+    "preserved_and_reviewed_the_latest_normalized_120V_150V_semiconductor_pretrade_from_AUTO_STATE_39",
+    "created_PRODUCT_BASELINE_PB-01_json_as_the_first_revision-controlled partial product baseline",
+    "froze_X8_coaxial_4_arm_8_independent_propulsion_channel vehicle architecture",
+    "froze_single_motor_or_ESC_failure_requirement_to_controlled_landing_without requiring continued_hover_at_max_payload",
+    "froze_dc_bus_full_charge_operating_ceiling_to_80V_as_a_bounded_product_requirement_without yet selecting exact battery chemistry_or_series",
+    "froze_repetitive_bus_and_switching_transient_design_ceiling_to_120V_and_prohibited reliance_on_repetitive_avalanche_in_normal_operation",
+    "froze_minimum_power_semiconductor_VDS_class_to_150V while leaving exact MOSFET MPN and parallel count open",
+    "froze_gate_driver_architecture_to_three_independent_high_voltage_half_bridge_drivers and excluded legacy_DRV8353_from_the_U1_primary_baseline",
+    "froze_flight_controller_link_to_CAN_FD_capable_with_Classic_CAN_compatibility",
+    "froze_power_up_reset fault arming policy to DISARMED_with_explicit_arm_and_no_automatic_rearm",
+    "froze_core_three_phase_two_level_VSI plus BLDC_PMSM plus FOC_SVPWM topology",
+    "updated_mission_requirements_design_basis_G1_REQUIREMENTS_MATRIX_and_REQUIREMENTS_PROGRESS_consistently",
+    "advanced_G1_value_closure_from_1_of_46_to_8_of_46_rows",
+    "added_verify_product_baseline_pb01_py_and_GitHub_Action consistency enforcement",
+    "observed_GitHub_Actions_run_35455224602_success_with_exact_PB01_PASS_output",
+    "kept_current_power_phase_PWM_eRPM_exact_motor_prop_battery_chemistry_thermal_and_mechanical_values_OPEN"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"product-specific mass mission environment and degraded-operation inputs remain null","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW span and motor-out policy remain open","blocking_scope":"G1A_and_UAV004"},
-    {"task":"freeze_phase_current_and_switch_current","reason":"exact motor/prop operating point and modulation waveform are not frozen","blocking_scope":"G1_power_stage_current"},
-    {"task":"freeze_semiconductor_voltage_class","reason":"battery/transient ceiling PWM hot operating point SOA and thermal path remain open","blocking_scope":"G2_power_stage"},
-    {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open","blocking_scope":"G3"}
+    {"task":"close_G0_mass_energy_environment","reason":"nominal payload, actual vehicle structural/battery/equipment mass, mission duration and environmental envelope remain open","blocking_scope":"G0_and_MTOW"},
+    {"task":"freeze_hover_peak_thrust_per_rotor","reason":"PB-01 rotor count is frozen at 8 but actual MTOW and coaxial interaction factor remain open","blocking_scope":"remaining_G1A"},
+    {"task":"freeze_motor_prop_operating_point","reason":"MTOW and thrust operating points remain open","blocking_scope":"G1B"},
+    {"task":"freeze_exact_battery_architecture","reason":"PB-01 freezes <=80V full-charge ceiling but exact chemistry series capacity energy sag and BMS behavior remain open","blocking_scope":"remaining_G1C"},
+    {"task":"freeze_ESC_current_power_PWM_eRPM","reason":"requires selected motor_prop operating points and exact battery nominal/minimum behavior","blocking_scope":"remaining_G1"},
+    {"task":"freeze_exact_power_stage_MPN_and_parallel_count","reason":"150V class is frozen but current PWM hot temperature loss thermal SOA and layout values remain open","blocking_scope":"G2_power_stage"},
+    {"task":"allocate_U1_SCH_R001","reason":"G1 current/power and key G2 sensing/DC-link/thermal readiness remain open","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "screen gate-driver voltage-domain and source-sink-current compatibility for the surviving 120V and 150V paths",
-    "extend normalized loss model with explicit parameter-sweep input file while keeping all sweep points TRADE_ONLY",
-    "build trade-only DC-link transient and precharge bounding model around the 80V-class benchmark",
-    "extract manufacturer motor load-curve points for operating-point-linked current evidence"
+    "calculate PB-01 X8 coaxial propulsion mass and thrust sensitivity using source-backed integrated propulsion masses and explicit coaxial interaction bounds",
+    "select a controlled nominal MTOW working point from the converged mass loop rather than competitor copying",
+    "derive hover and peak motor input power/current for eight propulsion channels from manufacturer load curves",
+    "choose exact battery series chemistry and nominal/minimum bus within the frozen <=80V full-charge ceiling",
+    "run 150V-only exact MOSFET parallel-count and hot-loss sweep after current/PWM bounds exist",
+    "screen UCC27712-Q1 and other high-voltage half-bridge drivers against required total gate charge and negative switch-node transient behavior",
+    "update the preliminary datasheet to the next revision so newly frozen PB-01 values are visibly marked"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
     "requirements_structure_percent":100.0,
-    "g1_system_freeze_percent":2.2,
+    "g1_system_freeze_percent":17.4,
     "backlog_done_percent":4.0,
     "major_gate_closure_percent":0.0,
     "u1_kicad_architecture_scaffold_percent":100.0,
-    "u1_component_bearing_schematic_percent":0.0
+    "u1_component_bearing_schematic_percent":0.0,
+    "product_baseline_pb01_definition_percent":100.0,
+    "product_baseline_pb01_ci_consistency_percent":100.0
   },
   "evidence_refs":[
     "UAV_PRODUCT_PLAN.md",
@@ -43,9 +61,14 @@
     "REQUIREMENTS_MASTER.json",
     "REQUIREMENTS_PROGRESS.json",
     "SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md",
-    "SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE.md"
+    "SEMICONDUCTOR_120V_150V_NORMALIZED_PRETRADE.md",
+    "PRODUCT_BASELINE_PB-01.json",
+    "design_basis.json",
+    "G1_REQUIREMENTS_MATRIX.json",
+    "verify_product_baseline_pb01.py",
+    "GitHub Actions run 35455224602 SUCCESS"
   ],
-  "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
-  "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The 120V path retains a headline conduction-resistance advantage while the 150V path retains materially larger static VDS margin at the 81V trade reference. Neither class is frozen. Architecture studies must remain compatible with 150V until G1 transient closure provides the first hard discriminator."
+  "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false,"frozen_product_decision_changes_require_new_pb_revision_or_engineering_change_record":true},
+  "evidence_policy":{"unknown_values":"OPEN_OR_NULL","benchmark_values_must_not_promote_without_documented_product_decision":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
+  "notes":"PB-01 is the first deliberate productization freeze. It converts architecture choices into controlled requirements rather than pretending all numeric sizing is known. The 150V power-device class is now a product requirement; exact MOSFET, current, parallel count and thermal design are still open. G1 value closure is 8/46 = 17.4%."
 }
