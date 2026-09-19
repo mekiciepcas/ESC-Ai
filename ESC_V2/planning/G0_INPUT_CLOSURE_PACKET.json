@@ -1,0 +1,39 @@
+{
+  "revision": "G0-CLOSURE-01",
+  "date": "2026-09-19",
+  "status": "OPEN_USER_VEHICLE_INPUT",
+  "purpose": "Minimal product-specific input set required to close G0 without importing competitor or legacy values.",
+  "source_authority": ["mission_requirements.json", "UAV_PRODUCT_PLAN.md", "G1_REQUIREMENTS_MATRIX.json"],
+  "known": {
+    "application": "heavy_lift_agricultural_multirotor_uav",
+    "payload_min_kg": 70,
+    "payload_max_kg": 100,
+    "payload_evidence": "USER_TARGET",
+    "payload_is_not_mtow": true
+  },
+  "required_inputs": [
+    {"id":"G0I-001","field":"payload_nominal_kg","value":null,"unit":"kg","required_for":["G0","MTOW_nominal"]},
+    {"id":"G0I-002","field":"airframe_empty_mass_kg","value":null,"unit":"kg","required_for":["G0","MTOW"]},
+    {"id":"G0I-003","field":"battery_mass_kg","value":null,"unit":"kg","required_for":["G0","MTOW","energy_iteration"]},
+    {"id":"G0I-004","field":"mission_equipment_mass_kg","value":null,"unit":"kg","required_for":["G0","MTOW"]},
+    {"id":"G0I-005","field":"target_total_flight_time_min","value":null,"unit":"min","required_for":["G0","energy_budget"]},
+    {"id":"G0I-006","field":"target_hover_time_min","value":null,"unit":"min","required_for":["G0","energy_budget"]},
+    {"id":"G0I-007","field":"minimum_ambient_c","value":null,"unit":"degC","required_for":["G0","ENV"]},
+    {"id":"G0I-008","field":"maximum_ambient_c","value":null,"unit":"degC","required_for":["G0","thermal_derating"]},
+    {"id":"G0I-009","field":"maximum_operating_altitude_m","value":null,"unit":"m","required_for":["G0","propulsion_derating"]},
+    {"id":"G0I-010","field":"maximum_wind_m_s","value":null,"unit":"m/s","required_for":["G0","mission_margin"]},
+    {"id":"G0I-011","field":"single_motor_failure_requirement","value":null,"unit":null,"allowed_examples":["continued_hover","controlled_landing","no_continued_operation_requirement"],"required_for":["G0","rotor_architecture"]},
+    {"id":"G0I-012","field":"coaxial_allowed","value":null,"unit":null,"type":"boolean","required_for":["G1A_architecture_screen"]},
+    {"id":"G0I-013","field":"maximum_vehicle_span_m","value":null,"unit":"m","required_for":["G1A_rotor_diameter_envelope"]},
+    {"id":"G0I-014","field":"rain_dust_ingress_target","value":null,"unit":null,"required_for":["ENV","connector_and_cooling_architecture"]}
+  ],
+  "derived_only_after_inputs": {
+    "mtow_min_nom_max_kg": null,
+    "rotor_count": null,
+    "hover_thrust_per_rotor": null,
+    "peak_thrust_per_rotor": null,
+    "battery_energy": null,
+    "esc_electrical_envelope": null
+  },
+  "anti_hallucination_rule": "Null fields must not be filled from competitor UAV data, B1 values or trade-only bounding cases."
+}
