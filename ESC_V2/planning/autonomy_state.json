@@ -1,18 +1,21 @@
 {
-  "revision":"AUTO-STATE-20",
+  "revision":"AUTO-STATE-21",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_AUX_INVENTORY_AND_CONTROL_BENCH_CONTRACT_COMPLETE",
+  "last_run_status":"PROGRESS_CONTROL_AUX_REQUIREMENTS_AND_RESULT_SCHEMAS",
   "current_gate":"G0_G1",
   "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION_WITH_SAFE_G2_PREWORK",
-  "current_task":"LEGACY_TRACEABILITY_DEEPENING_AND_SAFE_G2_PREWORK",
+  "current_task":"LEGACY_TRACEABILITY_GAP_AUDIT_AND_BOM_SUPPORT_PART_DEEPENING",
   "completed_this_run":[
-    "verified_branch_tree_and_required_planning_authorities_against_uav_rebaseline",
-    "verified_B1_auxiliary_load_domain_inventory_exists_and_separates_source_capability_from_load_demand",
-    "verified_STM32G474_vs_TMS320F280041C_primary_source_pretrade_exists_without_selecting_a_winner",
-    "created_common_executable_control_platform_bench_contract_CPB_01_through_CPB_12",
-    "mapped_auxiliary_load_budget_and_control_benchmark_requirements_into_UAV_TRACEABILITY_as_TR_034_and_TR_035",
+    "verified_required_planning_authorities_and_branch_state_against_uav_rebaseline",
+    "created_B1_auxiliary_load_domain_inventory_separating_source_capability_from_actual_load_demand",
+    "created_STM32G474_vs_TMS320F280041C_primary_source_control_platform_pretrade_without_selecting_a_winner",
+    "created_control_aux_derived_requirement_child_authority_with_all_numeric_values_left_OPEN",
+    "linked_control_aux_derived_authority_into_REQUIREMENTS_MASTER_domains",
+    "created_mandatory_input_auxiliary_power_budget_model_and_null_only_input_template",
+    "verified_common_CPB_01_through_CPB_12_control_platform_bench_contract_created_on_branch",
+    "created_machine_readable_CPB_result_template_with_all_measurement_fields_null",
     "kept_all_G0_G1_product_specific_unknowns_OPEN"
   ],
   "blocked_tasks":[
@@ -28,9 +31,9 @@
   ],
   "next_candidates":[
     "audit_remaining_critical_B1_legacy_decisions_for_traceability_gaps_that_can_be_closed_without_G1_values",
-    "define_machine_readable_control_platform_bench_result_schema_without_inventing_measurements",
     "deepen_U1_BOM_CANDIDATES_only_where_exact_orderable_support_part_evidence_is_independent_of_open_G1_ratings",
-    "map_new_derived_requirements_into_existing_master_domains_without_changing_OPEN_values",
+    "define_exact_external_auxiliary_interface_contract_fields_for_fan_Hall_and_exported_power_without_guessing_values",
+    "map_future_derived_requirements_into_existing_master_domains_without_changing_OPEN_values",
     "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
@@ -45,6 +48,10 @@
     "planning/B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md",
     "planning/CONTROL_PLATFORM_PRETRADE.md",
     "planning/CONTROL_PLATFORM_BENCH_CONTRACT.md",
+    "planning/CONTROL_PLATFORM_BENCH_RESULTS.template.json",
+    "planning/CONTROL_AUX_DERIVED_REQUIREMENTS.json",
+    "planning/auxiliary_power_budget_model.py",
+    "planning/auxiliary_power_budget_input.template.json",
     "planning/UAV_TRACEABILITY.md",
     "planning/REQUIREMENTS_MASTER.json",
     "planning/REQUIREMENTS_PROGRESS.json",
@@ -55,5 +62,5 @@
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"Safe G2 prework advanced without changing product baseline values. The B1 auxiliary inventory identifies rail consumers and explicit unknowns; the MCU pretrade now has a common executable CPB-01..12 contract. G1 remains 1/46 PASS and is still the critical dependency."
+  "notes":"Requirements structure remains complete while G1 value closure stays 1/46 PASS. This run deepened safe G2 prework with an evidence-based B1 auxiliary load inventory, source-backed MCU pretrade, machine-readable derived requirements, a mandatory-input auxiliary budget model and null-only CPB result schema. No architecture winner or physical measurement was claimed."
 }
