@@ -1,78 +1,60 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 06:23+03:00  
+Date: 2026-09-19 07:22+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_SCENARIO_MAPPING_AND_DRIVER_VOLTAGE_AUDIT`
+Status: `PROGRESS_BUS_SENSE_AND_VBUS_COMPONENT_AUDIT`
 
 ## Run summary
-
-This run converted the X15 G2 primary 69 V curve into architecture-level benchmark operating points and advanced the 18S voltage-domain risk from a generic concern to an explicit gate-driver/power-silicon requirement. No product rotor count, MTOW, phase current, semiconductor class or gate driver was frozen.
+This run closed two unblocked follow-ups: the 18S bus-sense arithmetic was rebaselined and the first B1 VBUS-exposed component audit was created. No product voltage class, divider values, rotor count, MTOW, phase-current rating, gate driver or auxiliary regulator was frozen.
 
 ## Tasks attempted / completed
-
-1. Verified previous handoff against repository `x15g2_operating_curve.json`.
-2. Linearly mapped source-backed X15 G2 rows to 125/136/150/175 kg quad benchmarks and 175 kg hex/octo cases.
-3. Added `X15_SCENARIO_MAPPING.md` with calculated DC-current/input-power points and explicit interpolation/evidence labels.
-4. Added `POWER_DOMAIN_VOLTAGE_CLASS_TRADE.md` comparing static 100/120/150 V headroom for the 18S candidate and defining the transient closure gates.
-5. Verified TI primary product information for DRV8353: 9–100 V operating supply domain and 102 V absolute maximum.
-6. Updated machine-readable autonomous state and this handoff.
+1. Verified the previous handoff/state against the branch.
+2. Recalculated the B1 divider (2x49.9k / 3.32k): ratio 0.0321955; 75.6 V maps to ~2.434 V; ideal 3.3 V ADC full-scale maps to ~102.5 V bus.
+3. Added `BUS_SENSE_18S_REBASELINE.md` with ~120 V and ~150 V measurement-range study options and explicit separation of measurement full scale from hardware OVP.
+4. Audited the first VBUS-exposed B1 domains and added `B1_VBUS_COMPONENT_AUDIT.md`.
+5. Verified TI primary data for LM5164: 6–100 V input domain; Rev D typical 12 V application uses a 15–100 V design range.
+6. Updated autonomous state and this handoff.
 
 ## Files changed
-
-- `planning/X15_SCENARIO_MAPPING.md` — new
-- `planning/POWER_DOMAIN_VOLTAGE_CLASS_TRADE.md` — new
+- `planning/BUS_SENSE_18S_REBASELINE.md` — new
+- `planning/B1_VBUS_COMPONENT_AUDIT.md` — new
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-
-- At 150 kg quad, X15 G2 hover = 37.5 kgf/axis and maps to about 67.3 A DC / 4.64 kW at the published 69 V bench condition, aligning with the manufacturer's recommended 37.5 kg/axis and 4.64 kW rated-input region.
-- At 175 kg quad, hover maps to ~85.2 A / 5.88 kW per axis; 1.6x and 1.8x static-thrust study points map to ~185.2 A / 12.78 kW and ~227.9 A / 15.72 kW respectively. These high-thrust points are not continuous ratings.
-- At 175 kg hex, hover maps to the real ~29.17 kgf row at ~45.9 A / 3.17 kW; the 1.8x point maps to ~113.5 A / 7.83 kW. This materially lowers per-ESC stress versus quad.
-- At 175 kg octo, the 1.8x point maps to ~72.5 A / 5.00 kW per axis, at the cost of eight propulsion units.
-- DRV8353 is now explicitly a voltage-margin-critical candidate for 18S. TI publishes 100 V operating and 102 V absolute maximum. 75.6 V battery full charge alone does not prove adequate transient margin.
-- 100 V MOSFET class remains `NOT_QUALIFIED / HIGH_RISK_CANDIDATE`; 120 V and 150 V are trade classes only.
-
-## Calculations/evidence added
-
-- Linear interpolation of adjacent primary X15 rows for benchmark thrust points.
-- Static full-charge headroom: 100 V -> 24.4 V (1.323x); 120 V -> 44.4 V (1.587x); 150 V -> 74.4 V (1.984x).
-- Explicit voltage-requirement framework covering battery max, switching overshoot, harness event, regen/disconnect and engineering margin, with clamp behavior requiring evidence.
+- The legacy B1 divider does not saturate at 80 V; 80 V was only a documented check point. Its ideal mathematical 3.3 V ceiling is ~102.5 V.
+- This arithmetic does not qualify it for 18S UAV use because tolerance, ADC/reference error, clamp injection/leakage, resistor working voltage, ADC settling and the unresolved transient ceiling remain open.
+- Measurement full scale and hardware over-voltage protection are now explicitly separate requirements.
+- LM5164 joins DRV8353 and the 100 V MOSFET class as a voltage-domain-critical item: 75.6 V steady-state is inside its 100 V input domain, but an undefined >100 V transient cannot be accepted without a proven clamp/filter or a different auxiliary architecture.
+- Repository evidence shows 160 V local HV capacitor values exist, but exact MPN, DC-bias capacitance and ripple qualification remain open; nominal printed voltage is not a PASS.
 
 ## Evidence level
-
-- X15 base curve and product ratings: `PRIMARY_MANUFACTURER / SOURCE_BACKED` at published 69 V + MFP 63x24 conditions.
-- Scenario values: `CALCULATED_LINEAR_INTERPOLATION`, not product requirements.
-- DRV8353 limits: `PRIMARY_MANUFACTURER / TI`.
-- Voltage-class headroom: `ARITHMETIC_REQUIREMENTS_TRADE`, not transient qualification.
+- Divider results: arithmetic from B1 source values.
+- LM5164 6–100 V domain: PRIMARY_MANUFACTURER / TI Rev D.
+- B1 component exposure: repository source audit, partial.
 - No physical validation performed.
 
 ## Unresolved blockers
+- G0 vehicle mass/mission/environment/failure policy.
+- Rotor architecture and exact product operating point.
+- Phase RMS/peak current.
+- Switching/harness/regen/disconnect/clamp transient ceiling.
+- Exact effective DC-link capacitance at bias/temperature.
 
-- G0 mission/mass freeze still requires vehicle-specific mass, mission, environment and failure-policy inputs.
-- Rotor architecture and exact product operating point remain open.
-- Phase RMS/peak current remains open; propulsion table current is DC input current.
-- Semiconductor and driver voltage class remain open until switching/harness/regen/clamp ceiling is established and later measured.
-- Effective DC-link capacitance at voltage/temperature remains open.
-
-## Risks/regressions discovered
-
-- A 175 kg quad using X15-class propulsion creates a much more severe peak electrical requirement than legacy B1 and pushes well beyond the manufacturer's 120 A continuous ESC rating at the static margin study points.
-- DRV8353's supply-domain ceiling can become the limiting voltage component even if higher-VDS MOSFETs are selected.
-- Increasing MOSFET VDS class alone does not solve driver, capacitor, sensing or auxiliary-supply exposure.
+## Risks / regressions
+- A higher-VDS MOSFET alone cannot qualify 18S because DRV8353 and LM5164 are also 100 V-domain components.
+- Leaving the B1 divider unchanged would leave little diagnostic range if the defined bus transient approaches 100 V and would risk conflating ADC saturation with protection.
+- Bulk capacitor voltage rating is not yet proven for 18S; the legacy 39–54.6 V design basis cannot be reused as evidence.
 
 ## Exact next recommended tasks
-
-1. Recalculate bus-voltage ADC divider/full-scale candidates for 18S with diagnostic/transient headroom; keep protection trip distinct from measurement full scale.
-2. Audit LM5164 and all B1 components directly exposed to VBUS against the candidate 18S/transient domain.
-3. Build a silicon loss-model input framework for 100/120/150 V classes without choosing a part before the transient ceiling is known.
-4. Update traceability with the new driver-domain constraint and X15 scenario evidence.
-5. Continue T-Motor A16 curve extraction only if primary-source rows are accessible; do not infer unavailable data.
+1. Extract exact B1 bulk capacitor and VBUS protection references/MPNs/ratings.
+2. Build a parameterized semiconductor loss-model input framework for 100/120/150 V candidate classes without selecting an MPN.
+3. Audit individual divider-resistor working voltage and ADC clamp/injection path.
+4. Update UAV traceability with bus-sense and LM5164 constraints.
+5. Only if the required transient ceiling exceeds 100 V, research a higher-voltage auxiliary front end or a proven protected sub-domain.
 
 ## Dependency chain
-
-`G0 vehicle inputs -> rotor freeze -> exact propulsion operating points -> battery freeze -> DC/phase electrical envelope -> transient ceiling -> MOSFET + gate-driver + DC-link voltage domains -> sensing/protection -> schematic/firmware/PCB`
+`G0 vehicle inputs -> rotor freeze -> propulsion point -> battery freeze -> DC/phase envelope -> transient ceiling -> semiconductor/driver/aux/DC-link voltage domains -> sensing/protection -> schematic/firmware/PCB`
 
 ## Next-run briefing
-
-Start with bus-sense range and the B1 VBUS-exposed component audit because both are unblocked by rotor freeze. Treat 75.6 V as the known 18S full-charge candidate, not the final transient ceiling. Do not use 102 V DRV8353 absolute maximum as a design target. Keep DC current and phase current separate. If a component's exact voltage rating cannot be verified from repository BOM or a primary datasheet, mark it OPEN rather than inferring from package/name.
+Start with exact B1 VBUS BOM extraction and the parameterized loss-model framework; both reduce risk without pretending the transient ceiling or phase current is known. Keep 75.6 V as an 18S battery candidate maximum, not a transient requirement. Do not freeze ~120 V or ~150 V sensing; they are study ranges. Verify exact component MPNs before declaring voltage compatibility.
