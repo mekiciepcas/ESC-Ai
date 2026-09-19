@@ -1,0 +1,21 @@
+name: Verify PB-06 Current Path Budget
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/CURRENT_PATH_RESISTANCE_BUDGET_PB06.json'
+      - 'ESC_V2/planning/CURRENT_PATH_RESISTANCE_THERMAL_BUDGET_PB06.md'
+      - 'ESC_V2/planning/verify_current_path_budget_pb06.py'
+      - '.github/workflows/pb06-current-path-budget-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+      - name: Verify arithmetic and no false component freeze
+        run: python3 ESC_V2/planning/verify_current_path_budget_pb06.py
