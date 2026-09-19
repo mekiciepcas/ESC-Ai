@@ -1,55 +1,36 @@
 {
-  "revision":"AUTO-STATE-50",
+  "revision":"AUTO-STATE-51",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PB05_BATTERY_ENERGY_MINBUS_CONT_CURRENT_FROZEN_EXACT_PACK_OPEN",
+  "last_run_status":"PB05_SAG_VERIFICATION_CONTRACT_DEFINED_PHYSICAL_PACK_EVIDENCE_OPEN",
   "current_gate":"G0_G1",
   "current_task":"S1_3_BATTERY_ARCHITECTURE",
-  "active_sprint":{
-    "id":"S1",
-    "status":"ACTIVE",
-    "completed_steps":["S1.1_PHASE_CURRENT_MODEL"],
-    "current_step":"S1.3_BATTERY_ARCHITECTURE",
-    "parallel_blocked_step":"S1.2_PWM_RIPPLE_SWITCHING_LOSS_PENDING_EXACT_MOTOR_INDUCTANCE"
-  },
+  "active_sprint":{"id":"S1","status":"ACTIVE","completed_steps":["S1.1_PHASE_CURRENT_MODEL"],"current_step":"S1.3_BATTERY_ARCHITECTURE","parallel_blocked_step":"S1.2_PWM_RIPPLE_SWITCHING_LOSS_PENDING_EXACT_MOTOR_INDUCTANCE"},
   "completed_this_run":[
-    "verified mandatory planning/configuration-control state against current uav-rebaseline branch state before writes",
-    "created BATTERY_CELL_PACK_TRADE_PB05.md using current Molicel P45B/P50B/P60B primary-source data",
-    "created PRODUCT_BASELINE_PB-05.json under change control",
-    "froze >=5.0 kWh gross rated pack energy for the nominal 10-minute mission reference",
-    "clarified the existing 20% reserve as 20% of gross pack energy reserved so nominal sizing mission uses <=80% of gross energy",
-    "froze 54.0 V as minimum loaded bus for full rated-power operation while keeping hard BMS cutoff exact-pack-specific",
-    "froze >=500 A continuous whole-pack current capability from the 180 kg hover reference at 54 V plus design allowance",
-    "kept exact cell MPN/topology/mass/peak current OPEN while identifying P50B 18S16P as primary qualification candidate, P60B 18S14P mass-optimization candidate and P45B 18S18P mature alternate",
-    "advanced G1 controlled value closure from 28/46 to 29/46 by closing the existing G1C-02 rated-power minimum-bus row",
-    "moved active independent work to S1.3 while S1.2 remains measurement-blocked",
-    "added PB05 battery consistency checker and CI workflow"
+    "verified mandatory planning/configuration-control state against actual uav-rebaseline branch and detected that PB-05 supersedes the stale PB-04 handoff snapshot",
+    "created BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md",
+    "defined BV-01 through BV-05 acceptance logic for the frozen 54 V full-rated-power floor and >=500 A continuous pack capability",
+    "required SOC temperature SOH cell-group terminal-voltage BMS current-path and measurement-uncertainty evidence without inventing environmental limits",
+    "explicitly prohibited typical cell DCR or parallel-count headline current from being treated as pack qualification evidence",
+    "added TR-051 traceability while preserving TR-001..TR-046 history"
   ],
   "blocked_tasks":[
-    {"task":"freeze_PWM_G1_07","reason":"exact production-motor Ld/Lq/effective ripple inductance remains unavailable; physical measurement or exact manufacturer winding data is still required","blocking_scope":"S1.2"},
-    {"task":"freeze_exact_battery_pack","reason":"PB-05 freezes system energy/min-bus/continuous-current requirements but exact cell/topology, pack mass, peak current, low-SOC/cold/aged sag, usable SOC and BMS/contactors/fuses remain open","blocking_scope":"S1.3"},
-    {"task":"close_G0_mass_environment","reason":"airframe battery fixed-equipment mass allocation and environment remain open","blocking_scope":"G0"},
+    {"task":"freeze_PWM_G1_07","reason":"exact production-motor Ld/Lq/effective ripple inductance remains unavailable; physical measurement or exact manufacturer winding data is required","blocking_scope":"S1.2"},
+    {"task":"freeze_exact_battery_pack","reason":"exact cell/topology, pack mass, peak current, cold/low-SOC/EOL sag and BMS/contactors/fuses require exact-pack design and/or physical evidence","blocking_scope":"S1.3"},
+    {"task":"close_G0_mass_environment","reason":"airframe battery fixed-equipment mass allocation and numeric environmental envelope remain open","blocking_scope":"G0"},
     {"task":"close_exact_switching_loss_and_parallel_count","reason":"requires final PWM plus guaranteed hot-resistance policy, switching waveform/energy correlation, transient ZthJC, current sharing and baseplate/TIM model","blocking_scope":"S1.2_S1.5"},
     {"task":"allocate_U1_SCH_R001","reason":"G1 and page-level G2 architecture remain open","blocking_scope":"G3_AR-001_AR-002"}
   ],
   "next_candidates":[
-    "close S1.3 exact pack mechanical/current-path/BMS architecture enough to establish pack mass and peak-current requirement without falsely freezing a cell MPN",
-    "define low-SOC cold and aged sag verification contract around the frozen 54 V full-rated-power floor",
+    "define exact-pack mechanical/current-path/BMS architecture decision framework and mass roll-up template without freezing a cell MPN",
+    "derive peak whole-pack current requirement from the frozen per-ESC short-duration power/current envelope and vehicle simultaneity policy, keeping unsupported simultaneity assumptions explicit",
     "obtain exact production motor Ld/Lq or execute MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03 before PWM freeze",
-    "advance S1.4 environment and numeric OV/UV/OCP/OTP/watchdog/failsafe requirements using PB-05 battery floor"
+    "advance S1.4 environment and numeric OV/UV/OCP/OTP/watchdog/failsafe requirements where frozen parents permit"
   ],
   "last_verified_gate":"G1_PARTIAL_PB05_29_OF_46",
-  "progress_percentages":{
-    "requirements_structure_percent":100.0,
-    "g1_system_freeze_percent":63.0,
-    "backlog_done_percent":8.0,
-    "major_gate_closure_percent":0.0,
-    "u1_kicad_architecture_scaffold_percent":100.0,
-    "u1_component_bearing_schematic_percent":0.0,
-    "schematic_revision_control_policy_percent":100.0
-  },
-  "evidence_refs":["PRODUCT_BASELINE_PB-05.json","BATTERY_CELL_PACK_TRADE_PB05.md","PRODUCT_BASELINE_PB-04.json","MISSION_DURATION_ENERGY_BASELINE_PB04.md","ERPM_PWM_TIMING_CORRECTION_PB04.md","PWM_RIPPLE_LOSS_STUDY_PB03.md","MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","UAV_TRACEABILITY.md","AUTONOMOUS_HANDOFF.md"],
+  "progress_percentages":{"requirements_structure_percent":100.0,"g1_system_freeze_percent":63.0,"backlog_done_percent":8.0,"major_gate_closure_percent":0.0,"u1_kicad_architecture_scaffold_percent":100.0,"u1_component_bearing_schematic_percent":0.0,"schematic_revision_control_policy_percent":100.0},
+  "evidence_refs":["PRODUCT_BASELINE_PB-05.json","BATTERY_CELL_PACK_TRADE_PB05.md","BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","UAV_TRACEABILITY.md","AUTONOMOUS_HANDOFF.md"],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_release_without_user_approval":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false}
 }
