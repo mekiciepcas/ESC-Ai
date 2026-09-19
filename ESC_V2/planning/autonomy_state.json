@@ -1,22 +1,22 @@
 {
-  "revision":"AUTO-STATE-31",
+  "revision":"AUTO-STATE-32",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_DASHBOARD_CURRENT_UAV_STATUS_AUTO_REFRESH",
+  "last_run_status":"PROGRESS_DASHBOARD_IMPLEMENTATION_AUDITED_AND_HARDENED",
   "current_gate":"G0_G1",
   "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
   "completed_this_run":[
-    "re_read_current_UAV_plan_backlog_mission_requirements_requirements_progress_autonomy_state_and_handoff_against_uav_rebaseline",
-    "located_existing_ESC_V2_dashboard_and_verified_it_was_still_reading_legacy_B1_3kW_backlog_and_status_sources",
-    "rewrote_dashboard_builder_to_use_current_uav_backlog_REQUIREMENTS_PROGRESS_autonomy_state_G0_input_packet_revision_register_and_KiCad_evidence",
-    "added_simple_language_dashboard_sections_for_what_changed_current_task_next_steps_blockers_missing_G0_inputs_and_revision_status",
-    "kept_structure_progress_G1_value_closure_backlog_DONE_and_component_bearing_schematic_percentages_separate_to_prevent_false_readiness_impression",
-    "created_GitHub_Actions_dashboard_refresh_workflow_with_contents_write_permission_and_path_scoped_non_recursive_generated_commit_behavior",
-    "observed_dashboard_refresh_run_35448814837_complete_successfully",
-    "observed_build_dashboard_PASS_static_validation_PASS_25_task_cards_25_local_links_and_embedded_snapshot_match",
-    "observed_generated_dashboard_commit_136ca270bb2f8eeff4143f697298fb3599f48682",
-    "updated_dashboard_README_with_automatic_and_manual_refresh_instructions"
+    "re_checked_actual_uav_rebaseline_branch_head_and_dashboard_generated_files_instead_of_trusting_prior_status",
+    "verified_dashboard_index_is_current_UAV_rebaseline_view_and_not_legacy_B1_3kW_view",
+    "verified_snapshot_matches_current_uav_backlog_requirements_progress_autonomy_state_G0_packet_and_revision_register_values",
+    "verified_dashboard_refresh_workflow_is_path_scoped_and_generated_dashboard_only commits_do_not_recursively_retrigger_it",
+    "found_validation_json_contained_a_stale_unrelated_pcb_preview_claim_from_the_old_dashboard_validator",
+    "replaced_dashboard_validator_with_source_consistency_legacy_leak_section_link_and_source_commit_checks",
+    "observed_GitHub_Actions_dashboard_run_35449459518_complete_successfully_with_static_source_consistency_and_legacy_leak_PASS",
+    "observed_validator_check_25_task_cards_25_local_links_7_required_sections_and_16_source_fields",
+    "observed_generated_dashboard_commit_f8a373bf31a1c0ae541cc5f0f55bde1f4e6daed5",
+    "kept_browser_visual_validation_explicitly_NOT_PERFORMED_instead_of_claiming_visual inspection"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved","blocking_scope":"G0_and_final_G1A"},
@@ -48,21 +48,20 @@
     "future_u1_g3_erc_policy_definition_percent":100.0,
     "u1_revision_allocation_guard_definition_percent":100.0,
     "dashboard_current_uav_status_integration_percent":100.0,
-    "dashboard_auto_refresh_ci_percent":100.0
+    "dashboard_auto_refresh_ci_percent":100.0,
+    "dashboard_source_consistency_validation_percent":100.0
   },
   "evidence_refs":[
     "dashboard/build_dashboard.py",
     "dashboard/index.html",
     "dashboard/snapshot.json",
     "dashboard/validation.json",
-    "dashboard/README.md",
+    "dashboard/validate_static.py",
     ".github/workflows/dashboard-refresh.yml",
-    "GitHub Actions run 35448814837 success",
-    "generated dashboard commit 136ca270bb2f8eeff4143f697298fb3599f48682",
-    "planning/U1_SCHEMATIC_ALLOCATION_READINESS.json",
-    "planning/SCHEMATIC_REVISION_REGISTER.json"
+    "GitHub Actions run 35449459518 success",
+    "generated dashboard commit f8a373bf31a1c0ae541cc5f0f55bde1f4e6daed5"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The existing dashboard is now wired to the current UAV rebaseline instead of the legacy B1/3 kW planning view. It explains progress in plain Turkish, separates structural/tooling progress from real product closure, exposes current blockers and missing G0 inputs, and auto-regenerates through an observed successful GitHub Actions workflow. Product electrical closure remains unchanged."
+  "notes":"Dashboard implementation was independently re-audited against actual branch files and current source records. A misleading stale pcb_preview field in the old validator was found and removed. The hardened validator now checks 16 source fields, required sections, links, task-card count, stale legacy text and source commit consistency. Browser rendering was not visually tested and is explicitly not claimed. Product electrical progress is unchanged."
 }
