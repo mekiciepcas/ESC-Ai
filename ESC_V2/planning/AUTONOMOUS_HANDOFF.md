@@ -1,9 +1,9 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 22:49+03:00  
+Date: 2026-09-19 23:19+03:00  
 Branch: `uav-rebaseline`  
-Repository HEAD before this handoff commit: `128de1914a62be531fae05bd9df35c8a2f6ca779`  
-Run status: `PB06_PACK_PEAK_CURRENT_FROZEN_ARCHITECTURE_FRAMEWORK_DEFINED`
+Repository HEAD observed at run start: `d6e3513e2f0d280d9c153d9392e16f76e7b93f50`  
+Run status: `PB06_HIGH_CURRENT_PATH_SCREENED_SELECTION_OPEN`
 
 ## Controlling metrics
 
@@ -13,63 +13,64 @@ Run status: `PB06_PACK_PEAK_CURRENT_FROZEN_ARCHITECTURE_FRAMEWORK_DEFINED`
 - Major product gates closed: **0/8 = 0%**.
 - Component-bearing U1 schematic: **0%**.
 
-The G1 denominator increased from 46 to 47 because PB-06 adds the previously missing explicit whole-pack peak-current requirement row. The new row is PASS from controlled vehicle-level evidence; this is not physical pack validation.
+No G1 row was closed from candidate-component screening; physical qualification and exact selections remain open.
 
-## Tasks completed
+## Tasks attempted and completed
 
-1. Verified current `uav-rebaseline` branch and PB-05 controlling state before changes.
-2. Continued highest-priority unblocked S1.3 work while S1.2 remains blocked on exact motor inductance.
-3. Created `BATTERY_PEAK_CURRENT_DERIVATION_PB06.md`.
-4. Created `BATTERY_PACK_ARCHITECTURE_MASS_FRAMEWORK_PB06.md`.
-5. Created `PRODUCT_BASELINE_PB-06.json`.
-6. Froze >=1050 A whole-pack short-duration capability for >=3 s.
-7. Updated mission requirements, G1 matrix, requirements progress/master and traceability to PB-06.
-8. Added `verify_pb06_battery_peak.py` and GitHub Actions workflow `pb06-battery-check.yml`.
-9. Updated `autonomy_state.json` to AUTO-STATE-52.
+1. Verified current `uav-rebaseline` state and PB-06 continuity against repository files.
+2. Continued highest-priority unblocked S1.3 battery/current-path work while S1.2 remains blocked on exact motor inductance.
+3. Created `HIGH_CURRENT_PATH_SHORTLIST_PB06.md` using current manufacturer primary-source data.
+4. Screened TE Connectivity KILOVAC EV200 as a 500 A-class contactor candidate, LEM HAX 1000-S and LTC 1000-T as pack-current-sensor candidates, and Amphenol SurLok Plus as a connector family whose published range reaches 500 A.
+5. Kept fuse and service disconnect OPEN because credible prospective pack short-circuit current and coordination evidence are not yet defined.
+6. Added TR-053 to `UAV_TRACEABILITY.md`.
+7. Updated `autonomy_state.json` to AUTO-STATE-53.
 
 No A2/B1 electrical source, KiCad schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated.
 
-## Engineering derivation
+## Engineering decisions / calculations / evidence
 
-The frozen normal 1.6 T/W requirement at 180 kg maximum design MTOW requires 42.353 kgf isolated-equivalent thrust per propulsion channel. Current Hobbywing X13 G2 69 V + MFP 56x20 manufacturer data brackets that point at 40.351 kgf / 5795.8 W and 43.409 kgf / 6511.1 W.
+No exact component was selected. Candidate status only.
 
-Linear interpolation at 42.353 kgf gives about 6.264 kW per channel. Eight simultaneous channels therefore require about 50.11 kW. At the frozen 54.0 V minimum loaded bus for full rated-power operation this is about 928 A ideal pack current. Applying 10% system design allowance gives about 1021 A, rounded upward to **>=1050 A for >=3 s**.
+PB-06 path-loss sensitivity was made explicit:
+- every 0.1 mOhm of series path resistance dissipates 25 W at 500 A continuous;
+- the same 0.1 mOhm produces 110.25 W at 1050 A;
+- 1.0 mOhm total path would produce 250 W at 500 A and 1.1025 kW at 1050 A.
 
-This deliberately does **not** use 8 x 200 A = 1600 A. The 200 A value is a per-ESC capability ceiling, not evidence that all eight channels demand 200 A simultaneously.
+For the EV200 only, TE publishes typical 0.2 mOhm contact resistance at 200 A and 500 A typical continuous carry at 85 C with specified conductor conditions. Arithmetic using 0.2 mOhm gives 50 W at 500 A and 220.5 W at 1050 A, but these are not guaranteed hot-contact losses and are not qualification evidence.
 
-## Pack architecture direction
+LEM HAX 1000-S publishes 1000 Arms nominal and 3000 A measuring range, so its measurement range contains the PB-06 1050 A peak. LEM LTC 1000-T publishes 1000 Arms nominal / 2400 A measuring range as an alternative closed-loop candidate. Amphenol SurLok Plus publishes a family current range up to 500 A; no 1050 A / 3 s capability was inferred.
 
-The default prototype study direction is one electrical 18S flight pack with internal service segmentation rather than multiple externally series-connected flight packs. At 500 A continuous / 1050 A short-duration current, every external series connector would carry full pack current and would add contact-resistance, thermal and single-point-failure burden.
+Primary evidence URLs are recorded in `HIGH_CURRENT_PATH_SHORTLIST_PB06.md`.
 
-This is an architecture direction only. Exact service module count, connector, busbar, contactor, fuse, BMS, current sensor, enclosure and cooling remain OPEN.
+## Assumptions and evidence level
 
-Candidate cell arithmetic at 1050 A:
-
-- P45B 18S18P: about 58.3 A/cell.
-- P50B 18S16P: about 65.6 A/cell.
-- P60B 18S14P: 75.0 A/cell.
-
-These arithmetic values are not qualification. Peak-capable SOC, temperature and SOH envelope plus cell-group current sharing and thermal evidence remain mandatory.
+- Frozen electrical envelope comes from PB-06: HIGH evidence as controlled derived product requirements, but not physical validation.
+- Manufacturer candidate ratings: PRIMARY-SOURCE SCREENING evidence only.
+- Resistance-loss arithmetic: DERIVED calculation; actual hot path resistance remains OPEN.
+- No assumed fuse rating, prospective short-circuit current, connector pulse capability, contactor pulse carry capability or service-disconnect interruption capability was introduced.
 
 ## Unresolved blockers
 
 1. Exact production motor Ld/Lq/effective PWM ripple inductance blocks final PWM freeze.
-2. Exact battery cell/P-count, complete pack mass, peak-capable SOC-temperature-SOH envelope, low-SOC/cold/EOL sag and BMS/contactors/fuses remain open.
-3. Airframe/battery/fixed-equipment mass allocation and numeric environmental envelope remain open, so G0 is not closed.
-4. Exact MOSFET count/MPN and thermal stack require final PWM, switching correlation, hot-resistance policy, transient ZthJC, current sharing and TIM/baseplate evidence.
-5. Numeric OV/UV/OCP/OTP/watchdog/command-timeout requirements remain open.
-6. G2 page-level architecture remains blocked by G1; U1 allocation remains prohibited.
+2. Exact battery cell/P-count, complete pack mass, peak-capable SOC-temperature-SOH envelope, low-SOC/cold/EOL sag and BMS behavior remain open.
+3. Fuse/service-disconnect selection is blocked by unknown credible pack prospective short-circuit current, exact topology and time-current/I2t coordination inputs.
+4. Current-path candidates require exact configuration, hot resistance/temperature rise, 1050 A / 3 s evidence, terminal/conductor geometry and environmental qualification.
+5. Airframe/battery/fixed-equipment mass allocation and numeric environmental envelope remain open, so G0 is not closed.
+6. Exact MOSFET count/MPN and thermal stack require final PWM, switching correlation, hot-resistance policy, transient ZthJC, current sharing and TIM/baseplate evidence.
+7. Numeric OV/UV/OCP/OTP/watchdog/command-timeout requirements remain open.
+8. G2 page-level architecture remains blocked by G1; U1 allocation remains prohibited.
 
-## Regressions / risks
+## Regressions / risks discovered
 
-- A 1050 A / 3 s system requirement materially changes the battery current path: contactors, fuse, service disconnect, output connector, busbars, welds and current sensing must be selected against this vehicle-level requirement rather than only the 500 A continuous figure.
-- P50B 18S16P arithmetic gives about 65.6 A/cell at 1050 A, above its published 60 A continuous cell rating; therefore P50B remains a qualification candidate rather than a selected pack cell. Short-duration capability must be supported by source/measurement evidence over the intended SOC/temperature/SOH envelope.
-- Pack overhead mass is still unknown. Cell-only masses must not be presented as final battery mass.
+- The 500 A connector/contactor class is a boundary, not evidence of comfortable continuous thermal margin. Installation conductor size and terminal temperature materially affect rating.
+- The 1050 A / 3 s requirement cannot be assumed survivable by a component merely because its continuous rating is 500 A.
+- Fuse selection before prospective pack fault-current definition would be unsafe and non-traceable.
+- Milliohm-scale aggregate resistance creates hundreds of watts of continuous loss; current-path resistance must become a system budget.
 
 ## Exact next recommended tasks
 
-1. Build a high-current component shortlist for >=500 A continuous / >=1050 A for >=3 s: main contactor(s), fuse, current sensor, service disconnect and output connector.
-2. Build a busbar/weld resistance and thermal budget using actual geometry candidates.
+1. Build an element-by-element current-path resistance/thermal budget for cells/interconnects, welds/joints, busbars, fuse, contactor, service disconnect, output connector and cables using actual geometry/candidate data where available.
+2. Define a prospective pack short-circuit-current calculation/measurement contract and fuse-coordination inputs without inventing cell fault data.
 3. Define peak-capable SOC/temperature/SOH envelope and reconcile P45B/P50B/P60B candidates against both 54 V / 500 A and 1050 A / 3 s requirements.
 4. Obtain exact production motor Ld/Lq or execute `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`; then close S1.2 PWM from the 24-32 kHz preferred window.
 5. Advance S1.4 environment/protection requirements where frozen PB-06 parents permit.
@@ -77,10 +78,10 @@ These arithmetic values are not qualification. Peak-capable SOC, temperature and
 
 Dependency chain:
 
-`PB-06 -> S1.3 exact pack/current path/sag/mass + S1.2 exact motor L/ripple -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
+`PB-06 -> S1.3 exact pack/current-path/sag/mass/fault coordination + S1.2 exact motor L/ripple -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
 
 ## Next-run briefing
 
-Start from PB-06. First verify branch state because dashboard/CI automation may advance HEAD. S1.3 remains the best independent workstream. The next highest-value artifact is an exact high-current path shortlist and loss/thermal budget tied to 54 V, >=500 A continuous and >=1050 A / >=3 s. Keep exact cell MPN and pack mechanical release OPEN until evidence supports them.
+Start from PB-06 and verify branch HEAD because dashboard/CI automation may advance it. S1.3 remains the best independent workstream. Build the current-path resistance/thermal budget next, but keep unknown component resistance and pack fault-current terms null rather than substituting typical values. Fuse/service-disconnect exact selection must wait for fault-current/coordination evidence. Preserve A2/B1 and do not allocate U1 early.
 
 Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 63.8% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
