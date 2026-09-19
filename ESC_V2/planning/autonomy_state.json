@@ -1,48 +1,49 @@
 {
-  "revision": "AUTO-STATE-08",
+  "revision": "AUTO-STATE-09",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status": "PROGRESS_SENSE_CLAMP_INPUT_CONTRACT_DC_LINK_FRAMEWORK",
+  "last_run_status": "PROGRESS_ADC_CLAMP_REFERENCE_FET_PRECHARGE_REQUIREMENTS_GATE",
   "current_gate": "G0_G1",
   "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "current_task": "ADC_INJECTION_TOPOLOGY_AND_REFERENCE_SEMICONDUCTOR_LOSS_POPULATION",
+  "current_task": "REQUIREMENTS_CRITICAL_PATH_AND_PROPULSION_CURRENT_CLOSURE",
   "completed_this_run": [
-    "verified_YAGEO_RT0805BRD0749K9L_primary_source_voltage_and_power_limits",
-    "screened_individual_upper_divider_voltage_and_power_at_75p6V_120V_150V_bus_cases",
-    "verified_Nexperia_BAT54H_primary_source_30V_reverse_200mA_forward_and_clamp_application",
-    "identified_ADC_clamp_rail_backfeed_and_MCU_injection_limit_as_remaining_sense_architecture_closure",
-    "defined_external_DC_input_protection_precharge_disconnect_regen_clamp_and_harness_contract",
-    "created_DC_link_ripple_effective_capacitance_lifetime_selection_framework_without_MPN_freeze"
+    "verified_exact_B1_upper_BAT54H_orientation_as_ADC_to_3V3A_backfeed_path",
+    "calculated_bus_divider_Thevenin_and_powered_unpowered_clamp_current_screening",
+    "recorded_STM32G474_primary_source_injection_constraints_without_treating_absolute_limits_as_design_targets",
+    "populated_legacy_CSD19536KTT_reference_parameters_from_TI_primary_source",
+    "added_parameterized_precharge_and_disconnect_energy_model_with_no_guessed_project_inputs",
+    "defined_requirements_completion_as_G1_system_baseline_and_added_gate_checklist"
   ],
   "blocked_tasks": [
-    {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_mass_mission_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_only"},
+    {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_mass_mission_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_and_downstream_final_sizing"},
     {"task":"freeze_UAV_004_operating_point","reason":"rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_operating_point_only"},
     {"task":"freeze_18S_voltage_domain","reason":"switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
-    {"task":"qualify_ADC_clamp_path","reason":"exact_clamp_orientation_destination_rail_and_MCU_powered_unpowered_injection_limits_need_netlist_and_datasheet_closure","blocking_scope":"bus_sense_UAV_qualification"},
-    {"task":"run_numeric_semiconductor_loss_comparison","reason":"phase_RMS_peak_current_PWM_and_candidate_datasheet_parameters_not_frozen","blocking_scope":"final_MPN_class_selection"}
+    {"task":"qualify_ADC_clamp_path","reason":"topology_is_now_known_but_3V3A_sink_reverse_power_behavior_and_powered_unpowered_bench_evidence_remain_open","blocking_scope":"bus_sense_UAV_qualification"},
+    {"task":"run_numeric_semiconductor_loss_comparison","reason":"phase_RMS_peak_current_PWM_and_candidate_set_not_frozen","blocking_scope":"final_MPN_class_selection"}
   ],
   "next_candidates": [
-    "verify_exact_BAT54H_orientation_destination_rail_and_STM32G474_ADC_injection_limits",
-    "populate_loss_model_with_legacy_CSD19536KTT_primary_datasheet_parameters_as_reference_only",
-    "extend_external_input_contract_into_parametric_precharge_and_disconnect_energy_calculator",
-    "continue_propulsion_operating_point_evidence_to_reduce_phase_current_uncertainty",
-    "audit_local_creepage_clearance_and_connector_voltage_domain_after_transient_ceiling_exists"
+    "continue_propulsion_operating_point_evidence_to_reduce_phase_current_and_PWM_uncertainty",
+    "audit_TLV75533_and_upstream_5V_reverse_current_behavior_for_ADC_backfeed_closure",
+    "use_precharge_energy_model_only_after_numeric_Cbus_harness_BMS_inputs_are_evidenced",
+    "build_100V_120V_150V_candidate_semiconductor_parameter_table_without_freezing_a_class",
+    "map_REQUIREMENTS_COMPLETION_CHECKLIST_to_design_basis_null_fields_and_traceability"
   ],
   "last_verified_gate": "REBASELINE_INIT",
   "evidence_refs": [
+    "planning/ADC_CLAMP_INJECTION_CLOSURE.md",
+    "planning/CSD19536KTT_REFERENCE_PARAMETERS.md",
+    "planning/precharge_energy_model.py",
+    "planning/REQUIREMENTS_COMPLETION_CHECKLIST.md",
     "planning/BUS_SENSE_CLAMP_AUDIT.md",
     "planning/DC_INPUT_PROTECTION_CONTRACT.md",
     "planning/DC_LINK_SELECTION_FRAMEWORK.md",
-    "planning/B1_EXACT_VBUS_BOM_AUDIT.md",
-    "planning/POWER_STAGE_LOSS_MODEL.md",
-    "hardware_b1/bom_review.json",
-    "hardware_b1/connection_manifest.json",
-    "YAGEO RT0805BRD0749K9L primary specification",
-    "Nexperia BAT54H product datasheet"
+    "hardware/build_schematic.py",
+    "ST STM32G474xB/xC/xE datasheet",
+    "TI CSD19536KTT product page / Rev C datasheet"
   ],
   "write_policy": {"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy": {"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
   "continuity_policy": {"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
-  "notes": "The exact YAGEO 49.9k 0805 upper-divider part is not the first steady-state limit for 18S: each upper sees about 36.6 V and 26.8 mW at 75.6 V versus a 150 V continuous/0.125 W nominal part rating. The BAT54H is a low-energy sensing clamp, not a DC-bus transient suppressor; clamp-rail backfeed and MCU injection remain open. External input protection and DC-link qualification now have explicit requirement contracts."
+  "notes": "B1 source proves upper BAT54H is oriented from ADC node into +3V3A, so MCU-off/rail-off backfeed is a real architecture issue. At 75.6 V the ideal divider node is ~2.434 V; with an illustrative 0.3 V diode drop and dead 3V3A rail the source-limited backfeed screen is ~0.51 mA. This is not qualification. CSD19536KTT is now parameterized as a 100 V legacy reference only. Requirements completion is explicitly defined at G1 SYSTEM FREEZE; G0 vehicle inputs remain the dominant final-sizing blocker."
 }
