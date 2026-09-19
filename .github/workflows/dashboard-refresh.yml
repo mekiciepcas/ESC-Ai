@@ -1,0 +1,47 @@
+name: Refresh ESC Dashboard
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/**'
+      - 'ESC_V2/hardware_u1_scaffold/**'
+      - 'ESC_V2/hardware_u1/**'
+      - 'ESC_V2/dashboard/build_dashboard.py'
+      - 'ESC_V2/dashboard/validate_static.py'
+      - '.github/workflows/dashboard-refresh.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-dashboard:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+          fetch-depth: 0
+
+      - name: Build current dashboard
+        run: python3 ESC_V2/dashboard/build_dashboard.py
+
+      - name: Validate static dashboard
+        run: python3 ESC_V2/dashboard/validate_static.py
+
+      - name: Show dashboard snapshot
+        run: cat ESC_V2/dashboard/snapshot.json
+
+      - name: Commit refreshed dashboard if changed
+        run: |
+          if git diff --quiet -- ESC_V2/dashboard/index.html ESC_V2/dashboard/snapshot.json ESC_V2/dashboard/validation.json; then
+            echo 'Dashboard already current.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ESC_V2/dashboard/index.html ESC_V2/dashboard/snapshot.json ESC_V2/dashboard/validation.json
+          git commit -m 'dashboard: refresh UAV project status [skip ci]'
+          git push origin HEAD:uav-rebaseline
