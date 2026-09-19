@@ -1,9 +1,9 @@
 {
-  "revision": "U1-BOM-CANDIDATES-01",
+  "revision": "U1-BOM-CANDIDATES-02",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "status": "PRELIMINARY_CANDIDATE_MATRIX_NOT_PRODUCTION_BOM",
-  "purpose": "Expose what is already evidenced, what is only a candidate, and what remains blocked before the U1 production-intent BOM can be created.",
+  "purpose": "Expose evidenced legacy references and candidates while preserving requirement-dependent selections as OPEN.",
   "status_definitions": {
     "LEGACY_REFERENCE": "Exists in B1/Faz2/Faz3 and may be used for comparison; not automatically valid for U1.",
     "CANDIDATE": "Exact family or MPN has source-backed evidence but is not selected.",
@@ -13,179 +13,37 @@
     "REPLACE_IF_REQUIRED": "Legacy implementation has a known issue or may be superseded after architecture closure."
   },
   "items": [
-    {
-      "function": "power_mosfet_100v_reference",
-      "mpn": "CSD19536KTT",
-      "manufacturer": "Texas Instruments",
-      "status": "LEGACY_REFERENCE",
-      "evidence": ["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md", "CSD19536KTT_REFERENCE_PARAMETERS.md"],
-      "blocker": "100 V class cannot be accepted until G1 transient ceiling and derating policy close."
-    },
-    {
-      "function": "power_mosfet_120v_trade_candidate",
-      "mpn": "IPT017N12NM6",
-      "manufacturer": "Infineon",
-      "status": "CANDIDATE",
-      "evidence": ["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md", "power_stage_loss_calculator.py"],
-      "blocker": "Requires common G1 current/PWM/temperature/transient envelope and package/cooling trade."
-    },
-    {
-      "function": "power_mosfet_150v_trade_candidate",
-      "mpn": "IAUTN15S6N025",
-      "manufacturer": "Infineon",
-      "status": "CANDIDATE",
-      "evidence": ["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md", "power_stage_loss_calculator.py"],
-      "blocker": "Requires common G1 current/PWM/temperature/transient envelope and package/cooling trade."
-    },
-    {
-      "function": "gate_driver_legacy_smart_three_phase",
-      "mpn": "DRV8353FSRTAR",
-      "manufacturer": "Texas Instruments",
-      "status": "REVALIDATE",
-      "evidence": ["hardware_b1/bom_review.json", "UAV_TRACEABILITY.md", "GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "Driver voltage domain and gate-drive current must close against final VBUS transient, MOSFET Qg and PWM."
-    },
-    {
-      "function": "gate_driver_120v_bootstrap_trade_anchor",
-      "mpn": "UCC27282",
-      "manufacturer": "Texas Instruments",
-      "status": "CANDIDATE",
-      "evidence": ["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "120 V bootstrap absolute maximum does not remove the 100 V HS operating ceiling; not suitable evidence for >100 V normal switch-node operation."
-    },
-    {
-      "function": "gate_driver_high_voltage_half_bridge_trade_anchor",
-      "mpn": "UCC27712",
-      "manufacturer": "Texas Instruments",
-      "status": "CANDIDATE",
-      "evidence": ["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "Three half-bridge channels, external current-sense/protection, slower propagation timing and fresh dead-time/FOC review would be required."
-    },
-    {
-      "function": "gate_driver_reinforced_isolated_trade_anchor",
-      "mpn": "UCC21540-Q1",
-      "manufacturer": "Texas Instruments",
-      "status": "CANDIDATE",
-      "evidence": ["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "Requires isolated/local output bias supplies plus new creepage, CMTI, propagation, cost and PCB-area architecture."
-    },
-    {
-      "function": "control_mcu_legacy_candidate",
-      "mpn": "STM32G474RET3",
-      "manufacturer": "STMicroelectronics",
-      "status": "CANDIDATE",
-      "evidence": ["hardware_b1/mcu_pin_contract.json", "UAV_TRACEABILITY.md"],
-      "blocker": "Final MCU trade requires PWM/ADC timing, hardware trip, FOC execution and interface closure."
-    },
-    {
-      "function": "control_mcu_alternative_family",
-      "mpn": null,
-      "manufacturer": "Texas Instruments",
-      "family": "TMS320F280041C",
-      "status": "CANDIDATE",
-      "evidence": ["UAV_TRACEABILITY.md"],
-      "blocker": "Exact orderable MPN/package is intentionally not frozen before control-platform trade."
-    },
-    {
-      "function": "auxiliary_hv_buck_legacy",
-      "mpn": "LM5164DDAT",
-      "manufacturer": "Texas Instruments",
-      "status": "REVALIDATE",
-      "evidence": ["hardware_b1/bom_review.json", "B1_VBUS_COMPONENT_AUDIT.md", "UAV_TRACEABILITY.md", "GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "100 V input-domain compatibility depends on final transient ceiling and protection architecture."
-    },
-    {
-      "function": "auxiliary_150v_low_power_housekeeping_candidate",
-      "mpn": "LTC3639",
-      "manufacturer": "Analog Devices",
-      "status": "CANDIDATE",
-      "evidence": ["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "Maximum 100 mA output class is suitable only for low-power housekeeping unless the final load budget proves otherwise."
-    },
-    {
-      "function": "auxiliary_140v_operating_150v_abs_high_power_controller_candidate",
-      "mpn": "LTC7801",
-      "manufacturer": "Analog Devices",
-      "status": "CANDIDATE",
-      "evidence": ["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],
-      "blocker": "Controller requires external MOSFET/inductor/current-sense and a complete converter design; output-current capability is design-dependent."
-    },
-    {
-      "function": "hv_voltage_sense_buffer_quad_study",
-      "mpn": "LT6017",
-      "manufacturer": "Analog Devices",
-      "status": "CANDIDATE",
-      "evidence": ["POWER_OFF_TOLERANT_SENSE_CANDIDATES.md", "HV_SENSE_OUTPUT_SEQUENCING.md", "hv_sense_error_model.py", "hv_sense_dynamic_model.py"],
-      "blocker": "Final range, error, bandwidth, package, output sequencing and powered/unpowered bench evidence remain open."
-    },
-    {
-      "function": "legacy_voltage_sense_clamp",
-      "mpn": "BAT54H,115",
-      "manufacturer": "Nexperia",
-      "status": "REPLACE_IF_REQUIRED",
-      "evidence": ["BUS_SENSE_CLAMP_AUDIT.md", "ADC_CLAMP_INJECTION_CLOSURE.md", "ANALOG_RAIL_BACKPOWER_AUDIT.md"],
-      "blocker": "B1 rail-referenced implementation can back-power the analog/control rail and is not a default KEEP."
-    },
-    {
-      "function": "phase_current_shunt_legacy_reference",
-      "mpn": "CSS4J-4026R-L500F",
-      "manufacturer": "Bourns",
-      "status": "BLOCKED_BY_G1",
-      "evidence": ["hardware_b1/bom_review.json", "UAV_TRACEABILITY.md"],
-      "blocker": "0.5 mOhm value, pulse rating and 5 W class cannot be accepted until phase RMS/peak current and PWM windows are frozen."
-    },
-    {
-      "function": "dc_link_bulk_capacitor",
-      "mpn": null,
-      "status": "OPEN",
-      "legacy_reference": "3 x 470 uF / 100 V",
-      "evidence": ["B1_EXACT_VBUS_BOM_AUDIT.md", "DC_LINK_SELECTION_FRAMEWORK.md"],
-      "blocker": "Exact capacitance, voltage, ESR, ripple current, lifetime and transient energy requirement depend on G1."
-    },
-    {
-      "function": "local_inverter_dc_link_ceramic",
-      "mpn": null,
-      "status": "OPEN",
-      "legacy_reference": "3 x 2.2 uF / 100 V X7R",
-      "evidence": ["B1_EXACT_VBUS_BOM_AUDIT.md", "DC_LINK_SELECTION_FRAMEWORK.md"],
-      "blocker": "Effective capacitance under bias and final voltage/transient class remain open."
-    },
-    {
-      "function": "precharge_resistor_and_switch",
-      "mpn": null,
-      "status": "OPEN",
-      "evidence": ["DC_INPUT_PROTECTION_CONTRACT.md", "precharge_energy_model.py"],
-      "blocker": "Cbus, VBUS, allowable inrush, BMS/contact architecture and duty cycle are not frozen."
-    },
-    {
-      "function": "regen_overvoltage_clamp_or_brake_path",
-      "mpn": null,
-      "status": "OPEN",
-      "evidence": ["DC_INPUT_PROTECTION_CONTRACT.md", "DC_BUS_TRANSIENT_REQUIREMENTS.md"],
-      "blocker": "Regen/BMS-disconnect energy and allowable transient ceiling are not frozen."
-    },
-    {
-      "function": "dc_input_fuse",
-      "mpn": null,
-      "status": "OPEN",
-      "evidence": ["DC_INPUT_PROTECTION_CONTRACT.md"],
-      "blocker": "Continuous/peak pack and ESC current plus fault-clearing coordination are open."
-    },
-    {
-      "function": "battery_and_phase_power_connectors",
-      "mpn": null,
-      "status": "OPEN",
-      "evidence": ["hardware_b1/bom_review.json", "DC_INPUT_PROTECTION_CONTRACT.md"],
-      "blocker": "Final voltage/current, harness gauge, temperature rise, mechanical and environmental requirements are open."
-    },
-    {
-      "function": "can_transceiver",
-      "mpn": "SN65HVD230",
-      "manufacturer": "Texas Instruments",
-      "status": "REVALIDATE",
-      "evidence": ["hardware_b1 source", "UAV_TRACEABILITY.md"],
-      "blocker": "Flight-controller protocol, bus topology, EMC, protection and connector requirements are not frozen."
-    }
+    {"function":"power_mosfet_100v_reference","mpn":"CSD19536KTT","manufacturer":"Texas Instruments","status":"LEGACY_REFERENCE","evidence":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","CSD19536KTT_REFERENCE_PARAMETERS.md"],"blocker":"100 V class cannot be accepted until G1 transient ceiling and derating policy close."},
+    {"function":"power_mosfet_120v_trade_candidate","mpn":"IPT017N12NM6","manufacturer":"Infineon","status":"CANDIDATE","evidence":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","power_stage_loss_calculator.py"],"blocker":"Requires common G1 current/PWM/temperature/transient envelope and package/cooling trade."},
+    {"function":"power_mosfet_150v_trade_candidate","mpn":"IAUTN15S6N025","manufacturer":"Infineon","status":"CANDIDATE","evidence":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","power_stage_loss_calculator.py"],"blocker":"Requires common G1 current/PWM/temperature/transient envelope and package/cooling trade."},
+    {"function":"gate_driver_legacy_smart_three_phase","mpn":"DRV8353FSRTAR","manufacturer":"Texas Instruments","status":"REVALIDATE","evidence":["hardware_b1/bom_review.json","GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"Driver voltage domain and gate-drive current must close against final VBUS transient, MOSFET Qg and PWM."},
+    {"function":"gate_driver_120v_bootstrap_trade_anchor","mpn":"UCC27282","manufacturer":"Texas Instruments","status":"CANDIDATE","evidence":["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"120 V bootstrap absolute maximum does not remove the 100 V HS operating ceiling; not >100 V normal-operation evidence."},
+    {"function":"gate_driver_high_voltage_half_bridge_trade_anchor","mpn":"UCC27712","manufacturer":"Texas Instruments","status":"CANDIDATE","evidence":["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"Requires three channels plus fresh current-sense/protection/dead-time review."},
+    {"function":"gate_driver_reinforced_isolated_trade_anchor","mpn":"UCC21540-Q1","manufacturer":"Texas Instruments","status":"CANDIDATE","evidence":["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"Requires isolated/local bias and new creepage/CMTI/layout architecture."},
+    {"function":"control_mcu_legacy_candidate","mpn":"STM32G474RET3","manufacturer":"STMicroelectronics","status":"CANDIDATE","evidence":["hardware_b1/mcu_pin_contract.json","CONTROL_PLATFORM_PRETRADE.md","CONTROL_PLATFORM_BENCH_CONTRACT.md"],"blocker":"Final MCU trade requires PWM/ADC timing, hardware trip, FOC execution and interface closure."},
+    {"function":"control_mcu_alternative_family","mpn":null,"manufacturer":"Texas Instruments","family":"TMS320F280041C","status":"CANDIDATE","evidence":["CONTROL_PLATFORM_PRETRADE.md","CONTROL_PLATFORM_BENCH_CONTRACT.md"],"blocker":"Exact orderable package remains open until executable control-platform trade closes."},
+    {"function":"auxiliary_hv_buck_legacy","mpn":"LM5164DDAT","manufacturer":"Texas Instruments","status":"REVALIDATE","evidence":["B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"100 V input-domain compatibility and actual U1 load depend on final transient envelope and load budget."},
+    {"function":"auxiliary_150v_low_power_housekeeping_candidate","mpn":"LTC3639","manufacturer":"Analog Devices","status":"CANDIDATE","evidence":["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"Low output-current class requires a proved U1 load budget."},
+    {"function":"auxiliary_140v_operating_150v_abs_high_power_controller_candidate","mpn":"LTC7801","manufacturer":"Analog Devices","status":"CANDIDATE","evidence":["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md"],"blocker":"Requires a complete external power-stage design and evidenced load budget."},
+    {"function":"hv_voltage_sense_buffer_quad_study","mpn":"LT6017","manufacturer":"Analog Devices","status":"CANDIDATE","evidence":["POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","HV_SENSE_OUTPUT_SEQUENCING.md"],"blocker":"Final range/error/bandwidth/output sequencing and bench evidence remain open."},
+    {"function":"legacy_voltage_sense_clamp","mpn":"BAT54H,115","manufacturer":"Nexperia","status":"REPLACE_IF_REQUIRED","evidence":["BUS_SENSE_CLAMP_AUDIT.md","ANALOG_RAIL_BACKPOWER_AUDIT.md"],"blocker":"B1 rail-referenced implementation can back-power the analog/control rail."},
+    {"function":"phase_current_shunt_legacy_reference","mpn":"CSS4J-4026R-L500F","manufacturer":"Bourns","status":"BLOCKED_BY_G1","evidence":["hardware_b1/bom_review.json","UAV_TRACEABILITY.md"],"blocker":"Value/pulse/continuous rating cannot be accepted until phase RMS/peak current and PWM windows are frozen."},
+
+    {"function":"fault_arm_latch_legacy","mpn":"SN74LVC1G74DCUR","manufacturer":"Texas Instruments","legacy_quantity":1,"status":"REVALIDATE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/16_FAULT_LATCH.kicad_sch"],"source_anchor":{"active":true,"package":"VSSOP-8 DCU","operating_temperature_c":[-40,125],"notes":"TI documents Ioff/partial-power-down support."},"blocker":"Final fault/re-arm policy, exact power sequencing and bench state testing remain open."},
+    {"function":"pwm_hardware_inhibit_and_gate_legacy","mpn":"SN74LVC1G08DBVR","manufacturer":"Texas Instruments","legacy_quantity":6,"status":"REVALIDATE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/17_PWM_INHIBIT.kicad_sch"],"source_anchor":{"active":true,"package":"SOT-23-5 DBV","supply_v":[1.65,5.5],"operating_temperature_c":[-40,125],"notes":"TI documents Ioff/partial-power-down support."},"blocker":"End-to-end fault-to-PWM-off latency and selected-driver safe-state behavior require physical proof."},
+    {"function":"hardware_trip_comparator_legacy","mpn":"TLV1704PWR","manufacturer":"Texas Instruments","legacy_quantity":2,"status":"REVALIDATE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/14_TRIP_COMPARATORS.kicad_sch"],"source_anchor":{"family_status":"ACTIVE","channels":4,"supply_v":[2.2,36],"output_type":"open_collector","operating_temperature_c":[-40,125],"typical_propagation_delay_us":0.56},"blocker":"Thresholds, sensing/filter delay and total fault latency depend on G1 current and final semiconductor safe-action budget."},
+    {"function":"fet_pcb_temperature_ntc_legacy","mpn":"NTCG203NH103JT1","manufacturer":"TDK","legacy_quantity":2,"status":"REVALIDATE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/07_TEMPERATURE.kicad_sch"],"source_anchor":{"production_status":"Production","resistance_25c_ohm":10000,"resistance_tolerance_percent":5,"b25_85_typ_k":3650,"b_tolerance_percent":3,"maximum_operating_temperature_c":125},"blocker":"Final protected-node relation, location, accuracy and U1 thermal limits remain open."},
+    {"function":"can_transceiver_legacy","mpn":"SN65HVD230DR","manufacturer":"Texas Instruments","legacy_quantity":1,"status":"REVALIDATE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/12_CAN_UART.kicad_sch"],"source_anchor":{"active":true,"protocol_class":"Classic CAN","supply_v":3.3,"max_signaling_rate_mbps":1,"package":"SOIC-8 D","operating_temperature_c":[-40,85]},"blocker":"Vehicle CAN/CAN-FD protocol, temperature envelope, termination, TVS/EMC and harness remain open."},
+    {"function":"hall_connector_legacy_poc","mpn":"61300511121","manufacturer":"Würth Elektronik","legacy_quantity":1,"status":"LEGACY_REFERENCE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/13_HALL.kicad_sch"],"source_anchor":{"production_status":"Active","pins":5,"pitch_mm":2.54,"type":"Straight THT pin header","rated_current_a":3,"operating_temperature_c":[-40,105]},"blocker":"Unkeyed PoC header is not accepted as a final UAV locking/environmental harness connector."},
+    {"function":"motor_temperature_connector_legacy_poc","mpn":"61300211121","manufacturer":"Würth Elektronik","legacy_quantity":1,"status":"LEGACY_REFERENCE","evidence":["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","hardware_b1/07_TEMPERATURE.kicad_sch"],"source_anchor":{"production_status":"Active","pins":2,"pitch_mm":2.54,"type":"Straight THT pin header","rated_current_a":3,"operating_temperature_c":[-40,105]},"blocker":"Unkeyed PoC header is not accepted as a final motor-temperature vehicle connector."},
+
+    {"function":"dc_link_bulk_capacitor","mpn":null,"status":"OPEN","legacy_reference":"3 x 470 uF / 100 V","evidence":["B1_EXACT_VBUS_BOM_AUDIT.md","DC_LINK_SELECTION_FRAMEWORK.md"],"blocker":"Exact capacitance, voltage, ESR, ripple, lifetime and transient energy depend on G1."},
+    {"function":"local_inverter_dc_link_ceramic","mpn":null,"status":"OPEN","legacy_reference":"3 x 2.2 uF / 100 V X7R","evidence":["B1_EXACT_VBUS_BOM_AUDIT.md","DC_LINK_SELECTION_FRAMEWORK.md"],"blocker":"Effective capacitance under bias and final voltage/transient class remain open."},
+    {"function":"precharge_resistor_and_switch","mpn":null,"status":"OPEN","evidence":["DC_INPUT_PROTECTION_CONTRACT.md","precharge_energy_model.py"],"blocker":"Cbus, VBUS, inrush, BMS/contact architecture and duty cycle are not frozen."},
+    {"function":"regen_overvoltage_clamp_or_brake_path","mpn":null,"status":"OPEN","evidence":["DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md"],"blocker":"Regen/BMS-disconnect energy and allowable transient ceiling are not frozen."},
+    {"function":"dc_input_fuse","mpn":null,"status":"OPEN","evidence":["DC_INPUT_PROTECTION_CONTRACT.md"],"blocker":"Continuous/peak pack current and fault-clearing coordination are open."},
+    {"function":"battery_and_phase_power_connectors","mpn":null,"status":"OPEN","evidence":["DC_INPUT_PROTECTION_CONTRACT.md"],"blocker":"Final voltage/current, harness gauge, temperature rise, mechanical and environmental requirements are open."},
+    {"function":"external_aux_and_control_connectors","mpn":null,"status":"OPEN","evidence":["EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md"],"blocker":"Fan/Hall/motor-temp/CAN/board-interface electrical and mechanical contracts remain open."}
   ],
   "production_bom_release_rule": "No item may be promoted to SELECTED_FOR_U1_PRODUCTION until its parent G1/G2 requirement is closed, exact orderable MPN/footprint is verified, derating evidence exists, and the schematic implementation is reviewed.",
   "anti_hallucination_rule": "null/Open fields remain null/Open. Legacy quantities or ratings are references only and must not be copied into U1 production BOM without requirement-backed requalification."
