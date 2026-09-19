@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T14:28:04+00:00",
-  "source_commit": "fcc4ba8d1827",
+  "generated_at": "2026-09-19T14:29:31+00:00",
+  "source_commit": "8500cac92f6c",
   "plan_revision": "UAV-PLAN-04",
   "task_count": 25,
   "done_count": 1,
@@ -16,5 +16,5 @@
   "missing_g0_inputs": 14,
   "next_schematic_revision": "U1-SCH-R001",
   "current_task": "G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
-  "last_run_status": "PROGRESS_U1_ALLOCATION_GUARD_PREPARED"
+  "last_run_status": "PROGRESS_DASHBOARD_CURRENT_UAV_STATUS_AUTO_REFRESH"
 }
