@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T15:46:13+00:00",
-  "source_commit": "5fda264ba976",
+  "generated_at": "2026-09-19T15:46:37+00:00",
+  "source_commit": "40a8ef857b77",
   "plan_revision": "UAV-PLAN-04",
   "task_count": 25,
   "done_count": 1,
@@ -15,6 +15,6 @@
   "schematic_revision_control_percent": 100.0,
   "missing_g0_inputs": 14,
   "next_schematic_revision": "U1-SCH-R001",
-  "current_task": "CONCEPT_VEHICLE_ENVELOPE_AND_PROPULSION_COTRADE",
-  "last_run_status": "PROGRESS_MECHANICAL_ELECTRICAL_COTRADE_PRETRADE"
+  "current_task": "PROPULSION_SCREENING_AND_TRADE_ONLY_ESC_ELECTRICAL_RANGE",
+  "last_run_status": "PROGRESS_PROPULSION_SCREENING_PRETRADE"
 }
