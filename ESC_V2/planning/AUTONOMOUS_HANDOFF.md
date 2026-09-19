@@ -1,124 +1,74 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 20:14+03:00  
+Date: 2026-09-19 20:21+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_PLAN_AUDITED_SPRINT_S1_ACTIVATED_TRACEABILITY_ALIGNED`
+Run status: `S1_2_PWM_TIMING_BOUNDED_MOTOR_INDUCTANCE_BLOCKER_EXPLICIT`
 
-## Progress percentages
+## Repository state verified at run start
 
-- Requirements planned-domain/schema structure: **12/12 = 100%**.
-- G1 SYSTEM FREEZE value closure: **22/46 PASS = 47.8%**.
-- Backlog tasks explicitly DONE: **2/25 = 8%**.
-- Major product gates closed: **0/8 = 0%**.
-- U1 KiCad architecture scaffold: **100% structure coverage**.
-- U1 component-bearing production-intent schematic: **0%**.
+The repository is ahead of the previous handoff. Actual authorities show PB-03 is active, S1.1 is DONE, S1.2 is ACTIVE, and the controlling metrics are **Requirements structure 12/12 = 100% / G1 SYSTEM FREEZE 25/46 = 54.3% / Backlog DONE 2/25 = 8% / Major gates 0/8 = 0%**. The prior handoff's PB-02 / 47.8% snapshot was stale and is superseded by this record.
 
-No controlling percentage changed in this planning run because no new G1 row or backlog task was actually closed.
+## Tasks attempted
 
-## Plan audit result
+1. Verify planning state, product plan, traceability, backlog, mission requirements, requirements master/progress and previous handoff against the branch.
+2. Continue highest-priority unblocked work: Sprint S1.2 PWM/ripple/switching-loss study.
+3. Search current primary manufacturer evidence for X13 G2 motor data and >=150 V MOSFET candidates.
 
-The existing A-G engineering phase chain remains valid. The problem was not a missing product gate; it was a missing short execution layer between the current PB-02 partial system freeze and G1 closure.
+## Tasks completed / measurable progress
 
-A new execution sprint has therefore been added without inventing a new approval gate:
+- Created `PWM_RIPPLE_LOSS_STUDY_PB03.md`.
+- Converted the frozen >=60,000 electrical-rpm capability into an explicit 1 kHz maximum electrical-frequency timing parent.
+- Quantified PWM timing density: 20/24/32/40 kHz provide 20/24/32/40 PWM periods per electrical period at 60 keRPM.
+- Established Infineon IAUTN15S6N025G as a current exact 150 V calculation anchor: 2.5 mOhm max RDS(on), 107 nC typical / 139 nC maximum Qg at 10 V, 0.42 K/W max RthJC, 175 C maximum operating temperature. TOLT IAUTN15S6N025T is retained as a top-side-cooled package comparison, not a selection.
+- Calculated idealized gate-charge power per MOSFET from Qg(max)=139 nC at 10 V: 27.8 / 33.4 / 44.5 / 55.6 mW at 20 / 24 / 32 / 40 kHz respectively.
+- Confirmed the current public Hobbywing X13 G2 evidence gives 45 KV, 36N42P, 18S, MFP56x20 and load-curve torque/power/RPM data but does not provide a defensible production winding Ld/Lq/phase inductance value in the source set used here.
 
-**Sprint S1 — PB-02 -> G1 SYSTEM FREEZE**
+## Engineering decisions
 
-Authority: `SPRINT_PB02_TO_G1_CLOSURE.md`.
+No new product PWM value or MOSFET MPN was frozen. G1-07 remains OPEN. This is deliberate: current-ripple-based PWM selection cannot be defended without exact motor inductance or a controlled measurement.
 
-`UAV_PRODUCT_PLAN.md` now contains **A6 — Sprint S1** and explicitly queues **S2 — G2 Architecture Freeze** only after G1 satisfies its completion rule.
+20/24/32/40 kHz are analysis points only. Headline MOSFET ID/IDpulse ratings are explicitly not treated as design current capability.
 
-## Sprint S1 sequence
+## Assumptions and evidence level
 
-1. **S1.1 Phase-current model** — derive continuous phase RMS and short-duration phase peak current from the frozen 56x20 / 45KV / 18S propulsion class; do not copy DC current.
-2. **S1.2 PWM / ripple / switching loss** — freeze PWM using motor electrical parameters, >=60 keRPM timing, current ripple and 150 V semiconductor losses.
-3. **S1.3 18S energy / minimum loaded bus** — close pack Ah/Wh, usable energy, minimum loaded voltage, sag, reserve, BMS/disconnect behavior and battery mass allocation.
-4. **S1.4 Environment / derating / protection** — close ambient, altitude, ingress/cooling boundary, baseplate limit, OV/UV/OCP/OTP, watchdog and command-timeout numeric requirements.
-5. **S1.5 G2 pre-freeze** — exact 150 V MOSFET shortlist and parallel-count calculation, gate-driver current/MPN shortlist, sensing, DC-link/precharge and thermal prework.
-6. **S1.6 Configuration closeout** — synchronize requirements, traceability, backlog, dashboard and next datasheet revision; reassess schematic-allocation readiness.
+No new unknown engineering input was promoted to a frozen value. The electrical-frequency and gate-charge calculations are deterministic calculations from already frozen/system or primary-source component data. Motor inductance remains OPEN rather than inferred from KV or geometry.
 
-## Backlog alignment
+## Files changed
 
-`uav_backlog.json` is now `UAV-PLAN-06` and has an explicit `active_sprint` overlay.
+- `ESC_V2/planning/PWM_RIPPLE_LOSS_STUDY_PB03.md` — new engineering evidence artifact.
+- `ESC_V2/planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
+- `ESC_V2/planning/autonomy_state.json` — machine-readable run state.
 
-The following existing tasks are now correctly marked **IN_PROGRESS** because PB-02 provides enough bounded evidence to work on them:
+No B1/A2 electrical source, U1 schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated.
 
-- `UAV-004` motor/prop operating-point closure,
-- `UAV-005` battery energy architecture,
-- `UAV-006` ESC electrical envelope.
+## Unresolved blockers
 
-G2 tasks remain gate-blocked, but bounded non-selection prework is explicitly allowed for the semiconductor/PWM/DC-link/thermal/protection items needed to prevent a dead stop after G1. Their final acceptance still cannot close before the parent gates.
+- S1.2 / G1-07 PWM freeze: exact production-motor Ld/Lq or phase inductance with measurement convention is unavailable in the current primary-source evidence; alternatively a controlled impedance/step-response measurement is required.
+- Exact switching loss: operating-point Eon/Eoff or waveform-based transition data for the intended device/gate resistance/layout is required.
+- G0: battery/structure/fixed-equipment mass allocation, mission duration and environmental envelope remain open.
+- S1.3: pack Ah/Wh, minimum loaded bus, sag, reserve and disconnect behavior remain open.
+- S1.4: ambient/altitude/baseplate/protection/watchdog/command-timeout values remain open.
+- G2 exact MOSFET count/driver/sensing/DC-link/thermal architecture remains blocked from final closure by the parent values above.
 
-Backlog DONE remains **2/25 = 8%**.
+## Regressions / risks discovered
 
-## Traceability correction
+The previous handoff was stale relative to repository authorities: it still reported PB-02, S1.1 pending and 22/46 G1 rows. Actual repository state is PB-03, S1.1 DONE and 25/46 PASS. This handoff corrects that continuity risk.
 
-The plan audit found real stale statements in `UAV_TRACEABILITY.md`: MOSFET voltage class, battery architecture and rotor architecture were still described as OPEN even though PB-01/PB-02 had already frozen them.
+A second risk is that PWM could be prematurely chosen from eRPM alone. The new study explicitly prevents that: eRPM constrains timing density but does not determine acceptable current ripple or switching loss.
 
-Traceability was aligned so it now records:
+## Exact next recommended tasks
 
-- X8 / 8 propulsion channels as frozen,
-- 0.85 coaxial sizing and >=1.6 static T/W as frozen,
-- 18S / 66.6 V nominal convention / 75.6 V full charge as frozen,
-- >=150 V semiconductor class as frozen,
-- >=4.8 kW continuous and >=11.5 kW short-duration DC capability as frozen,
-- three independent high-voltage half-bridge gate-driver architecture as frozen while exact driver remains open,
-- CAN-FD capable / Classic-CAN-compatible FC link as frozen while exact transceiver remains open,
-- phase current, PWM, exact MOSFET/count, battery energy/min-bus and thermal implementation as OPEN.
+1. Continue S1.2: source exact production-motor winding inductance/resistance if a primary source becomes available; otherwise add a controlled motor impedance measurement procedure with null result fields for future bench correlation.
+2. Expand exact >=150 V MOSFET prework with hot RDS(on), package thermal path, gate-charge and switching-data evidence without selecting the production MPN.
+3. If S1.2 remains physically blocked, proceed to independent S1.3 mission-energy bounding only where frozen parent data supports calculations; do not invent flight duration/reserve.
+4. Continue configuration consistency updates as new evidence is added.
 
-New records:
+## Dependency chain
 
-- `TR-043` — PB-02 controlled product baseline,
-- `TR-044` — U1 Rated 18S first-release / future lower-voltage derivative strategy,
-- `TR-045` — active Sprint S1 execution chain.
-
-## Configuration-control boundary
-
-`U1-SCH-R001` remains **unallocated**.
-
-- AR-001 G1 SYSTEM envelope: OPEN.
-- AR-002 page-level G2 architecture: OPEN.
-- AR-003..005 configuration-control prerequisites: PASS.
-
-No B1/U1 electrical schematic, PCB, Gerber, production BOM or manufacturing package was modified.
-
-## Current product baseline retained
-
-PB-02 remains the authority and is not reopened by the sprint:
-
-- X8 coaxial / 8 channels,
-- payload 70-100 kg, nominal 85 kg,
-- <=80 kg operating-empty budget,
-- 150 / 165 / 180 kg MTOW targets,
-- 56x20 / 45KV / 18S propulsion class,
-- 66.6 V nominal convention / 75.6 V full charge / <=80 V outer input ceiling,
-- >=70 A continuous DC,
-- >=200 A for >=3 s,
-- >=4.8 kW continuous input,
-- >=11.5 kW short-duration input,
-- <=120 V repetitive controlled semiconductor-terminal stress,
-- >=150 V power-semiconductor class,
-- >=60,000 eRPM controller capability.
-
-## Exact next action
-
-Start **S1.1 — Phase-current model closure**.
-
-The next engineering output must derive phase RMS and phase peak current from motor torque/electrical evidence consistent with the frozen 56x20 / 45KV / 18S class. It must not infer phase current directly from the PB-02 DC current limits.
-
-After S1.1, continue immediately to S1.2 PWM/ripple/switching-loss closure.
+`PB-03 phase current + >=60 keRPM -> motor L/R evidence -> PWM/ripple/loss freeze -> S1.3 18S energy/min bus -> S1.4 environment/protection -> S1.5 exact power-stage pre-freeze -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
 
 ## Next-run briefing
 
-Start from:
+Start from PB-03 and `PWM_RIPPLE_LOSS_STUDY_PB03.md`. Do not revert to the stale PB-02 handoff state. S1.1 is already complete; S1.2 is active. Preserve 20/24/32/40 kHz as analysis points only until inductance/ripple and switching-loss evidence supports a freeze. Do not allocate `U1-SCH-R001` until AR-001 and AR-002 pass.
 
-- `PRODUCT_BASELINE_PB-02.json`
-- `SPRINT_PB02_TO_G1_CLOSURE.md`
-- `UAV_PRODUCT_PLAN.md`
-- `uav_backlog.json`
-- `UAV_TRACEABILITY.md`
-- `G1_REQUIREMENTS_MATRIX.json`
-- `U1_SCHEMATIC_ALLOCATION_READINESS.json`
-
-Do not reopen PB-02 values without PB-03/ECO. Do not allocate `U1-SCH-R001` until AR-001 and AR-002 are PASS.
-
-Mandatory metrics remain: **Requirements structure 100% / G1 SYSTEM FREEZE 47.8% / Backlog DONE 8% / Major gates 0% / U1 component-bearing schematic 0%**.
+Mandatory progress snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 54.3% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
