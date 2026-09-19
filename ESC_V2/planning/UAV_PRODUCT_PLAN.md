@@ -121,6 +121,20 @@ Kabul kapısı **G1 — SYSTEM FREEZE**:
 - `design_basis.json` içinde hiçbir kritik electrical envelope alanı `null` değil,
 - değerler propulsion çalışma noktalarına izlenebilir.
 
+## A6 — Sprint S1: PB-02 -> G1 SYSTEM FREEZE
+
+PB-02 sonrasında Phase A artık tek bir uzun analiz işi olarak yürütülmeyecek. G1 kapanışına kadar aktif execution sprint `SPRINT_PB02_TO_G1_CLOSURE.md` ile yönetilir.
+
+Sprint sırası:
+1. phase RMS / peak current modeli,
+2. PWM / ripple / switching-loss freeze,
+3. 18S Ah/Wh / minimum-loaded-bus / sag / reserve / BMS closure,
+4. environment / derating / protection thresholds,
+5. exact 150 V power-stage G2 pre-freeze shortlist,
+6. configuration-control closeout ve G1 readiness review.
+
+Bu sprint yeni bir gate değildir. G1 kabul şartlarını değiştirmez; yalnız kalan açık işleri küçük, test edilebilir ve kanıt üretir paketlere böler.
+
 ---
 
 # PHASE B — ESC mimari yeterlilik
@@ -436,3 +450,9 @@ Kabul kapısı **G7 — FLIGHT TEST READY**.
 - **R5 — Production candidate:** BOM/PCB/firmware/configuration controlled and manufacturing validation complete.
 
 `flight-qualified` veya `production-qualified` ifadeleri ilgili kanıt kapıları tamamlanmadan kullanılmaz.
+
+## Aktif sprint ve sonraki sprint geçişi
+
+Aktif sprint: **S1 — PB-02 -> G1 SYSTEM FREEZE** (`SPRINT_PB02_TO_G1_CLOSURE.md`).
+
+S1 tamamlanmadan komponentli U1 şema allocate edilmez. S1 sonrasında sıradaki execution sprint **S2 — G2 Architecture Freeze** olacaktır ve exact MOSFET/count, gate driver, MCU, sensing, DC-link/precharge, protection ve thermal architecture kararlarını kapatacaktır. S2 ancak G1 completion rule sağlandığında ACTIVE yapılır.
