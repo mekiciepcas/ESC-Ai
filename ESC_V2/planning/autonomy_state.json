@@ -1,12 +1,12 @@
 {
-  "revision":"AUTO-STATE-17",
+  "revision":"AUTO-STATE-18",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_SENSE_SEQUENCING_DYNAMIC_MODELS_AND_PRELIMINARY_BOM_MATRIX",
+  "last_run_status":"PROGRESS_SENSE_MODELS_PRELIM_BOM_AND_HIGH_VOLTAGE_DRIVER_AUX_TRADE",
   "current_gate":"G0_G1",
   "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION_WITH_SAFE_G2_PREWORK",
-  "current_task":"HIGH_VOLTAGE_DRIVER_AUX_DOMAIN_TRADE_AND_BOM_CANDIDATE_DEEPENING",
+  "current_task":"AUXILIARY_LOAD_BUDGET_AND_CONTROL_PLATFORM_PRETRADE",
   "completed_this_run":[
     "verified_latest_handoff_product_plan_backlog_mission_requirements_traceability_and_autonomy_state_against_uav_rebaseline",
     "mapped_B1_V_BUS_ADC_U1701_pin8_to_STM32G474_LQFP64_PA0_TT_a_primary_source_pin_structure",
@@ -15,8 +15,10 @@
     "defined_shared_LT6017_and_STM32_analog_shutdown_domain_as_preferred_study_rule_not_production_freeze",
     "added_parametric_HV_sense_divider_opamp_ADC_settling_model_with_all_product_inputs_mandatory",
     "added_condition_normalized_power_stage_loss_calculator_skeleton_with_no_hidden_ESC_defaults",
-    "created_U1_preliminary_BOM_candidate_matrix_with_candidate_legacy_blocked_open_statuses",
-    "updated_UAV_traceability_for_sensing_sequence_and_loss_model_evidence"
+    "created_and_deepened_U1_preliminary_BOM_candidate_matrix_with_candidate_legacy_blocked_open_statuses",
+    "built_primary_source_gate_driver_voltage_domain_trade_with_DRV8353_UCC27282_UCC27712_UCC21540Q1_anchors",
+    "built_primary_source_auxiliary_supply_voltage_domain_trade_with_LM5164_LTC3639_LTC7801_anchors",
+    "updated_UAV_traceability_for_sensing_sequence_loss_model_driver_aux_and_BOM_evidence"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
@@ -24,13 +26,15 @@
     {"task":"freeze_UAV_004_operating_point","reason":"final_rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_motor_prop_hover_peak_points"},
     {"task":"derive_phase_current_requirement","reason":"manufacturer_curve_reports_DC_input_current_not_phase_RMS_peak_current","blocking_scope":"UAV006_power_stage_current_freeze"},
     {"task":"freeze_semiconductor_voltage_class","reason":"battery_transient_ceiling_phase_current_PWM_hot_junction_and_derating_policy_remain_open","blocking_scope":"UAV008_final_device_class_and_loss_trade"},
+    {"task":"freeze_gate_driver_and_aux_architecture","reason":"final_bus_transient_MOSFET_Qg_PWM_fault_coverage_and_auxiliary_load_budget_are_open","blocking_scope":"UAV010_and_auxiliary_power_architecture"},
     {"task":"freeze_voltage_sense_topology","reason":"input_power_off_candidate_and_output_sequence_rules_exist_but_final_VBUS_range_accuracy_bandwidth_series_impedance_and_bench_evidence_remain_open","blocking_scope":"G2_sensing_architecture_freeze"},
     {"task":"release_U1_production_BOM","reason":"G1_and_G2_not_frozen_and_U1_schematic_does_not_exist","blocking_scope":"UAV016_final_BOM_release"}
   ],
   "next_candidates":[
-    "build_primary_source_gate_driver_and_auxiliary_supply_candidate_trade_for_bus_domains_above_the_legacy_100V_ceiling_without_selecting_a_winner",
-    "deepen_U1_BOM_CANDIDATES_with_exact_orderable_support_part_evidence_only_where_parent_requirements_are_already_stable",
-    "prepare_common_input_templates_for_hv_sense_dynamic_model_and_power_stage_loss_calculator_without_inserting_product_defaults",
+    "inventory_existing_B1_auxiliary_loads_and_power_domains_to_create_an_evidence_based_aux_load_budget_without_assuming_U1_values",
+    "begin_primary_source_STM32G474_vs_TMS320F280041C_control_platform_pretrade_focused_on_PWM_ADC_trip_CAN_and_FOC_execution_resources_without_selecting_a_winner",
+    "prepare_placeholder_input_templates_for_hv_sense_dynamic_model_and_power_stage_loss_calculator_without_numeric_product_defaults",
+    "deepen_U1_BOM_CANDIDATES_only_where_exact_orderable_support_part_evidence_is_independent_of_open_G1_ratings",
     "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
@@ -40,14 +44,16 @@
     "planning/hv_sense_error_model.py",
     "planning/power_stage_loss_calculator.py",
     "planning/U1_BOM_CANDIDATES.json",
-    "planning/POWER_OFF_TOLERANT_SENSE_CANDIDATES.md",
+    "planning/GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md",
     "planning/SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md",
     "planning/UAV_TRACEABILITY.md",
     "hardware_b1/mcu_pin_contract.json",
     "ST STM32G474 DS12288",
-    "Analog Devices LT6015_LT6016_LT6017 datasheet and powered-down high-input-impedance technical note"
+    "Analog Devices LT6015_LT6016_LT6017 datasheet and powered-down high-input-impedance technical note",
+    "TI UCC27282 UCC27712 UCC21540-Q1 primary product/datasheet evidence",
+    "ADI LTC3639 and LTC7801 primary product evidence"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The LT6017 study path now has explicit S1-S4 sequencing rules and no longer assumes that robust powered-down inputs automatically make the output-to-unpowered-MCU path safe. The current study rule is a shared analog shutdown domain; exact series impedance and final sensing topology remain open. Dynamic sensing and MOSFET loss calculators now require all product operating-point values as explicit inputs. A preliminary U1 BOM candidate matrix exists but intentionally contains no production-release claim."
+  "notes":"This run now covers sensing output sequencing, dynamic sensing and MOSFET screening tools, a preliminary U1 BOM evidence matrix, and credible higher-voltage gate-driver/auxiliary-power alternatives. No candidate is selected. The next safe work is to quantify the existing B1 auxiliary load domains from repository evidence and begin the MCU/control-platform pretrade, while all vehicle-dependent G0/G1 values remain OPEN."
 }
