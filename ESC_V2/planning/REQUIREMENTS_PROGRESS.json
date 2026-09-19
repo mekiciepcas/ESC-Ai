@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-PROGRESS-03",
+  "revision": "REQ-PROGRESS-04",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "reporting_policy": "Every user-facing project progress output should report at minimum requirements_structure_percent, g1_system_freeze_percent and backlog_done_percent. Broader engineering percentages must be explicitly labeled estimates.",
@@ -10,23 +10,23 @@
     "meaning": "Planned requirement-domain hierarchy/schema/authority coverage, not product-value closure."
   },
   "g1_system_freeze": {
-    "pass_rows": 22,
+    "pass_rows": 25,
     "required_rows": 46,
-    "open_rows": 24,
-    "percent": 47.8,
+    "open_rows": 21,
+    "percent": 54.3,
     "source": "G1_REQUIREMENTS_MATRIX.json",
-    "note": "PB-02 freezes mass/thrust targets, 56x20/45KV/18S propulsion class, 18S bus architecture and DC-side ESC capability. PASS means controlled value closure/traceability, not physical verification."
+    "note": "PB-03 adds source-derived phase-current and measurement-range requirements to the inherited PB-02 mass/thrust/18S/DC baseline. PASS means controlled value closure/traceability, not physical verification."
   },
   "backlog": {
     "done_tasks": 2,
     "total_tasks": 25,
     "done_percent": 8.0,
-    "note": "Conservative metric: only tasks explicitly marked DONE are counted. UAV-002 is now DONE because PB-02 numerically closes rotor count, hover thrust, max-thrust capability and thrust margin."
+    "note": "Conservative metric: only tasks explicitly marked DONE are counted. Sprint S1.1 completion advances UAV-006 but does not complete the full ESC electrical-envelope task because PWM/protection/energy/thermal parents remain open."
   },
   "gate_closure": {
     "closed_major_gates": 0,
     "major_gates": 8,
     "percent": 0.0,
-    "note": "G0/G1 remain OPEN because flight time/energy/environment, detailed mass allocation, bus minimum/sag, phase current, PWM, protection and thermal requirements remain unresolved. G2-G7 remain dependency-blocked."
+    "note": "G0/G1 remain OPEN because flight time/energy/environment, detailed mass allocation, minimum loaded bus/sag, PWM, protection and thermal requirements remain unresolved. G2-G7 remain dependency-blocked."
   }
 }
