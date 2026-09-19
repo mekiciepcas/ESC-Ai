@@ -1,0 +1,21 @@
+name: Verify ESC Electrical Pretrade
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PROPULSION_SCREENING_PRETRADE.json'
+      - 'ESC_V2/planning/ESC_ELECTRICAL_ENVELOPE_PRETRADE.json'
+      - 'ESC_V2/planning/verify_esc_electrical_pretrade.py'
+      - '.github/workflows/esc-pretrade-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify-pretrade:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+      - name: Run electrical-envelope consistency check
+        run: python3 ESC_V2/planning/verify_esc_electrical_pretrade.py
