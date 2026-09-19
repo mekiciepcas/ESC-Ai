@@ -1,14 +1,14 @@
 {
-  "revision": "MISSION-00",
+  "revision": "MISSION-01",
   "date": "2026-09-19",
-  "status": "OPEN_G0",
+  "status": "OPEN_G0_PARTIAL_PRODUCT_BASELINE_APPLIED",
   "application": "heavy_lift_agricultural_multirotor_uav",
   "requirements": {
     "payload": {
       "min_kg": 70,
       "nominal_kg": null,
       "max_kg": 100,
-      "status": "USER_TARGET"
+      "status": "FROZEN_USER_TARGET_BOUNDS"
     },
     "airframe_empty_mass_kg": null,
     "battery_mass_kg": null,
@@ -33,15 +33,24 @@
       "rain_dust_ingress_target": null
     },
     "vehicle": {
-      "rotor_count": null,
-      "coaxial_allowed": null,
+      "architecture": "X8_COAXIAL_4_ARM_8_INDEPENDENT_PROPULSION_CHANNELS",
+      "architecture_status": "FROZEN_PB-01",
+      "rotor_count": 8,
+      "rotor_count_status": "FROZEN_PB-01",
+      "coaxial_allowed": true,
+      "coaxial_packaging_baseline": true,
       "maximum_vehicle_span_m": null,
-      "degraded_operation_requirement": null,
-      "single_motor_failure_requirement": null
+      "degraded_operation_requirement": "CONTROLLED_LANDING_AFTER_SINGLE_PROPULSION_CHANNEL_LOSS",
+      "single_motor_failure_requirement": "CONTROLLED_LANDING_REQUIRED",
+      "single_motor_failure_status": "FROZEN_PB-01",
+      "continued_hover_at_max_payload_after_single_failure_required": false
     },
     "control_and_interface": {
-      "flight_controller_interface": "CAN_CANDIDATE",
-      "arming_interface": null,
+      "flight_controller_interface": "CAN_FD_CAPABLE_CLASSIC_CAN_COMPATIBLE",
+      "flight_controller_interface_status": "FROZEN_PB-01",
+      "arming_interface": "VALID_FC_COMMAND_PLUS_INDEPENDENT_HARDWARE_INHIBIT_AUTHORITY",
+      "arming_policy_status": "FROZEN_PB-01",
+      "automatic_rearm_after_fault_or_reset": false,
       "telemetry_update_rate_hz": null,
       "command_timeout_ms": null
     },
@@ -53,9 +62,10 @@
     }
   },
   "assumption_policy": {
-    "rule": "Unknown mission parameters remain null until provided, researched or explicitly approved as engineering assumptions.",
-    "payload_interpretation": "70-100 kg is currently treated as payload target, not MTOW.",
-    "flight_qualification": "No flight qualification claim is made from this requirements file."
+    "rule": "Unknown mission parameters remain null until provided, researched or explicitly approved as engineering assumptions or controlled product-baseline decisions.",
+    "payload_interpretation": "70-100 kg is payload target, not MTOW.",
+    "product_baseline_authority": "PRODUCT_BASELINE_PB-01.json",
+    "flight_qualification": "No flight qualification claim is made from this requirements file. Frozen architecture decisions still require calculation and physical verification at later gates."
   },
   "g0_acceptance": [
     "nominal payload defined",
