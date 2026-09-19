@@ -1,0 +1,112 @@
+{
+  "revision": "FAULT-ARM-MATRIX-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "STRUCTURAL_VERIFICATION_TEMPLATE_NO_TIMING_RESULTS",
+  "purpose": "Define safety-state invariants for power, reset, arm and fault sequencing without inventing product timing values or a final implementation.",
+  "signals_are_logical_functions_not_frozen_nets": true,
+  "states": [
+    {
+      "id": "FAS-00",
+      "name": "POWER_OFF",
+      "conditions": ["main/control power absent"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "timing_limit_ms": null,
+      "verification": "schematic power-state analysis then bench observation"
+    },
+    {
+      "id": "FAS-01",
+      "name": "AUX_UP_MCU_HELD_RESET",
+      "conditions": ["auxiliary rails may be present", "MCU reset asserted or not executing application"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": null,
+      "timing_limit_ms": null,
+      "verification": "power sequencing and reset bench test"
+    },
+    {
+      "id": "FAS-02",
+      "name": "MCU_BOOT_UNARMED",
+      "conditions": ["MCU executing", "no valid deliberate arm transition completed"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": null,
+      "timing_limit_ms": null,
+      "verification": "firmware plus hardware interlock state test"
+    },
+    {
+      "id": "FAS-03",
+      "name": "DRIVER_AWAKE_UNARMED",
+      "conditions": ["gate-driver auxiliary function awake", "switching permission not granted"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "timing_limit_ms": null,
+      "verification": "scope capture of gate outputs and permission state"
+    },
+    {
+      "id": "FAS-04",
+      "name": "ARMED_NORMAL",
+      "conditions": ["all frozen arm prerequisites satisfied", "no active blocking fault"],
+      "required_pwm_permission": true,
+      "required_gate_drive_active": true,
+      "timing_limit_ms": null,
+      "verification": "arming state-machine and PWM-enable bench test"
+    },
+    {
+      "id": "FAS-05",
+      "name": "ASYNC_HARD_FAULT",
+      "conditions": ["hardware fault asserted during switching"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "fault_to_pwm_inactive_limit_us": null,
+      "verification": "fault injection plus oscilloscope; compare measured worst case to final semiconductor safe-action budget"
+    },
+    {
+      "id": "FAS-06",
+      "name": "POST_FAULT_LATCHED",
+      "conditions": ["fault stimulus removed", "latched fault not explicitly cleared/rearmed under frozen policy"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "rearm_allowed": null,
+      "verification": "fault recovery state-machine test"
+    },
+    {
+      "id": "FAS-07",
+      "name": "WATCHDOG_OR_SOFTWARE_RESET",
+      "conditions": ["watchdog or software-triggered reset"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "timing_limit_ms": null,
+      "verification": "induced reset plus gate/PWM scope capture"
+    },
+    {
+      "id": "FAS-08",
+      "name": "BROWNOUT_OR_PARTIAL_POWER",
+      "conditions": ["supply ramp/drop or partial-domain power state"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "allowed_backfeed_current_a": null,
+      "verification": "controlled supply sequencing plus rail/pin current and PWM observation"
+    },
+    {
+      "id": "FAS-09",
+      "name": "EXTERNAL_INHIBIT_FAULT",
+      "conditions": ["external inhibit/E-stop interface asserted or in a defined wiring-fault state"],
+      "required_pwm_permission": false,
+      "required_gate_drive_active": false,
+      "wiring_fault_safe_behavior": null,
+      "verification": "interface fault injection after external safety contract freezes"
+    }
+  ],
+  "mandatory_evidence_fields": [
+    "exact hardware revision",
+    "exact MCU/gate-driver/interlock implementation",
+    "firmware commit",
+    "power state and supply ramp conditions",
+    "fault source/stimulus",
+    "oscilloscope or logic-analyzer channels",
+    "measured latency distribution where applicable",
+    "pass/fail criterion source",
+    "raw evidence reference"
+  ],
+  "anti_hallucination_rule": "Null timing, backfeed and re-arm fields remain OPEN. The matrix defines required safe-state behavior but does not claim measured latency, certification or final implementation."
+}
