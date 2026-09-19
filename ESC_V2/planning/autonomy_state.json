@@ -1,36 +1,49 @@
 {
-  "revision":"AUTO-STATE-48",
+  "revision":"AUTO-STATE-49",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"S1_2_HOT_THERMAL_SENSITIVITY_ADVANCED_NO_FALSE_FREEZE",
+  "last_run_status":"PB04_MISSION_DURATION_ERPM_FROZEN_PWM_REMAINS_OPEN",
   "current_gate":"G0_G1",
   "current_task":"S1_2_PWM_RIPPLE_SWITCHING_LOSS",
   "active_sprint":{"id":"S1","status":"ACTIVE","completed_steps":["S1.1_PHASE_CURRENT_MODEL"],"current_step":"S1.2_PWM_RIPPLE_SWITCHING_LOSS"},
   "completed_this_run":[
-    "verified PB-03 and controlling planning files against repository branch state",
-    "created POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md",
-    "parameterized unresolved hot RDS(on) as Khot sensitivity rather than inventing a guaranteed value",
-    "quantified N=2 and N=3 conduction sensitivity at 125A RMS continuous and 265A RMS overload",
-    "added junction-to-case-only sanity screen using published TOLT RthJC while explicitly excluding case-to-ambient and transient qualification",
-    "recorded TR-047 additive traceability and preserved prior TR-001..TR-046 authority by exact historical blob reference"
+    "verified mandatory planning/configuration-control state against uav-rebaseline HEAD before writes",
+    "created PRODUCT_BASELINE_PB-04.json under change control",
+    "froze >=10 min nominal mission target at 85 kg payload / 165 kg MTOW reference",
+    "froze >=10 min hover-equivalent first-order energy-sizing target and >=20% sizing reserve",
+    "derived nominal 165 kg energy bound about 4.47 kWh / 67.1 Ah and retained exact pack OPEN",
+    "corrected controller electrical-speed capability from >=60 keRPM to >=90 keRPM using the frozen 80 V / 45 KV / 21 pole-pair envelope",
+    "narrowed preferred PWM analysis window to 24-32 kHz while keeping final PWM OPEN",
+    "added Infineon IAUTN15S6N025T switching-timing sensitivity screen without treating it as guaranteed Eon/Eoff",
+    "advanced G1 controlled value closure from 25/46 to 28/46 without closing any major gate",
+    "added PB04 consistency checker and CI workflow",
+    "identified dashboard validation regression as missing historical progress keys in autonomy_state and restored those fields"
   ],
   "blocked_tasks":[
-    {"task":"freeze_PWM_G1_07","reason":"exact production-motor Ld/Lq/effective ripple inductance remains unavailable; physical measurement result is still required","blocking_scope":"S1.2"},
+    {"task":"freeze_PWM_G1_07","reason":"exact production-motor Ld/Lq/effective ripple inductance remains unavailable; physical measurement or exact manufacturer winding data is still required","blocking_scope":"S1.2"},
     {"task":"close_exact_switching_loss_and_parallel_count","reason":"requires guaranteed hot-resistance policy, switching waveform/energy correlation, transient ZthJC, current sharing and baseplate/TIM model","blocking_scope":"S1.2_S1.5"},
-    {"task":"close_G0_mass_energy_environment","reason":"airframe battery fixed-equipment allocation mission duration and environment remain open","blocking_scope":"G0"},
-    {"task":"freeze_battery_energy_and_min_bus","reason":"mission duration reserve exact pack loaded minimum sag and disconnect behavior remain open","blocking_scope":"S1.3"},
+    {"task":"close_G0_mass_environment","reason":"airframe battery fixed-equipment mass allocation and environment remain open; mission duration is now frozen by PB-04","blocking_scope":"G0"},
+    {"task":"freeze_exact_battery_pack_and_min_bus","reason":"PB-04 provides mission-energy bounds but exact cell/pouch, loaded minimum voltage, sag, usable SOC, BMS disconnect and battery mass remain open","blocking_scope":"S1.3"},
     {"task":"allocate_U1_SCH_R001","reason":"G1 and page-level G2 architecture remain open","blocking_scope":"G3_AR-001_AR-002"}
   ],
   "next_candidates":[
-    "extract intended-device switching-energy/waveform evidence and build a parameterized switching-loss screen without assuming unavailable Eon/Eoff",
-    "obtain exact production motor Ld_Lq or execute MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03 before PWM freeze",
-    "add transient ZthJC and case-to-baseplate/TIM model once exact primary-source curve/mechanical assumptions are controlled",
-    "continue S1.3 exact 18S pack and mission-energy closure when defensible evidence exists"
+    "obtain exact production motor Ld/Lq or execute MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03 before PWM freeze",
+    "use PB-04 24-32 kHz preferred window to continue switching-loss and gate-drive comparison without false Eon/Eoff precision",
+    "advance S1.3 from 4.47 kWh / 67.1 Ah nominal bound to exact cell/pouch, sag, minimum loaded bus and mass trade",
+    "define S1.4 operating environment and numeric OV/UV/OCP/OTP/watchdog/failsafe requirements"
   ],
-  "last_verified_gate":"G1_PARTIAL_PB03_25_OF_46",
-  "progress_percentages":{"requirements_structure_percent":100.0,"g1_system_freeze_percent":54.3,"backlog_done_percent":8.0,"major_gate_closure_percent":0.0,"u1_component_bearing_schematic_percent":0.0},
-  "evidence_refs":["PRODUCT_BASELINE_PB-03.json","PWM_RIPPLE_LOSS_STUDY_PB03.md","MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md","POWER_STAGE_TRADE_PB03_G2_PREWORK.md","POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md","BATTERY_ENERGY_SENSITIVITY_PB03.md","UAV_TRACEABILITY.md","REQUIREMENTS_PROGRESS.json","AUTONOMOUS_HANDOFF.md"],
+  "last_verified_gate":"G1_PARTIAL_PB04_28_OF_46",
+  "progress_percentages":{
+    "requirements_structure_percent":100.0,
+    "g1_system_freeze_percent":60.9,
+    "backlog_done_percent":8.0,
+    "major_gate_closure_percent":0.0,
+    "u1_kicad_architecture_scaffold_percent":100.0,
+    "u1_component_bearing_schematic_percent":0.0,
+    "schematic_revision_control_policy_percent":100.0
+  },
+  "evidence_refs":["PRODUCT_BASELINE_PB-04.json","MISSION_DURATION_ENERGY_BASELINE_PB04.md","ERPM_PWM_TIMING_CORRECTION_PB04.md","PWM_RIPPLE_LOSS_STUDY_PB03.md","MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md","POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","UAV_TRACEABILITY.md","AUTONOMOUS_HANDOFF.md"],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_release_without_user_approval":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false}
 }
