@@ -1,0 +1,27 @@
+name: Verify PB-08 Common Platform
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-08.json'
+      - 'ESC_V2/planning/PB08_COMMON_ELECTRICAL_PLATFORM.md'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/uav_backlog.json'
+      - 'ESC_V2/planning/SCHEMATIC_REVISION_REGISTER.json'
+      - 'ESC_V2/design_basis.json'
+      - 'ESC_V2/planning/verify_product_baseline_pb08.py'
+      - '.github/workflows/pb08-common-platform-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+      - name: Verify PB08 consistency
+        run: python3 ESC_V2/planning/verify_product_baseline_pb08.py
