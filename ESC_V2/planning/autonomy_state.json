@@ -1,28 +1,26 @@
 {
-  "revision":"AUTO-STATE-36",
+  "revision":"AUTO-STATE-37",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_ESC_ELECTRICAL_PRETRADE_VERIFIED",
+  "last_run_status":"PROGRESS_PRELIMINARY_DATASHEET_PDS00_CREATED",
   "current_gate":"G0_G1",
   "current_task":"NORMALIZED_120V_150V_POWER_STAGE_LOSS_AND_GATE_DRIVE_PRETRADE",
   "completed_this_run":[
-    "continued_from_source_backed_propulsion_screening_without inventing missing mechanical inputs",
-    "created_ESC_ELECTRICAL_ENVELOPE_PRETRADE_json from current propulsion benchmark references",
-    "derived_trade_only_reference_maxima_81V_120A_continuous_bus_300A_peak_or_short_and_4640W_rated_input_power",
-    "calculated_static_voltage_headroom_100V_19V_120V_39V_150V_69V_against_81V_reference",
-    "deprioritized_100V_as_primary_80V_class_path_without globally banning it",
-    "carried_120V_and_150V_classes_forward_for normalized loss package gate_drive and transient comparison",
-    "kept_phase_current_switch_current_parallel_device_count_pwm_and_product_baseline_OPEN",
-    "created_executable_verify_esc_electrical_pretrade_py_and_GitHub_Action",
-    "observed_GitHub_Actions_run_35453244140_success_with PASS and expected derived values",
-    "recorded_additive_traceability_TR_057_TR_058_TR_059"
+    "re_read_current_UAV_product_plan_traceability_backlog_mission_requirements_requirements_master_requirements_progress_handoff_state_and_G1_matrix_against_actual_uav_rebaseline_branch",
+    "created_versioned_preliminary_engineering_datasheet_ESC_U1_PRELIMINARY_DATASHEET_PDS_00_md",
+    "kept_70_100kg_as_payload_target_not_MTOW",
+    "separated_OPEN_product_requirements_from_TRADE_ONLY_81V_120A_300A_4640W_architecture_stress_references",
+    "documented_120V_and_150V_as_carried_forward_power_semiconductor_classes_without_selecting_a_winner",
+    "documented_control_sensing_CAN_fault_and_mechanical_environment_status_with_explicit_OPEN_PLANNED_CANDIDATE_labels",
+    "preserved_component_bearing_U1_schematic_at_zero_percent_and_did_not_allocate_U1_SCH_R001",
+    "generated_and_visually_verified_four_page_PDS_00_PDF_for_user_delivery"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; 14 product-specific values remain unresolved","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; product-specific mass, mission and environment values remain unresolved","blocking_scope":"G0_and_final_G1A"},
     {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW, span and motor-out policy remain open; trade-only sweeps may proceed","blocking_scope":"G1A_and_UAV004"},
     {"task":"freeze_phase_current_and_switch_current","reason":"exact motor/prop operating point and modulation/control waveform are not frozen","blocking_scope":"G1_power_stage_current"},
-    {"task":"freeze_semiconductor_voltage_class","reason":"final battery and transient ceiling remain open; 120V and 150V are only carried-forward candidates","blocking_scope":"G2_power_stage"},
+    {"task":"freeze_semiconductor_voltage_class","reason":"final battery and transient ceiling remain open; 120V and 150V are candidate classes only","blocking_scope":"G2_power_stage"},
     {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open","blocking_scope":"G3"}
   ],
   "next_candidates":[
@@ -47,17 +45,18 @@
     "mechanical_electrical_cotrade_framework_percent":100.0,
     "propulsion_screening_pretrade_percent":100.0,
     "esc_electrical_envelope_pretrade_percent":100.0,
-    "esc_pretrade_ci_consistency_validation_percent":100.0
+    "esc_pretrade_ci_consistency_validation_percent":100.0,
+    "preliminary_engineering_datasheet_current_scope_percent":100.0
   },
   "evidence_refs":[
+    "ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md",
     "PROPULSION_SCREENING_PRETRADE.json",
     "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json",
     "POWER_STAGE_VOLTAGE_CLASS_SCREENING.md",
     "verify_esc_electrical_pretrade.py",
-    "RUN_2026-09-19_1855_TRACEABILITY.md",
     "GitHub Actions run 35453244140 SUCCESS"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The design has moved from broad propulsion screening into a checked electrical architecture stress range. The 100 V legacy path is no longer the primary 80 V-class candidate because it has only 19 V static headroom to the current 81 V benchmark before dynamic transients. 120 V and 150 V remain candidate classes only. Product G1 values and U1 component-bearing schematic remain unfrozen."
+  "notes":"PDS-00 provides a controlled preliminary datasheet snapshot without converting benchmark stress references into product ratings. Product G1 closure and U1 component-bearing schematic progress remain unchanged. The next engineering task is still the normalized 120 V versus 150 V power-stage loss and gate-drive trade."
 }
