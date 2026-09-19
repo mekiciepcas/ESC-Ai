@@ -1,36 +1,38 @@
 {
-  "revision":"AUTO-STATE-26",
+  "revision":"AUTO-STATE-27",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_KICAD10_CI_PASS_AND_REPRODUCIBLE_ERC_EVIDENCE",
+  "last_run_status":"PROGRESS_B1_KICAD_BASELINE_CLEAN_AND_SUPPORT_PART_EVIDENCE",
   "current_gate":"G0_G1",
-  "current_task":"B1_KICAD_BASELINE_AUDIT_AND_G0_INPUT_CLOSURE",
+  "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
   "completed_this_run":[
     "re_read_required_handoff_state_product_plan_traceability_backlog_mission_requirements_master_and_progress_against_actual_uav_rebaseline",
-    "observed_first_KiCad_CI_failure_and_verified_root_cause_was_Ubuntu_base_repo_KiCad_7_0_11_could_not_load_newer_schematic_format",
-    "updated_workflow_to_official_KiCad_10_stable_PPA_without_changing_U1_product_values",
-    "observed_GitHub_Actions_run_35446125432_complete_successfully_with_KiCad_10_0_6",
-    "verified_repository_scaffold_checker_PASS_12_blocks_zero_components_zero_premature_baseline_tokens_balanced_s_expression",
-    "verified_real_KiCad_CLI_netlist_export_PASS_with_nonempty_output",
-    "verified_real_KiCad_ERC_PASS_zero_violations_zero_errors_zero_warnings_for_architecture_only_scaffold",
-    "recorded_machine_readable_KICAD_CI_VERIFICATION_with_artifact_digest_and_scope_limits",
-    "updated_U1_SCAFFOLD_VERIFICATION_with_real_parser_netlist_and_ERC_evidence",
-    "updated_additive_traceability_TR_045_and_TR_046_without_claiming_G3_or_production_readiness"
+    "extended_KiCad10_CI_with_non_destructive_legacy_B1_parser_netlist_and_ERC_baseline_job",
+    "observed_initial_B1_audit_netlist_PASS_and_198_warnings_all_classified_as_footprint_link_issues_from_missing_standard_library_mappings",
+    "counted_initial_missing_library_warnings_Resistor_SMD_98_Capacitor_SMD_50_Package_TO_SOT_SMD_19_Diode_SMD_12_TestPoint_12_Package_SO_6_Package_QFP_1",
+    "updated_CI_to_build_runner_only_effective_fp_lib_table_from_155_installed_standard_KiCad_libraries_plus_ESC_B1_without_modifying_repository_B1_source",
+    "observed_GitHub_Actions_run_35446577458_B1_job_success_with_KiCad_10_0_6_nonempty_netlist_and_zero_enabled_ERC_violations_errors_warnings",
+    "recorded_ignored_ERC_check_categories_so_zero_messages_cannot_be_overclaimed_as_full_design_qualification",
+    "created_B1_KICAD_BASELINE_AUDIT_json_with_exact_run_job_artifact_digest_environment_correction_and_evidence_scope",
+    "created_B1_SUPPORT_PART_EVIDENCE_AUDIT_md_for_exact_TPS62160DGKR_and_TLV75533PDBVR_lifecycle_package_class_evidence_as_REVALIDATE_only",
+    "updated_additive_traceability_TR_047_through_TR_049",
+    "kept_G0_G1_G2_product_values_and_component_bearing_U1_schematic_OPEN"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment fields in G0_INPUT_CLOSURE_PACKET remain null","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_rotor_architecture_and_failure_policy_open","blocking_scope":"G1B"},
-    {"task":"freeze_battery_and_ESC_envelope","reason":"product_operating_point_not_frozen","blocking_scope":"G1C_G1"},
-    {"task":"freeze_CAN_physical_layer","reason":"protocol_bitrate_topology_harness_grounding_transient_EMC_inputs_remain null","blocking_scope":"G2_CAN"},
+    {"task":"freeze_G0_mission_mass_envelope","reason":"product_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_remain_null","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"G1A_and_UAV004"},
+    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor_architecture_open","blocking_scope":"G1B"},
+    {"task":"freeze_battery_and_ESC_envelope","reason":"product_propulsion_operating_point_not_frozen","blocking_scope":"G1C_G1"},
+    {"task":"freeze_semiconductor_gate_driver_MCU_sensing_DC_link_aux_CAN_architecture","reason":"parent_G1_electrical_and_vehicle_interface_requirements_remain_open","blocking_scope":"G2"},
     {"task":"populate_component_bearing_hardware_u1","reason":"G1_G2_page_level_architecture_not_frozen","blocking_scope":"G3"},
-    {"task":"claim_component_bearing_U1_ERC_pass","reason":"current_observed_ERC_PASS_is_only_for_zero_component_architecture_scaffold","blocking_scope":"G3_component_schematic_evidence"}
+    {"task":"promote_TPS62160_or_TLV75533_to_U1_selected","reason":"U1_auxiliary_topology_actual_load_thermal_sequencing_and_partial_power_requirements_not_frozen","blocking_scope":"G2_G3_auxiliary_power"}
   ],
   "next_candidates":[
-    "run_KiCad10_parser_netlist_and_ERC_audit_on_legacy_B1_top_level_schematic_and_capture_actual_violations_as_migration_evidence",
-    "audit_requirement_independent_B1_support_parts_for_candidate_BOM",
-    "prepare_compact_user_facing_G0_closure_questions_from_G0_INPUT_CLOSURE_PACKET",
-    "consolidate_TR_043_to_TR_046_into_canonical_UAV_TRACEABILITY_when_safe",
+    "prepare_compact_user_facing_G0_closure_questions_from_existing_G0_INPUT_CLOSURE_PACKET",
+    "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and_exact_package_identity",
+    "review_B1_ERC_ignored_check_categories_and_decide_which_must_be_enabled_or_manually_audited_for_future_U1_G3_contract",
+    "consolidate_TR_043_through_TR_049_into_canonical_UAV_TRACEABILITY_without_dropping_history",
     "promote_first_component_bearing_U1_page_only_after_parent_requirements_freeze"
   ],
   "last_verified_gate":"REBASELINE_INIT",
@@ -41,19 +43,22 @@
     "major_gate_closure_percent":0.0,
     "u1_kicad_architecture_scaffold_percent":100.0,
     "u1_kicad_scaffold_parser_erc_validation_percent":100.0,
-    "u1_component_bearing_schematic_percent":0.0
+    "u1_component_bearing_schematic_percent":0.0,
+    "legacy_b1_kicad_reproducible_baseline_audit_percent":100.0
   },
   "evidence_refs":[
+    "planning/B1_KICAD_BASELINE_AUDIT.json",
+    "planning/B1_SUPPORT_PART_EVIDENCE_AUDIT.md",
     "planning/KICAD_CI_VERIFICATION.json",
     "planning/U1_SCAFFOLD_VERIFICATION.md",
     "planning/RUN_2026-09-19_1619_TRACEABILITY.md",
     ".github/workflows/kicad-u1-verify.yml",
+    "hardware_b1/ESC_3kW_B1.kicad_sch",
+    "hardware_b1/fp-lib-table",
     "hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch",
-    "hardware_u1_scaffold/U1_PAGE_READINESS.json",
-    "planning/G0_INPUT_CLOSURE_PACKET.json",
-    "planning/CAN_BUS_VERIFICATION_CONTRACT.json"
+    "planning/G0_INPUT_CLOSURE_PACKET.json"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The KiCad CLI gap for the U1 architecture scaffold is now closed with observed GitHub Actions evidence using KiCad 10.0.6. The parser, nonempty netlist export and ERC all passed on the exact recorded scaffold commit. This does not authorize component-bearing U1 design or G3 closure; product electrical values remain open until G0/G1/G2 parents close."
+  "notes":"The legacy B1 KiCad design is now reproducibly parseable in KiCad 10.0.6 with a nonempty netlist and zero messages from the enabled ERC checks once the CI environment maps the installed standard footprint libraries. The initial 198 warnings were entirely library-resolution footprint-link issues, not electrical ERC faults. Ignored ERC categories are explicitly retained as open review scope. This evidence improves migration confidence but does not requalify legacy ratings or authorize copying B1 into U1. Two auxiliary support parts now have current exact identity/lifecycle/package-class evidence and remain REVALIDATE only."
 }
