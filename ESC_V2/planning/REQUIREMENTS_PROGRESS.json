@@ -1,32 +1,17 @@
 {
-  "revision": "REQ-PROGRESS-06",
+  "revision": "REQ-PROGRESS-07",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "reporting_policy": "Every user-facing project progress output should report at minimum requirements_structure_percent, g1_system_freeze_percent and backlog_done_percent. Broader engineering percentages must be explicitly labeled estimates.",
-  "requirements_structure": {
-    "defined_domains": 12,
-    "planned_domains": 12,
-    "percent": 100.0,
-    "meaning": "Planned requirement-domain hierarchy/schema/authority coverage, not product-value closure."
-  },
+  "requirements_structure": {"defined_domains":12,"planned_domains":12,"percent":100.0,"meaning":"Planned requirement-domain hierarchy/schema/authority coverage, not product-value closure."},
   "g1_system_freeze": {
-    "pass_rows": 29,
-    "required_rows": 46,
+    "pass_rows": 30,
+    "required_rows": 47,
     "open_rows": 17,
-    "percent": 63.0,
+    "percent": 63.8,
     "source": "G1_REQUIREMENTS_MATRIX.json",
-    "note": "PB-05 freezes >=5.0 kWh gross rated pack energy, a 54.0 V minimum loaded bus for full rated-power operation and >=500 A continuous pack-current capability. The existing G1 matrix directly closes G1C-02 from the 54 V floor; exact pack MPN/mass/peak current and protection details remain open. PASS means controlled value closure/traceability, not physical verification."
+    "note": "PB-06 adds a required whole-pack peak-current row and closes it at >=1050 A for >=3 s, derived from the frozen 1.6 T/W vehicle point and the 54 V rated-power floor. Physical pack qualification remains open. PASS means controlled value closure/traceability, not physical verification."
   },
-  "backlog": {
-    "done_tasks": 2,
-    "total_tasks": 25,
-    "done_percent": 8.0,
-    "note": "Conservative metric: only tasks explicitly marked DONE are counted. S1.3 advanced materially, but UAV-005/UAV-006 remain IN_PROGRESS until exact pack mass/cold-aged sag/BMS/peak-current and PWM/protection/thermal parents close."
-  },
-  "gate_closure": {
-    "closed_major_gates": 0,
-    "major_gates": 8,
-    "percent": 0.0,
-    "note": "G0/G1 remain OPEN because mass allocation, environment, exact pack implementation/peak current, PWM, protection and thermal requirements remain unresolved. G2-G7 remain dependency-blocked."
-  }
+  "backlog": {"done_tasks":2,"total_tasks":25,"done_percent":8.0,"note":"Conservative metric: only tasks explicitly marked DONE are counted. S1.3 advanced materially, but UAV-005/UAV-006 remain IN_PROGRESS until exact pack mass/cell/BMS/sag and PWM/protection/thermal parents close."},
+  "gate_closure": {"closed_major_gates":0,"major_gates":8,"percent":0.0,"note":"G0/G1 remain OPEN because mass allocation, environment, exact pack implementation, PWM, protection and thermal requirements remain unresolved. G2-G7 remain dependency-blocked."}
 }
