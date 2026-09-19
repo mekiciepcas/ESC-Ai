@@ -1,87 +1,74 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 23:19+03:00  
+Date: 2026-09-19 23:45+03:00  
 Branch: `uav-rebaseline`  
-Repository HEAD observed at run start: `d6e3513e2f0d280d9c153d9392e16f76e7b93f50`  
-Run status: `PB06_HIGH_CURRENT_PATH_SCREENED_SELECTION_OPEN`
+Repository HEAD observed before this handoff commit: `5c8d1b74f29bc66d1efdda4ff6ebe1f74f850015`  
+Run status: `PB07_LOW_POWER_REBASELINE_FROZEN_CI_VERIFIED`
+
+## Product pivot completed
+
+PB-07 is now active authority. The product family is no longer the PB-02..PB-06 70–100 kg payload heavy-lift aircraft. The user-approved active direction is **1.5–3.0 kW aggregate vehicle propulsion input**.
+
+Historical heavy-lift work is preserved, but the following are no longer active PB-07 requirements: 70–100 kg payload, 150/165/180 kg MTOW, X8 coaxial, 18S, >=5 kWh, 500 A continuous / 1050 A 3 s pack, >=4.8 kW per ESC, 125–375 A phase current, >=150 V semiconductor and >=90 keRPM values derived from that vehicle.
 
 ## Controlling metrics
 
 - Requirements planned-domain/schema structure: **12/12 = 100%**.
-- G1 SYSTEM FREEZE value closure: **30/47 PASS = 63.8%**.
-- Backlog tasks explicitly DONE: **2/25 = 8%**.
+- G1 SYSTEM FREEZE value closure: **6/48 PASS = 12.5%**.
+- Backlog tasks explicitly DONE: **1/25 = 4.0%**.
 - Major product gates closed: **0/8 = 0%**.
 - Component-bearing U1 schematic: **0%**.
 
-No G1 row was closed from candidate-component screening; physical qualification and exact selections remain open.
+The percentage drop is intentional rebaselining, not loss of historical work.
 
-## Tasks attempted and completed
+## Work completed this run
 
-1. Verified current `uav-rebaseline` state and PB-06 continuity against repository files.
-2. Continued highest-priority unblocked S1.3 battery/current-path work while S1.2 remains blocked on exact motor inductance.
-3. Created `HIGH_CURRENT_PATH_SHORTLIST_PB06.md` using current manufacturer primary-source data.
-4. Screened TE Connectivity KILOVAC EV200 as a 500 A-class contactor candidate, LEM HAX 1000-S and LTC 1000-T as pack-current-sensor candidates, and Amphenol SurLok Plus as a connector family whose published range reaches 500 A.
-5. Kept fuse and service disconnect OPEN because credible prospective pack short-circuit current and coordination evidence are not yet defined.
-6. Added TR-053 to `UAV_TRACEABILITY.md`.
-7. Updated `autonomy_state.json` to AUTO-STATE-53.
+1. Created `LOW_POWER_PROPULSION_REBASELINE_PB07.md` from current primary manufacturer data.
+2. Created `PRODUCT_BASELINE_PB-07.json`; froze only the 1.5–3.0 kW aggregate product-family direction and explicit non-conflicting retained policies.
+3. Created `SPRINT_PB07_LOW_POWER_REBASELINE.md`; active step is S1R.2 Quad-vs-Hexa / MTOW / payload closure.
+4. Rebased `mission_requirements.json`, `G1_REQUIREMENTS_MATRIX.json`, `REQUIREMENTS_PROGRESS.json`, `REQUIREMENTS_MASTER.json`, `G0_INPUT_CLOSURE_PACKET.json`, `uav_backlog.json`, `design_basis.json`, `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md` and `autonomy_state.json`.
+5. Added PB-07 consistency checker and workflow. GitHub Actions run **35468304991** completed **SUCCESS**.
+6. No KiCad schematic, PCB, Gerber, production BOM, A2/B1 electrical source or release package was changed. `U1-SCH-R001` remains unallocated.
 
-No A2/B1 electrical source, KiCad schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated.
+## Current engineering picture
 
-## Engineering decisions / calculations / evidence
+Current manufacturer-curve screens at the 3 kW aggregate study point:
+- Quad: about 750 W/axis, ~16.3 kg MTOW screen at 1.6 T/W using Hobbywing data; independent T-Motor screen ~15.3 kg.
+- Hexa: about 500 W/axis, ~18.3 kg MTOW screen at 1.6 T/W using Hobbywing data; independent T-Motor screen ~17.7 kg.
 
-No exact component was selected. Candidate status only.
+Therefore Hexa is the leading architecture candidate and Quad remains alternate. This is not yet a frozen architecture.
 
-PB-06 path-loss sensitivity was made explicit:
-- every 0.1 mOhm of series path resistance dissipates 25 W at 500 A continuous;
-- the same 0.1 mOhm produces 110.25 W at 1050 A;
-- 1.0 mOhm total path would produce 250 W at 500 A and 1.1025 kW at 1050 A.
+Battery direction:
+- 12S leading candidate, 14S alternate.
+- 3 kW at 12S screens to roughly 68–83 A total over nominal-to-low-loaded-bus assumptions.
+- 10 min + 20% reserve first-order gross energy sensitivity is 312.5 / 416.7 / 520.8 / 625 Wh for constant 1.5 / 2.0 / 2.5 / 3.0 kW.
+- P50B 12S3P and 12S4P are calculation candidates only.
 
-For the EV200 only, TE publishes typical 0.2 mOhm contact resistance at 200 A and 500 A typical continuous carry at 85 C with specified conductor conditions. Arithmetic using 0.2 mOhm gives 50 W at 500 A and 220.5 W at 1050 A, but these are not guaranteed hot-contact losses and are not qualification evidence.
+## Important reuse consequence
 
-LEM HAX 1000-S publishes 1000 Arms nominal and 3000 A measuring range, so its measurement range contains the PB-06 1050 A peak. LEM LTC 1000-T publishes 1000 Arms nominal / 2400 A measuring range as an alternative closed-loop candidate. Amphenol SurLok Plus publishes a family current range up to 500 A; no 1050 A / 3 s capability was inferred.
-
-Primary evidence URLs are recorded in `HIGH_CURRENT_PATH_SHORTLIST_PB06.md`.
-
-## Assumptions and evidence level
-
-- Frozen electrical envelope comes from PB-06: HIGH evidence as controlled derived product requirements, but not physical validation.
-- Manufacturer candidate ratings: PRIMARY-SOURCE SCREENING evidence only.
-- Resistance-loss arithmetic: DERIVED calculation; actual hot path resistance remains OPEN.
-- No assumed fuse rating, prospective short-circuit current, connector pulse capability, contactor pulse carry capability or service-disconnect interruption capability was introduced.
+B1's historical ~3 kW / ~48 V / 100 V MOSFET / DRV8353-class design is now materially closer to the PB-07 power region than it was to the former heavy-lift baseline. It should be re-audited as a reuse candidate, but no old value or component is automatically accepted.
 
 ## Unresolved blockers
 
-1. Exact production motor Ld/Lq/effective PWM ripple inductance blocks final PWM freeze.
-2. Exact battery cell/P-count, complete pack mass, peak-capable SOC-temperature-SOH envelope, low-SOC/cold/EOL sag and BMS behavior remain open.
-3. Fuse/service-disconnect selection is blocked by unknown credible pack prospective short-circuit current, exact topology and time-current/I2t coordination inputs.
-4. Current-path candidates require exact configuration, hot resistance/temperature rise, 1050 A / 3 s evidence, terminal/conductor geometry and environmental qualification.
-5. Airframe/battery/fixed-equipment mass allocation and numeric environmental envelope remain open, so G0 is not closed.
-6. Exact MOSFET count/MPN and thermal stack require final PWM, switching correlation, hot-resistance policy, transient ZthJC, current sharing and TIM/baseplate evidence.
-7. Numeric OV/UV/OCP/OTP/watchdog/command-timeout requirements remain open.
-8. G2 page-level architecture remains blocked by G1; U1 allocation remains prohibited.
+1. Rotor architecture: Hexa vs Quad, thrust margin and degraded-mode policy.
+2. MTOW/payload mass budget; payload must be derived rather than guessed.
+3. 12S vs 14S, battery P-count, pack mass, sag and BMS.
+4. Exact motor/propeller MPN and electrical winding parameters.
+5. New per-ESC continuous/peak DC and phase-current envelope.
+6. New bus-transient/semiconductor voltage class and exact power stage.
+7. Environment, OVP/UVP/OCP/OTP/watchdog/command-timeout and thermal limits.
+8. G2 remains blocked by G1; U1 component schematic allocation remains prohibited.
 
-## Regressions / risks discovered
+## Exact next recommended work
 
-- The 500 A connector/contactor class is a boundary, not evidence of comfortable continuous thermal margin. Installation conductor size and terminal temperature materially affect rating.
-- The 1050 A / 3 s requirement cannot be assumed survivable by a component merely because its continuous rating is 500 A.
-- Fuse selection before prospective pack fault-current definition would be unsafe and non-traceable.
-- Milliohm-scale aggregate resistance creates hundreds of watts of continuous loss; current-path resistance must become a system budget.
-
-## Exact next recommended tasks
-
-1. Build an element-by-element current-path resistance/thermal budget for cells/interconnects, welds/joints, busbars, fuse, contactor, service disconnect, output connector and cables using actual geometry/candidate data where available.
-2. Define a prospective pack short-circuit-current calculation/measurement contract and fuse-coordination inputs without inventing cell fault data.
-3. Define peak-capable SOC/temperature/SOH envelope and reconcile P45B/P50B/P60B candidates against both 54 V / 500 A and 1050 A / 3 s requirements.
-4. Obtain exact production motor Ld/Lq or execute `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`; then close S1.2 PWM from the 24-32 kHz preferred window.
-5. Advance S1.4 environment/protection requirements where frozen PB-06 parents permit.
-6. Do not allocate `U1-SCH-R001` until G1 and required G2 architecture readiness are PASS.
+1. Complete S1R.2 with a source-backed mass roll-up for Quad and Hexa, including propulsion-system mass, battery candidate mass, frame/avionics allowance and resulting payload band.
+2. Freeze rotor count only after that mass trade.
+3. Continue S1R.3 immediately afterward: 12S3P vs 12S4P vs 14S alternatives, mission average-power sensitivity and loaded-bus/current bounds.
+4. Then derive per-ESC envelope and perform the B1 KEEP/RECALCULATE/REPLACE re-audit.
+5. Do not allocate `U1-SCH-R001` until G1 and required G2 readiness are PASS.
 
 Dependency chain:
 
-`PB-06 -> S1.3 exact pack/current-path/sag/mass/fault coordination + S1.2 exact motor L/ripple -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
+`PB-07 -> S1R.2 Quad/Hexa + MTOW/payload -> S1R.3 12S/14S + energy -> S1R.4 per-ESC envelope + B1 reuse -> S1R.5 PWM/protection/thermal -> S1R.6 G1 -> G2 -> U1-SCH-R001`
 
-## Next-run briefing
-
-Start from PB-06 and verify branch HEAD because dashboard/CI automation may advance it. S1.3 remains the best independent workstream. Build the current-path resistance/thermal budget next, but keep unknown component resistance and pack fault-current terms null rather than substituting typical values. Fuse/service-disconnect exact selection must wait for fault-current/coordination evidence. Preserve A2/B1 and do not allocate U1 early.
-
-Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 63.8% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
+Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 12.5% / Backlog DONE 4.0% / Major gates 0% / component-bearing U1 schematic 0%**.
