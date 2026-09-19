@@ -1,0 +1,46 @@
+name: KiCad U1 Verify
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/hardware_u1_scaffold/**'
+      - 'ESC_V2/hardware_u1/**'
+      - '.github/workflows/kicad-u1-verify.yml'
+  pull_request:
+    paths:
+      - 'ESC_V2/hardware_u1_scaffold/**'
+      - 'ESC_V2/hardware_u1/**'
+      - '.github/workflows/kicad-u1-verify.yml'
+  workflow_dispatch:
+
+jobs:
+  verify-scaffold:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run repository anti-hallucination scaffold checker
+        run: python3 ESC_V2/hardware_u1_scaffold/verify_u1_scaffold.py
+      - name: Install KiCad CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y kicad
+          kicad-cli --version
+      - name: Parse/export scaffold through KiCad CLI
+        run: |
+          mkdir -p verification/kicad_u1
+          kicad-cli sch export netlist ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch -o verification/kicad_u1/ESC_U1_SCAFFOLD.net
+      - name: Run ERC and retain report
+        run: |
+          set +e
+          kicad-cli sch erc ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch -o verification/kicad_u1/ERC.rpt
+          rc=$?
+          cat verification/kicad_u1/ERC.rpt || true
+          exit $rc
+      - name: Upload KiCad verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kicad-u1-verification
+          path: verification/kicad_u1/
+          if-no-files-found: warn
