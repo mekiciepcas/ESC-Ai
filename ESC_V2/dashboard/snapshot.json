@@ -1,10 +1,20 @@
 {
-  "generated_at": "2026-09-16T06:05:21+03:00",
-  "plan_revision": "PLAN-07",
-  "task_count": 31,
-  "done_count": 5,
-  "bom_open_count": 38,
-  "pcb_files": [
-    "pcb_b1/control/ESC_3kW_CONTROL_B1_PLACEMENT.kicad_pcb"
-  ]
+  "generated_at": "2026-09-19T14:28:04+00:00",
+  "source_commit": "fcc4ba8d1827",
+  "plan_revision": "UAV-PLAN-04",
+  "task_count": 25,
+  "done_count": 1,
+  "active_count": 3,
+  "blocked_count": 21,
+  "requirements_structure_percent": 100.0,
+  "g1_system_freeze_percent": 2.2,
+  "backlog_done_percent": 4.0,
+  "major_gate_closure_percent": 0.0,
+  "u1_kicad_scaffold_percent": 100.0,
+  "u1_component_bearing_schematic_percent": 0.0,
+  "schematic_revision_control_percent": 100.0,
+  "missing_g0_inputs": 14,
+  "next_schematic_revision": "U1-SCH-R001",
+  "current_task": "G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
+  "last_run_status": "PROGRESS_U1_ALLOCATION_GUARD_PREPARED"
 }
