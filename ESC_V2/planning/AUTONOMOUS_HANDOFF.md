@@ -1,72 +1,72 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 04:18+03:00  
+Date: 2026-09-19 05:21+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_G1_PROPULSION_AND_VOLTAGE_RISK`
+Status: `PROGRESS_X15_CURVE_AND_TRANSIENT_METHOD`
 
 ## Run summary
 
-This run converted current primary-source heavy-UAV propulsion ratings into a structured operating-point evidence file and completed the first legacy-B1 compatibility audit against the preferred-for-analysis 18S family. No product rating was frozen.
+This run closed two unblocked evidence tasks: the complete manufacturer-published Hobbywing X15 G2 69 V operating table was converted to structured repository data, and a parameterized DC-bus transient requirement method was added. No rotor architecture, product current rating or semiconductor voltage class was frozen.
 
 ## Tasks attempted / completed
 
-1. Re-verified Hobbywing X15 G2 from current manufacturer material: 18S/69 V, 37.5 kg recommended axis load, 8 g/W at recommended thrust, 4640 W rated input, 3971 W rated output, 120 A continuous ESC, 300 A peak/3 s, 82 kg max thrust, 45 KV and 63x24 propeller.
-2. Added T-Motor A16-18S as a second single-axis heavy propulsion reference: 35–40 kg rated thrust, 38 kg at 8.7 g/W reference efficiency, 74.5 kg max thrust, 14–18S, 83 V ESC max and 260 A short-time current rating.
-3. Added T-Motor X-A14-18S as a coaxial/heavier reference: 45–50 kg rated thrust, 45 kg at 7.4 g/W, 105 kg max thrust and 18S FOC 200 A ESC class.
-4. Created `propulsion_operating_points.json` with explicit SOURCE_BACKED versus CALCULATED_FIRST_ORDER evidence and Q150/H175/coaxial scenario mapping.
-5. Created `B1_18S_VOLTAGE_COMPATIBILITY.md` and audited the legacy B1 power domain against 18S full charge (75.6 V).
+1. Verified the current Hobbywing X15 G2 manufacturer page and load-performance table.
+2. Captured all published 69 V / MFP 63x24 rows from 34% through 100% throttle into `x15g2_operating_curve.json`, preserving thrust, DC current, input power, RPM, efficiency, torque and output power.
+3. Added `dc_bus_transient_model.py` implementing first-order inductive energy, L*di/dt sensitivity and ideal capacitor energy absorption calculations with unknown parasitics kept explicit.
+4. Added `DC_BUS_TRANSIENT_REQUIREMENTS.md` defining the evidence required before 100 V or a higher semiconductor/DC-link class can be frozen.
+5. Updated machine-readable autonomous state.
 
 ## Files changed
 
-- `planning/propulsion_operating_points.json` — new
-- `planning/B1_18S_VOLTAGE_COMPATIBILITY.md` — new
+- `planning/x15g2_operating_curve.json` — new
+- `planning/dc_bus_transient_model.py` — new
+- `planning/DC_BUS_TRANSIENT_REQUIREMENTS.md` — new
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
 
-- X15 G2 directly supports the plausibility of a ~150 kg quad class at 37.5 kg recommended load per axis, but it does not freeze our vehicle architecture.
-- A16-18S is a useful upper-envelope single-axis candidate for a 175 kg hex scenario because 175/6 = 29.2 kg hover load/axis is below its 35–40 kg rated thrust range; exact efficiency/current at 29.2 kg still needs the manufacturer curve.
-- Legacy B1 is **not directly 18S-qualified**.
-- 100 V MOSFET and 100 V DC-link component assumptions are not frozen for 18S. At 75.6 V full charge, a 100 V device has only 24.4 V absolute static headroom; transient, regen and BMS/contact-opening cases remain unclosed.
-- B1's preliminary 99.8k/3.32k divider is nominally within a 3.3 V ADC range at 75.6–80 V, but an 80 V verification ceiling leaves inadequate diagnostic/transient measurement headroom for a final 18S design.
-- 100 V MLCC candidates require actual DC-bias curves; nameplate capacitance cannot be assumed near ~76 V bias.
+- X15 G2 real 69 V curve now gives direct commercial-axis reference points instead of g/W extrapolation. Examples: 29.168 kgf = 45.9 A / 3.170 kW; 35.177 kgf = 61.0 A / 4.212 kW; 38.315 kgf = 69.5 A / 4.796 kW; 41.608 kgf = 78.8 A / 5.438 kW; 82.476 kgf = 246.6 A / 17.019 kW. These are manufacturer bench rows, not our product requirements.
+- The commercial curve demonstrates why a single nominal/rated kW value is insufficient for ESC sizing: electrical demand rises steeply above the recommended hover/load region.
+- 18S full charge remains 75.6 V. A 100 V device therefore remains only a candidate; final VDS/DC-link class requires switching/harness transient, regen/BMS-disconnect and clamp closure.
+- The transient script is intentionally parametric. No harness inductance, interruption time, clamp voltage or bus capacitance was promoted to a product assumption.
 
 ## Calculations/evidence added
 
-- A16 reference point: 38,000 g / 8.7 g/W = ~4367.8 W first-order input-equivalent power; explicitly marked derived, not measured curve data.
-- X-A14 reference point: 45,000 g / 7.4 g/W = ~6081.1 W first-order input-equivalent power; explicitly marked derived.
-- 18S full-charge bus: 18 x 4.2 V = 75.6 V.
-- Static headroom to 100 V class: 24.4 V; no transient margin approval inferred.
+- Structured 22-row X15 G2 curve at 69 V from the current manufacturer table.
+- `E_L = 0.5 L I^2` sensitivity method.
+- `V_L = L dI/dt` first-order interruption sensitivity.
+- `V1 = sqrt(V0^2 + 2E/C)` ideal capacitor-only energy absorption bound.
+- Voltage-class closure checklist including battery maximum, overshoot, regen/BMS disconnect, clamp dynamic voltage, engineering margin and representative-layout oscilloscope validation.
 
 ## Evidence level
 
-- Hobbywing/T-Motor published ratings: `PRIMARY_MANUFACTURER / SOURCE_BACKED`.
-- Thrust divided by g/W: `CALCULATED_FIRST_ORDER`.
-- Q150/H175/coaxial mapping: `SCENARIO_REFERENCE_NOT_FROZEN`.
-- B1 voltage review: `DESK_PRECHECK`, not physical or production validation.
+- X15 G2 curve: `PRIMARY_MANUFACTURER / SOURCE_BACKED`, applicable to the published 69 V + MFP 63x24 bench condition.
+- Transient equations: `FIRST_ORDER_ENGINEERING_MODEL`.
+- Any future sensitivity-grid numbers from the script: `PARAMETRIC_ONLY`, not measured product predictions.
+- No physical validation performed.
 
 ## Unresolved blockers
 
-- G0 mission/mass freeze still needs vehicle-specific mass, mission, environment and failure-policy inputs.
+- G0 mission/mass freeze still requires vehicle-specific mass, mission, environment and failure-policy inputs.
 - Final rotor architecture and exact operating point remain open.
-- Phase RMS/peak current remains open; it must not be inferred from DC current.
-- 18S semiconductor voltage class cannot close until DC-bus transient, regen and BMS-disconnect ceiling is established.
-- Exact DC-link MLCC/electrolytic parts and derating remain open.
+- Phase RMS/peak current remains open; X15 table current is DC input current and must not be relabelled phase current.
+- Semiconductor voltage class remains open until parasitic/transient/regen/clamp requirements close.
+- Exact DC-link capacitance and biased MLCC/electrolytic behaviour remain open.
 
 ## Risks/regressions discovered
 
-- Moving from legacy 13S to 18S may force a power-domain voltage-class redesign even if much of the control architecture survives.
-- The existing 100 V capacitor/MOSFET convention can appear acceptable at steady state while being inadequate under cable-inductance or energy-rejection transients.
-- B1 voltage-sense full scale should be redesigned together with the transient requirement rather than merely checked at 75.6 V.
+- Heavy-lift axis peak electrical demand can be far above the recommended-load/rated-power region; ESC peak design must be tied to a selected thrust margin and duration, not motor marketing power alone.
+- Using DC current from a propulsion table as phase RMS current would materially under-specify or mis-specify sensing and silicon; keep domains separate.
+- 100 V steady-state headroom is not a transient design margin.
 
 ## Exact next recommended tasks
 
-1. Extract the full X15 G2 69 V thrust/current/power/RPM rows from the primary-source table and store only real rows.
-2. Extract A16-18S curve rows if available and evaluate the 29–40 kgf axis region for the H175 scenario.
-3. Create a parameterized DC-bus transient requirement model: battery max, cable/loop inductance, di/dt, clamp/TVS strategy, regen/BMS-disconnect cases. Keep unknown parasitics explicit.
-4. From that model, compare 100 V versus higher-voltage semiconductor classes without choosing a final MPN.
-5. Recalculate voltage-sense full-scale target after the transient measurement ceiling is selected.
+1. Map real X15 G2 curve rows to Q150 and H175 quad/hex scenario hover and 1.6x-thrust points without freezing architecture; use interpolation only when explicitly marked calculated.
+2. Extract T-Motor A16-18S test rows if the manufacturer table can be accessed and compare the 29–40 kgf region against X15 G2.
+3. Build a 100 V / 120 V / 150 V semiconductor voltage-class trade framework using required transient ceiling as an input rather than choosing an MPN.
+4. Recalculate candidate bus-voltage ADC full scales consistent with an 18S diagnostic/transient ceiling.
+5. Audit DRV8353/aux-power exposure separately from MOSFET VDS class.
 
 ## Dependency chain
 
@@ -74,4 +74,4 @@ This run converted current primary-source heavy-UAV propulsion ratings into a st
 
 ## Next-run briefing
 
-Start by extracting manufacturer table rows rather than extrapolating them. The X15 G2 primary page exposes a 69 V thrust table; capture real rows for thrust/current/input power/RPM if accessible. In parallel, build the transient model with symbolic/parameterized inductance and di/dt so lack of physical harness data does not stop progress. Do not decide 100 V vs 120/150 V class from steady-state voltage alone. Preserve historical B1 and write all new conclusions into planning/rebaseline artifacts only.
+Use `x15g2_operating_curve.json` as the primary numeric source for scenario mapping. Do not derive phase current from its DC-current column. Interpolation is allowed only as an explicitly calculated scenario estimate bracketed by real manufacturer rows. Continue the voltage-class work as a requirements trade, not a part-number selection, until the transient ceiling is known. If A16 full curve extraction remains unavailable, record that limitation and continue with voltage-sense/driver-domain work rather than fabricating rows.
