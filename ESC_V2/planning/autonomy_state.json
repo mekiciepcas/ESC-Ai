@@ -1,49 +1,41 @@
 {
-  "revision":"AUTO-STATE-12",
+  "revision":"AUTO-STATE-13",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_G0_CONTROLLED_BOUNDS_ROTOR_DECISION_TREE",
+  "last_run_status":"PROGRESS_X15_ARCHITECTURE_ELECTRICAL_STRESS_MAP",
   "current_gate":"G0_G1",
   "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION",
   "current_task":"G0_INPUT_CLOSURE_AND_G1A_FINAL_SELECTION",
   "completed_this_run":[
-    "verified_handoff_product_plan_traceability_backlog_mission_requirements_and_autonomy_state_against_branch",
-    "created_G0_TRADE_BOUNDING_CASES_with_125_150_175kg_analysis_cases_and_nonpromotion_governance",
-    "reverified_XAG_P150_P150Max_and_DJI_T100_primary_source_vehicle_architecture_anchors",
-    "formalized_rotor_architecture_elimination_logic_based_on_single_motor_failure_policy",
-    "updated_rotor_trade_study_from_preliminary_to_bounded_screening_without_freezing_product_values",
-    "updated_traceability_with_trade_bounds_and_rotor_architecture_discriminator",
-    "updated_backlog_evidence_and_remaining_conditions_for_UAV001_UAV002"
+    "verified_prior_handoff_and_X15_curve_against_current_branch",
+    "completed_piecewise_linear_X15_69V_current_power_RPM_mapping_for_T125_T150_T175_quad_hex_octo_hover_1p6x_1p8x_cases",
+    "identified_trade_points_exceeding_X15_published_120A_continuous_ESC_current_without_treating_rating_as_product_requirement",
+    "documented_that_DC_input_current_is_not_phase_current_and_mechanical_RPM_is_not_eRPM",
+    "added_X15_TRADE_OPERATING_MAP_as_traceable_trade_artifact"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"bounded_screening_complete_but_actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV004"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"electrical_stress_screening_improved_but_actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV004"},
     {"task":"freeze_UAV_004_operating_point","reason":"final_rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_motor_prop_hover_peak_points"},
-    {"task":"freeze_18S_voltage_domain","reason":"battery_architecture_and_switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
-    {"task":"qualify_ADC_clamp_path","reason":"production_nonbackpower_clamp_architecture_and_powered_unpowered_bench_evidence_open","blocking_scope":"bus_and_phase_sense_UAV_qualification"}
+    {"task":"derive_phase_current_requirement","reason":"manufacturer_curve_reports_DC_input_current_not_phase_RMS_peak_current","blocking_scope":"UAV006_power_stage_current_freeze"},
+    {"task":"freeze_18S_voltage_domain","reason":"battery_architecture_and_switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"}
   ],
   "next_candidates":[
-    "use_existing_X15_curve_to_complete_T125_T150_T175_quad_hex_octo_trade_only_current_power_RPM_mapping_without_promoting_to_requirements",
-    "derive_which_architecture_scenarios_exceed_X15_published_120A_continuous_rating_and_mark_them_noncontinuous_only",
     "draft_nonbackpower_voltage_sense_architecture_candidates_independent_of_final_VBUS",
     "build_source_backed_semiconductor_candidate_parameter_table_for_100_120_150V_trade_only",
-    "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are supplied_or_approved"
+    "derive_architecture_elimination_notes_from_X15_map_without_promoting_trade_cases_to_requirements",
+    "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "evidence_refs":[
+    "planning/X15_TRADE_OPERATING_MAP.md",
+    "planning/x15g2_operating_curve.json",
     "planning/G0_TRADE_BOUNDING_CASES.md",
     "planning/rotor_trade_study.md",
-    "planning/X15_SCENARIO_MAPPING.md",
-    "planning/G1_REQUIREMENTS_MATRIX.json",
-    "planning/UAV_TRACEABILITY.md",
-    "planning/uav_backlog.json",
-    "XAG P150 official specs",
-    "XAG P150 Max official specs",
-    "DJI Agras T100 official specs"
+    "planning/X15_SCENARIO_MAPPING.md"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
-  "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
-  "continuity_policy":{"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
-  "notes":"The G0 blocker is now controlled rather than bypassed. T125/T150/T175 exist only as trade bounds. Rotor architecture can be screened now, but final G1A still needs actual MTOW and failure policy. Ordinary quad becomes architecturally invalid if continued hover after complete loss of one motor/ESC is required; otherwise it remains a candidate with strong 125-136kg commercial precedent."
+  "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
+  "notes":"X15 trade mapping now quantifies per-axis DC electrical stress across governed MTOW/rotor cases. T150/T175 quad high-thrust cases exceed the reference X15 120A continuous rating, while T175 hex 1.8x interpolates to 113.5A and all governed octo points remain below 120A. This narrows trade space only; G0/G1A remain open."
 }
