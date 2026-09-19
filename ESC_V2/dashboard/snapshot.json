@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T17:00:44+00:00",
-  "source_commit": "e64e4032e26d",
+  "generated_at": "2026-09-19T17:01:13+00:00",
+  "source_commit": "92d12fbd7513",
   "plan_revision": "UAV-PLAN-05",
   "task_count": 25,
   "done_count": 2,
@@ -16,5 +16,5 @@
   "missing_g0_inputs": 11,
   "next_schematic_revision": "U1-SCH-R001",
   "current_task": "PB02_PHASE_CURRENT_PWM_ENERGY_ENVIRONMENT_CLOSURE",
-  "last_run_status": "PROGRESS_PRODUCT_BASELINE_PB02_FROZEN_AND_CI_VERIFIED"
+  "last_run_status": "PROGRESS_U1_RATED_HIGH_PERFORMANCE_STRATEGY_LOCKED"
 }
