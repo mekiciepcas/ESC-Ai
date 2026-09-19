@@ -1,119 +1,90 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 21:44+03:00  
-Branch: `uav-rebaseline`  
-Repository HEAD before this handoff commit: `88082a8a91d1907cd07ad6b151b33933eb84a5c9`  
-Run status: `PB04_MISSION_DURATION_ERPM_FROZEN_PWM_REMAINS_OPEN`
+Date: 2026-09-19 22:20+03:00
+Branch: `uav-rebaseline`
+Repository HEAD before this handoff commit: `8e9461fa8548d68f39eb387c93000db8dd778d92`
+Run status: `PB05_SAG_VERIFICATION_CONTRACT_DEFINED_PHYSICAL_PACK_EVIDENCE_OPEN`
+
+## Repository-state correction
+
+The prior handoff text was stale at PB-04. Actual repository authorities already contained PB-05, MISSION-05, REQ-MASTER-10, REQ-PROGRESS-06 and AUTO-STATE-50. This run treated the repository state as controlling and continued from PB-05 rather than regressing to PB-04.
 
 ## Controlling metrics
 
 - Requirements planned-domain/schema structure: **12/12 = 100%**.
-- G1 SYSTEM FREEZE value closure: **28/46 PASS = 60.9%**.
+- G1 SYSTEM FREEZE value closure: **29/46 PASS = 63.0%**.
 - Backlog tasks explicitly DONE: **2/25 = 8%**.
 - Major product gates closed: **0/8 = 0%**.
 - Component-bearing U1 schematic: **0%**.
 
-No metric was increased from analysis-only evidence. Backlog DONE remains unchanged because no task acceptance criterion fully closed during this run.
+No metric was increased from verification-contract work alone.
 
-## Tasks completed / advanced
+## Tasks attempted and completed
 
-1. Re-read the mandatory planning, configuration-control and dashboard authority files against actual `uav-rebaseline` branch state before writes.
-2. Created `PRODUCT_BASELINE_PB-04.json` under explicit change control, inheriting PB-03 except the recorded eRPM supersession.
-3. Froze a market-aligned nominal mission target of **>=10 min** at 85 kg payload / 165 kg nominal-MTOW reference condition.
-4. Froze **>=10 min hover-equivalent energy-sizing duration** and **>=20% pack energy sizing reserve** for first-order S1.3 sizing.
-5. Created `MISSION_DURATION_ENERGY_BASELINE_PB04.md`; current X13 G2 reference interpolation gives about **4.47 kWh / 67.1 Ah nominal-equivalent** for the 165 kg / 10 min / 20% reserve case. This is a sizing bound, not an exact battery selection.
-6. Corrected inherited controller electrical-speed capability from >=60 keRPM to **>=90 keRPM**. The frozen 80 V / 45 rpm/V / 21-pole-pair envelope gives a 75.6 keRPM no-load linear screen, so the previous 60 keRPM capability was not envelope-complete.
-7. Created `ERPM_PWM_TIMING_CORRECTION_PB04.md`; final PWM remains OPEN, with 24-32 kHz now the preferred analysis window and 20/40 kHz retained as boundary sensitivity points.
-8. Added an IAUTN15S6N025T timing-based switching sensitivity screen using exact primary-source test conditions without presenting it as guaranteed Eon/Eoff.
-9. Updated mission requirements, G1 matrix, requirements master/progress and traceability to PB-04.
-10. Added `verify_pb04_consistency.py` and `.github/workflows/pb04-consistency-check.yml`; workflow run `35462025027` completed SUCCESS.
-11. Diagnosed the dashboard CI regression: `autonomy_state.json` had lost dashboard-required scaffold/revision-control progress keys. Restored those fields without changing engineering progress.
-12. Dashboard refresh run `35462070396` completed SUCCESS and generated bot commit `88082a8a91d1907cd07ad6b151b33933eb84a5c9` before this handoff update.
+1. Re-read and cross-checked the mandatory product plan, traceability, backlog, mission, requirements master/progress, prior handoff and autonomy state against the actual branch.
+2. Confirmed PB-05 is the current product authority and S1.3 is the highest-priority independent unblocked work while S1.2 remains blocked on exact motor inductance.
+3. Created `BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md`.
+4. Defined BV-01..BV-05 acceptance logic for the frozen 54.0 V full-rated-power floor and >=500 A continuous pack-current requirement.
+5. Required future evidence across SOC, temperature, SOH/aging, terminal voltage, cell-group spread, BMS state, current-path drops, thermal measurements and measurement uncertainty.
+6. Explicitly prevented typical room-temperature cell DCR and simple parallel-count current multiplication from being used as pack qualification evidence.
+7. Added TR-051 to `UAV_TRACEABILITY.md` without altering preserved TR-001..TR-046 history.
+8. Updated `autonomy_state.json` to AUTO-STATE-51.
 
 ## Files changed
 
-- `ESC_V2/planning/PRODUCT_BASELINE_PB-04.json` — new controlled product baseline.
-- `ESC_V2/planning/MISSION_DURATION_ENERGY_BASELINE_PB04.md` — new mission/energy sizing basis.
-- `ESC_V2/planning/ERPM_PWM_TIMING_CORRECTION_PB04.md` — new eRPM correction / PWM timing screen.
-- `ESC_V2/planning/mission_requirements.json` — MISSION-04.
-- `ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json` — G1-MATRIX-07, 28/46 PASS.
-- `ESC_V2/planning/REQUIREMENTS_PROGRESS.json` — REQ-PROGRESS-05.
-- `ESC_V2/planning/REQUIREMENTS_MASTER.json` — REQ-MASTER-09.
-- `ESC_V2/planning/UAV_TRACEABILITY.md` — additive TR-048/TR-049 continuation while preserving canonical TR-001..TR-046 history.
-- `ESC_V2/planning/verify_pb04_consistency.py` — new consistency checker.
-- `.github/workflows/pb04-consistency-check.yml` — new CI workflow.
-- `ESC_V2/planning/autonomy_state.json` — AUTO-STATE-49.
+- `ESC_V2/planning/BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md` — new.
+- `ESC_V2/planning/UAV_TRACEABILITY.md` — TR-051 additive continuation.
+- `ESC_V2/planning/autonomy_state.json` — AUTO-STATE-51.
 - `ESC_V2/planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
 
-No A2/B1 electrical source, `.kicad_sch`, PCB, Gerber, production BOM or release package was changed.
+No A2/B1 electrical source, KiCad schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated.
 
-## PB-04 controlled decisions
+## Engineering decisions / evidence added
 
-### Newly frozen
+No new product numeric requirement was frozen this run. Instead, the already-frozen PB-05 battery requirements now have explicit future verification criteria:
 
-- Total mission-duration target: **>=10 min** at 85 kg payload / 165 kg nominal-MTOW reference.
-- Hover-equivalent first-order energy-sizing duration: **>=10 min** at 165 kg nominal MTOW reference.
-- Battery energy sizing reserve: **>=20%** beyond the nominal mission-energy calculation.
-- Controller electrical-speed capability: **>=90,000 eRPM**.
+- **BV-01:** >=54.0 V at the actual pack terminal/ESC-side bus throughout every condition declared inside the full-rated-power envelope.
+- **BV-02:** >=500 A continuous must be sustained for the final continuous-duration definition without BMS trip, unsafe thermal state, unacceptable cell-group divergence or violation of the applicable voltage floor; a short pulse is insufficient.
+- **BV-03:** 54 V is a rated-power/derating boundary, not automatically the hard BMS disconnect voltage.
+- **BV-04:** cold and end-of-life operation must either demonstrate the 54 V floor or be explicitly outside the full-rated-power envelope and invoke derating.
+- **BV-05:** parallel-cell current sharing requires evidence; aggregate datasheet arithmetic alone is insufficient.
 
-### Still OPEN
+The contract intentionally leaves exact environmental temperatures, SOC boundary percentages, EOL criterion and continuous test duration OPEN until their parent requirements are frozen.
 
-- Exact battery cell/pouch/MPN, final Ah/Wh and pack mass.
-- Minimum loaded bus voltage, voltage sag, usable SOC window and BMS disconnect behavior.
-- Final PWM frequency; exact motor Ld/Lq/effective PWM ripple inductance is still required.
-- Exact MOSFET MPN/count, gate driver, DC-link, current-sense implementation and thermal stack.
-- Environment and numeric protection/failsafe thresholds.
+## Assumptions introduced and evidence level
 
-## Key calculations / boundaries
-
-Frozen outer bus / speed-class screen:
-
-- 80 V * 45 rpm/V = 3600 rpm mechanical no-load linear screen.
-- 3600 rpm * 21 pole pairs = 75,600 eRPM.
-- 90,000 eRPM capability gives about 19% headroom over that screen.
-
-Nominal 165 kg current propulsion reference:
-
-- isolated-equivalent hover thrust: 24.265 kgf/axis;
-- interpolated reference input: about 2.68 kW/axis;
-- eight axes: about 21.44 kW hover-equivalent input;
-- 10 min energy: about 3.57 kWh;
-- with 20% sizing reserve: about 4.47 kWh nominal pack-energy bound;
-- at the current 66.6 V nominal convention: about 67.1 Ah equivalent.
-
-180 kg stress/reference case remains trade-only:
-
-- about 24.42 kW hover input;
-- about 4.07 kWh mission energy for 10 min;
-- about 5.09 kWh / 76.4 Ah nominal-equivalent with 20% sizing reserve.
-
-These are calculations from the current reference propulsion curve, not measured endurance or exact pack selections.
-
-## CI / dashboard state
-
-- PB-04 consistency workflow run `35462025027`: **SUCCESS**.
-- Dashboard refresh run `35462070396`: **SUCCESS** after restoring the required state keys.
-- The dashboard bot advanced the branch to `88082a8a91d1907cd07ad6b151b33933eb84a5c9` before this handoff commit.
+- No new numeric environmental, SOC, aging or thermal assumption was introduced.
+- P45B/P50B/P60B remain candidate calculation anchors only, inherited from PB-05; none is selected.
+- Existing PB-05 manufacturer typical impedance remains sensitivity evidence only, not qualification evidence.
 
 ## Unresolved blockers
 
-1. Exact production-motor Ld/Lq or equivalent measured PWM ripple inductance for final PWM freeze.
-2. Exact battery cell/pouch selection, discharge curve, minimum loaded bus, sag, usable SOC, BMS behavior and pack mass.
-3. Airframe / battery / fixed-equipment mass allocation inside the <=80 kg operating-empty target.
-4. Environmental envelope: min/max ambient, altitude, ingress and associated derating.
-5. Exact switching-energy/waveform correlation, guaranteed hot-resistance policy, transient ZthJC, TIM/baseplate model and parallel current sharing.
-6. Numeric OV/UV/OCP/OTP/watchdog/command-timeout requirements.
-7. G2 exact power-stage/control/sensing/DC-link architecture.
+1. Exact production motor Ld/Lq/effective PWM ripple inductance blocks final PWM freeze.
+2. Exact battery cell/topology, complete pack mass, peak current, low-SOC/cold/EOL sag and exact BMS/contactors/fuses remain open.
+3. Airframe/battery/fixed-equipment mass allocation and numeric environmental envelope remain open, so G0 is not closed.
+4. Exact MOSFET count/MPN and thermal stack require final PWM, switching correlation, hot-resistance policy, transient ZthJC, current sharing and TIM/baseplate evidence.
+5. Numeric OV/UV/OCP/OTP/watchdog/command-timeout requirements remain open.
+6. G2 page-level architecture remains blocked by G1; U1 allocation remains prohibited.
+
+## Regressions / risks discovered
+
+- Continuity risk: the previous handoff lagged the actual repository by one controlled baseline (PB-04 text vs PB-05 repository authority). This handoff corrects that mismatch and explicitly records PB-05 as controlling.
+- Battery qualification risk: typical cell DCR and headline cell-current ratings can materially overstate cold/aged pack capability if used without pack-level correlation. BV-01..BV-05 now make that evidence gap explicit.
 
 ## Exact next recommended tasks
 
-1. Continue **S1.3 battery architecture** using PB-04's 4.47 kWh / 67.1 Ah nominal bound: compare real high-rate 18S-compatible cell/pack candidates, pack mass, current capability and voltage sag; do not freeze an exact pack until loaded-minimum-bus and mass closure are defensible.
-2. In parallel, obtain exact production motor winding L/R or execute `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`; then close S1.2 final PWM from the 24-32 kHz preferred analysis window.
-3. Proceed to S1.4 environment/protection once battery sag/minimum-bus and PWM parents are sufficiently bounded.
-4. Do not allocate `U1-SCH-R001` until AR-001 and AR-002 are PASS.
+1. Continue S1.3 with an exact-pack mechanical/current-path/BMS architecture decision framework and mass roll-up template, keeping cell MPN OPEN.
+2. Derive the required peak whole-pack current from the frozen per-ESC short-duration envelope plus an explicit vehicle-level simultaneity policy; do not assume eight ESCs simultaneously draw their individual peak unless supported by propulsion/vehicle evidence.
+3. Obtain exact production motor Ld/Lq or execute `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`; then close S1.2 PWM from the 24-32 kHz preferred window.
+4. Advance S1.4 environment/protection requirements where frozen PB-05 parents permit.
+5. Do not allocate `U1-SCH-R001` until G1 and required G2 architecture readiness are PASS.
 
 Dependency chain:
 
-`PB-04 -> S1.2 exact motor L/ripple + S1.3 exact battery/min bus -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
+`PB-05 -> S1.3 exact pack architecture/sag/mass + S1.2 exact motor L/ripple -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
 
-Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 60.9% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
+## Next-run briefing
+
+Start from PB-05, not PB-04. First verify branch state because dashboard/CI automation may have advanced HEAD. S1.3 remains the best independent workstream. The most useful safe next artifact is a pack mechanical/current-path/BMS architecture and mass-budget framework tied to the 18S, >=5 kWh, 54 V and >=500 A frozen requirements. Do not convert candidate-cell arithmetic into qualification, and do not increase G1/backlog metrics unless an existing acceptance criterion actually closes.
+
+Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 63.0% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
