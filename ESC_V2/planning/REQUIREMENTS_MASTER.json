@@ -1,0 +1,55 @@
+{
+  "revision": "REQ-MASTER-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "authority": "ESC_V2/planning/REQUIREMENTS_MASTER.json",
+  "scope": "Heavy-lift agricultural multirotor UAV ESC requirements from mission through verification/release.",
+  "status_model": {
+    "definition_status": {
+      "DEFINED": "Requirement statement, gate, verification method, acceptance criteria and evidence/dependency references are present.",
+      "NEEDS_REVIEW": "Requirement record exists but its structure is incomplete."
+    },
+    "value_status": {
+      "OPEN": "Product value/selection is unknown and shall remain null/TBD.",
+      "BOUNDED": "A user-approved or evidence-backed bound exists, but final value/selection is not frozen.",
+      "FROZEN": "Requirement value/decision is baseline-backed and traceable.",
+      "NA": "No product numeric/selection value is required; requirement is procedural/verification."
+    }
+  },
+  "anti_hallucination_policy": {
+    "unknowns": "OPEN/null/TBD remain open until user input, primary evidence, derived calculation from frozen parents, or physical measurement exists.",
+    "competitor_data": "Benchmark values may bound or inform trades but shall not be copied into product requirements without a documented product decision.",
+    "legacy": "Faz2/Faz3/A2/B1 are historical evidence and candidate inputs, not automatic design authority.",
+    "simulation": "Screening calculations, scripts and simulations are not physical validation.",
+    "release_claims": "No flight-qualified/production-qualified claim before corresponding gate closure."
+  },
+  "domain_counts": {
+    "SYS": 4,
+    "VEH": 9,
+    "PROP": 9,
+    "PWR": 14,
+    "INV": 15,
+    "SNS": 11,
+    "CTRL": 11,
+    "SAF": 12,
+    "IF": 7,
+    "ENV": 7,
+    "MFG": 7,
+    "VER": 10
+  },
+  "summary": {
+    "requirement_records": 116,
+    "structure_complete_records": 116,
+    "structure_completeness_percent": 100.0,
+    "product_value_or_selection_required": 91,
+    "product_value_frozen": 1,
+    "product_value_bounded": 1,
+    "product_value_open": 89,
+    "product_value_frozen_percent": 1.1,
+    "product_value_bounded_or_frozen_percent": 2.2,
+    "g1_matrix_pass": 1,
+    "g1_matrix_required_rows": 46,
+    "g1_system_freeze_closure_percent": 2.2
+  },
+  "requirements": []
+}
