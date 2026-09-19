@@ -1,458 +1,215 @@
-# UAV ESC ürün geliştirme planı
+# UAV ESC ürün geliştirme planı — PB-07 rebaseline
 
 Tarih: 19.09.2026  
 Branch: `uav-rebaseline`  
-Hedef: 70–100 kg faydalı yük sınıfındaki ağır kaldırma / zirai çok rotorlu UAV için gerçeklenebilir, test edilebilir ve üretime taşınabilir ESC platformu.
+Aktif ürün yönü: **1.5–3.0 kW toplam propulsion giriş gücü sınıfında utility multirotor UAV + custom ESC platformu**.
 
-> Bu planın amacı hızlıca bir PCB çıkarmak değil; gereksinimden fiziksel doğrulamaya kadar kanıt zinciri kurmaktır. Mevcut A2/B1 çalışmaları korunur ancak yeniden yeterlilik kazanmadan ürün baseline sayılmaz.
+> PB-01..PB-06 ağır-yük çalışmaları silinmez; tarihsel kanıt olarak korunur. PB-07, 70–100 kg payload / 150–180 kg MTOW / X8 / 18S / 500–1050 A yüksek-akım sayısal kapsamını aktif ürün otoritesi olmaktan çıkarmıştır.
 
-## 0. Temel çalışma kuralı
+## 0. Temel çalışma kuralları
 
-Her kritik karar aşağıdaki zincire bağlı olmalıdır:
+Her kritik karar şu zincire bağlıdır:
 
-`UAV mission -> propulsion operating point -> ESC electrical requirement -> circuit calculation -> component/PCB/firmware decision -> verification evidence`
+`mission -> rotor/mass operating point -> battery -> per-ESC electrical requirement -> circuit calculation -> component/PCB/firmware -> verification evidence`
 
-Aşağıdaki değerler propulsion sizing tamamlanmadan ürün gereksinimi değildir:
-- 13S,
-- 3 kW,
-- 60 A / 80 A / 120 A,
-- 20 kHz / 40 kHz,
-- 100 V MOSFET,
-- iki paralel MOSFET/switch,
-- DRV8353,
-- STM32G474 veya TMS320F280041C,
-- LM5164.
+Kurallar:
+- Bilinmeyen değerler `OPEN`, `null` veya `TBD` kalır.
+- Üretici eğrisi sizing kanıtıdır; fiziksel doğrulama değildir.
+- B1/Faz2/Faz3 değerleri otomatik product baseline değildir.
+- G1/G2 kapanmadan komponentli U1 şema allocate edilmez.
+- Her `.kicad_sch` değişikliği yeni şema revizyonu ister.
+- Gerber/manufacturing release/main merge explicit user approval olmadan yapılmaz.
 
-Bunlar yalnız candidate/reference kararlardır.
+## PHASE A — PB-07 system / propulsion freeze
 
----
+### A1 — Mission + mass envelope
 
-# PHASE A — Sistem ve propulsion tanımı
+Kontrollü mevcut değerler:
+- toplam propulsion elektriksel güç ailesi: **1.5–3.0 kW**,
+- nominal mission target: **>=10 min**,
+- gross-pack reserve sizing policy: **>=20%**.
 
-## A1 — Mission / mass envelope
-
-Girdiler:
+Kapanacak:
 - payload min/nom/max,
-- airframe tahmini kütlesi,
-- batarya kütlesi,
-- sıvı/tank/pompa gibi görev ekipmanı,
-- hedef uçuş süresi,
-- hover oranı,
-- kalkış / tırmanma / seyir / iniş profili,
-- hedef sıcaklık, rakım ve rüzgâr,
-- tek motor/ESC arızasında istenen davranış.
-
-Çıktılar:
+- airframe + battery + mission equipment mass,
 - MTOW min/nom/max,
-- görev enerji bütçesi,
-- çevresel tasarım zarfı.
+- environment,
+- degraded/failure behavior.
 
-Kabul kapısı **G0**:
-- MTOW ve görev profili sayısal olarak tanımlı,
-- 70–100 kg ifadesinin payload olduğu doğrulanmış,
-- kritik belirsizlikler açık risk olarak kayıtlı.
+### A2 — Rotor architecture
 
-## A2 — Rotor mimarisi ve thrust sizing
+Aktif trade:
+- **Hexa non-coaxial — leading candidate**,
+- **Quad non-coaxial — alternate**.
 
-En az quad / hex / octo ve gerekirse coaxial seçenekler karşılaştırılır.
+Current manufacturer curves show the 3 kW study point is roughly a 15–18 kg MTOW exploration band when screened at 1.6 static T/W. This is not yet a frozen MTOW.
 
-Hesaplanacak:
-- total hover thrust,
-- hover thrust / rotor,
-- max thrust / rotor,
-- thrust-to-weight margin,
-- disk loading,
-- degraded-mode thrust ihtiyacı,
-- rotor çapı / mekanik envelope.
+Kapanış G1A:
+- rotor count,
+- thrust margin,
+- hover/max thrust per rotor,
+- single-motor failure/degraded policy.
 
-Kabul kapısı **G1A**:
-- rotor sayısı ve thrust margin seçilmiş,
-- motor başına gerekli hover ve peak thrust belli.
+### A3 — Motor / propeller operating point
 
-## A3 — Gerçek motor + pervane benchmark
+Current primary-source anchors:
+- Hobbywing X8 G2 12S + MFP 30x11S,
+- T-Motor U8 Lite 12S.
 
-En az iki üretici propulsion seti için doğrulanmış kaynak verisi toplanır:
-- thrust vs RPM,
-- thrust vs electrical power,
-- motor KV,
-- prop diameter/pitch,
-- nominal/max bus voltage,
-- continuous/peak current,
-- motor temperature limit,
-- motor electrical parameters veya ölçüm planı,
-- önerilen ESC rating.
+Reference class only: roughly 28–30 inch propeller / 85–110 KV / 12S-class. Exact MPN remains OPEN.
 
-Kabul kapısı **G1B**:
-- en az iki aday motor/prop seti,
-- hover ve max-thrust çalışma noktaları,
-- kaynak linki / datasheet / test data evidence.
+Kapanış G1B:
+- exact motor/propeller,
+- hover/max-thrust power/current/RPM,
+- pole count/eRPM,
+- winding electrical parameters or controlled measurement.
 
-## A4 — Battery architecture
+### A4 — Battery architecture
 
-Propulsion setinden geriye doğru boyutlandırılır:
-- series cell count,
-- nominal/min/max bus,
-- pack continuous/peak current,
-- usable energy,
-- voltage sag,
-- BMS/contactors/fuse,
-- regen/energy acceptance,
-- cable/connector current.
+Active candidates:
+- **12S — leading**,
+- **14S — alternate**.
 
-Kabul kapısı **G1C**:
-- battery voltage architecture ve pack current envelope dondurulmuş.
+Energy sensitivity for 10 min + 20% gross reserve before pack losses:
+- 1.5 kW constant: 312.5 Wh,
+- 2.0 kW: 416.7 Wh,
+- 2.5 kW: 520.8 Wh,
+- 3.0 kW: 625 Wh.
 
-## A5 — ESC electrical envelope
+P50B 12S3P/12S4P are calculation candidates only.
 
-Her motor/ESC için tanımlanır:
-- VBUS min/nom/max/transient,
-- electrical input power continuous/peak,
-- DC current continuous/peak,
-- phase RMS current continuous/overload,
-- phase peak current,
-- overload duration,
-- electrical RPM,
-- current ripple target,
-- PWM frequency candidate range,
-- current sense range,
-- ambient/baseplate limits.
+Kapanış G1C:
+- S/P count,
+- min/nom/full bus,
+- current/peak duration,
+- energy/mass/sag,
+- BMS/fuse/disconnect/precharge behavior.
 
-Kabul kapısı **G1 — SYSTEM FREEZE**:
-- `design_basis.json` içinde hiçbir kritik electrical envelope alanı `null` değil,
-- değerler propulsion çalışma noktalarına izlenebilir.
+### A5 — Per-ESC electrical envelope
 
-## A6 — Sprint S1: PB-02 -> G1 SYSTEM FREEZE
+Old PB-06 per-ESC >=4.8 kW / >=11.5 kW and 125–375 A phase-current values are retired.
 
-PB-02 sonrasında Phase A artık tek bir uzun analiz işi olarak yürütülmeyecek. G1 kapanışına kadar aktif execution sprint `SPRINT_PB02_TO_G1_CLOSURE.md` ile yönetilir.
+New values will be derived after rotor architecture and battery freeze. Current first-order 3 kW study split:
+- Hexa: ~500 W/axis,
+- Quad: ~750 W/axis.
 
-Sprint sırası:
-1. phase RMS / peak current modeli,
-2. PWM / ripple / switching-loss freeze,
-3. 18S Ah/Wh / minimum-loaded-bus / sag / reserve / BMS closure,
-4. environment / derating / protection thresholds,
-5. exact 150 V power-stage G2 pre-freeze shortlist,
-6. configuration-control closeout ve G1 readiness review.
+Kapanış G1:
+- continuous/peak DC power/current,
+- phase RMS/peak current,
+- current-sense range,
+- eRPM,
+- PWM candidate/final value,
+- bus/transient class,
+- environment/protection/thermal limits.
 
-Bu sprint yeni bir gate değildir. G1 kabul şartlarını değiştirmez; yalnız kalan açık işleri küçük, test edilebilir ve kanıt üretir paketlere böler.
+## Active execution sprint — S1R
 
----
+Authority: `SPRINT_PB07_LOW_POWER_REBASELINE.md`
 
-# PHASE B — ESC mimari yeterlilik
+1. **S1R.1 Product power rebaseline — DONE**
+2. **S1R.2 Quad/Hexa + MTOW/payload — IN PROGRESS**
+3. S1R.3 12S/14S + energy/current/mass
+4. S1R.4 per-ESC envelope + B1/Faz2/Faz3 reuse audit
+5. S1R.5 PWM/semiconductor/protection/thermal pre-freeze
+6. S1R.6 G1 closeout
 
-## B1 — Topology review
+A reduction in G1 completion percentage after PB-07 is expected: incompatible heavy-lift values were intentionally reopened.
 
-Başlangıç adayı: 3-phase 2-level VSI.
+## PHASE B — ESC architecture freeze
 
-Doğrulanacak:
-- MOSFET vs alternatif semiconductor technology,
-- VDS derating ve transient margin,
-- single vs parallel FET/switch,
-- switching frequency trade-off,
-- dead-time,
-- reverse conduction / regen,
-- gate drive current,
-- SOA ve short-circuit response.
-
-Çıktı:
-- semiconductor trade study,
-- conduction + switching loss model,
-- nominal / hot / worst-case kayıplar.
-
-## B2 — Sensing and protection architecture
-
-Doğrulanacak:
-- 3-shunt yaklaşımı,
-- shunt value / power / TCR / Kelvin,
-- CSA gain / offset / bandwidth,
-- bus and phase voltage sensing,
-- motor/MOSFET/baseplate temperature,
-- hardware OCP,
-- desat/VDS protection if applicable,
-- PWM inhibit,
-- fault latch,
-- watchdog,
-- over/under-voltage,
-- BMS disconnect response.
-
-## B3 — DC-link and input energy management
-
-Hesaplanacak:
-- DC-link capacitance,
-- RMS ripple current,
-- ESR loss,
-- life/temperature,
-- wiring/bus inductance,
-- overshoot,
-- precharge requirement,
-- fuse/contactor coordination,
-- regenerative overvoltage path.
-
-## B4 — Control MCU / gate driver / auxiliary power
-
-Adaylar sıfırdan değil, mevcut Faz 2/3 + B1 havuzundan değerlendirilir:
-- STM32G474,
-- TMS320F280041C,
-- DRV8353 family,
-- LM5164 family.
-
-Karar kriterleri:
-- ADC/PWM synchronization,
-- hardware trip latency,
-- FOC execution margin,
-- CAN/CAN-FD,
-- firmware ecosystem,
-- supply voltage compatibility,
-- fault coverage,
-- availability,
-- thermal and layout constraints.
-
-Kabul kapısı **G2 — ARCHITECTURE FREEZE**:
-- topology,
-- semiconductor class/count,
+After G1:
+- 3-phase 2-level VSI topology review,
+- exact semiconductor voltage class / MPN / parallel count,
 - gate driver,
 - MCU,
-- sensing architecture,
+- phase-current sensing,
+- bus sensing,
+- DC-link/precharge/regen,
 - auxiliary rails,
-- communication interfaces,
-- fault architecture
-seçilmiş ve hesaplarla savunulabilir.
+- CAN interface,
+- fault architecture,
+- thermal path.
 
----
+Special PB-07 action: re-audit B1 because its historical ~3 kW / ~48 V / 100 V device class is now close to the active product power/voltage region. Reuse requires recalculation, not copy/paste.
 
-# PHASE C — Ayrıntılı elektrik tasarımı
+Kabul kapısı: **G2 — ARCHITECTURE FREEZE**.
 
-## C1 — Schematic revision B2/U1
+## PHASE C — Revision-controlled schematic + BOM
 
-Mevcut B1 sayfaları tek tek sınıflandırılır:
-- `KEEP`: electrical requirement değişmiyor,
-- `RECALCULATE`: topology korunuyor, değerler değişiyor,
-- `REPLACE`: mimari değişiyor,
-- `DELETE`: artık gereksiz.
+- Allocate `U1-SCH-R001` only when G1 and required G2 architecture conditions are PASS.
+- Migrate only qualified B1 blocks.
+- Exact MPN/footprint/derating evidence for every critical component.
+- Real KiCad netlist/ERC/interface review.
 
-Her kritik sayfada tasarım notu bulunur:
-- requirement ID,
-- calculation/evidence,
-- selected MPN,
-- max ratings / derating,
-- test method.
+Kabul kapısı: **G3 — SCHEMATIC DESIGN REVIEW**.
 
-## C2 — BOM closure
+## PHASE D — Firmware
 
-Her populated component için:
-- exact manufacturer part number,
-- active lifecycle,
-- datasheet link/evidence,
-- exact footprint,
-- voltage/current/power/temp rating,
-- tolerance/TCR where relevant,
-- alternates,
-- DNP status.
-
-## C3 — ERC / interface / review
-
-Kabul kapısı **G3 — SCHEMATIC DESIGN REVIEW**:
-- ERC clean veya gerekçeli waiver,
-- interface audit clean,
-- BOM critical-open = 0,
-- loss/thermal calculations linked,
-- precharge/OV/OCP/fault issues closed,
-- no critical TBD in schematic.
-
----
-
-# PHASE D — Firmware
-
-## D1 — Repository structure
-
-`firmware/` altında gerçek buildable source tree oluşturulur.
-
-Minimum modüller:
-- board support / clock,
-- PWM,
-- ADC/DMA,
+Minimum:
+- safe boot with PWM inhibited,
+- PWM/ADC synchronization,
 - current calibration,
-- gate-driver SPI,
-- CAN,
-- temperature,
-- fault manager,
-- state machine,
-- motor control,
+- gate-driver control,
+- CAN-FD/Classic CAN,
+- fault manager/state machine,
+- motor-control bring-up,
+- FOC/SVPWM,
 - telemetry/logging,
 - unit/SIL tests.
 
-## D2 — Bring-up firmware
+Kabul kapısı: **G4 — FIRMWARE BENCH READY**.
 
-Sıra:
-1. PWM permanently inhibited at boot,
-2. rail/ADC validation,
-3. fault input validation,
-4. gate-driver configuration,
-5. low-voltage open-loop commutation,
-6. current sensing validation,
-7. closed-loop current control,
-8. rotor position / observer validation,
-9. FOC/SVPWM,
-10. communication/failsafe.
+## PHASE E — PCB / thermal / manufacturability
 
-## D3 — Flight-oriented fault policy
-
-Tanımlanacak:
-- communication timeout,
-- overcurrent,
-- overvoltage,
-- undervoltage,
-- overtemperature,
-- sensor invalid,
-- gate-driver fault,
-- stalled rotor,
-- restart policy,
-- latched vs recoverable faults.
-
-Kabul kapısı **G4 — FIRMWARE BENCH READY**:
-- reproducible build,
-- hardware-independent tests,
-- fault state machine tests,
-- timing budget,
-- PWM/ADC synchronization evidence.
-
----
-
-# PHASE E — PCB / mechanics / thermal
-
-## E1 — Control PCB
-
-Mevcut B1 control PoC yeniden değerlendirilir. Final routing ancak G2/G3 sonrası.
-
-## E2 — Power PCB / bus structure
-
-Kritik konular:
-- DC-link loop area,
-- half-bridge loop,
-- gate loop,
-- Kelvin source,
-- parallel current sharing,
-- shunt Kelvin,
+- control PCB,
+- power PCB/bus structure,
+- Kelvin/gate/DC-link loops,
 - creepage/clearance,
-- copper/busbar current density,
-- thermal spreading,
-- heatsink/baseplate interface,
-- connector mechanical stress.
+- thermal spreading/baseplate,
+- DFM.
 
-## E3 — Manufacturability
+No Gerber release before explicit approval.
 
-Çıktılar:
-- zero unrouted,
-- DRC report,
-- Gerber,
-- drill,
-- IPC-356/netlist where useful,
-- pick-and-place,
-- BOM,
-- assembly drawings,
-- stack-up and fab notes.
+Kabul kapısı: **G5 — PROTOTYPE RELEASE**.
 
-Kabul kapısı **G5 — PROTOTYPE RELEASE**:
-- schematic/PCB cross-check complete,
-- critical layout review complete,
-- manufacturer DFM review complete,
-- no unresolved P0/P1 release issue.
+## PHASE F — Physical validation
 
----
+Order:
+1. unpowered/low-energy checks,
+2. current-limited rails + PWM inhibit,
+3. low-VBUS switching without propeller,
+4. guarded motor test,
+5. dyno/guarded prop stand,
+6. thermal soak,
+7. protection/fault injection.
 
-# PHASE F — Physical validation
+Kabul kapısı: **G6 — PROPULSION VERIFIED**.
 
-## F1 — Unpowered / low-energy bring-up
+## PHASE G — UAV integration
 
-1. continuity / short checks,
-2. insulation where applicable,
-3. current-limited auxiliary power,
-4. rail/clock/reset,
-5. fault-chain verification,
-6. PWM inhibit verification.
-
-## F2 — Switching validation
-
-- low VBUS,
-- no propeller,
-- guarded motor where required,
-- gate VGS,
-- switch node,
-- dead-time,
-- overshoot/ringing,
-- current sense timing,
-- hardware trip latency.
-
-## F3 — Motor dynamometer / prop stand
-
-- no-load motor,
-- stepped load,
-- hover operating point,
-- continuous thermal soak,
-- peak power duration,
-- efficiency map,
-- phase/DC current correlation,
-- motor/ESC thermal limits.
-
-Propeller testing must use a physically guarded and rated propulsion stand; initial electronics bring-up is performed without propellers.
-
-## F4 — Fault injection
-
-- communication loss,
-- sensor invalid,
-- overcurrent,
-- undervoltage,
-- overvoltage,
-- thermal limit,
-- BMS/contact disconnect scenario,
-- controlled emergency shutdown.
-
-Kabul kapısı **G6 — PROPULSION VERIFIED**:
-- target operating points demonstrated on test stand,
-- continuous and peak limits verified,
-- thermal equilibrium acceptable,
-- protection response recorded.
-
----
-
-# PHASE G — UAV integration
-
-## G1 — Vehicle integration
-
-- flight controller command interface,
-- CAN/telemetry,
-- arming/disarming,
-- power-up sequencing,
-- EMI coexistence,
+- FC/CAN integration,
 - harness/fuse architecture,
-- cooling airflow,
-- motor/ESC pairing.
+- arming/failsafe,
+- EMI coexistence,
+- cooling,
+- configuration freeze,
+- flight readiness review.
 
-## G2 — Flight-test readiness review
+Flight is not used to discover basic power-stage faults.
 
-Flight testing is not used to discover basic power-stage faults. Before flight:
-- G0–G6 closed,
-- propulsion test evidence complete,
-- safe arming/failsafe demonstrated,
-- hardware/firmware revision frozen,
-- test vehicle and operational risk plan approved by responsible humans.
+Kabul kapısı: **G7 — FLIGHT TEST READY**.
 
-Kabul kapısı **G7 — FLIGHT TEST READY**.
+## Major gates
 
----
+- G0 Mission freeze — OPEN PB-07
+- G1 System electrical freeze — OPEN PB-07
+- G2 Architecture freeze — blocked by G1
+- G3 Schematic review — blocked by G2
+- G4 Firmware bench ready — blocked by G2
+- G5 Prototype release — blocked by G3/G4
+- G6 Propulsion verified — blocked by G5
+- G7 Flight-test ready — blocked by G6
 
-# Release sınıfları
+## Immediate dependency chain
 
-- **R0 — Analysis only:** calculations / simulations.
-- **R1 — Bench prototype:** low-energy electronics validation.
-- **R2 — Power prototype:** guarded motor/dyno/prop stand.
-- **R3 — UAV integration prototype:** vehicle integration, not production release.
-- **R4 — Verified engineering prototype:** defined test envelope passed.
-- **R5 — Production candidate:** BOM/PCB/firmware/configuration controlled and manufacturing validation complete.
-
-`flight-qualified` veya `production-qualified` ifadeleri ilgili kanıt kapıları tamamlanmadan kullanılmaz.
-
-## Aktif sprint ve sonraki sprint geçişi
-
-Aktif sprint: **S1 — PB-02 -> G1 SYSTEM FREEZE** (`SPRINT_PB02_TO_G1_CLOSURE.md`).
-
-S1 tamamlanmadan komponentli U1 şema allocate edilmez. S1 sonrasında sıradaki execution sprint **S2 — G2 Architecture Freeze** olacaktır ve exact MOSFET/count, gate driver, MCU, sensing, DC-link/precharge, protection ve thermal architecture kararlarını kapatacaktır. S2 ancak G1 completion rule sağlandığında ACTIVE yapılır.
+`PB-07 -> Quad/Hexa + MTOW/payload -> 12S/14S + energy -> per-ESC envelope + B1 reuse -> PWM/protection/thermal -> G1 -> G2 -> U1-SCH-R001`
