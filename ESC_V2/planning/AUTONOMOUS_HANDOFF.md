@@ -1,60 +1,71 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 07:22+03:00  
+Date: 2026-09-19 08:19+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_BUS_SENSE_AND_VBUS_COMPONENT_AUDIT`
+Status: `PROGRESS_EXACT_VBUS_BOM_AND_LOSS_MODEL_FRAMEWORK`
 
 ## Run summary
-This run closed two unblocked follow-ups: the 18S bus-sense arithmetic was rebaselined and the first B1 VBUS-exposed component audit was created. No product voltage class, divider values, rotor count, MTOW, phase-current rating, gate driver or auxiliary regulator was frozen.
+This run completed the exact repository-level B1 VBUS BOM audit and established the parameterized semiconductor loss-model contract. It also updated traceability so DC-link, MOSFET, DRV8353, LM5164 and sensing share one unresolved bus-transient requirement. No voltage class, MPN, phase-current rating, PWM frequency, rotor architecture or MTOW was frozen.
 
 ## Tasks attempted / completed
-1. Verified the previous handoff/state against the branch.
-2. Recalculated the B1 divider (2x49.9k / 3.32k): ratio 0.0321955; 75.6 V maps to ~2.434 V; ideal 3.3 V ADC full-scale maps to ~102.5 V bus.
-3. Added `BUS_SENSE_18S_REBASELINE.md` with ~120 V and ~150 V measurement-range study options and explicit separation of measurement full scale from hardware OVP.
-4. Audited the first VBUS-exposed B1 domains and added `B1_VBUS_COMPONENT_AUDIT.md`.
-5. Verified TI primary data for LM5164: 6–100 V input domain; Rev D typical 12 V application uses a 15–100 V design range.
-6. Updated autonomous state and this handoff.
+1. Verified previous handoff/state against current branch source.
+2. Extracted B1 VBUS-exposed BOM facts from `hardware_b1/bom_review.json` and source.
+3. Confirmed main DC-link bank is C101-C103 = 3 x 470 uF 100 V, exact MPN open.
+4. Confirmed local half-bridge ceramics C104-C106 = 3 x 2.2 uF 100 V X7R, exact MPN open.
+5. Confirmed the 160 V capacitor labels belong to the LM5164 local HV input network, not the main inverter DC-link qualification.
+6. Confirmed DC input fuse/precharge/reverse-polarity assembly and regen/brake clamp are external/open interfaces, so B1 cannot claim a closed bus-clamp design.
+7. Added `B1_EXACT_VBUS_BOM_AUDIT.md`.
+8. Added `POWER_STAGE_LOSS_MODEL.md` with explicit conduction, switching, gate, recovery and thermal evidence requirements for 100/120/150 V trade.
+9. Updated `UAV_TRACEABILITY.md` and `autonomy_state.json`.
 
 ## Files changed
-- `planning/BUS_SENSE_18S_REBASELINE.md` — new
-- `planning/B1_VBUS_COMPONENT_AUDIT.md` — new
+- `planning/B1_EXACT_VBUS_BOM_AUDIT.md` — new
+- `planning/POWER_STAGE_LOSS_MODEL.md` — new
+- `planning/UAV_TRACEABILITY.md` — updated
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-- The legacy B1 divider does not saturate at 80 V; 80 V was only a documented check point. Its ideal mathematical 3.3 V ceiling is ~102.5 V.
-- This arithmetic does not qualify it for 18S UAV use because tolerance, ADC/reference error, clamp injection/leakage, resistor working voltage, ADC settling and the unresolved transient ceiling remain open.
-- Measurement full scale and hardware over-voltage protection are now explicitly separate requirements.
-- LM5164 joins DRV8353 and the 100 V MOSFET class as a voltage-domain-critical item: 75.6 V steady-state is inside its 100 V input domain, but an undefined >100 V transient cannot be accepted without a proven clamp/filter or a different auxiliary architecture.
-- Repository evidence shows 160 V local HV capacitor values exist, but exact MPN, DC-bias capacitance and ripple qualification remain open; nominal printed voltage is not a PASS.
+- B1 is not 18S-qualified by the presence of some 160 V capacitors. Main energy-storage and local inverter ceramics are nominal 100 V candidates with exact capacitor MPNs still open.
+- 75.6 V to 100 V leaves 24.4 V nameplate difference, but this is not a permitted overshoot budget and cannot substitute for transient/derating/lifetime analysis.
+- The existing B1 board depends on an external protected/precharged DC-input assembly and external brake/clamp interface. These cannot be credited as protection until their electrical contracts and components are defined.
+- Semiconductor class comparison now has a common loss-model framework; higher VDS is not automatically accepted because hot RDS(on), Qg/Qgd, switching/recovery loss, thermal path and gate-drive feasibility must close at the same operating point.
+- Normal operation will not be allowed to rely on unspecified repetitive avalanche as a substitute for bus transient control.
 
-## Evidence level
-- Divider results: arithmetic from B1 source values.
-- LM5164 6–100 V domain: PRIMARY_MANUFACTURER / TI Rev D.
-- B1 component exposure: repository source audit, partial.
-- No physical validation performed.
+## Calculations / evidence added
+- First-order bridge conduction screening equation and switching/gate-loss equations documented in `POWER_STAGE_LOSS_MODEL.md`.
+- Exact B1 source/BOM references documented in `B1_EXACT_VBUS_BOM_AUDIT.md`.
+- Traceability TR-006/010/012/013/014/022/023/024 updated to reflect common voltage-domain dependencies.
+
+## Assumptions and evidence level
+- 18S full-charge candidate remains 75.6 V from prior rebaseline work; not a transient ceiling.
+- B1 component values/references: REPOSITORY_SOURCE evidence.
+- Loss equations: ENGINEERING_SCREENING framework, not thermal validation.
+- Exact capacitor effective C/ESR/ripple/lifetime: OPEN.
+- No physical measurements performed.
 
 ## Unresolved blockers
-- G0 vehicle mass/mission/environment/failure policy.
-- Rotor architecture and exact product operating point.
-- Phase RMS/peak current.
-- Switching/harness/regen/disconnect/clamp transient ceiling.
-- Exact effective DC-link capacitance at bias/temperature.
+- G0 mass/mission/environment/failure policy.
+- Rotor architecture and exact propulsion operating point.
+- Phase RMS/peak current and final PWM.
+- Harness/PCB inductance and switching/regen/BMS-disconnect transient ceiling.
+- Exact DC-link capacitor MPN/effective capacitance/ripple/lifetime.
+- External input protection and regen-clamp electrical design.
 
 ## Risks / regressions
-- A higher-VDS MOSFET alone cannot qualify 18S because DRV8353 and LM5164 are also 100 V-domain components.
-- Leaving the B1 divider unchanged would leave little diagnostic range if the defined bus transient approaches 100 V and would risk conflating ADC saturation with protection.
-- Bulk capacitor voltage rating is not yet proven for 18S; the legacy 39–54.6 V design basis cannot be reused as evidence.
+- A 100 V bulk-capacitor nameplate is now explicitly part of the 18S voltage-margin problem; MOSFET-only voltage upgrades would not solve it.
+- An external protection-module placeholder can create false confidence unless its disconnect/clamp behavior is defined together with the ESC.
+- Higher-voltage MOSFET selection may increase conduction/switching loss; class cannot be chosen on VDS alone.
 
 ## Exact next recommended tasks
-1. Extract exact B1 bulk capacitor and VBUS protection references/MPNs/ratings.
-2. Build a parameterized semiconductor loss-model input framework for 100/120/150 V candidate classes without selecting an MPN.
-3. Audit individual divider-resistor working voltage and ADC clamp/injection path.
-4. Update UAV traceability with bus-sense and LM5164 constraints.
-5. Only if the required transient ceiling exceeds 100 V, research a higher-voltage auxiliary front end or a proven protected sub-domain.
+1. Audit RT0805 49.9k upper-divider individual working-voltage/pulse limits and BAT54H clamp injection/backfeed path.
+2. Define an external DC-input/protection module electrical contract: fuse, precharge, reverse-polarity, contact/disconnect behavior, clamp/regen energy path, harness inductance interface.
+3. Create a DC-link ripple/effective-capacitance/lifetime selection framework without choosing an MPN.
+4. Populate the loss model with legacy CSD19536KTT parameters as reference-only if primary datasheet evidence is available; do not freeze it.
+5. Continue propulsion evidence to reduce phase-current/PWM uncertainty.
 
 ## Dependency chain
-`G0 vehicle inputs -> rotor freeze -> propulsion point -> battery freeze -> DC/phase envelope -> transient ceiling -> semiconductor/driver/aux/DC-link voltage domains -> sensing/protection -> schematic/firmware/PCB`
+`G0 vehicle inputs -> rotor/propulsion point -> battery/DC/phase envelope -> transient ceiling + input protection contract -> semiconductor/driver/aux/DC-link/sensing voltage domains -> loss/thermal closure -> schematic/firmware -> PCB -> bench/propulsion validation`
 
 ## Next-run briefing
-Start with exact B1 VBUS BOM extraction and the parameterized loss-model framework; both reduce risk without pretending the transient ceiling or phase current is known. Keep 75.6 V as an 18S battery candidate maximum, not a transient requirement. Do not freeze ~120 V or ~150 V sensing; they are study ranges. Verify exact component MPNs before declaring voltage compatibility.
+Start with divider working-voltage/clamp injection and the external input-module contract because both are independent of final MTOW and directly close 18S safety ambiguity. Then build the DC-link selection framework. Keep all capacitor MPNs and 100/120/150 V semiconductor classes OPEN until transient and current envelopes exist. Verify any external component limits from primary manufacturer data before changing status.
