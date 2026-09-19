@@ -1,0 +1,72 @@
+{
+  "revision": "ESC-ELEC-PRETRADE-01",
+  "date": "2026-09-19",
+  "status": "TRADE_STUDY_ONLY_NOT_G1_BASELINE",
+  "purpose": "Convert the current propulsion benchmark set into an electrical stress-test envelope for architecture work without freezing product requirements.",
+  "source": "PROPULSION_SCREENING_PRETRADE.json",
+  "commercial_reference_envelope": {
+    "highest_observed_input_voltage_v": 81.0,
+    "highest_observed_continuous_bus_current_a": 120.0,
+    "highest_observed_peak_or_short_bus_current_a": 300.0,
+    "peak_duration_s_where_explicit": 3.0,
+    "highest_observed_rated_input_power_w": 4640.0,
+    "representative_rated_voltage_v": 69.0,
+    "derived_power_over_voltage_current_a": 67.2464,
+    "derived_current_note": "4640 W / 69 V arithmetic only. This is not the custom ESC continuous current requirement and is not phase current."
+  },
+  "semiconductor_voltage_class_screen": [
+    {
+      "class_v": 100,
+      "headroom_to_81v_v": 19.0,
+      "headroom_fraction_of_device_rating_percent": 19.0,
+      "screening_status": "DEPRIORITIZED_FOR_80V_CLASS_REFERENCE",
+      "reason": "Only 19 V static headroom remains before switching overshoot, battery tolerance, wiring inductance and regenerative transients are considered."
+    },
+    {
+      "class_v": 120,
+      "headroom_to_81v_v": 39.0,
+      "headroom_fraction_of_device_rating_percent": 32.5,
+      "screening_status": "CARRY_FORWARD_CANDIDATE",
+      "reason": "Provides 39 V static headroom to the 81 V commercial reference. Final acceptance still requires measured/derived transient ceiling and derating evidence."
+    },
+    {
+      "class_v": 150,
+      "headroom_to_81v_v": 69.0,
+      "headroom_fraction_of_device_rating_percent": 46.0,
+      "screening_status": "CARRY_FORWARD_CANDIDATE",
+      "reason": "Provides the largest static voltage headroom of the screened classes, with the expected conduction/switching/package trade still unresolved."
+    }
+  ],
+  "current_domain_rules": {
+    "bus_current_is_not_phase_current": true,
+    "phase_rms_current_a": null,
+    "phase_peak_current_a": null,
+    "switch_rms_current_a": null,
+    "switch_peak_current_a": null,
+    "parallel_devices_per_switch": null,
+    "rule": "No phase or switch current may be derived directly from the commercial DC bus current without motor operating point, modulation index, power factor, torque demand and control waveform evidence."
+  },
+  "speed_domain_rules": {
+    "motor_kv_reference_rpm_per_v": 45.0,
+    "mechanical_rpm_at_81v_no_load_linear_screen": 3645.0,
+    "mechanical_rpm_note": "45 rpm/V x 81 V is a linear no-load screening number only, not a loaded propeller operating point.",
+    "motor_pole_pairs": null,
+    "electrical_rpm": null,
+    "rule": "eRPM remains OPEN until exact motor pole count and loaded speed data are selected."
+  },
+  "architecture_implications": {
+    "100v_power_stage": "Do not use as the primary 80 V-class design path unless the final battery/transient envelope later proves substantially lower and switching overshoot is evidenced.",
+    "120v_power_stage": "Continue loss, package, gate-drive and transient analysis.",
+    "150v_power_stage": "Continue loss, package, gate-drive and transient analysis as the higher-headroom path.",
+    "auxiliary_supply": "Any legacy 100 V-input auxiliary converter remains REVALIDATE until the final VBUS transient ceiling is known.",
+    "dc_link": "Capacitor voltage, capacitance, ESR/ripple and precharge values remain OPEN.",
+    "gate_driver": "Driver voltage domain, gate current and isolation/bootstrap architecture remain OPEN until power-switch class and PWM/transient requirements close."
+  },
+  "next_calculations": [
+    "normalize 120 V and 150 V MOSFET loss comparison at common current/PWM/temperature assumptions",
+    "screen gate-driver voltage-domain compatibility for both carried-forward classes",
+    "build DC-link transient/precharge bounding model using trade-only 80 V-class bus",
+    "derive phase-current envelope only after a motor/prop operating point is selected"
+  ],
+  "anti_hallucination_rule": "This file may narrow architecture work but must not promote VBUS, current, PWM, MOSFET class, device count or phase current into G1/G2 baseline requirements."
+}
