@@ -1,38 +1,38 @@
 {
-  "revision":"AUTO-STATE-56",
+  "revision":"AUTO-STATE-57",
   "date":"2026-09-20",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PB08_INSTALLED_AXIS_PRIMARY_EVIDENCE_ADDED",
+  "last_run_status":"PB08_CUSTOM_AXIS_PARTIAL_MASS_LEDGER_ADDED",
   "current_gate":"G0_G1_PARTIAL_PB08",
-  "current_task":"S1R_2_CUSTOM_AXIS_AND_STRUCTURE_MASS_EVIDENCE",
+  "current_task":"S1R_2_EXACT_CUSTOM_AXIS_AND_STRUCTURE_MASS_CLOSURE",
   "active_sprint":{"id":"S1R","status":"ACTIVE","completed_steps":["S1R.1_PRODUCT_POWER_REBASELINE","S1R.3A_COMMON_12S_ESC_PLATFORM"],"current_step":"S1R.2_ROTOR_ARCHITECTURE_MTOW_PAYLOAD"},
   "completed_this_run":[
-    "verified PB08 planning authority and 12/12 structure, 15/48 G1 PASS, 1/25 backlog DONE against repository",
-    "captured current primary manufacturer mass evidence for Hobbywing X8 G2 complete propulsion set and MFP 30x11S propeller",
-    "captured current T-Motor U8 Lite 85/100KV motor-only mass evidence and explicitly prevented installed-axis substitution",
-    "applied existing PB08 mass decision equation to X8 G2 benchmark: 2.025 - 2*1.095 = -0.165 kg at zero extra Hexa structural/common mass",
-    "created PB08_INSTALLED_AXIS_PRIMARY_EVIDENCE.md",
-    "added TR-058 traceability without freezing rotor architecture"
+    "verified PB08 planning authority and repository counters before acting",
+    "audited B1 BOM/planning evidence for controlled PCB/baseplate/enclosure/harness installed mass and found no qualifying mass values",
+    "captured current primary T-Motor U8 Lite KV85 243 g motor mass including cable and 36N42P/12S electrical anchor",
+    "captured current primary T-Motor HEP-L 29-inch 63 g propeller mass-class anchor while explicitly recording exact-pair compatibility mismatch",
+    "derived 0.306 kg partial axis subtotal and 0.7065 kg remaining optimistic per-axis budget to PB08 Hexa break-even",
+    "created PB08_CUSTOM_AXIS_MASS_LEDGER.md and added TR-059 without freezing rotor architecture or BOM"
   ],
   "blocked_tasks":[
-    {"task":"freeze_PB08_rotor_architecture","reason":"X8 G2 benchmark is now source-backed but exact custom installed-axis mass, Quad/Hexa structural/common mass delta and degraded-mode policy remain unresolved","blocking_scope":"S1R.2"},
+    {"task":"freeze_PB08_rotor_architecture","reason":"partial custom-axis mass boundary is improved, but exact compatible prop/adapter, populated custom ESC/cooling/enclosure/harness/mount mass, Quad/Hexa structural/common mass delta and degraded-mode policy remain unresolved","blocking_scope":"S1R.2"},
     {"task":"freeze_PB08_payload_MTOW","reason":"payload is derived residual and requires complete frame/pack/avionics/mission-equipment mass roll-up","blocking_scope":"G0_S1R.2"},
     {"task":"freeze_PB08_exact_pack","reason":"12S electrical platform and >=750Wh target frozen; exact cell/P-count/pack hardware mass/sag/BMS/fuse/disconnect remain open","blocking_scope":"S1R.3B"},
     {"task":"freeze_PWM","reason":"requires exact selected motor pole count and winding inductance plus switching-loss/ripple study","blocking_scope":"S1R.5"},
     {"task":"allocate_U1_SCH_R001","reason":"PB08 G1 and required G2 architecture remain open","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "bound custom ESC PCB/power-stage/enclosure/baseplate/local-harness/connector mass from repository mechanical evidence without qualifying B1 automatically",
-    "obtain exact candidate propeller/adapter mass for a T-Motor-based custom axis and build complete installed-axis roll-up",
+    "find exact compatible T-Motor propeller/adapter mass for a U8 Lite 12S candidate and replace the mass-class prop anchor with exact-pair evidence",
+    "obtain or derive controlled populated custom ESC PCB/baseplate/enclosure/local-harness/connector/mount mass; do not infer from B1 dimensions without evidence",
     "derive Quad-versus-Hexa arm/joint/reinforcement structural delta from source-backed candidate geometry or explicit mechanical allocation",
-    "continue S1R.3B exact 12S pack hardware mass/sag/BMS closure independently if structure evidence is unavailable",
+    "continue S1R.3B exact 12S pack hardware mass/sag/BMS closure independently if structure/custom-axis evidence stalls",
     "re-audit B1 blocks against PB08 12S/100V-class frozen subset"
   ],
   "last_verified_gate":"G1_PARTIAL_PB08_15_OF_48",
   "progress_percentages":{"requirements_structure_percent":100.0,"g1_system_freeze_percent":31.3,"backlog_done_percent":4.0,"major_gate_closure_percent":0.0,"u1_kicad_architecture_scaffold_percent":100.0,"u1_component_bearing_schematic_percent":0.0,"schematic_revision_control_policy_percent":100.0},
-  "evidence_refs":["PRODUCT_BASELINE_PB-08.json","PB08_COMMON_ELECTRICAL_PLATFORM.md","PB08_QUAD_HEXA_MASS_CLOSURE_CONTRACT.md","PB08_INSTALLED_AXIS_PRIMARY_EVIDENCE.md","mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","uav_backlog.json","UAV_TRACEABILITY.md"],
-  "last_run_status_detail":"Primary installed-axis benchmark evidence materially narrows S1R.2: X8-G2-mass Hexa has no residual-mass advantage under the current optimistic boundary, but custom-axis and structure evidence are still required and no architecture is frozen.",
+  "evidence_refs":["PRODUCT_BASELINE_PB-08.json","PB08_COMMON_ELECTRICAL_PLATFORM.md","PB08_QUAD_HEXA_MASS_CLOSURE_CONTRACT.md","PB08_INSTALLED_AXIS_PRIMARY_EVIDENCE.md","PB08_CUSTOM_AXIS_MASS_LEDGER.md","mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","uav_backlog.json","UAV_TRACEABILITY.md"],
+  "last_run_status_detail":"S1R.2 now has a source-backed 0.306 kg partial motor+prop mass-class subtotal and a fail-closed 0.7065 kg optimistic remaining-axis budget, while unsupported custom ESC/mechanical masses remain OPEN.",
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_release_without_user_approval":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false}
 }
