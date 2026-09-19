@@ -1,12 +1,12 @@
 {
-  "revision": "G1-MATRIX-05",
+  "revision": "G1-MATRIX-06",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
-  "purpose": "Expose every critical system requirement that must close before G1 SYSTEM FREEZE and record controlled PB-02 product decisions without pretending later verification is complete.",
+  "purpose": "Expose every critical system requirement that must close before G1 SYSTEM FREEZE and record controlled PB-03 product decisions without pretending later verification is complete.",
   "gate_status": "OPEN",
   "completion_rule": "G1 may close only when every REQUIRED row is PASS with a numeric/bounded value and evidence reference, and G0/G1A/G1B/G1C parent gates are closed.",
-  "product_baseline_authority": "PRODUCT_BASELINE_PB-02.json",
-  "summary": {"required_rows":46,"pass":22,"open":24},
+  "product_baseline_authority": "PRODUCT_BASELINE_PB-03.json",
+  "summary": {"required_rows":46,"pass":25,"open":21},
   "rows": [
     {"id":"G0-01","field":"system_requirement.payload_target_kg.min_max","gate":"G0","status":"PASS","value":"70-100 kg payload target","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"]},
     {"id":"G0-02","field":"mission_requirements.requirements.payload.nominal_kg","gate":"G0","status":"PASS","value":"85 kg nominal payload","evidence":["PRODUCT_BASELINE_PB-02.json","mission_requirements.json"],"note":"Controlled engineering product decision centered in the already frozen 70-100 kg payload range."},
@@ -40,19 +40,19 @@
 
     {"id":"G1-01","field":"system_requirement.esc_continuous_power_w","gate":"G1","status":"PASS","value":">=4800 W continuous DC input capability at the propulsion reference bus domain","evidence":["PRODUCT_BASELINE_PB-02.json"],"note":"Custom ESC thermal validation remains future work."},
     {"id":"G1-02","field":"system_requirement.esc_peak_power_w_and_duration","gate":"G1","status":"PASS","value":">=11.5 kW short-duration DC input capability for >=3 s","evidence":["PRODUCT_BASELINE_PB-02.json"],"note":"This is an electrical capability requirement, not a continuous rating."},
-    {"id":"G1-03","field":"system_requirement.esc_continuous_phase_current_a","gate":"G1","status":"OPEN","blocker":"motor phase-current model/measurement; DC current must not be copied into phase-current field"},
-    {"id":"G1-04","field":"system_requirement.esc_peak_phase_current_a_and_duration","gate":"G1","status":"OPEN","blocker":"motor phase-current transient model/measurement"},
+    {"id":"G1-03","field":"system_requirement.esc_continuous_phase_current_a","gate":"G1","status":"PASS","value":">=125 A RMS continuous phase-current capability","evidence":["PRODUCT_BASELINE_PB-03.json","PHASE_CURRENT_MODEL_PB02.md","PHASE_CURRENT_MODEL_PB02.json"],"note":"Derived from X13 G2 torque curve plus bounded 45KV/42-pole back-EMF constants; physical production-motor correlation remains mandatory."},
+    {"id":"G1-04","field":"system_requirement.esc_peak_phase_current_a_and_duration","gate":"G1","status":"PASS","value":">=265 A RMS phase overload for >=3 s; >=375 A instantaneous sinusoidal phase peak capability","evidence":["PRODUCT_BASELINE_PB-03.json","PHASE_CURRENT_MODEL_PB02.md","PHASE_CURRENT_MODEL_PB02.json"],"note":"Design capability requirement, not a measured custom-UAV current."},
     {"id":"G1-05","field":"system_requirement.esc_continuous_dc_current_a","gate":"G1","status":"PASS","value":">=70 A continuous DC input capability","evidence":["PRODUCT_BASELINE_PB-02.json"],"note":"PB-02 manufacturer-curve interpolation gives about 44 A at max-MTOW hover and 54 A at one-channel-loss controlled-landing thrust point at 69 V reference conditions."},
     {"id":"G1-06","field":"system_requirement.esc_peak_dc_current_a_and_duration","gate":"G1","status":"PASS","value":">=200 A for >=3 s","evidence":["PRODUCT_BASELINE_PB-02.json"]},
-    {"id":"G1-07","field":"system_requirement.pwm_frequency_range_hz","gate":"G1","status":"OPEN","blocker":"motor inductance/eRPM + 150 V semiconductor switching-loss trade"},
-    {"id":"G1-08","field":"system_requirement.current_sense_range_a","gate":"G1","status":"OPEN","blocker":"phase peak current + protection margin"},
+    {"id":"G1-07","field":"system_requirement.pwm_frequency_range_hz","gate":"G1","status":"OPEN","blocker":"motor inductance/eRPM + 150 V semiconductor switching-loss trade; Sprint S1.2 active"},
+    {"id":"G1-08","field":"system_requirement.current_sense_range_a","gate":"G1","status":"PASS","value":"minimum bipolar phase-current measurement range -400 A to +400 A","evidence":["PRODUCT_BASELINE_PB-03.json","PHASE_CURRENT_MODEL_PB02.md","PHASE_CURRENT_MODEL_PB02.json"],"note":"Exact shunt/CSA and OCP trip threshold remain G2/S1.4 work; measurement range must not saturate at the 375 A design peak."},
     {"id":"G1-09","field":"system_requirement.dc_link_ripple_current_requirement_a_rms","gate":"G1","status":"OPEN","blocker":"DC current waveform/PWM/propulsion point"},
     {"id":"G1-10","field":"system_requirement.dc_link_transient_energy_requirement_j","gate":"G1","status":"OPEN","blocker":"harness/PCB inductance + regen/BMS disconnect energy"},
     {"id":"G1-11","field":"system_requirement.esc_ambient_temperature_range_c","gate":"G1","status":"OPEN","blocker":"G0 environmental envelope"},
     {"id":"G1-12","field":"system_requirement.baseplate_max_temperature_c","gate":"G1","status":"OPEN","blocker":"thermal architecture/derating policy"},
     {"id":"G1-13","field":"system_requirement.overvoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"exact energy-management thresholds below the 120 V outer ceiling"},
     {"id":"G1-14","field":"system_requirement.undervoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"battery sag/cutoff and propulsion safe-state policy"},
-    {"id":"G1-15","field":"system_requirement.overcurrent_threshold_latency_and_response","gate":"G1","status":"OPEN","blocker":"phase current envelope + hardware protection architecture"},
+    {"id":"G1-15","field":"system_requirement.overcurrent_threshold_latency_and_response","gate":"G1","status":"OPEN","blocker":"phase-current envelope is now frozen by PB-03; exact trip threshold/latency still requires protection architecture and false-trip margin"},
     {"id":"G1-16","field":"system_requirement.overtemperature_threshold_and_response","gate":"G1","status":"OPEN","blocker":"thermal limits and sensor placement"},
     {"id":"G1-17","field":"system_requirement.flight_controller_communication_interface","gate":"G1","status":"PASS","value":"CAN-FD capable physical layer with Classic CAN compatibility","evidence":["PRODUCT_BASELINE_PB-02.json","CAN_PHYSICAL_LAYER_PRETRADE.md"]},
     {"id":"G1-18","field":"system_requirement.arming_interface_and_state_policy","gate":"G1","status":"PASS","value":"Power-up/reset=DISARMED; valid FC command requests arm; independent hardware inhibit has final authority; latched fault inhibits PWM; no automatic re-arm","evidence":["PRODUCT_BASELINE_PB-02.json"]},
@@ -60,13 +60,16 @@
     {"id":"G1-20","field":"system_requirement.command_timeout_and_failsafe_response","gate":"G1","status":"OPEN","blocker":"command-timeout value and detailed response timing remain open"}
   ],
   "evidence_files": [
+    "PRODUCT_BASELINE_PB-03.json",
     "PRODUCT_BASELINE_PB-02.json",
     "PRODUCT_BASELINE_PB-01.json",
+    "PHASE_CURRENT_MODEL_PB02.md",
+    "PHASE_CURRENT_MODEL_PB02.json",
     "mission_requirements.json",
     "rotor_trade_study.md",
     "PROPULSION_SCREENING_PRETRADE.json",
     "DC_BUS_TRANSIENT_REQUIREMENTS.md",
     "CAN_PHYSICAL_LAYER_PRETRADE.md"
   ],
-  "anti_hallucination_rule": "PB-02 documented product decisions may close their mapped rows. Remaining OPEN rows stay OPEN. Manufacturer curve interpolation is source-backed sizing evidence, not physical verification of the custom coaxial vehicle."
+  "anti_hallucination_rule": "PB-03 documented product decisions may close their mapped rows. Remaining OPEN rows stay OPEN. Manufacturer data/modeling is sizing evidence, not physical verification of the final motor, inverter or coaxial vehicle."
 }
