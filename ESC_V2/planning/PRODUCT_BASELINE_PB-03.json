@@ -1,0 +1,70 @@
+{
+  "revision": "PB-03",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "supersedes": "PRODUCT_BASELINE_PB-02.json",
+  "inherits_all_frozen_pb02_decisions": true,
+  "purpose": "Add the Sprint S1.1 phase-current and sensing-range requirements to the existing PB-02 heavy-lift baseline without reopening any PB-02 value.",
+  "change_control": {
+    "rule": "PB-03 inherits every PB-01/PB-02 frozen decision. Any later change to a PB-03 frozen value requires PB-04 or an explicitly linked engineering change record; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "inherited_baseline": {
+    "authority": "PRODUCT_BASELINE_PB-02.json",
+    "summary": [
+      "70-100 kg payload target; 85 kg nominal",
+      "X8 coaxial / eight independent propulsion channels",
+      "150/165/180 kg MTOW design targets",
+      "56x20 inch / 45KV / 18S propulsion performance class",
+      "18S 66.6 V nominal convention / 75.6 V full charge / <=80 V outer input ceiling",
+      ">=70 A continuous DC and >=200 A for >=3 s DC capability",
+      ">=4.8 kW continuous and >=11.5 kW short-duration input capability",
+      "<=120 V repetitive controlled semiconductor-terminal stress",
+      ">=150 V power-semiconductor class",
+      ">=60,000 eRPM controller capability",
+      "CAN-FD capable / Classic-CAN compatible interface",
+      "power-up/reset DISARMED and no automatic re-arm after fault"
+    ]
+  },
+  "new_frozen_decisions": [
+    {
+      "id": "PB-022",
+      "field": "esc_continuous_phase_current_rms_a_min",
+      "value": 125,
+      "unit": "A_rms",
+      "comparison": ">=",
+      "status": "FROZEN_DERIVED_DESIGN_REQUIREMENT",
+      "rationale": "X13 G2 rated-class torque point modeled with source-backed 45KV/42-pole electrical-constant bounds gives <=105.5 A RMS; a 15% model/design allowance gives 121.3 A RMS and is rounded upward to 125 A RMS.",
+      "evidence": ["PHASE_CURRENT_MODEL_PB02.md", "PHASE_CURRENT_MODEL_PB02.json"]
+    },
+    {
+      "id": "PB-023",
+      "field": "esc_phase_overload_current",
+      "value": {"rms_a_min": 265, "duration_s_min": 3, "instantaneous_peak_a_min": 375},
+      "status": "FROZEN_DERIVED_DESIGN_REQUIREMENT",
+      "rationale": "The published X13 G2 maximum torque point maps to <=236.8 A RMS with the conservative torque constant. A 10% allowance gives 260.4 A RMS, rounded to 265 A RMS; sinusoidal peak is 374.8 A, rounded to 375 A.",
+      "evidence": ["PHASE_CURRENT_MODEL_PB02.md", "PHASE_CURRENT_MODEL_PB02.json"]
+    },
+    {
+      "id": "PB-024",
+      "field": "phase_current_measurement_range_a_min",
+      "value": {"negative_a": -400, "positive_a": 400},
+      "status": "FROZEN_SYSTEM_MEASUREMENT_REQUIREMENT",
+      "rationale": "The phase-current measurement chain must not saturate at the 375 A instantaneous design peak. Exact shunt/CSA implementation and hardware OCP threshold remain open for G2/S1.4.",
+      "evidence": ["PHASE_CURRENT_MODEL_PB02.md", "PHASE_CURRENT_MODEL_PB02.json"]
+    }
+  ],
+  "remaining_s1_critical_open_items": [
+    "PWM frequency/current ripple/switching-loss closure",
+    "18S Ah/Wh/minimum-loaded-bus/sag/reserve/BMS behavior",
+    "environment and thermal design boundaries",
+    "OV/UV/OCP/OTP/watchdog/command-timeout numeric requirements",
+    "exact 150 V MOSFET MPN and parallel count",
+    "exact high-voltage half-bridge gate-driver MPN",
+    "current-sense implementation, DC-link, precharge and thermal architecture"
+  ],
+  "physical_verification_status": "NOT_PERFORMED",
+  "anti_hallucination_rule": "PB-03 phase-current values are conservative design requirements derived from reference motor/propulsion evidence. They are not measured phase currents of the final motor, U1 inverter, coaxial vehicle or flight article."
+}
