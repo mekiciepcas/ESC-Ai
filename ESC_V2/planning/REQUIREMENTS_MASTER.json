@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-MASTER-05",
+  "revision": "REQ-MASTER-06",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "authority": "ESC_V2/planning/REQUIREMENTS_MASTER.json",
@@ -24,11 +24,11 @@
     {"prefix":"INV","name":"Inverter semiconductor PWM gate drive DC link and thermal power stage","gate_owner":"G1_G2_G3","authority_refs":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","POWER_STAGE_LOSS_MODEL.md","DC_LINK_SELECTION_FRAMEWORK.md"],"coverage":"DEFINED"},
     {"prefix":"SNS","name":"Current voltage and temperature sensing","gate_owner":"G2_G3","authority_refs":["HV_SENSE_OUTPUT_SEQUENCING.md","POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","UAV_TRACEABILITY.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
     {"prefix":"CTRL","name":"MCU motor control timing firmware and watchdog","gate_owner":"G2_G4","authority_refs":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md","CONTROL_PLATFORM_PRETRADE.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md"],"coverage":"DEFINED"},
-    {"prefix":"SAF","name":"Protection fault response failsafe and FMEA","gate_owner":"G1_G2_G4","authority_refs":["G1_REQUIREMENTS_MATRIX.json","DC_INPUT_PROTECTION_CONTRACT.md","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","FAULT_ARM_STATE_MATRIX.template.json"],"coverage":"DEFINED"},
-    {"prefix":"IF","name":"Flight controller CAN arming telemetry service and power interfaces","gate_owner":"G1_G3_G4","authority_refs":["mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
+    {"prefix":"SAF","name":"Protection fault response failsafe and FMEA","gate_owner":"G1_G2_G4","authority_refs":["G1_REQUIREMENTS_MATRIX.json","DC_INPUT_PROTECTION_CONTRACT.md","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","FAULT_ARM_STATE_MATRIX.template.json","FAULT_FMEA_SKELETON.json"],"coverage":"DEFINED"},
+    {"prefix":"IF","name":"Flight controller CAN arming telemetry service and power interfaces","gate_owner":"G1_G3_G4","authority_refs":["mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","CAN_PHYSICAL_LAYER_PRETRADE.md"],"coverage":"DEFINED"},
     {"prefix":"ENV","name":"Temperature altitude wind ingress vibration and cooling boundaries","gate_owner":"G0_G1_G5","authority_refs":["mission_requirements.json","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
-    {"prefix":"MFG","name":"BOM footprint derating DFM serviceability and configuration control","gate_owner":"G3_G5","authority_refs":["U1_BOM_CANDIDATES.json","UAV_PRODUCT_PLAN.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
-    {"prefix":"VER","name":"Bring-up switching dyno thermal fault injection and flight-readiness verification","gate_owner":"G6_G7","authority_refs":["UAV_PRODUCT_PLAN.md","CONTROL_PLATFORM_BENCH_CONTRACT.md","FAULT_ARM_STATE_MATRIX.template.json"],"coverage":"DEFINED"}
+    {"prefix":"MFG","name":"BOM footprint derating DFM serviceability and configuration control","gate_owner":"G3_G5","authority_refs":["U1_BOM_CANDIDATES.json","UAV_PRODUCT_PLAN.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","PRODUCTION_CONNECTOR_REQUIREMENTS_FRAMEWORK.md","U1_SCHEMATIC_MIGRATION_CONTRACT.md"],"coverage":"DEFINED"},
+    {"prefix":"VER","name":"Bring-up switching dyno thermal fault injection and flight-readiness verification","gate_owner":"G6_G7","authority_refs":["UAV_PRODUCT_PLAN.md","CONTROL_PLATFORM_BENCH_CONTRACT.md","FAULT_ARM_STATE_MATRIX.template.json","FAULT_FMEA_SKELETON.json"],"coverage":"DEFINED"}
   ],
   "child_requirement_authorities": {
     "mission_and_vehicle":"mission_requirements.json",
@@ -38,6 +38,10 @@
     "safety_interface_derived":"SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json",
     "external_aux_interface_template":"EXTERNAL_AUX_INTERFACE_CONTRACT.template.json",
     "fault_arm_state_template":"FAULT_ARM_STATE_MATRIX.template.json",
+    "fault_fmea_skeleton":"FAULT_FMEA_SKELETON.json",
+    "can_physical_layer_trade":"CAN_PHYSICAL_LAYER_PRETRADE.md",
+    "production_connector_framework":"PRODUCTION_CONNECTOR_REQUIREMENTS_FRAMEWORK.md",
+    "u1_schematic_migration_contract":"U1_SCHEMATIC_MIGRATION_CONTRACT.md",
     "candidate_bom":"U1_BOM_CANDIDATES.json",
     "verification_mapping":"REQUIREMENTS_VERIFICATION_MATRIX.json"
   },
