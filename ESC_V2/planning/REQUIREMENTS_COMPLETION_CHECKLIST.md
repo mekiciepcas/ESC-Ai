@@ -1,10 +1,26 @@
 # Requirements completion checklist
 
 Date: 2026-09-19
-Purpose: define when requirements are sufficiently complete to enter architecture/detail design without pretending unresolved vehicle inputs are known.
+Purpose: define when requirements are structurally complete and when they are sufficiently value-closed to enter architecture/detail design without pretending unresolved vehicle inputs are known.
 
-## Definition of requirements complete
-Requirements are considered **SYSTEM-BASELINED at G1** when G0, G1A, G1B and G1C evidence is closed and every critical ESC electrical-envelope field in `design_basis.json` is numeric, bounded, and traceable to propulsion/vehicle evidence. This is not production qualification; detailed derived requirements continue through G2/G3.
+## Requirements authority and current progress
+
+- `REQUIREMENTS_MASTER.json` is the top-level requirements-structure authority.
+- `REQUIREMENTS_SPEC.md` is the human-readable hierarchy and status rule set.
+- `G1_REQUIREMENTS_MATRIX.json` remains the controlling child matrix for G0/G1A/G1B/G1C/G1 numerical/selection closure.
+- `REQUIREMENTS_VERIFICATION_MATRIX.json` defines domain verification methods and evidence levels.
+- `REQUIREMENTS_PROGRESS.json` is the machine-readable percentage-reporting snapshot.
+
+Current measurable state:
+- planned requirements structure: **12/12 domains = 100%**;
+- G1 SYSTEM FREEZE values: **1/46 PASS = 2.2%**;
+- backlog tasks explicitly DONE: **1/25 = 4%**;
+- major product gates closed: **0/8 = 0%**.
+
+The 100% structure figure does not mean product-specific requirement values are complete.
+
+## Definition of system requirements complete
+Requirements are considered **SYSTEM-BASELINED at G1** when G0, G1A, G1B and G1C evidence is closed and every critical ESC electrical-envelope row in `G1_REQUIREMENTS_MATRIX.json` / `design_basis.json` is numeric or explicitly bounded and traceable to propulsion/vehicle evidence. This is not production qualification; detailed derived requirements continue through G2/G3.
 
 ## G0 — Mission / vehicle envelope — OPEN
 Required closure:
@@ -71,7 +87,7 @@ All critical fields must be numeric/bounded and traceable:
 - communications/arming/watchdog/failsafe requirements
 
 ## Derived requirements after G1
-These do not block system-requirement completion if their parent requirement is frozen, but they must close before G2/G3 release:
+These are structurally represented under the `INV`, `SNS`, `CTRL`, `SAF`, `IF`, `ENV`, `MFG` and `VER` domains. They do not block structural completion, but their product values/implementations must close before the owning G2/G3/G4/G5/G6 gate:
 - semiconductor voltage class/count and thermal derating
 - gate-drive current/dead-time
 - ADC acquisition/filter/clamp implementation
@@ -80,9 +96,12 @@ These do not block system-requirement completion if their parent requirement is 
 - precharge resistor/contactor/clamp MPNs
 - creepage/clearance/layout constraints
 - firmware timing and trip latency
+- protection/failsafe/FMEA closure
+- exact production BOM/footprints/DFM
+- staged bench/dyno/fault-injection evidence
 
 ## Current critical path
-`G0 vehicle inputs -> G1A rotor selection -> G1B operating point -> G1C battery/current/transient envelope -> G1 ESC SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review`
+`G0 vehicle inputs -> G1A rotor selection -> G1B operating point -> G1C battery/current/transient envelope -> G1 ESC SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review -> G4 firmware -> G5 prototype -> G6 propulsion verification -> G7 flight readiness`
 
 ## Autonomous-work rule while G0 is open
-Continue source-backed trade studies, parametric models, component-domain audits, verification tooling and requirement structure. Do not convert competitor values or screening cases into product requirements. Any value dependent on vehicle-specific input remains OPEN/null/TBD.
+Continue source-backed trade studies, parametric models, component-domain audits, verification tooling, BOM evidence mapping and derived-requirement structure. Do not convert competitor values or screening cases into product requirements. Any value dependent on vehicle-specific input remains OPEN/null/TBD.
