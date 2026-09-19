@@ -1,9 +1,9 @@
 {
-  "revision":"AUTO-STATE-40",
+  "revision":"AUTO-STATE-41",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_PRODUCT_BASELINE_PB01_FROZEN_AND_CI_VERIFIED",
+  "last_run_status":"PROGRESS_PRODUCT_BASELINE_PB01_FROZEN_AND_DASHBOARD_CONTRACT_RESTORED",
   "current_gate":"G0_G1",
   "current_task":"PB01_PROPULSION_CURRENT_ENERGY_AND_THERMAL_CLOSURE",
   "completed_this_run":[
@@ -22,6 +22,8 @@
     "advanced_G1_value_closure_from_1_of_46_to_8_of_46_rows",
     "added_verify_product_baseline_pb01_py_and_GitHub_Action consistency enforcement",
     "observed_GitHub_Actions_run_35455224602_success_with_exact_PB01_PASS_output",
+    "diagnosed_dashboard_refresh_run_35455302258_failure_as_missing_schematic_revision_control_policy_percent_in_autonomy_state rather_than_dashboard build logic",
+    "restored_dashboard_progress_contract_field schematic_revision_control_policy_percent=100 without changing engineering status",
     "kept_current_power_phase_PWM_eRPM_exact_motor_prop_battery_chemistry_thermal_and_mechanical_values_OPEN"
   ],
   "blocked_tasks":[
@@ -50,6 +52,14 @@
     "major_gate_closure_percent":0.0,
     "u1_kicad_architecture_scaffold_percent":100.0,
     "u1_component_bearing_schematic_percent":0.0,
+    "schematic_revision_control_policy_percent":100.0,
+    "dashboard_current_uav_status_integration_percent":100.0,
+    "dashboard_auto_refresh_ci_percent":100.0,
+    "dashboard_source_consistency_validation_percent":100.0,
+    "mechanical_electrical_cotrade_framework_percent":100.0,
+    "propulsion_screening_pretrade_percent":100.0,
+    "esc_electrical_envelope_pretrade_percent":100.0,
+    "esc_pretrade_ci_consistency_validation_percent":100.0,
     "product_baseline_pb01_definition_percent":100.0,
     "product_baseline_pb01_ci_consistency_percent":100.0
   },
@@ -66,9 +76,10 @@
     "design_basis.json",
     "G1_REQUIREMENTS_MATRIX.json",
     "verify_product_baseline_pb01.py",
-    "GitHub Actions run 35455224602 SUCCESS"
+    "GitHub Actions run 35455224602 SUCCESS",
+    "Dashboard run 35455302258 failure diagnosis: missing state progress contract field"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false,"frozen_product_decision_changes_require_new_pb_revision_or_engineering_change_record":true},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","benchmark_values_must_not_promote_without_documented_product_decision":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"PB-01 is the first deliberate productization freeze. It converts architecture choices into controlled requirements rather than pretending all numeric sizing is known. The 150V power-device class is now a product requirement; exact MOSFET, current, parallel count and thermal design are still open. G1 value closure is 8/46 = 17.4%."
+  "notes":"PB-01 is the first deliberate productization freeze. It converts architecture choices into controlled requirements rather than pretending all numeric sizing is known. The 150V power-device class is now a product requirement; exact MOSFET, current, parallel count and thermal design are still open. G1 value closure is 8/46 = 17.4%. Dashboard source-contract regression discovered during the run was corrected in AUTO-STATE-41."
 }
