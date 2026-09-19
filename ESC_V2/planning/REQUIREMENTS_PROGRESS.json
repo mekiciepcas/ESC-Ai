@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-PROGRESS-02",
+  "revision": "REQ-PROGRESS-03",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "reporting_policy": "Every user-facing project progress output should report at minimum requirements_structure_percent, g1_system_freeze_percent and backlog_done_percent. Broader engineering percentages must be explicitly labeled estimates.",
@@ -10,23 +10,23 @@
     "meaning": "Planned requirement-domain hierarchy/schema/authority coverage, not product-value closure."
   },
   "g1_system_freeze": {
-    "pass_rows": 8,
+    "pass_rows": 22,
     "required_rows": 46,
-    "open_rows": 38,
-    "percent": 17.4,
+    "open_rows": 24,
+    "percent": 47.8,
     "source": "G1_REQUIREMENTS_MATRIX.json",
-    "note": "PB-01 converted selected architecture and bounded electrical decisions into controlled requirements. PASS means value closure/traceability, not later physical verification."
+    "note": "PB-02 freezes mass/thrust targets, 56x20/45KV/18S propulsion class, 18S bus architecture and DC-side ESC capability. PASS means controlled value closure/traceability, not physical verification."
   },
   "backlog": {
-    "done_tasks": 1,
+    "done_tasks": 2,
     "total_tasks": 25,
-    "done_percent": 4.0,
-    "note": "Conservative metric: only tasks explicitly marked DONE are counted. IN_PROGRESS work and safe G2 prework are not credited."
+    "done_percent": 8.0,
+    "note": "Conservative metric: only tasks explicitly marked DONE are counted. UAV-002 is now DONE because PB-02 numerically closes rotor count, hover thrust, max-thrust capability and thrust margin."
   },
   "gate_closure": {
     "closed_major_gates": 0,
     "major_gates": 8,
     "percent": 0.0,
-    "note": "G0/G1 remain OPEN because MTOW, mission/energy/environment and propulsion current/power values are still unresolved; G2-G7 remain dependency-blocked."
+    "note": "G0/G1 remain OPEN because flight time/energy/environment, detailed mass allocation, bus minimum/sag, phase current, PWM, protection and thermal requirements remain unresolved. G2-G7 remain dependency-blocked."
   }
 }
