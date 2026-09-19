@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-19T16:29:28+00:00",
-  "source_commit": "972ca3da3c1d",
+  "generated_at": "2026-09-19T16:34:15+00:00",
+  "source_commit": "39bff57e5660",
   "plan_revision": "UAV-PLAN-04",
   "task_count": 25,
   "done_count": 1,
   "active_count": 3,
   "blocked_count": 21,
   "requirements_structure_percent": 100.0,
-  "g1_system_freeze_percent": 2.2,
+  "g1_system_freeze_percent": 17.4,
   "backlog_done_percent": 4.0,
   "major_gate_closure_percent": 0.0,
   "u1_kicad_scaffold_percent": 100.0,
@@ -15,6 +15,6 @@
   "schematic_revision_control_percent": 100.0,
   "missing_g0_inputs": 14,
   "next_schematic_revision": "U1-SCH-R001",
-  "current_task": "NORMALIZED_120V_150V_POWER_STAGE_LOSS_AND_GATE_DRIVE_PRETRADE",
-  "last_run_status": "PROGRESS_PDS01_FROZEN_VALUES_MARKED"
+  "current_task": "PB01_PROPULSION_CURRENT_ENERGY_AND_THERMAL_CLOSURE",
+  "last_run_status": "PROGRESS_PRODUCT_BASELINE_PB01_FROZEN_AND_DASHBOARD_CONTRACT_RESTORED"
 }
