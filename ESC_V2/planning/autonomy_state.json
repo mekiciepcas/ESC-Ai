@@ -1,37 +1,36 @@
 {
-  "revision":"AUTO-STATE-35",
+  "revision":"AUTO-STATE-36",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_PROPULSION_SCREENING_PRETRADE",
+  "last_run_status":"PROGRESS_ESC_ELECTRICAL_PRETRADE_VERIFIED",
   "current_gate":"G0_G1",
-  "current_task":"PROPULSION_SCREENING_AND_TRADE_ONLY_ESC_ELECTRICAL_RANGE",
+  "current_task":"NORMALIZED_120V_150V_POWER_STAGE_LOSS_AND_GATE_DRIVE_PRETRADE",
   "completed_this_run":[
-    "verified_latest_uav_rebaseline_branch_and_current_handoff_before changing strategy",
-    "recorded_user_constraint_that_mechanical_design_is_not_yet_available_and_real_G0_vehicle_values_cannot_yet_be supplied",
-    "kept_all_14_product_specific_G0_fields_OPEN_null_instead_of forcing guesses",
-    "created_CONCEPT_VEHICLE_ENVELOPE_PRETRADE_json_with primary manufacturer DJI_T70P_and_T100 benchmark facts clearly tagged TRADE_STUDY_ONLY",
-    "created_MECHANICAL_ELECTRICAL_COTRADE_PLAN_md defining a parametric co_design loop rather than blocking the ESC project",
-    "created_non_binding_screening_cases_MTOW_130_150_175kg_and_rotor_counts_4_6_8_with_hover_load_matrix",
-    "searched_primary_Hobbywing_sources_and_created_PROPULSION_SCREENING_PRETRADE_json_with_X11_Plus_X11_Max_X13_X13_G2_X15_X15_G2_reference_regions",
-    "mapped_each_130_150_175kg_by_4_6_8_hover_case_to manufacturer recommended thrust regions without selecting a winner",
-    "recorded_trade_only_reference electrical classes 12_14S_and_18S plus high_end_input_voltage_and_current examples without promoting them into ESC requirements",
-    "preserved_product_progress_counters_and_did_not_promote benchmark values into mission requirements or G1"
+    "continued_from_source_backed_propulsion_screening_without inventing missing mechanical inputs",
+    "created_ESC_ELECTRICAL_ENVELOPE_PRETRADE_json from current propulsion benchmark references",
+    "derived_trade_only_reference_maxima_81V_120A_continuous_bus_300A_peak_or_short_and_4640W_rated_input_power",
+    "calculated_static_voltage_headroom_100V_19V_120V_39V_150V_69V_against_81V_reference",
+    "deprioritized_100V_as_primary_80V_class_path_without globally banning it",
+    "carried_120V_and_150V_classes_forward_for normalized loss package gate_drive and transient comparison",
+    "kept_phase_current_switch_current_parallel_device_count_pwm_and_product_baseline_OPEN",
+    "created_executable_verify_esc_electrical_pretrade_py_and_GitHub_Action",
+    "observed_GitHub_Actions_run_35453244140_success_with PASS and expected derived values",
+    "recorded_additive_traceability_TR_057_TR_058_TR_059"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; 14 product-specific mass, mission, environment and architecture values therefore remain unresolved","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW, span and single-motor-failure policy are not yet defined; trade-only rotor sweeps may proceed","blocking_scope":"G1A_and_UAV004"},
-    {"task":"freeze_UAV_004_operating_point","reason":"final vehicle MTOW and rotor architecture are open; candidate motor/prop operating regions may be screened only","blocking_scope":"G1B"},
-    {"task":"freeze_battery_and_ESC_envelope","reason":"final propulsion operating point is not frozen; only trade-only electrical ranges may be developed","blocking_scope":"G1C_G1"},
-    {"task":"freeze_G2_architecture","reason":"parent G1 electrical and vehicle interface requirements remain open","blocking_scope":"G2"},
-    {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open; component-bearing U1 schematic must not be allocated early","blocking_scope":"G3"}
+    {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; 14 product-specific values remain unresolved","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW, span and motor-out policy remain open; trade-only sweeps may proceed","blocking_scope":"G1A_and_UAV004"},
+    {"task":"freeze_phase_current_and_switch_current","reason":"exact motor/prop operating point and modulation/control waveform are not frozen","blocking_scope":"G1_power_stage_current"},
+    {"task":"freeze_semiconductor_voltage_class","reason":"final battery and transient ceiling remain open; 120V and 150V are only carried-forward candidates","blocking_scope":"G2_power_stage"},
+    {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "extract primary manufacturer load_curve points for the most relevant X11_X13_X15 regions and calculate trade_only per_motor power_current_rpm envelopes",
-    "calculate sensitivity of total propulsion mass across 4_6_8 rotor cases using source-backed integrated propulsion weights",
-    "derive a provisional custom_ESC architecture stress range from feasible propulsion regions while keeping voltage_current requirements OPEN",
-    "compare MOSFET_driver_current_sense_aux architecture robustness across 14S_to_18S commercial reference classes without selecting a production winner",
-    "continue requirement_independent_B1 migration audits in parallel"
+    "run normalized 120V versus 150V MOSFET loss comparison at explicit trade-only current PWM and junction-temperature sweep points",
+    "screen gate-driver voltage-domain compatibility for both carried-forward power-stage classes",
+    "build trade-only DC-link transient and precharge bounding model around the 80V-class reference",
+    "extract manufacturer motor load-curve points to replace broad bus-current references with operating-point-linked estimates",
+    "calculate propulsion-system mass sensitivity across 4_6_8 rotor concepts"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -46,26 +45,19 @@
     "dashboard_auto_refresh_ci_percent":100.0,
     "dashboard_source_consistency_validation_percent":100.0,
     "mechanical_electrical_cotrade_framework_percent":100.0,
-    "propulsion_screening_pretrade_percent":100.0
+    "propulsion_screening_pretrade_percent":100.0,
+    "esc_electrical_envelope_pretrade_percent":100.0,
+    "esc_pretrade_ci_consistency_validation_percent":100.0
   },
   "evidence_refs":[
-    "UAV_PRODUCT_PLAN.md",
-    "UAV_TRACEABILITY.md",
-    "uav_backlog.json",
-    "mission_requirements.json",
-    "REQUIREMENTS_MASTER.json",
-    "REQUIREMENTS_PROGRESS.json",
-    "G0_INPUT_CLOSURE_PACKET.json",
-    "CONCEPT_VEHICLE_ENVELOPE_PRETRADE.json",
-    "MECHANICAL_ELECTRICAL_COTRADE_PLAN.md",
     "PROPULSION_SCREENING_PRETRADE.json",
-    "https://ag.dji.com/t70p/specs",
-    "https://ag.dji.com/t100/specs",
-    "https://www.hobbywing.com/en/drone-propulsion/multirotor/integrated/x-series",
-    "https://www.hobbywing.com/en/products/xrotorx13",
-    "https://www.hobbywing.com/en/products/xrotorx15"
+    "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json",
+    "POWER_STAGE_VOLTAGE_CLASS_SCREENING.md",
+    "verify_esc_electrical_pretrade.py",
+    "RUN_2026-09-19_1855_TRACEABILITY.md",
+    "GitHub Actions run 35453244140 SUCCESS"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"Mechanical design is not yet available, so the project now advances through source-backed concept co-trade instead of waiting for impossible exact masses. Product G0/G1 values remain OPEN. Primary-source Hobbywing propulsion data now maps the screening hover-load regions and provides an explicit trade-only electrical stress search space; no winner or production requirement is selected."
+  "notes":"The design has moved from broad propulsion screening into a checked electrical architecture stress range. The 100 V legacy path is no longer the primary 80 V-class candidate because it has only 19 V static headroom to the current 81 V benchmark before dynamic transients. 120 V and 150 V remain candidate classes only. Product G1 values and U1 component-bearing schematic remain unfrozen."
 }
