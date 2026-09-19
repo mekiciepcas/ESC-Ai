@@ -1,103 +1,103 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 15:03+03:00
-Branch: `uav-rebaseline`
-Status: `PROGRESS_SENSE_MODELS_PRELIM_BOM_AND_HIGH_VOLTAGE_DRIVER_AUX_TRADE`
-Repository HEAD immediately before this handoff update: `ad87e83a768452273d9b1f2800c64ff6ad8d2158`.
+Date: 2026-09-19 15:14+03:00  
+Branch: `uav-rebaseline`  
+Status: `PROGRESS_REQUIREMENTS_STRUCTURE_AUTHORITY_COMPLETE`  
+Repository HEAD immediately before this handoff update: `734040b8b3d25327a66bb0a3b1043bcf2f939ecc`.
+
+## Progress percentages
+
+- Requirements planned-domain/schema structure: **12/12 = 100%**.
+- G1 SYSTEM FREEZE value closure: **1/46 PASS = 2.2%**.
+- Backlog tasks explicitly DONE: **1/25 = 4%**.
+- Major product gates closed: **0/8 = 0%**.
+
+The 100% requirements figure means the planned domain/schema/authority structure is complete. It does not mean product-specific requirement values, design, verification or release are complete.
 
 ## Run summary
-This run verified the planning state against the real branch, closed the LT6017-study output-to-STM32 sequencing ambiguity, added mandatory-input dynamic sensing and MOSFET loss screening tools, created/deepened the first explicit U1 preliminary BOM candidate matrix, and completed a primary-source higher-voltage gate-driver / auxiliary-supply architecture trade. No vehicle-dependent G0/G1 value, semiconductor class, driver, auxiliary converter, sensing MPN, production BOM item or PCB implementation was frozen.
+
+This run first verified the current handoff, product plan, G1 matrix, backlog, mission requirements, traceability and autonomy state against the actual `uav-rebaseline` branch. The user then explicitly authorized continuing with the planned requirements-structure completion and requested percentage progress in every output. A top-level requirements authority, human-readable specification, verification matrix, percentage snapshot and updated completion checklist were created. Unknown product values remain OPEN/null/TBD; no competitor value, screening case, architecture candidate or legacy rating was promoted to a product requirement.
 
 ## Tasks attempted / completed
-1. Re-read and verified the latest handoff, autonomy state, `UAV_PRODUCT_PLAN.md`, `uav_backlog.json`, `mission_requirements.json` and `UAV_TRACEABILITY.md` against `uav-rebaseline`.
-2. Confirmed G0/G1 remain OPEN; vehicle mass/mission/environment/failure fields remain legitimately null and were not inferred from competitor aircraft.
-3. Verified B1 `V_BUS_ADC` maps to U1701 package pin 8 and ST primary pin data maps STM32G474 LQFP64 pin 8 to PA0 / TT_a / ADC12_IN1.
-4. Added `HV_SENSE_OUTPUT_SEQUENCING.md` with four explicit power-sequencing states. LT6017-ON / STM32 VDD/VDDA-OFF is prohibited as a normal study state unless separately proven; preferred study rule is a shared controlled analog shutdown domain.
-5. Added `hv_sense_dynamic_model.py`; divider RC, op-amp first-order/slew settling and ADC acquisition RC are calculated only from explicit caller inputs.
-6. Added `power_stage_loss_calculator.py`; conduction, linear transition overlap and optional Coss/Qrr screening are calculated only from explicit caller inputs.
-7. Created `U1_BOM_CANDIDATES.json` and then deepened it. It distinguishes `LEGACY_REFERENCE`, `CANDIDATE`, `REVALIDATE`, `BLOCKED_BY_G1`, `OPEN` and `REPLACE_IF_REQUIRED` rather than claiming a production BOM.
-8. Added `GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md` using current primary manufacturer evidence.
-9. Recorded gate-driver architecture anchors: legacy DRV8353 REVALIDATE; UCC27282 as a 120 V-bootstrap reference but **not** proof of >100 V normal HS operation; UCC27712 as a high-voltage non-isolated half-bridge candidate; UCC21540-Q1 as a reinforced-isolated candidate.
-10. Recorded auxiliary-power anchors: legacy LM5164 REVALIDATE; LTC3639 as a 4–150 V / up-to-100 mA housekeeping candidate; LTC7801 as a 4–140 V operating / 150 V absolute-maximum synchronous buck-controller candidate for a higher-current rail.
-11. Updated `U1_BOM_CANDIDATES.json` with those gate-driver and auxiliary-power candidates while keeping G1-dependent DC-link, shunt, fuse, precharge, clamp and connectors OPEN/BLOCKED.
-12. Updated `UAV_TRACEABILITY.md` and `autonomy_state.json` to match the actual repository changes.
+
+1. Re-read and verified `AUTONOMOUS_HANDOFF.md`, `UAV_PRODUCT_PLAN.md`, `G1_REQUIREMENTS_MATRIX.json`, `uav_backlog.json`, `mission_requirements.json`, `UAV_TRACEABILITY.md` and `autonomy_state.json`.
+2. Confirmed G0/G1 remain OPEN and the current G1 matrix is 1 PASS / 45 OPEN.
+3. Added `REQUIREMENTS_MASTER.json` as the top-level requirements-structure authority.
+4. Defined 12 planned domains: SYS, VEH, PROP, PWR, INV, SNS, CTRL, SAF, IF, ENV, MFG and VER.
+5. Added a mandatory child-requirement schema: ID, parent/domain, statement, status, value/range, source/evidence, rationale, verification method, acceptance criteria, dependencies and revision.
+6. Added explicit anti-hallucination rules for unknown values, competitor data, legacy evidence, simulation/physical-test distinction and release claims.
+7. Added `REQUIREMENTS_SPEC.md` as the human-readable hierarchy, gate semantics and percentage-reporting rule.
+8. Added `REQUIREMENTS_VERIFICATION_MATRIX.json` with domain verification methods and evidence levels from ANALYSIS through QUALIFICATION.
+9. Added `REQUIREMENTS_PROGRESS.json` with machine-readable percentages.
+10. Updated `REQUIREMENTS_COMPLETION_CHECKLIST.md` so structural completion and system-value closure cannot be conflated.
+11. Updated `autonomy_state.json` to AUTO-STATE-19 and persisted the user's progress-percentage reporting rule.
 
 ## Files changed
-- `planning/HV_SENSE_OUTPUT_SEQUENCING.md` — new
-- `planning/hv_sense_dynamic_model.py` — new
-- `planning/power_stage_loss_calculator.py` — new
-- `planning/U1_BOM_CANDIDATES.json` — new and then deepened
-- `planning/GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md` — new
-- `planning/UAV_TRACEABILITY.md` — updated
-- `planning/autonomy_state.json` — updated to AUTO-STATE-18
-- `planning/AUTONOMOUS_HANDOFF.md` — updated
 
-## Engineering decisions / findings
-- Robust powered-down amplifier input behavior does not prove that an actively driven amplifier output is safe when the MCU analog supply is absent.
-- Present LT6017 study rule: buffer and STM32 analog domain share controlled shutdown; do not intentionally allow buffer-ON / MCU-OFF operation without separate manufacturer-backed isolation/current-limiting proof.
-- UCC27282's 120 V bootstrap absolute-maximum headline must not be misread as a >100 V normal switch-node solution; TI still specifies a 100 V HS operating ceiling.
-- UCC27712 provides a credible non-isolated higher-voltage driver path, but requires three half-bridge channels and separate sensing/protection architecture.
-- UCC21540-Q1 provides a credible reinforced-isolated path, but adds isolated/local bias, propagation/skew, creepage/CMTI, area and cost requirements.
-- LTC3639 is a credible 150 V low-current housekeeping path, not a direct high-current replacement for the complete legacy auxiliary tree if fan/gate/control loads exceed its 100 mA class.
-- LTC7801 is a credible higher-power high-voltage-controller path, but output-current capability is a complete converter-design result, not a controller headline rating.
-- Higher-VDS MOSFETs cannot be paired with unchanged ~100 V support ICs by default; the support-domain architecture must follow the final G1 transient envelope.
-- `U1_BOM_CANDIDATES.json` is now the explicit bridge toward a final BOM, but it intentionally preserves unresolved items as null/OPEN.
+- `planning/REQUIREMENTS_MASTER.json` — new top-level requirement authority; corrected to REQ-MASTER-02 domain/schema structure.
+- `planning/REQUIREMENTS_SPEC.md` — new human-readable requirement specification structure.
+- `planning/REQUIREMENTS_VERIFICATION_MATRIX.json` — new verification/evidence authority.
+- `planning/REQUIREMENTS_PROGRESS.json` — new machine-readable percentage snapshot.
+- `planning/REQUIREMENTS_COMPLETION_CHECKLIST.md` — updated with authorities and separate structure/value/gate metrics.
+- `planning/autonomy_state.json` — updated to AUTO-STATE-19 with progress/reporting policy.
+- `planning/AUTONOMOUS_HANDOFF.md` — updated.
+
+## Engineering / process decisions made
+
+- Requirements **structure completeness** and **product-value closure** are now separate tracked metrics.
+- The planned structure is considered complete when all 12 domains have authority, gate ownership, child schema and verification linkage. This status is now 100%.
+- `G1_REQUIREMENTS_MATRIX.json` remains the controlling numerical/selection closure authority for G0/G1A/G1B/G1C/G1, and remains only 2.2% PASS.
+- Requirements remain distributed by functional child authority rather than copying all values into one giant file; this avoids silent divergence from existing evidence files.
+- Every future user-facing project progress output must include at least requirements-structure %, G1 system-freeze %, and backlog-DONE %; any broader engineering percentage must be labeled an estimate.
+- No final architecture, voltage class, MCU, driver, battery, rotor count, production BOM or verification result was selected by this run.
 
 ## Calculations / evidence added
-- Exact sensing sequencing/fault-state classification for S1–S4.
-- Parametric divider/op-amp/ADC dynamic-settling model with no hidden product values.
-- Parametric common-condition MOSFET-loss screening framework with no hidden VBUS/current/PWM assumptions.
-- Source-backed gate-driver and auxiliary-power voltage-domain architecture alternatives.
-- Candidate-BOM dependency/status map identifying which parts are source-backed candidates versus G1-blocked/open functions.
 
-## Primary evidence
-- ST STM32G474 DS12288 and STM32G474RE product documentation.
-- Analog Devices LT6015/LT6016/LT6017 datasheet and powered-down high-input-impedance technical note.
-- TI UCC27282/UCC27282-Q1 product and datasheet documentation.
-- TI UCC27712/UCC27712-Q1 product and datasheet documentation.
-- TI UCC21540-Q1 product and datasheet documentation.
-- ADI LTC3639 product/datasheet documentation.
-- ADI LTC7801 product/datasheet documentation.
-- Existing repository B1 source/BOM/traceability evidence.
+- Requirements structure coverage: 12 defined domains / 12 planned domains = 100%.
+- G1 value closure: 1 PASS / 46 required rows = 2.17%, reported as 2.2%.
+- Conservative backlog completion: 1 DONE / 25 tasks = 4%.
+- Major gate closure: 0 / 8 = 0%.
+
+These are repository-state metrics, not subjective engineering-completion estimates.
 
 ## Assumptions and evidence level
-- STM32 PA0 / TT_a mapping: REPOSITORY + PRIMARY ST EVIDENCE.
-- LT6015-family powered-down input behavior: PRIMARY ADI EVIDENCE.
-- Shared LT6017 + STM32 analog shutdown domain: ARCHITECTURE STUDY RULE, not final selection.
-- UCC27282/UCC27712/UCC21540-Q1 and LTC3639/LTC7801: PRIMARY-SOURCE TRADE CANDIDATES, not selections.
-- Dynamic calculation scripts: FIRST-ORDER SCREENING TOOLS, not SPICE/bench or qualification evidence.
-- Preliminary U1 BOM: CANDIDATE/DEPENDENCY MATRIX ONLY.
-- No physical measurements were performed.
+
+- 70–100 kg remains the user target payload range, not MTOW: USER TARGET / repository evidence.
+- Requirements structure 100%: STRUCTURAL COVERAGE METRIC relative to the explicitly planned 12-domain hierarchy; it is not a claim that no future derived requirement can ever be added.
+- G1 2.2%: DIRECT REPOSITORY MATRIX COUNT from `G1_REQUIREMENTS_MATRIX.json`.
+- Backlog 4%: DIRECT REPOSITORY STATUS COUNT from `uav_backlog.json`; IN_PROGRESS and safe G2 prework are intentionally excluded from DONE.
+- No physical measurement, SPICE result, flight validation or production qualification was introduced.
 
 ## Unresolved blockers
-- G0 nominal payload, airframe/battery/equipment mass, actual MTOW, mission duration/profile, environment and degraded/single-motor-failure policy.
-- Final rotor architecture/thrust margin and product motor/prop operating point.
+
+- G0 nominal payload, airframe/battery/equipment mass, MTOW, mission duration/profile, environment and degraded/single-motor-failure policy.
+- Final rotor architecture/thrust margin and selected motor/prop operating point.
 - Motor pole pairs, phase RMS/peak current, eRPM and final PWM envelope.
-- Battery min/nom/full-charge/transient envelope and pack current/energy/sag/disconnect behavior.
+- Battery series/min/nom/full-charge/transient envelope, current, usable energy, sag and disconnect behavior.
 - Final switching/harness/regen/BMS-disconnect transient ceiling.
-- Final MOSFET voltage class/parallel count/hot-loss/SOA/cooling.
-- Final gate-driver architecture and required gate-current/timing/fault coverage.
-- Final auxiliary load budget and converter topology.
-- Final sensing range/error/bandwidth/series impedance and powered/unpowered bench proof.
-- Exact DC-link capacitors, precharge, fuse, regen clamp/brake path, connectors and production BOM.
+- Final semiconductor class/count, gate driver, auxiliary converter, sensing topology and thermal architecture.
+- Exact DC-link capacitors, shunt, fuse, precharge, regen clamp, connectors and production BOM.
+- Physical bench/dyno/flight evidence.
 
 ## Regressions / risks discovered
+
 - No repository regression identified in this run.
-- A higher-VDS MOSFET choice alone does not solve support-IC voltage-domain limitations.
-- Bootstrap absolute-maximum voltage can be materially different from the normal switch-node operating limit; those values must not be conflated.
-- Isolated gate drivers can solve level-shift voltage-domain issues while introducing isolated-bias and CMTI/creepage/timing complexity.
-- The simplified loss and sensing models can create false precision if caller inputs are guessed; therefore they require explicit inputs and label outputs as screening-only.
-- Preliminary BOM candidates must not be interpreted as orderable production BOM completeness.
+- A 100% structure metric can be misread as product completion; the repository now explicitly prevents that interpretation by pairing it with the 2.2% G1 value-closure metric.
+- A single monolithic copied requirement table would risk divergence from `mission_requirements.json`, G1 matrix and specialized evidence files; therefore the new master points to child authorities instead of duplicating unsupported values.
+- Future derived requirements may be added under the existing domains without reducing current planned-domain structure coverage; such additions must still follow the mandatory child schema.
 
 ## Exact next recommended tasks
-1. Inventory the existing B1 auxiliary loads and power domains from repository evidence, producing a bounded legacy load budget without promoting it to a U1 requirement.
-2. Begin a primary-source STM32G474 vs TMS320F280041C control-platform pretrade focused on PWM/ADC synchronization, hardware trip, CAN, processing/motor-control resources and toolchain, without selecting a winner before G1/G2.
-3. Add placeholder-only input templates for `hv_sense_dynamic_model.py` and `power_stage_loss_calculator.py`; no numeric product defaults.
-4. Deepen the candidate BOM only where exact MPN/footprint evidence is independent of unresolved G1 ratings.
-5. Keep all vehicle-dependent G0/G1 fields OPEN until actual product inputs are supplied or explicitly approved.
+
+1. Inventory existing B1 auxiliary loads and power domains from repository evidence to produce a bounded legacy load budget without promoting it to a U1 requirement.
+2. Begin primary-source STM32G474 vs TMS320F280041C control-platform pretrade focused on PWM/ADC synchronization, trip resources/latency, CAN, motor-control resources, execution/toolchain and availability; do not select a winner before parent requirements close.
+3. Map any newly derived requirements from those studies into the appropriate master domain/child authority while keeping unresolved values OPEN.
+4. Deepen `U1_BOM_CANDIDATES.json` only where exact support-part evidence is independent of unresolved G1 ratings.
+5. Keep vehicle-dependent G0/G1 values OPEN until supplied or explicitly approved.
 
 ## Dependency chain
-`G0 vehicle inputs -> G1A rotor selection -> G1B product operating point + motor electrical data -> G1C battery/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 U1 schematic -> U1 production BOM/PCB/firmware -> physical validation`
+
+`G0 vehicle inputs -> G1A rotor selection -> G1B operating point -> G1C battery/transient -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 U1 schematic/BOM -> G4 firmware -> G5 prototype -> G6 propulsion verification -> G7 flight readiness`
 
 ## Next-run briefing
-Do not repeat the sensing sequencing or generic gate-driver voltage search. Start by extracting the B1 auxiliary load/domain budget from repository evidence, then begin the STM32G474 vs TMS320F280041C primary-source control-platform pretrade. Use the new driver/aux candidates only as trade anchors; do not select them until G1 transient, gate-charge/PWM and auxiliary load requirements close. Preserve all vehicle-dependent fields as OPEN/null.
+
+The requirement-domain/schema work is no longer the critical path. Do not spend the next run reformatting requirements. Start with the B1 auxiliary-load/power-domain inventory, then move directly into the STM32G474 vs TMS320F280041C control-platform pretrade. Any new requirement discovered should be linked into the existing SYS/VEH/PROP/PWR/INV/SNS/CTRL/SAF/IF/ENV/MFG/VER hierarchy rather than creating a new parallel requirements system. Report requirements structure %, G1 value closure %, and backlog DONE % in the user-facing output.
