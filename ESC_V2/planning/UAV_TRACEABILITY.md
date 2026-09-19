@@ -12,15 +12,15 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-003 | FOC + SVPWM | Hedef | Firmware yok | KEEP target | SIL + bench |
 | TR-004 | Sensorless | Hedef/opsiyon | Firmware yok | REVALIDATE | startup/observer tests |
 | TR-005 | 3 low-side shunt | Seçili | Mevcut | REVALIDATE | phase current + PWM windows |
-| TR-006 | DC-bus + U/V/W sensing | Var | Var | KEEP + RECALCULATE | final VBUS/transient |
+| TR-006 | DC-bus + U/V/W sensing | Var | Var | KEEP + RECALCULATE; existing divider ideal FS ~102.5 V but transient/injection/working-voltage proof open | final VBUS/transient + divider/clamp audit |
 | TR-007 | CAN | Var | Var | KEEP | FC protocol/failsafe |
 | TR-008 | SPI gate-driver | Var | Var | KEEP | final driver |
 | TR-009 | service/debug | UART/JTAG | SWD/UART | KEEP functionally | MCU pin contract |
-| TR-010 | Gate driver | DRV8353 | DRV8353FSRTAR | REVALIDATE | VBUS, Qg, PWM, OCP |
+| TR-010 | Gate driver | DRV8353 | DRV8353FSRTAR | REVALIDATE; shares unresolved 100 V-domain ceiling | VBUS transient, Qg, PWM, OCP |
 | TR-011 | MCU | TMS320F280041C | STM32G474RET3 | OPEN trade | timing/trip/FOC benchmark |
-| TR-012 | Aux buck | LM5164 | LM5164 | REVALIDATE | final VBUS transient/load/precharge |
-| TR-013 | MOSFET | CSD19536KTT single/switch | parallel candidate | RECALCULATE / REPLACE | VDS/loss/SOA/thermal/sharing |
-| TR-014 | MOSFET voltage class | 100 V | 100 V target | OPEN; 18S makes margin study critical | `battery_architecture_pretrade.md` + transient ceiling |
+| TR-012 | Aux buck | LM5164 | LM5164 | REVALIDATE; 100 V input domain couples it to bus transient requirement | final VBUS transient/load/precharge |
+| TR-013 | MOSFET | CSD19536KTT single/switch | 2 parallel/switch candidate | RECALCULATE / REPLACE | `POWER_STAGE_LOSS_MODEL.md`, VDS/loss/SOA/thermal/sharing |
+| TR-014 | MOSFET voltage class | 100 V | 100 V target | OPEN; compare 100/120/150 V only at common verified envelope | `POWER_STAGE_LOSS_MODEL.md` + transient ceiling |
 | TR-015 | PWM | 40 kHz | 20 kHz | RECALCULATE | motor L + switching loss |
 | TR-016 | continuous phase current | 60 A RMS | 80 A RMS target | OPEN | motor operating points |
 | TR-017 | overload/peak phase current | ~80/~100 A | 120 A SW/150 A sense | OPEN | motor operating points + duration |
@@ -28,9 +28,9 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-019 | Battery | 12–60 V generic | 13S | OPEN; carry ~50–53 V and 18S/69 V families | `battery_architecture_pretrade.md` |
 | TR-020 | Hardware trip | CMPSS/Trip Zone + driver | dedicated trip logic | KEEP principle + REVALIDATE | latency/threshold/reset |
 | TR-021 | Motor temp | desired | TEMP_MOTOR | KEEP | sensor/fault policy |
-| TR-022 | DC-link | open | candidate | RECALCULATE | ripple/ESR/life/transient |
-| TR-023 | Precharge | open | open issue | OPEN P0 | aux load/timeout/pulse |
-| TR-024 | Regen/BMS disconnect | conceptual | regen initially disabled | OPEN P0 | energy acceptance/OV path |
+| TR-022 | DC-link | open | 3x470uF 100V bulk + 3x2.2uF 100V local, exact cap MPNs open | RECALCULATE / NOT 18S QUALIFIED | `B1_EXACT_VBUS_BOM_AUDIT.md`, ripple/ESR/life/transient |
+| TR-023 | Precharge | open | external assembly required, exact design open | OPEN P0 | input-module electrical contract |
+| TR-024 | Regen/BMS disconnect | conceptual | external brake interface, clamp sizing open | OPEN P0 | energy acceptance/OV path |
 | TR-025 | Parallel FET sharing | not primary | candidate | OPEN | symmetry/thermal/gate loops |
 | TR-026 | Control PCB | concept | partial PoC | REUSE selectively | G2/G3 review |
 | TR-027 | Power PCB | concept | incomplete | NEW DESIGN after freeze | power/thermal/mechanical review |
@@ -43,6 +43,8 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 - XAG P150 Max, 136 kg spraying MTOW sınıfında dört eksenli 4.85 kW rated motor ve 140 A continuous ESC kullanıyor; bu, eski 3 kW B1'in ağır quad için ürün rating'i sayılamayacağını destekliyor.
 - Hobbywing X15 G2, 37.5 kg/axis önerilen yükte 18S/69 V, 4.64 kW rated input, 120 A continuous ve 300 A/3 s ESC ile doğrudan ağır-zirai propulsion referansı sağlıyor.
 - 18S tam şarj 75.6 V olduğundan 100 V MOSFET sınıfı transient kanıtı olmadan dondurulamaz.
+- B1 exact BOM audit: ana DC-link bankı ve local inverter ceramics nominal 100 V ve exact capacitor MPN'leri açık; 160 V etiketli parçalar yalnız LM5164 girişindeki yerel kapasitörlerdir. Bu nedenle 'B1 has 160 V capacitors' ifadesi 18S power-stage qualification kanıtı değildir.
+- B1 DC input protection ve regen clamp/chopper işlevleri harici modül/interface olarak bırakılmıştır; final transient ceiling bu modüller tanımlanmadan kapanmaz.
 - Aynı güçte 69 V bus, 52.5 V bus'a göre ideal DC akımı yaklaşık %24 azaltır; iletken I²R kaybı ilk mertebede yaklaşık %42 azalır. Bu yalnız bus-level trade'dir.
 
 ## Korunacak çekirdek
