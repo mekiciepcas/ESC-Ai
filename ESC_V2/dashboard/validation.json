@@ -3,11 +3,11 @@
   "source_consistency_validation": "PASS",
   "legacy_dashboard_leak_check": "PASS",
   "task_cards": 25,
-  "local_links_checked": 26,
+  "local_links_checked": 33,
   "embedded_json_matches_snapshot": true,
   "required_sections_checked": 7,
   "source_fields_checked": 16,
-  "plan_revision": "UAV-PLAN-09",
+  "plan_revision": "UAV-PLAN-10",
   "browser_visual_validation": "NOT_PERFORMED",
   "note": "Validation proves generated HTML/snapshot consistency with current repository records; it is not a browser rendering or engineering-design qualification test."
 }
