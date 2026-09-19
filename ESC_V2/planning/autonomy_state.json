@@ -1,24 +1,20 @@
 {
-  "revision":"AUTO-STATE-18",
+  "revision":"AUTO-STATE-19",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_SENSE_MODELS_PRELIM_BOM_AND_HIGH_VOLTAGE_DRIVER_AUX_TRADE",
+  "last_run_status":"PROGRESS_REQUIREMENTS_STRUCTURE_AUTHORITY_COMPLETE",
   "current_gate":"G0_G1",
   "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION_WITH_SAFE_G2_PREWORK",
   "current_task":"AUXILIARY_LOAD_BUDGET_AND_CONTROL_PLATFORM_PRETRADE",
   "completed_this_run":[
-    "verified_latest_handoff_product_plan_backlog_mission_requirements_traceability_and_autonomy_state_against_uav_rebaseline",
-    "mapped_B1_V_BUS_ADC_U1701_pin8_to_STM32G474_LQFP64_PA0_TT_a_primary_source_pin_structure",
-    "closed_LT6017_study_input_output_power_sequence_analysis_into_four_explicit_states",
-    "prohibited_buffer_ON_MCU_VDDA_OFF_as_normal_study_state_without_separate_proof",
-    "defined_shared_LT6017_and_STM32_analog_shutdown_domain_as_preferred_study_rule_not_production_freeze",
-    "added_parametric_HV_sense_divider_opamp_ADC_settling_model_with_all_product_inputs_mandatory",
-    "added_condition_normalized_power_stage_loss_calculator_skeleton_with_no_hidden_ESC_defaults",
-    "created_and_deepened_U1_preliminary_BOM_candidate_matrix_with_candidate_legacy_blocked_open_statuses",
-    "built_primary_source_gate_driver_voltage_domain_trade_with_DRV8353_UCC27282_UCC27712_UCC21540Q1_anchors",
-    "built_primary_source_auxiliary_supply_voltage_domain_trade_with_LM5164_LTC3639_LTC7801_anchors",
-    "updated_UAV_traceability_for_sensing_sequence_loss_model_driver_aux_and_BOM_evidence"
+    "verified_latest_handoff_product_plan_G1_matrix_backlog_mission_requirements_traceability_and_autonomy_state_against_uav_rebaseline",
+    "created_top_level_REQUIREMENTS_MASTER_authority_with_12_domain_hierarchy_and_anti_hallucination_rules",
+    "created_human_readable_REQUIREMENTS_SPEC_with_gate_and_status_semantics",
+    "created_REQUIREMENTS_VERIFICATION_MATRIX_with_domain_verification_methods_and_evidence_levels",
+    "created_machine_readable_REQUIREMENTS_PROGRESS_percentage_snapshot",
+    "updated_REQUIREMENTS_COMPLETION_CHECKLIST_to_distinguish_100_percent_structure_from_2p2_percent_G1_value_closure",
+    "established_percentage_reporting_policy_for_each_user_facing_project_output"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
@@ -33,27 +29,31 @@
   "next_candidates":[
     "inventory_existing_B1_auxiliary_loads_and_power_domains_to_create_an_evidence_based_aux_load_budget_without_assuming_U1_values",
     "begin_primary_source_STM32G474_vs_TMS320F280041C_control_platform_pretrade_focused_on_PWM_ADC_trip_CAN_and_FOC_execution_resources_without_selecting_a_winner",
-    "prepare_placeholder_input_templates_for_hv_sense_dynamic_model_and_power_stage_loss_calculator_without_numeric_product_defaults",
+    "map_new_derived_requirements_into_child_authorities_as_they_are_created_without_changing_OPEN_values",
     "deepen_U1_BOM_CANDIDATES_only_where_exact_orderable_support_part_evidence_is_independent_of_open_G1_ratings",
     "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
+  "progress_percentages":{
+    "requirements_structure_percent":100.0,
+    "g1_system_freeze_percent":2.2,
+    "backlog_done_percent":4.0,
+    "major_gate_closure_percent":0.0
+  },
+  "reporting_policy":{"include_progress_percentages_in_every_user_facing_project_output":true,"minimum_metrics":["requirements_structure_percent","g1_system_freeze_percent","backlog_done_percent"],"label_estimated_percentages_as_estimates":true},
   "evidence_refs":[
-    "planning/HV_SENSE_OUTPUT_SEQUENCING.md",
-    "planning/hv_sense_dynamic_model.py",
-    "planning/hv_sense_error_model.py",
-    "planning/power_stage_loss_calculator.py",
-    "planning/U1_BOM_CANDIDATES.json",
-    "planning/GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md",
-    "planning/SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md",
+    "planning/REQUIREMENTS_MASTER.json",
+    "planning/REQUIREMENTS_SPEC.md",
+    "planning/REQUIREMENTS_VERIFICATION_MATRIX.json",
+    "planning/REQUIREMENTS_PROGRESS.json",
+    "planning/REQUIREMENTS_COMPLETION_CHECKLIST.md",
+    "planning/G1_REQUIREMENTS_MATRIX.json",
+    "planning/UAV_PRODUCT_PLAN.md",
     "planning/UAV_TRACEABILITY.md",
-    "hardware_b1/mcu_pin_contract.json",
-    "ST STM32G474 DS12288",
-    "Analog Devices LT6015_LT6016_LT6017 datasheet and powered-down high-input-impedance technical note",
-    "TI UCC27282 UCC27712 UCC21540-Q1 primary product/datasheet evidence",
-    "ADI LTC3639 and LTC7801 primary product evidence"
+    "planning/uav_backlog.json",
+    "planning/mission_requirements.json"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"This run now covers sensing output sequencing, dynamic sensing and MOSFET screening tools, a preliminary U1 BOM evidence matrix, and credible higher-voltage gate-driver/auxiliary-power alternatives. No candidate is selected. The next safe work is to quantify the existing B1 auxiliary load domains from repository evidence and begin the MCU/control-platform pretrade, while all vehicle-dependent G0/G1 values remain OPEN."
+  "notes":"The planned requirements domain/schema structure is now complete and centrally governed. This is not system freeze: only 1 of 46 G1 rows passes, so G1 value closure remains 2.2 percent. Continue independent safe prework while vehicle-specific G0 fields remain OPEN."
 }
