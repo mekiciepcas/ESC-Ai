@@ -1,0 +1,83 @@
+{
+  "revision": "CONCEPT-VEHICLE-PRETRADE-01",
+  "date": "2026-09-19",
+  "status": "TRADE_STUDY_ONLY_NOT_PRODUCT_REQUIREMENT",
+  "reason": "Mechanical design is not yet available, so product-specific G0 mass, span, mission and environment values remain OPEN. This file enables bounded concept work without promoting competitor values into requirements.",
+  "user_target": {
+    "application": "heavy_lift_agricultural_multirotor_uav",
+    "payload_min_kg": 70,
+    "payload_max_kg": 100,
+    "evidence": "USER_TARGET"
+  },
+  "market_benchmarks": [
+    {
+      "id": "BM-DJI-T70P",
+      "source_type": "PRIMARY_MANUFACTURER",
+      "manufacturer": "DJI",
+      "model": "AGRAS T70P",
+      "source_url": "https://ag.dji.com/t70p/specs",
+      "facts": {
+        "spray_payload_kg": 70,
+        "aircraft_weight_with_battery_kg": [52, 56],
+        "max_takeoff_weight_kg": [102, 105, 115, 118.5, 126, 130],
+        "motor_kv_rpm_per_v": 65,
+        "propeller_diameter_in": 62,
+        "propeller_quantity_listed": 4,
+        "battery_nominal_voltage_v": 52,
+        "operating_temperature_c": [0, 40],
+        "max_wind_resistance_m_s": 6
+      }
+    },
+    {
+      "id": "BM-DJI-T100",
+      "source_type": "PRIMARY_MANUFACTURER",
+      "manufacturer": "DJI",
+      "model": "AGRAS T100",
+      "source_url": "https://ag.dji.com/t100/specs",
+      "facts": {
+        "spray_payload_kg": 100,
+        "aircraft_weight_spraying_kg": 75,
+        "max_takeoff_weight_spraying_kg": 175,
+        "motor_kv_rpm_per_v": 60,
+        "propeller_diameter_in": 62,
+        "propeller_quantity_text": "8 pairs",
+        "battery_nominal_voltage_v": 52,
+        "operating_temperature_c": [0, 40],
+        "max_wind_resistance_m_s": 6
+      }
+    }
+  ],
+  "screening_cases": {
+    "note": "These are deliberately non-binding engineering sweep points selected to span the two primary-source commercial reference classes. They are not G0 values and must not be copied into mission_requirements.json.",
+    "mtow_cases_kg": [130, 150, 175],
+    "rotor_count_cases": [4, 6, 8],
+    "hover_load_matrix": [
+      {"mtow_kg":130,"rotor_count":4,"hover_kgf_per_rotor":32.5,"hover_n_per_rotor":318.7},
+      {"mtow_kg":130,"rotor_count":6,"hover_kgf_per_rotor":21.67,"hover_n_per_rotor":212.5},
+      {"mtow_kg":130,"rotor_count":8,"hover_kgf_per_rotor":16.25,"hover_n_per_rotor":159.4},
+      {"mtow_kg":150,"rotor_count":4,"hover_kgf_per_rotor":37.5,"hover_n_per_rotor":367.7},
+      {"mtow_kg":150,"rotor_count":6,"hover_kgf_per_rotor":25.0,"hover_n_per_rotor":245.2},
+      {"mtow_kg":150,"rotor_count":8,"hover_kgf_per_rotor":18.75,"hover_n_per_rotor":183.9},
+      {"mtow_kg":175,"rotor_count":4,"hover_kgf_per_rotor":43.75,"hover_n_per_rotor":429.0},
+      {"mtow_kg":175,"rotor_count":6,"hover_kgf_per_rotor":29.17,"hover_n_per_rotor":286.0},
+      {"mtow_kg":175,"rotor_count":8,"hover_kgf_per_rotor":21.88,"hover_n_per_rotor":214.5}
+    ],
+    "thrust_reserve_factor": null,
+    "coaxial_allowed": null,
+    "vehicle_span_m": null,
+    "flight_time_min": null
+  },
+  "allowed_use": [
+    "architecture sensitivity study",
+    "motor_prop_candidate search space",
+    "ESC voltage_current envelope sensitivity study",
+    "mechanical-electrical co-design iteration planning"
+  ],
+  "forbidden_use": [
+    "G0 closure",
+    "G1 PASS promotion",
+    "production component selection",
+    "flight qualification claim"
+  ],
+  "anti_hallucination_rule": "All benchmark and screening values must retain source/status labels. Product requirements remain null until derived from user-approved mechanical/mission design or later validated system design evidence."
+}
