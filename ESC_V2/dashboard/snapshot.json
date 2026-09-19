@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-09-19T17:23:27+00:00",
-  "source_commit": "92f74e4f1dba",
+  "generated_at": "2026-09-19T18:42:57+00:00",
+  "source_commit": "c4d1fa08ba4e",
   "plan_revision": "UAV-PLAN-07",
   "task_count": 25,
   "done_count": 2,
   "active_count": 5,
   "blocked_count": 18,
   "requirements_structure_percent": 100.0,
-  "g1_system_freeze_percent": 54.3,
+  "g1_system_freeze_percent": 60.9,
   "backlog_done_percent": 8.0,
   "major_gate_closure_percent": 0.0,
   "u1_kicad_scaffold_percent": 100.0,
@@ -15,6 +15,6 @@
   "schematic_revision_control_percent": 100.0,
   "missing_g0_inputs": 11,
   "next_schematic_revision": "U1-SCH-R001",
-  "current_task": "S1_1_PHASE_CURRENT_MODEL_CLOSURE",
-  "last_run_status": "PROGRESS_PLAN_AUDITED_SPRINT_S1_ACTIVATED_TRACEABILITY_ALIGNED"
+  "current_task": "S1_2_PWM_RIPPLE_SWITCHING_LOSS",
+  "last_run_status": "PB04_MISSION_DURATION_ERPM_FROZEN_PWM_REMAINS_OPEN"
 }
