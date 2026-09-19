@@ -1,5 +1,5 @@
 {
-  "revision": "UAV-PLAN-01",
+  "revision": "UAV-PLAN-02",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "authority": "planning/UAV_PRODUCT_PLAN.md",
@@ -35,21 +35,25 @@
       "id": "UAV-002",
       "title": "Rotor architecture trade study",
       "priority": "P0",
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "gate": "G1",
       "dependencies": ["UAV-001"],
       "output": "rotor_trade_study.md",
-      "acceptance": "Rotor count, hover thrust per rotor, maximum thrust per rotor and thrust margin are numerically defined."
+      "evidence": ["rotor_trade_study.md", "X15_SCENARIO_MAPPING.md"],
+      "acceptance": "Rotor count, hover thrust per rotor, maximum thrust per rotor and thrust margin are numerically defined.",
+      "remaining": "Trade calculations exist; final rotor architecture and thrust margin remain blocked by G0 MTOW/failure policy."
     },
     {
       "id": "UAV-003",
       "title": "Heavy-lift propulsion market benchmark",
       "priority": "P0",
-      "status": "TODO",
+      "status": "DONE",
       "gate": "G1",
-      "dependencies": ["UAV-001"],
+      "dependencies": [],
       "output": "propulsion_benchmark.md",
-      "acceptance": "At least two current motor/propulsion candidates have source-backed thrust, power, voltage and current operating data."
+      "evidence": ["propulsion_benchmark.md", "propulsion_operating_points.json", "x15g2_operating_curve.json"],
+      "acceptance": "At least two current motor/propulsion candidates have source-backed thrust, power, voltage and current operating data.",
+      "closure_note": "Acceptance satisfied by multiple current heavy-lift/agricultural propulsion references including full X15 G2 source-backed operating curve. Product operating-point selection remains UAV-004."
     },
     {
       "id": "UAV-004",
@@ -57,7 +61,7 @@
       "priority": "P0",
       "status": "BLOCKED",
       "gate": "G1",
-      "dependencies": ["UAV-002", "UAV-003"],
+      "dependencies": ["UAV-001", "UAV-002", "UAV-003"],
       "output": "propulsion_operating_points.json",
       "acceptance": "Hover and max-thrust operating points are selected with motor speed, input power and current."
     },
