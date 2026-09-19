@@ -1,0 +1,179 @@
+{
+  "revision": "PB-02",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "supersedes": "PRODUCT_BASELINE_PB-01.json",
+  "purpose": "Convert the frozen X8 architecture into a coherent mass, thrust, propulsion-class, battery-series and ESC DC capability baseline suitable for continued product design.",
+  "change_control": {
+    "rule": "PB-02 inherits all PB-01 frozen decisions. Any change to a FROZEN decision requires PB-03 or an explicitly linked engineering change record; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "inherited_pb01_decisions": [
+    "70-100 kg payload target",
+    "X8 coaxial 4-arm / 8 independent propulsion channels",
+    "controlled landing required after one motor/ESC loss",
+    "full-charge DC-bus outer ceiling <=80 V",
+    "repetitive controlled semiconductor-terminal stress <=120 V",
+    "power semiconductor class >=150 V",
+    "three independent high-voltage half-bridge gate-driver architecture",
+    "CAN-FD capable / Classic CAN compatible flight-controller interface",
+    "power-up/reset disarmed; no automatic re-arm after fault",
+    "3-phase BLDC/PMSM + two-level six-switch VSI + FOC/SVPWM capability"
+  ],
+  "new_frozen_decisions": [
+    {
+      "id": "PB-011",
+      "field": "payload_nominal_kg",
+      "value": 85,
+      "status": "FROZEN_ENGINEERING_PRODUCT_DECISION",
+      "rationale": "85 kg is the controlled nominal design point centered in the already frozen 70-100 kg product payload envelope."
+    },
+    {
+      "id": "PB-012",
+      "field": "vehicle_operating_empty_mass_budget_kg",
+      "value": 80,
+      "comparison": "<=",
+      "status": "FROZEN_DESIGN_TARGET",
+      "definition": "Vehicle with propulsion, battery, structure, avionics and fixed mission hardware, excluding variable payload.",
+      "rationale": "An 80 kg non-payload mass budget makes the 100 kg payload product a 180 kg MTOW-class vehicle while remaining close to current heavy-agriculture mass precedent. This is a mechanical/electrical co-design requirement, not a measured achieved mass."
+    },
+    {
+      "id": "PB-013",
+      "field": "gross_takeoff_mass_targets_kg",
+      "value": {"min_payload_case": 150, "nominal_payload_case": 165, "max_payload_case": 180},
+      "status": "FROZEN_DESIGN_TARGET",
+      "derivation": "80 kg operating-empty-mass budget + 70/85/100 kg payload."
+    },
+    {
+      "id": "PB-014",
+      "field": "coaxial_thrust_sizing_factor",
+      "value": 0.85,
+      "status": "FROZEN_SIZING_FACTOR_PENDING_PHYSICAL_CORRELATION",
+      "meaning": "Preliminary sizing treats each coaxial rotor's effective thrust as 85% of isolated-propeller bench thrust. The final vehicle must satisfy the frozen thrust requirements regardless of actual measured interaction.",
+      "rationale": "Published coaxial-octocopter studies report roughly 12-16% hover thrust loss for representative coaxial configurations; 0.85 is a conservative product-sizing factor until our geometry is bench correlated.",
+      "external_evidence": [
+        "https://www.sciencedirect.com/science/article/pii/S1000936124004096",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC10386733/"
+      ]
+    },
+    {
+      "id": "PB-015",
+      "field": "normal_static_thrust_to_weight_min",
+      "value": 1.6,
+      "comparison": ">=",
+      "status": "FROZEN_DESIGN_REQUIREMENT",
+      "rationale": "Provides maneuver/control reserve above hover while avoiding sizing solely at laboratory maximum thrust."
+    },
+    {
+      "id": "PB-016",
+      "field": "propulsion_design_class",
+      "value": {
+        "propeller_class": "56x20_inch_folding",
+        "motor_kv_rpm_per_v": 45,
+        "motor_pole_count_reference": 42,
+        "battery_class": "18S_LITHIUM",
+        "isolated_rated_thrust_per_axis_kgf_min": 27,
+        "isolated_max_thrust_per_axis_kgf_min": 60,
+        "propulsion_unit_mass_target_kg_max": 4.3
+      },
+      "status": "FROZEN_PERFORMANCE_CLASS_EXACT_MPN_OPEN",
+      "reference_anchor_not_selection": "Hobbywing X13 G2 + MFP 56x20",
+      "rationale": "At the PB-02 180 kg MTOW and 0.85 coaxial factor, normal hover requires 26.47 kgf isolated-equivalent per rotor, which fits the 27 kgf rated class. The 56-inch class saves about 10.8 kg across eight axes versus the X15 G2 63-inch benchmark while retaining adequate thrust reserve.",
+      "primary_evidence": [
+        "https://www.hobbywing.com/en/products/x13-g2",
+        "PROPULSION_SCREENING_PRETRADE.json"
+      ]
+    },
+    {
+      "id": "PB-017",
+      "field": "required_hover_thrust_per_rotor",
+      "value": {
+        "nominal_mtow_165kg_vehicle_share_kgf": 20.625,
+        "nominal_isolated_equivalent_with_0p85_factor_kgf": 24.265,
+        "max_mtow_180kg_vehicle_share_kgf": 22.5,
+        "max_mtow_isolated_equivalent_with_0p85_factor_kgf": 26.471
+      },
+      "status": "FROZEN_DERIVED_REQUIREMENT"
+    },
+    {
+      "id": "PB-018",
+      "field": "required_thrust_reserve_per_rotor",
+      "value": {
+        "normal_1p6_TW_at_180kg_isolated_equivalent_kgf": 42.353,
+        "single_channel_loss_180kg_controlled_landing_isolated_equivalent_per_remaining_rotor_kgf": 30.252,
+        "minimum_isolated_max_thrust_capability_kgf": 43
+      },
+      "status": "FROZEN_DERIVED_REQUIREMENT",
+      "note": "Controlled landing remains a vehicle-level requirement; these calculations establish thrust availability targets, not proof of controllability."
+    },
+    {
+      "id": "PB-019",
+      "field": "battery_series_architecture",
+      "value": {
+        "series_count": 18,
+        "chemistry_class": "LiPo_or_equivalent_high_rate_lithium_4p2V_max_cell",
+        "nominal_cell_v": 3.7,
+        "nominal_bus_v": 66.6,
+        "full_charge_bus_v": 75.6
+      },
+      "status": "FROZEN_ARCHITECTURE_CAPACITY_STILL_OPEN",
+      "rationale": "18S supports the selected 45KV/56-inch propulsion class and remains below the inherited 80 V full-charge ceiling. Pack Ah/Wh and exact cell/pouch remain open until mission-energy closure."
+    },
+    {
+      "id": "PB-020",
+      "field": "esc_dc_input_capability",
+      "value": {
+        "continuous_current_a_min": 70,
+        "peak_current_a_min": 200,
+        "peak_duration_s_min": 3,
+        "continuous_input_power_w_min_at_reference_bus": 4800,
+        "short_duration_input_power_w_min": 11500
+      },
+      "status": "FROZEN_DC_CAPABILITY_PHASE_CURRENT_STILL_OPEN",
+      "rationale": "Manufacturer 69 V X13 G2 curve places PB-02 max-MTOW hover near 44 A / 3.05 kW per isolated-equivalent axis, one-channel-loss landing near 54 A / 3.73 kW, and the 1.6 T/W point near 91 A / 6.26 kW. A 70 A continuous / 200 A 3 s DC capability preserves continuous degraded-landing margin and short-duration maneuver/fault reserve.",
+      "primary_evidence": ["https://www.hobbywing.com/products/x13-g2"]
+    },
+    {
+      "id": "PB-021",
+      "field": "controller_electrical_speed_capability",
+      "value": {
+        "reference_motor_pole_pairs": 21,
+        "reference_max_mechanical_rpm": 2478,
+        "reference_max_electrical_rpm": 52038,
+        "required_controller_capability_electrical_rpm_min": 60000
+      },
+      "status": "FROZEN_CONTROL_CAPABILITY_REQUIREMENT",
+      "rationale": "60 keRPM provides margin over the X13-class 45KV/42-pole manufacturer reference curve. Exact production motor remains open within the frozen propulsion performance class."
+    }
+  ],
+  "derived_reference_points_at_69v": {
+    "source": "Hobbywing X13 G2 MFP56x20 manufacturer load curve, interpolated only between published adjacent points",
+    "max_mtow_hover_isolated_equivalent": {"thrust_kgf": 26.471, "dc_current_a_approx": 44.23, "input_power_w_approx": 3052, "rpm_approx": 1632},
+    "single_channel_loss_controlled_landing_isolated_equivalent": {"thrust_kgf": 30.252, "dc_current_a_approx": 54.07, "input_power_w_approx": 3731, "rpm_approx": 1744},
+    "normal_1p6_TW_isolated_equivalent": {"thrust_kgf": 42.353, "dc_current_a_approx": 90.81, "input_power_w_approx": 6264, "rpm_approx": 2058},
+    "status": "SOURCE_BACKED_INTERPOLATION_NOT_PHYSICAL_VERIFICATION"
+  },
+  "mass_budget_check": {
+    "eight_propulsion_units_at_4p185kg_reference_kg": 33.48,
+    "remaining_mass_inside_80kg_operating_empty_budget_kg": 46.52,
+    "note": "The remaining budget must cover battery, frame/arms, tank/pump/fixed mission hardware, avionics, landing gear and wiring. The individual allocations are still open and will be closed by mechanical/energy co-design."
+  },
+  "still_open_after_pb02": [
+    "airframe structural mass allocation",
+    "battery mass, capacity, Wh and exact cell/pouch",
+    "fixed mission-equipment mass allocation",
+    "flight duration and reserve energy",
+    "ambient/altitude/wind/ingress requirements",
+    "exact rotor vertical spacing and arm geometry",
+    "exact motor/propeller production MPN",
+    "phase RMS/peak current",
+    "PWM frequency and motor inductance",
+    "exact 150 V MOSFET MPN and parallel count",
+    "exact gate-driver MPN",
+    "current sensing, DC-link, precharge and thermal implementation",
+    "connectors/harness and final MCU"
+  ],
+  "anti_hallucination_rule": "PB-02 values are controlled engineering requirements and sizing factors. Manufacturer curve interpolation is not a claim that the custom coaxial vehicle has already achieved those electrical or aerodynamic results. Physical correlation is mandatory at later gates."
+}
