@@ -1,120 +1,82 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 16:46+03:00  
+Date: 2026-09-19 16:58+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_B1_KICAD_BASELINE_CLEAN_AND_SUPPORT_PART_EVIDENCE`  
-Repository HEAD immediately before this handoff update: `3a0e2b8360b1a1ce76c3b76c34262a79311f6182`.
+Status: `PROGRESS_SCHEMATIC_VERSIONING_POLICY_ENFORCED`  
+Repository HEAD immediately before this handoff update: `5223e92b7ce1312aac1cbeb005368b5993c561a6`.
 
-## Progress percentages
+## Product/gate status
 
 - Requirements planned-domain/schema structure: **12/12 = 100%**.
 - G1 SYSTEM FREEZE value closure: **1/46 PASS = 2.2%**.
 - Backlog tasks explicitly DONE: **1/25 = 4%**.
 - Major product gates closed: **0/8 = 0%**.
 - U1 KiCad architecture scaffold: **100% structure coverage**.
-- U1 KiCad scaffold parser/netlist/ERC validation: **100% for the current zero-component scaffold only**.
-- U1 component-bearing production-intent schematic: **0%**, blocked by G1/G2.
-- Legacy B1 reproducible KiCad baseline audit: **100% for the recorded software-baseline scope only**.
+- U1 component-bearing production-intent schematic: **0%**, still blocked by G1/G2.
+- Legacy B1 reproducible KiCad software-baseline audit: complete for recorded scope only.
+- Schematic revision-control policy: **ACTIVE / mandatory**.
 
-The product counters are intentionally unchanged. This run produced concrete KiCad migration evidence and exact support-part evidence but did not fabricate mission inputs, electrical ratings or U1 selections.
+## New user-directed rule
 
-## Run summary
+All future schematic updates must use explicit engineering revisioning in addition to normal Git history. No superseded U1 schematic revision may be silently edited in place.
 
-This run converted the next migration task into observed KiCad 10 evidence. A non-destructive legacy-B1 CI job was added and executed. The first B1 ERC capture showed 198 warnings; these were not treated as 198 circuit defects. Inspection proved every warning was a footprint-link issue caused by headless CI seeing only the repository's custom `ESC_B1` footprint library. The workflow was then corrected to generate a CI-only effective footprint table from 155 installed standard KiCad libraries plus the local library, without changing B1 source. The repeated B1 audit then produced a non-empty netlist and zero messages from the enabled ERC checks. Ignored ERC categories are explicitly retained as unresolved review scope, so the zero-message result is not promoted to electrical or U1 qualification. In parallel, exact current identity/lifecycle/package-class evidence was added for legacy TPS62160DGKR and TLV75533PDBVR auxiliary parts; both remain REVALIDATE only.
+The policy is now recorded in:
 
-## Tasks attempted / completed
+- `planning/SCHEMATIC_VERSIONING_POLICY.md`
+- `planning/SCHEMATIC_REVISION_REGISTER.json`
 
-1. Re-read and verified current handoff/state, product plan, traceability, backlog, mission requirements, requirements master and progress against `uav-rebaseline`.
-2. Extended `.github/workflows/kicad-u1-verify.yml` with a non-destructive `audit-legacy-b1` job.
-3. Observed run `35446421819`: B1 netlist export succeeded and was non-empty; ERC returned 198 warnings and 0 errors.
-4. Downloaded/inspected the first B1 evidence artifact and classified all 198 warnings as `footprint_link_issues`, with counts: `Resistor_SMD` 98, `Capacitor_SMD` 50, `Package_TO_SOT_SMD` 19, `Diode_SMD` 12, `TestPoint` 12, `Package_SO` 6, `Package_QFP` 1.
-5. Verified the repository `hardware_b1/fp-lib-table` only maps the local `ESC_B1` footprint library.
-6. Updated the CI audit to build a runner-only effective footprint table using installed KiCad standard libraries while preserving the repository source file unchanged.
-7. Observed run `35446577458`, B1 job `105906426011`, with KiCad CLI `10.0.6` and **155 standard footprint libraries + ESC_B1 local** mapped in the runner.
-8. Verified B1 netlist export exit code `0` and non-empty netlist.
-9. Verified B1 ERC exit code `0`, **0 violations / 0 errors / 0 warnings** from the enabled checks.
-10. Recorded KiCad-reported ignored check categories: single-use global labels, four-way junctions, SPICE model issues and footprint-filter mismatches. These are not silently declared safe.
-11. Verified B1 audit artifact ID `10585184686`, size `33412` bytes, digest `sha256:e634de37cbfadc6fe9703bc5965360813e4a2410d1f90727db4981743c1da47e`.
-12. Added `B1_KICAD_BASELINE_AUDIT.json` with exact environment correction, run/job/artifact evidence and evidence-scope limits.
-13. Added `B1_SUPPORT_PART_EVIDENCE_AUDIT.md` with exact current manufacturer evidence for `TPS62160DGKR` and `TLV75533PDBVR`; both remain `REVALIDATE` and their headline current ratings are not used as U1 demand.
-14. Updated additive traceability through TR-049.
-15. Updated `autonomy_state.json` to AUTO-STATE-27.
-16. Kept all open G0/G1/G2 product values OPEN/null and did not populate component-bearing U1 hardware merely because the B1 source now parses cleanly.
+## Revision scheme
 
-## Files changed / added
+- `LEGACY-B1` — frozen migration/reference source. Do not edit `hardware_b1` electrical source in place.
+- `U1-SCH-R000` — existing zero-component architecture scaffold reference only. It is not a product schematic and does not close G3.
+- `U1-SCH-R001` — reserved as the first future component-bearing U1 revision once parent G1/G2 requirements permit it.
+- Subsequent electrical changes use monotonically increasing `U1-SCH-R002`, `R003`, ... identifiers. Revision numbers are never reused.
 
-- `.github/workflows/kicad-u1-verify.yml` — added B1 baseline audit and then added CI-only standard footprint-library resolution.
-- `planning/B1_KICAD_BASELINE_AUDIT.json` — new machine-readable legacy KiCad baseline evidence.
-- `planning/B1_SUPPORT_PART_EVIDENCE_AUDIT.md` — new exact legacy regulator evidence audit.
-- `planning/RUN_2026-09-19_1619_TRACEABILITY.md` — extended with TR-047..TR-049.
-- `planning/autonomy_state.json` — AUTO-STATE-27.
-- `planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
+Every future component-bearing revision must be a complete hierarchical KiCad project snapshot under a revision-specific directory rather than a single mutable child-sheet copy.
 
-## Engineering decisions / findings
+## Mandatory revision workflow
 
-- The first 198 B1 warnings were **environment/library-resolution warnings**, not evidence of 198 electrical defects.
-- The repository B1 source remains untouched by the library-resolution fix; only the CI working copy receives the full standard footprint table.
-- With the footprint environment made reproducible, KiCad 10.0.6 can parse the complete hierarchical B1 schematic, export a non-empty netlist and report zero messages from enabled ERC checks.
-- This does **not** make B1 electrically qualified for U1. B1 remains a legacy reference with obsolete/unfrozen voltage, current, PWM and architecture assumptions.
-- Ignored ERC categories must be explicitly reviewed before any future G3 schematic-design-review claim.
-- `TPS62160DGKR` and `TLV75533PDBVR` are legitimate active legacy revalidation anchors, but neither is selected for U1 because actual auxiliary topology/load/thermal/sequencing requirements are open.
+Before any `.kicad_sch` change:
 
-## Calculations / evidence added
+1. Read `SCHEMATIC_REVISION_REGISTER.json`.
+2. Allocate the next unused revision ID.
+3. Copy the complete parent hierarchy into the new revision directory.
+4. Create the revision manifest as `DRAFT` with requirement/decision references.
+5. Make schematic changes only in the new revision.
+6. Run repository checks plus real KiCad parser/netlist/ERC verification.
+7. Record exact ERC result, ignored/waived checks and KiCad version against that revision.
+8. Update revision register, traceability, state and handoff.
 
-No physical measurement or new product power-rating calculation was introduced.
+If this sequence cannot be completed safely, record a blocker; do not bypass versioning.
 
-Observed software evidence:
-- KiCad CLI: `10.0.6`.
-- Standard footprint libraries mapped in CI B1 audit: `155` plus `ESC_B1` local.
-- B1 netlist export: exit `0`, non-empty.
-- B1 ERC after environment correction: `0 violations / 0 errors / 0 warnings` for enabled checks.
-- B1 artifact: ID `10585184686`, digest `sha256:e634de37cbfadc6fe9703bc5965360813e4a2410d1f90727db4981743c1da47e`.
-- Prior pre-correction B1 ERC: 198 warnings, all footprint-link issues; 0 errors.
+## BOM / PCB / validation binding
 
-Source-backed support-part evidence added:
-- `TPS62160DGKR`: current TI ACTIVE exact orderable part; DGK/VSSOP-8; -40..+125 °C; family input 3..17 V; headline 1 A class. Rating is not U1 load demand.
-- `TLV75533PDBVR`: current TI ACTIVE exact orderable part; DBV/SOT-23-5; -40..+125 °C; family input 1.45..5.5 V; fixed 3.3 V suffix; headline 500 mA class. Rating is not U1 load demand.
+Future outputs must reference exact design revisions, e.g. `U1-SCH-Rxxx`, `U1-PCB-Rxxx`, `U1-BOM-Rxxx`. PCB/BOM counters do not have to match the schematic counter, but their manifests must identify the exact parent schematic revision.
 
-## Assumptions / evidence level
+ERC/netlist/bench/thermal/EMC evidence must also identify the exact revision actually tested. A PASS on one revision cannot be carried forward automatically to a later revision.
 
-- 70–100 kg remains USER TARGET payload, not MTOW.
-- Remaining G0 vehicle/mission/environment values: OPEN/null.
-- B1 KiCad baseline result: OBSERVED CI SOFTWARE EVIDENCE for exact recorded legacy schematic and KiCad/library environment.
-- TI support-part identity/lifecycle/package/rating anchors: PRIMARY MANUFACTURER EVIDENCE.
-- U1 auxiliary topology and loads: OPEN.
-- Physical bench, fault-latency, thermal, EMC, dyno and flight evidence: NOT PERFORMED.
+## Release guard
 
-## Unresolved blockers
+Revision status and production release remain separate. `DRAFT`, `REVIEW`, `BENCH` and `RELEASED` are distinct. No Gerbers/manufacturing package, no `RELEASED` status and no merge to `main` without explicit user approval.
 
-- G0 nominal payload, airframe/battery/equipment mass, MTOW, mission duration/profile, environment and degraded/single-motor-failure policy.
-- Final rotor architecture and product motor/prop operating point.
-- Battery voltage/current/energy/transient architecture and final ESC electrical envelope.
-- Final semiconductor, gate driver, MCU, sensing, DC-link, thermal, auxiliary-power and CAN architecture.
-- Actual auxiliary +5 V/+3V3/+3V3A continuous/peak/inrush loads and partial-power behavior.
-- Production connectors and harness/environment requirements.
-- Component-bearing U1 schematic and BOM.
-- Physical validation evidence.
+## Previous engineering evidence retained
 
-## Regressions / risks discovered
+The prior B1 KiCad baseline remains valid as migration evidence: KiCad 10.0.6 parses the complete legacy hierarchy, exports a non-empty netlist and reports zero messages from enabled ERC checks after CI footprint-library resolution. This does not qualify B1 for U1 and ignored ERC categories remain explicit review scope.
 
-- Headless KiCad ERC results are sensitive to footprint-library configuration; a missing table can create large false-warning counts.
-- Conversely, zero enabled ERC messages can create false confidence because several check categories are currently ignored. Future G3 acceptance must define the required ERC policy, not merely trust default/project suppressions.
-- A package-family name match does not prove the generic KiCad footprint equals the manufacturer's production land pattern.
-- B1 parsing cleanliness must not cause legacy 13S/3 kW/20 kHz/100 V assumptions to leak into U1.
-- GitHub Actions still emits action-runtime deprecation warnings; these do not affect current KiCad evidence but should be maintained separately.
+Legacy TPS62160DGKR and TLV75533PDBVR remain REVALIDATE references only. No U1 selection was made.
 
-## Exact next recommended tasks
+## Current blockers
 
-1. Review each currently ignored B1 ERC category and turn that into an explicit **U1 G3 ERC policy**: enable, manually audit or justify waiver category-by-category.
-2. Continue exact source/lifecycle/package audit for requirement-independent B1 support parts and link the results into the preliminary candidate BOM without promoting selections.
-3. Surface the existing `G0_INPUT_CLOSURE_PACKET.json` as a compact user input request so real MTOW -> rotor -> propulsion -> battery -> ESC-envelope closure can begin.
-4. Consolidate additive TR-043..TR-049 into canonical `UAV_TRACEABILITY.md` with a fresh SHA-safe update.
-5. Create the first real component-bearing U1 KiCad page only after its parent requirement/architecture inputs freeze; do not use B1 cleanliness as permission to copy it prematurely.
+G0/G1 product-specific mass, mission, environment, rotor/failure policy, propulsion operating point, battery/transient envelope, phase current/PWM and related architecture inputs remain open. Therefore the first component-bearing U1 revision is not yet authorized by its parent requirements.
 
-## Dependency chain
+## Exact next tasks
 
-`G0 vehicle inputs -> G1A rotor selection -> G1B propulsion operating point -> G1C battery/transient -> G1 SYSTEM FREEZE -> G2 architecture freeze -> component-bearing U1 -> G3 schematic/BOM -> G4 firmware -> G5 prototype -> G6 propulsion verification -> G7 flight readiness`
+1. Continue G0 input closure and requirement-independent migration evidence.
+2. Define the future U1 G3 ERC policy for currently ignored KiCad check categories.
+3. Continue exact lifecycle/package/source audit for support parts without promoting product selections.
+4. Consolidate additive traceability safely.
+5. When parent requirements genuinely freeze, allocate `U1-SCH-R001` **before** making the first component-bearing schematic edit.
 
 ## Next-run briefing
 
-Do not repeat KiCad installation or the B1 baseline audit. The reproducible software baselines are now established for both the zero-component U1 scaffold and the full legacy B1 hierarchy. Begin with U1 G3 ERC-policy definition and additional requirement-independent support-part evidence. In parallel, present the minimal real G0 vehicle inputs to the user when useful; those inputs, not more speculative circuitry, are now the critical path to a legitimate component-bearing U1 design. Progress counters remain **100% requirements structure / 2.2% G1 value closure / 4% backlog DONE / 0% major gates / 100% scaffold parser-ERC validation / 0% component-bearing U1** unless controlling evidence genuinely changes.
+Do not edit `hardware_b1` source and do not edit an existing U1 schematic revision in place. Treat `SCHEMATIC_VERSIONING_POLICY.md` and `SCHEMATIC_REVISION_REGISTER.json` as mandatory planning authorities at run start. Keep product values OPEN/null until controlling evidence closes them. Schematic versioning is now a hard project rule, not an optional documentation step.
