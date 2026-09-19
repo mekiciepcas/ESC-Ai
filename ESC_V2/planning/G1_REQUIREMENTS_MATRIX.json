@@ -1,0 +1,72 @@
+{
+  "revision": "G1-MATRIX-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "purpose": "Mechanically expose every critical system requirement that must close before G1 SYSTEM FREEZE without filling unsupported values.",
+  "gate_status": "OPEN",
+  "completion_rule": "G1 may close only when every REQUIRED row is PASS with a numeric/bounded value and evidence reference, and G0/G1A/G1B/G1C parent gates are closed.",
+  "summary": {
+    "required_rows": 29,
+    "pass": 1,
+    "open": 28,
+    "blocked_by_vehicle_inputs": 13,
+    "blocked_by_propulsion_selection": 8,
+    "blocked_by_battery_transient_definition": 7
+  },
+  "rows": [
+    {"id":"G0-01","field":"system_requirement.payload_target_kg.min_max","gate":"G0","status":"PASS","value":"70-100 kg payload target","evidence":["design_basis.json","mission_requirements.json"],"note":"Nominal payload still open; this row only confirms user target bounds."},
+    {"id":"G0-02","field":"mission_requirements.requirements.payload.nominal_kg","gate":"G0","status":"OPEN","blocker":"vehicle-specific mission definition"},
+    {"id":"G0-03","field":"mission_requirements.requirements.airframe_empty_mass_kg","gate":"G0","status":"OPEN","blocker":"vehicle-specific mass model"},
+    {"id":"G0-04","field":"mission_requirements.requirements.battery_mass_kg","gate":"G0","status":"OPEN","blocker":"battery architecture and vehicle energy target"},
+    {"id":"G0-05","field":"mission_requirements.requirements.mission_equipment_mass_kg","gate":"G0","status":"OPEN","blocker":"vehicle-specific agricultural equipment"},
+    {"id":"G0-06","field":"system_requirement.gross_takeoff_mass_kg","gate":"G0","status":"OPEN","blocker":"G0-02..05"},
+    {"id":"G0-07","field":"mission_requirements.requirements.flight_profile.target_total_flight_time_min","gate":"G0","status":"OPEN","blocker":"mission definition"},
+    {"id":"G0-08","field":"mission_requirements.requirements.flight_profile.target_hover_time_min","gate":"G0","status":"OPEN","blocker":"mission definition"},
+    {"id":"G0-09","field":"mission_requirements.requirements.flight_profile.reserve_energy_fraction","gate":"G0","status":"OPEN","blocker":"mission/safety requirement"},
+    {"id":"G0-10","field":"mission_requirements.requirements.environment.minimum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
+    {"id":"G0-11","field":"mission_requirements.requirements.environment.maximum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
+    {"id":"G0-12","field":"mission_requirements.requirements.environment.maximum_operating_altitude_m","gate":"G0","status":"OPEN","blocker":"operating environment"},
+    {"id":"G0-13","field":"mission_requirements.requirements.vehicle.single_motor_failure_requirement","gate":"G0","status":"OPEN","blocker":"vehicle-level failure policy"},
+
+    {"id":"G1A-01","field":"system_requirement.vehicle_architecture","gate":"G1A","status":"OPEN","blocker":"G0 MTOW/failure policy; rotor_trade_study exists but final architecture not selected"},
+    {"id":"G1A-02","field":"system_requirement.rotor_count","gate":"G1A","status":"OPEN","blocker":"G1A-01"},
+    {"id":"G1A-03","field":"system_requirement.required_hover_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"MTOW + rotor count"},
+    {"id":"G1A-04","field":"system_requirement.required_max_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"thrust margin + degraded-mode policy"},
+    {"id":"G1A-05","field":"system_requirement.thrust_margin","gate":"G1A","status":"OPEN","blocker":"vehicle control/failure requirement"},
+
+    {"id":"G1B-01","field":"system_requirement.propeller_diameter_in","gate":"G1B","status":"OPEN","blocker":"final motor/prop operating-point selection"},
+    {"id":"G1B-02","field":"system_requirement.motor_kv","gate":"G1B","status":"OPEN","blocker":"final motor/prop operating-point selection"},
+    {"id":"G1B-03","field":"system_requirement.electrical_rpm_max","gate":"G1B","status":"OPEN","blocker":"motor pole-pairs + speed operating point"},
+
+    {"id":"G1C-01","field":"system_requirement.battery_series_count","gate":"G1C","status":"OPEN","blocker":"propulsion point and pack architecture; 18S remains candidate only"},
+    {"id":"G1C-02","field":"system_requirement.dc_bus_min_v","gate":"G1C","status":"OPEN","blocker":"cell chemistry, sag and cutoff"},
+    {"id":"G1C-03","field":"system_requirement.dc_bus_nominal_v","gate":"G1C","status":"OPEN","blocker":"battery architecture"},
+    {"id":"G1C-04","field":"system_requirement.dc_bus_full_charge_v","gate":"G1C","status":"OPEN","blocker":"battery architecture"},
+    {"id":"G1C-05","field":"system_requirement.dc_bus_transient_max_v","gate":"G1C","status":"OPEN","blocker":"harness/PCB inductance, switching, regen, BMS/contact behavior, clamp design"},
+
+    {"id":"G1-01","field":"system_requirement.esc_continuous_power_w","gate":"G1","status":"OPEN","blocker":"selected propulsion hover/continuous point"},
+    {"id":"G1-02","field":"system_requirement.esc_peak_power_w_and_duration","gate":"G1","status":"OPEN","blocker":"selected max-thrust point and overload duration"},
+    {"id":"G1-03","field":"system_requirement.esc_continuous_phase_current_a","gate":"G1","status":"OPEN","blocker":"motor/prop operating point"},
+    {"id":"G1-04","field":"system_requirement.esc_peak_phase_current_a_and_duration","gate":"G1","status":"OPEN","blocker":"motor/prop transient operating point"}
+  ],
+  "additional_G1_fields_required_before_close": [
+    "DC input current continuous/peak + duration",
+    "PWM candidate/selected range",
+    "current-sense range",
+    "DC-link ripple/energy requirement",
+    "ambient/baseplate limits",
+    "OV/UV/OCP/OT/fault response requirements",
+    "communications/arming/watchdog/failsafe requirements"
+  ],
+  "evidence_files": [
+    "REQUIREMENTS_COMPLETION_CHECKLIST.md",
+    "mission_requirements.json",
+    "design_basis.json",
+    "rotor_trade_study.md",
+    "propulsion_benchmark.md",
+    "propulsion_operating_points.json",
+    "battery_architecture_pretrade.md",
+    "DC_BUS_TRANSIENT_REQUIREMENTS.md"
+  ],
+  "anti_hallucination_rule": "OPEN rows remain OPEN. Competitor benchmark values, interpolation values and 120/150 V screening cases must not be copied into product requirement fields without a documented vehicle/propulsion/battery decision."
+}
