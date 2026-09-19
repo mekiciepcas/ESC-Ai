@@ -1,0 +1,174 @@
+{
+  "revision": "PB-08",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "supersedes": "PRODUCT_BASELINE_PB-07.json",
+  "inherits_all_pb07_nonconflicting_decisions_except_explicit_supersession": true,
+  "purpose": "Freeze the common 12S electrical platform and per-ESC hardware capability for the PB-07 1.5-3.0 kW aggregate-propulsion family while keeping Quad/Hexa, payload/MTOW, exact motor/propeller and exact pack implementation open.",
+  "change_control": {
+    "rule": "PB-08 inherits PB-07 unless a PB-08 decision explicitly supersedes or closes an OPEN PB-07 field. Any later change to a PB-08 frozen value requires PB-09 or an explicitly linked ECO; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "inherited_product_direction": {
+    "aggregate_propulsion_input_power_family_w": [1500, 3000],
+    "nominal_mission_target_min": 10,
+    "gross_pack_reserve_fraction_min": 0.20,
+    "control_core": "3-phase BLDC/PMSM + 3-phase two-level VSI + FOC/SVPWM capability",
+    "flight_controller_interface": "CAN-FD capable with Classic CAN compatibility",
+    "arming_policy": "power-up/reset DISARMED; independent hardware inhibit final authority; latched fault inhibits PWM; no automatic re-arm"
+  },
+  "new_frozen_decisions": [
+    {
+      "id": "PB-035",
+      "field": "aggregate_upper_continuous_design_point_w",
+      "value": 3000,
+      "unit": "W",
+      "status": "FROZEN_PRODUCT_DESIGN_POINT",
+      "rationale": "The first electrical platform is sized at the top of the user-approved 1.5-3.0 kW family so lower-power variants can be obtained by controlled derating rather than a different base power stage.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md", "PRODUCT_BASELINE_PB-07.json"]
+    },
+    {
+      "id": "PB-036",
+      "field": "battery_series_count",
+      "value": 12,
+      "unit": "S",
+      "status": "FROZEN_PRODUCT_ARCHITECTURE",
+      "rationale": "Both current propulsion anchors support 12S; system current remains manageable at 3 kW and 12S preserves compatibility with the broad legacy ~48 V hardware class without the extra voltage burden of 14S.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-037",
+      "field": "dc_bus_nominal_v",
+      "value": 43.2,
+      "unit": "V",
+      "status": "FROZEN_SYSTEM_CONVENTION",
+      "rationale": "12S x 3.6 V nominal high-rate Li-ion reference convention.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-038",
+      "field": "dc_bus_full_charge_v",
+      "value": 50.4,
+      "unit": "V",
+      "status": "FROZEN_PRODUCT_REQUIREMENT",
+      "rationale": "12S x 4.2 V/cell full charge.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-039",
+      "field": "dc_bus_min_loaded_for_full_rated_esc_power_v",
+      "value": 36.0,
+      "unit": "V",
+      "status": "FROZEN_PRODUCT_REQUIREMENT",
+      "rationale": "3.0 V/cell loaded design floor. Below this point the system must derate or terminate the mission; exact hard battery cutoff remains pack-specific.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-040",
+      "field": "esc_continuous_input_power_w_min",
+      "value": 1000,
+      "unit": "W",
+      "comparison": ">=",
+      "status": "FROZEN_HARDWARE_CAPABILITY",
+      "rationale": "Supports the 3 kW family with either Quad or Hexa and leaves per-channel headroom above normal 750 W Quad / 500 W Hexa screening points.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-041",
+      "field": "esc_short_duration_input_power_w_min",
+      "value": 1500,
+      "unit": "W",
+      "comparison": ">=",
+      "duration_s_min": 3,
+      "status": "FROZEN_HARDWARE_CAPABILITY",
+      "rationale": "Provides channel-level maneuver/failure-redistribution headroom without defining the still-open vehicle-level aggregate peak-power policy.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-042",
+      "field": "esc_continuous_dc_current_a_min",
+      "value": 30,
+      "unit": "A",
+      "comparison": ">=",
+      "status": "FROZEN_HARDWARE_CAPABILITY",
+      "rationale": "1.0 kW at the 36 V full-power loaded floor is 27.8 A; requirement rounded upward to 30 A.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-043",
+      "field": "esc_short_duration_dc_current_a_min",
+      "value": 50,
+      "unit": "A",
+      "comparison": ">=",
+      "duration_s_min": 3,
+      "status": "FROZEN_HARDWARE_CAPABILITY",
+      "rationale": "1.5 kW at 36 V is 41.7 A; 50 A provides additional electrical transient capability margin.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-044",
+      "field": "power_semiconductor_vds_class_min_v",
+      "value": 100,
+      "unit": "V",
+      "comparison": ">=",
+      "status": "FROZEN_PRODUCT_REQUIREMENT",
+      "rationale": "12S full charge is 50.4 V. A 100 V class restores strong compatibility with practical low-RDSon devices and legacy B1 while leaving transient control to a separately frozen terminal-stress target.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-045",
+      "field": "repetitive_controlled_semiconductor_terminal_stress_max_v",
+      "value": 75,
+      "unit": "V",
+      "comparison": "<=",
+      "status": "FROZEN_DESIGN_REQUIREMENT_PHYSICAL_PROOF_PENDING",
+      "rationale": "The power-stage layout/DC-link/snubber/clamp network shall keep repetitive switch-terminal stress at or below 75 V; normal operation shall not rely on repetitive avalanche. This is a design target, not measured overshoot evidence.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    },
+    {
+      "id": "PB-046",
+      "field": "three_kw_variant_gross_rated_pack_energy_wh_min",
+      "value": 750,
+      "unit": "Wh",
+      "comparison": ">=",
+      "status": "FROZEN_PRODUCT_TARGET",
+      "rationale": "Constant 3 kW for 10 min needs 500 Wh terminal energy; preserving 20% gross reserve requires 625 Wh before auxiliary/conversion/aging margin. 750 Wh prevents sizing at the mathematical edge.",
+      "evidence": ["PB08_COMMON_ELECTRICAL_PLATFORM.md"]
+    }
+  ],
+  "battery_reference_not_selection": {
+    "preferred_three_kw_calculation_topology": "Molicel P50B 12S4P",
+    "minimum_cell_energy_wh": 840,
+    "typical_cell_energy_wh": 864,
+    "cell_only_mass_kg_max": 3.408,
+    "lower_power_variant_calculation_topology": "Molicel P50B 12S3P",
+    "exact_cell_mpn_frozen": false,
+    "exact_parallel_count_frozen": false,
+    "note": "P50B values are manufacturer-data calculation anchors. Cold/low-SOC/aged sag, pack hardware mass, current sharing, fusing, BMS and thermal qualification remain open."
+  },
+  "rotor_architecture_mass_trade": {
+    "quad_mtow_screen_kg_at_3kw_1p6_tw": 16.278,
+    "hexa_mtow_screen_kg_at_3kw_1p6_tw": 18.303,
+    "hexa_mtow_screen_gain_kg": 2.025,
+    "break_even_installed_propulsion_axis_mass_kg": 1.0125,
+    "status": "TRADE_ONLY_ROTOR_COUNT_OPEN",
+    "note": "Above the break-even per-axis installed mass Quad has greater residual mass budget before extra Hexa arm structure; below it Hexa may retain a mass advantage. Exact frame and custom-axis mass are required before freeze."
+  },
+  "remaining_critical_open_items": [
+    "Quad versus Hexa rotor count and degraded-mode policy",
+    "payload/MTOW and complete frame/avionics/mission-equipment mass roll-up",
+    "exact production motor/propeller MPN and operating points",
+    "exact battery cell/P-count/pack mass/sag/BMS/fuse/disconnect implementation",
+    "vehicle aggregate peak-power requirement",
+    "phase RMS/peak current and current-sense range",
+    "eRPM and PWM",
+    "exact 100 V MOSFET MPN/count and gate driver",
+    "DC-link/precharge/regen",
+    "environment/protection thresholds/thermal design"
+  ],
+  "physical_verification_status": "NOT_PERFORMED",
+  "schematic_allocation_status": "U1-SCH-R001 remains unallocated",
+  "anti_hallucination_rule": "PB-08 freezes design requirements and capability targets only. No manufacturer benchmark or calculation is a custom ESC, battery, vehicle, thermal, dyno or flight validation result."
+}
