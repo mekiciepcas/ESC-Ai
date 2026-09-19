@@ -37,17 +37,22 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-028 | Firmware | goals | no complete tree | NEW IMPLEMENTATION | build + SIL + bench |
 | TR-029 | Production package | intended | incomplete | OPEN | after G5 |
 | TR-030 | Physical validation | target | incomplete | REQUIRED | staged G6 |
+| TR-031 | G0 trade bounds | none | none | 125/150/175 kg cases allowed only as `ASSUMPTION_FOR_TRADE_ONLY`; never baseline requirements | `G0_TRADE_BOUNDING_CASES.md`, actual G0 vehicle inputs |
+| TR-032 | Rotor count | not frozen | not applicable | OPEN; quad conditionally excluded if G0 later requires continued hover after one motor/ESC loss; hex/octo retained | `rotor_trade_study.md`, G0 failure policy + MTOW |
 
 ## Yeni kaynaklı ön-sonuçlar
 
+- XAG P150 official specs provide a current lower heavy-agriculture anchor: 54 kg aircraft weight with spray system and batteries, 70 kg max payload, 125 kg max spraying MTOW, quad, 55 kgf max single-motor thrust, 4.7 kW rated motor power and 120 A continuous ESC.
 - XAG P150 Max, 136 kg spraying MTOW sınıfında dört eksenli 4.85 kW rated motor ve 140 A continuous ESC kullanıyor; bu, eski 3 kW B1'in ağır quad için ürün rating'i sayılamayacağını destekliyor.
+- DJI T100 official specs provide a 100 kg spraying-payload / 175 kg spraying-MTOW upper benchmark with 60 rpm/V motors and 62-inch propellers. DJI also publishes a Turkey-specific 149.9 kg MTOW operating note for T100; this is recorded as benchmark/regulatory context and is not copied into our product baseline.
+- `G0_TRADE_BOUNDING_CASES.md` now governs 125/150/175 kg numerical cases. They are analysis-only and cannot close G0/G1.
+- Rotor screening now has an explicit architecture discriminator: if continued hover after complete loss of one motor/ESC becomes a G0 requirement, ordinary quad is eliminated before detailed ESC sizing; otherwise quad remains a candidate.
 - Hobbywing X15 G2, 37.5 kg/axis önerilen yükte 18S/69 V, 4.64 kW rated input, 120 A continuous ve 300 A/3 s ESC ile doğrudan ağır-zirai propulsion referansı sağlıyor.
 - 18S tam şarj 75.6 V olduğundan 100 V MOSFET sınıfı transient kanıtı olmadan dondurulamaz.
-- B1 exact BOM audit: ana DC-link bankı ve local inverter ceramics nominal 100 V ve exact capacitor MPN'leri açık; 160 V etiketli parçalar yalnız LM5164 girişindeki yerel kapasitörlerdir. Bu nedenle 'B1 has 160 V capacitors' ifadesi 18S power-stage qualification kanıtı değildir.
+- B1 exact BOM audit: ana DC-link bankı ve local inverter ceramics nominal 100 V ve exact capacitor MPN'leri açık; 160 V etiketli parçalar yalnız LM5164 girişindeki yerel kapasitörlerdir.
 - B1 DC input protection ve regen clamp/chopper işlevleri harici modül/interface olarak bırakılmıştır; final transient ceiling bu modüller tanımlanmadan kapanmaz.
-- Aynı güçte 69 V bus, 52.5 V bus'a göre ideal DC akımı yaklaşık %24 azaltır; iletken I²R kaybı ilk mertebede yaklaşık %42 azalır. Bu yalnız bus-level trade'dir.
 - B1 voltage-sense upper BAT54H doğrudan +3V3A rayına clamp eder. +3V3A, 0R ile +3V3'e; +3V3 ise TLV75533 çıkışına bağlıdır. TI TLV755P reverse-current guidance, output input yokken biaslandığında ters akım/reliability riski tanımlar. Bu nedenle mevcut rail-clamp çözümü UAV için power-sequencing kanıtı olmadan korunamaz.
-- `G1_REQUIREMENTS_MATRIX.json` artık G0/G1A/G1B/G1C/G1 kapanışındaki açık alanları makine-okunabilir biçimde takip eder; açık alanlar competitor değerleriyle otomatik doldurulmaz.
+- `G1_REQUIREMENTS_MATRIX.json` G0/G1A/G1B/G1C/G1 kapanışındaki açık alanları makine-okunabilir biçimde takip eder; açık alanlar competitor değerleriyle otomatik doldurulmaz.
 
 ## Korunacak çekirdek
 
