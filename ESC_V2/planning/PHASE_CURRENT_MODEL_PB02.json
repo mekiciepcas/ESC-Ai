@@ -1,0 +1,78 @@
+{
+  "revision": "PHASE-CURRENT-PB02-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "CLOSED_FOR_G1_DESIGN_REQUIREMENT_PHYSICAL_CORRELATION_PENDING",
+  "parent_product_baseline": "PRODUCT_BASELINE_PB-02.json",
+  "purpose": "Derive phase-current design requirements from torque/back-EMF evidence without equating DC and phase current.",
+  "sources": {
+    "x13_g2_primary": [
+      "https://www.hobbywing.com/en/products/x13-g2",
+      "https://www.hobbywing.com/en/uploads/file/20260203/1e9df37cb5554eb55b76ed0d76c8dfc9.pdf"
+    ],
+    "x13_18s_electrical_proxy": "https://www.hobbywingdirect.com/collections/xrotor-x13-system/01-aircraft"
+  },
+  "reference_class_match": {
+    "x13_g2_motor_kv_rpm_per_v": 45,
+    "x13_g2_stator_mm": "138x25",
+    "x13_g2_pole_count": 42,
+    "proxy_motor_kv_rpm_per_v": 45,
+    "proxy_stator_mm": "138x25",
+    "proxy_pole_pairs": 21,
+    "interpretation": "The previous X13 18S electrical constants are a bounded proxy, not proof that X13 G2 has identical winding parameters."
+  },
+  "proxy_electrical_constants": {
+    "stator_resistance_mohm_published": 21.6,
+    "stator_self_inductance_uh_published": 29.147,
+    "mutual_inductance_uh_published": 41.839,
+    "back_emf_vpk_per_krpm": 13.7,
+    "back_emf_vrms_per_krpm": 8.92,
+    "inductance_use_in_S1_1": false,
+    "note": "R/L/M are retained for S1.2 investigation only; S1.1 current closure uses the two published back-EMF constants."
+  },
+  "torque_constant_model": {
+    "assumption": "Published back-EMF constants treated as line-to-line quantities for a sinusoidal PMSM/BLDC bounding model.",
+    "kt_rms_from_vpk_nm_per_a": 0.160228,
+    "kt_rms_from_vrms_nm_per_a": 0.147536,
+    "conservative_kt_rms_nm_per_a": 0.147536,
+    "uncertainty_policy": "Use the lower torque constant for upper-current sizing; do not select one source constant as exact until production-motor characterization."
+  },
+  "manufacturer_curve_points": {
+    "max_mtow_hover": {"thrust_kgf": 26.471, "torque_nm": 15.2574, "dc_current_a": 44.2277, "input_power_w": 3052.52, "rpm": 1632.02, "phase_rms_model_band_a": [95.22, 103.42]},
+    "rated_27kg": {"thrust_kgf": 27.0, "torque_nm": 15.5627, "dc_current_a": 45.5639, "input_power_w": 3144.66, "rpm": 1648.10, "phase_rms_model_band_a": [97.13, 105.48]},
+    "single_channel_loss_controlled_landing": {"thrust_kgf": 30.252, "torque_nm": 17.4309, "dc_current_a": 54.0725, "input_power_w": 3730.64, "rpm": 1743.94, "phase_rms_model_band_a": [108.79, 118.15]},
+    "normal_1p6_tw": {"thrust_kgf": 42.353, "torque_nm": 24.4119, "dc_current_a": 90.8086, "input_power_w": 6264.09, "rpm": 2058.45, "phase_rms_model_band_a": [152.36, 165.46]},
+    "published_curve_max": {"thrust_kgf": 60.077, "torque_nm": 34.93, "dc_current_a": 165.5, "input_power_w": 11418.8, "rpm": 2478.0, "phase_rms_model_band_a": [218.00, 236.76]}
+  },
+  "frozen_design_requirements": {
+    "continuous_phase_current_rms_a_min": 125,
+    "continuous_requirement_basis": "27 kg rated-point upper model 105.48 A RMS x 1.15 = 121.30 A RMS, rounded upward; also covers modeled 30.252 kgf controlled-landing point before physical correlation.",
+    "overload_phase_current_rms_a_min": 265,
+    "overload_duration_s_min": 3,
+    "overload_requirement_basis": "Published curve maximum upper model 236.76 A RMS x 1.10 = 260.43 A RMS, rounded upward.",
+    "instantaneous_phase_current_peak_a_min": 375,
+    "peak_basis": "265 A RMS x sqrt(2) = 374.77 A peak.",
+    "current_sense_bipolar_range_a_min": 400,
+    "sense_basis": "Measurement range must exceed the 375 A instantaneous phase design peak; exact shunt/CSA and OCP trip level remain G2/S1.4 work."
+  },
+  "g1_rows_closed_by_this_model": ["G1-03", "G1-04", "G1-08"],
+  "still_open": [
+    "exact production motor/propeller MPN",
+    "exact X13 G2 winding resistance/inductance",
+    "PWM frequency",
+    "current ripple target",
+    "OCP threshold and end-to-end latency",
+    "exact shunt/CSA",
+    "exact MOSFET MPN and parallel count",
+    "thermal implementation"
+  ],
+  "required_physical_correlation": [
+    "production motor line-line resistance",
+    "production motor inductance versus rotor position where relevant",
+    "back-EMF constant and waveform",
+    "phase RMS/peak current at hover rated and maneuver points",
+    "DC-to-phase current correlation",
+    "winding and magnet thermal behavior"
+  ],
+  "anti_hallucination_rule": "These values are conservative U1 design-capability requirements derived from source-backed reference data. They are not measured custom-UAV phase currents and do not constitute bench, dyno, thermal or flight validation."
+}
