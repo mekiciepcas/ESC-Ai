@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-MASTER-10",
+  "revision": "REQ-MASTER-11",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "authority": "ESC_V2/planning/REQUIREMENTS_MASTER.json",
@@ -17,10 +17,10 @@
     "release_claims":"No flight-qualified or production-qualified claim before corresponding gate closure."
   },
   "requirement_domains": [
-    {"prefix":"SYS","name":"System scope and governance","gate_owner":"ALL","authority_refs":["UAV_PRODUCT_PLAN.md","mission_requirements.json","PRODUCT_BASELINE_PB-05.json"],"coverage":"DEFINED"},
+    {"prefix":"SYS","name":"System scope and governance","gate_owner":"ALL","authority_refs":["UAV_PRODUCT_PLAN.md","mission_requirements.json","PRODUCT_BASELINE_PB-06.json"],"coverage":"DEFINED"},
     {"prefix":"VEH","name":"Vehicle mission mass and rotor architecture","gate_owner":"G0_G1A","authority_refs":["mission_requirements.json","rotor_trade_study.md","MISSION_DURATION_ENERGY_BASELINE_PB04.md"],"coverage":"DEFINED"},
     {"prefix":"PROP","name":"Motor propeller and propulsion operating point","gate_owner":"G1B","authority_refs":["propulsion_benchmark.md","propulsion_operating_points.json","PHASE_CURRENT_MODEL_PB02.md","ERPM_PWM_TIMING_CORRECTION_PB04.md"],"coverage":"DEFINED"},
-    {"prefix":"PWR","name":"Battery bus input protection precharge regenerative and auxiliary energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","BATTERY_CELL_PACK_TRADE_PB05.md","MISSION_DURATION_ENERGY_BASELINE_PB04.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","U1_RATED_VARIANT_STRATEGY.md"],"coverage":"DEFINED"},
+    {"prefix":"PWR","name":"Battery bus input protection precharge regenerative and auxiliary energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","BATTERY_CELL_PACK_TRADE_PB05.md","BATTERY_PEAK_CURRENT_DERIVATION_PB06.md","BATTERY_PACK_ARCHITECTURE_MASS_FRAMEWORK_PB06.md","BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md","MISSION_DURATION_ENERGY_BASELINE_PB04.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","U1_RATED_VARIANT_STRATEGY.md"],"coverage":"DEFINED"},
     {"prefix":"INV","name":"Inverter semiconductor PWM gate drive DC link and thermal power stage","gate_owner":"G1_G2_G3","authority_refs":["PHASE_CURRENT_MODEL_PB02.json","ERPM_PWM_TIMING_CORRECTION_PB04.md","SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","POWER_STAGE_LOSS_MODEL.md","DC_LINK_SELECTION_FRAMEWORK.md"],"coverage":"DEFINED"},
     {"prefix":"SNS","name":"Current voltage and temperature sensing","gate_owner":"G2_G3","authority_refs":["PHASE_CURRENT_MODEL_PB02.json","HV_SENSE_OUTPUT_SEQUENCING.md","POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","UAV_TRACEABILITY.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
     {"prefix":"CTRL","name":"MCU motor control timing firmware and watchdog","gate_owner":"G2_G4","authority_refs":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md","CONTROL_PLATFORM_PRETRADE.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","ERPM_PWM_TIMING_CORRECTION_PB04.md"],"coverage":"DEFINED"},
@@ -33,10 +33,13 @@
   "child_requirement_authorities": {
     "mission_and_vehicle":"mission_requirements.json",
     "system_electrical_freeze":"G1_REQUIREMENTS_MATRIX.json",
-    "product_baseline":"PRODUCT_BASELINE_PB-05.json",
+    "product_baseline":"PRODUCT_BASELINE_PB-06.json",
     "phase_current_model":"PHASE_CURRENT_MODEL_PB02.json",
     "mission_duration_energy":"MISSION_DURATION_ENERGY_BASELINE_PB04.md",
     "battery_cell_pack_trade":"BATTERY_CELL_PACK_TRADE_PB05.md",
+    "battery_peak_current":"BATTERY_PEAK_CURRENT_DERIVATION_PB06.md",
+    "battery_pack_architecture":"BATTERY_PACK_ARCHITECTURE_MASS_FRAMEWORK_PB06.md",
+    "battery_sag_verification":"BATTERY_SAG_VERIFICATION_CONTRACT_PB05.md",
     "erpm_pwm_timing":"ERPM_PWM_TIMING_CORRECTION_PB04.md",
     "legacy_design_traceability":"UAV_TRACEABILITY.md",
     "control_auxiliary_derived":"CONTROL_AUX_DERIVED_REQUIREMENTS.json",
@@ -51,6 +54,6 @@
     "verification_mapping":"REQUIREMENTS_VERIFICATION_MATRIX.json"
   },
   "required_fields_for_every_child_requirement": ["id","parent/domain","requirement_statement","status","value_or_range","source/evidence","rationale","verification_method","acceptance_criteria","dependencies","revision"],
-  "progress": {"planned_domains":12,"defined_domains":12,"structure_domain_coverage_percent":100.0,"g1_required_rows":46,"g1_pass_rows":29,"g1_system_freeze_value_closure_percent":63.0,"note":"100% refers to the planned requirement-domain/schema structure, not product value closure or verification completion. PB-05 currently closes 29 of 46 G1 authority rows; exact pack implementation/peak current, PWM, environment, protection and thermal values remain open."},
+  "progress": {"planned_domains":12,"defined_domains":12,"structure_domain_coverage_percent":100.0,"g1_required_rows":47,"g1_pass_rows":30,"g1_system_freeze_value_closure_percent":63.8,"note":"100% refers to planned requirement-domain/schema structure, not product-value closure. PB-06 closes 30 of 47 G1 authority rows. Exact pack implementation/mass/cold-aged sag, PWM, environment, protection and thermal values remain open."},
   "gate_chain": ["G0","G1A","G1B","G1C","G1","G2","G3","G4","G5","G6","G7"]
 }
