@@ -16,27 +16,36 @@ on:
 
 jobs:
   verify-scaffold:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+
       - name: Run repository anti-hallucination scaffold checker
         run: python3 ESC_V2/hardware_u1_scaffold/verify_u1_scaffold.py
-      - name: Install KiCad CLI
+
+      - name: Install supported KiCad 10 CLI
         run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update
-          sudo apt-get install -y kicad
-          kicad-cli --version
+          sudo apt-get install --yes --install-recommends kicad
+          kicad-cli --version | tee /tmp/kicad-version.txt
+
       - name: Parse/export scaffold through KiCad CLI
         run: |
           mkdir -p verification/kicad_u1
-          kicad-cli sch export netlist ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch -o verification/kicad_u1/ESC_U1_SCAFFOLD.net
+          cp /tmp/kicad-version.txt verification/kicad_u1/KICAD_VERSION.txt
+          kicad-cli sch export netlist \
+            -o verification/kicad_u1/ESC_U1_SCAFFOLD.net \
+            ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch
+          test -s verification/kicad_u1/ESC_U1_SCAFFOLD.net
+
       - name: Run ERC and retain report
         run: |
-          set +e
-          kicad-cli sch erc ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch -o verification/kicad_u1/ERC.rpt
-          rc=$?
-          cat verification/kicad_u1/ERC.rpt || true
-          exit $rc
+          kicad-cli sch erc \
+            -o verification/kicad_u1/ERC.rpt \
+            ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch
+          cat verification/kicad_u1/ERC.rpt
+
       - name: Upload KiCad verification evidence
         if: always()
         uses: actions/upload-artifact@v4
