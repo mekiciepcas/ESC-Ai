@@ -2,7 +2,7 @@
 
 Date: 2026-09-19 18:40+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_MECHANICAL_ELECTRICAL_COTRADE_PRETRADE`
+Status: `PROGRESS_PROPULSION_SCREENING_PRETRADE`
 
 ## Progress percentages
 
@@ -11,32 +11,33 @@ Status: `PROGRESS_MECHANICAL_ELECTRICAL_COTRADE_PRETRADE`
 - Backlog tasks explicitly DONE: **1/25 = 4%**.
 - Major product gates closed: **0/8 = 0%**.
 - U1 component-bearing production-intent schematic: **0%**.
-- Mechanical-electrical co-trade framework: **100% defined for concept-stage use**, not product closure.
+- Mechanical-electrical co-trade framework: **100% defined for concept-stage use**.
+- Source-backed propulsion screening pretrade: **100% for the current screening scope**.
 
 Product counters remain unchanged because the mechanical design does not yet exist and no benchmark value was promoted into requirements.
 
 ## Run summary
 
-The user clarified that no mechanical vehicle design exists yet, so empty mass, battery mass, span, mission duration and related G0 values cannot be provided as real product inputs. Instead of forcing guessed values or blocking all ESC work, the project was switched to a two-layer co-design method: actual G0/G1 fields remain `OPEN/null`, while explicitly labelled market benchmarks and non-binding screening cases are used to explore propulsion and ESC operating regions.
+The user clarified that no mechanical vehicle design exists yet, so empty mass, battery mass, span, mission duration and related G0 values cannot be provided as real product inputs. Instead of forcing guessed values or blocking all ESC work, the project now uses a two-layer co-design method: actual G0/G1 fields remain `OPEN/null`, while explicitly labelled market benchmarks and non-binding screening cases are used to explore propulsion and ESC operating regions.
 
 ## Work completed
 
-1. Verified the current `uav-rebaseline` branch and previous handoff before changing strategy.
-2. Preserved all 14 G0 product-specific fields as `OPEN/null`.
-3. Created `CONCEPT_VEHICLE_ENVELOPE_PRETRADE.json`.
-4. Added primary-manufacturer commercial benchmark facts for DJI AGRAS T70P and T100 without treating them as requirements.
-5. Defined non-binding MTOW screening cases of 130/150/175 kg and rotor-count cases of 4/6/8.
-6. Calculated hover load per rotor for each screening case, with no thrust-reserve factor frozen.
-7. Created `MECHANICAL_ELECTRICAL_COTRADE_PLAN.md` describing the iterative mass -> rotor -> motor/prop -> battery -> ESC -> mass loop.
-8. Updated `autonomy_state.json` to AUTO-STATE-34 and changed the active task to concept vehicle envelope / propulsion co-trade.
-9. No B1/U1 KiCad electrical source, PCB, Gerber, production BOM or physical-validation claim was changed.
+1. Preserved all 14 product-specific G0 fields as `OPEN/null`.
+2. Created `CONCEPT_VEHICLE_ENVELOPE_PRETRADE.json` using primary DJI AGRAS T70P/T100 manufacturer data only as `BENCHMARK` anchors.
+3. Created `MECHANICAL_ELECTRICAL_COTRADE_PLAN.md` defining the iterative vehicle-mass -> rotor -> motor/prop -> battery -> ESC -> vehicle-mass loop.
+4. Defined non-binding MTOW screening cases `130 / 150 / 175 kg` and rotor counts `4 / 6 / 8`.
+5. Calculated hover load per rotor for each case with no thrust-reserve multiplier frozen.
+6. Created `PROPULSION_SCREENING_PRETRADE.json` from primary Hobbywing sources for X11 Plus, X11 Max, X13, X13 G2, X15 and X15 G2.
+7. Mapped all nine MTOW/rotor screening points into manufacturer reference thrust regions without selecting a motor winner.
+8. Recorded trade-only electrical reference classes: 12–14S and 18S propulsion families, high-end input-voltage examples around 78.3–81 V, and short/peak-current examples around 200–300 A. These are architecture stress-test references only, not custom ESC requirements.
+9. Updated `autonomy_state.json` to AUTO-STATE-35.
+10. No B1/U1 KiCad electrical source, PCB, Gerber, production BOM or physical-validation claim was changed.
 
-## Source-backed benchmark context
+## Primary-source benchmark context
 
-- DJI AGRAS T70P official specifications: 70 kg spray payload; aircraft 52/56 kg including battery depending on battery option; maximum takeoff weights up to 130 kg depending on configuration; 62-inch propellers; 65 rpm/V motors; 52 V nominal battery. Source: `https://ag.dji.com/t70p/specs`.
-- DJI AGRAS T100 official specifications: 100 kg spray payload; 75 kg spraying aircraft weight; 175 kg spraying MTOW; 62-inch propellers; 60 rpm/V motors; 52 V nominal battery. Source: `https://ag.dji.com/t100/specs`.
-
-These remain `BENCHMARK` evidence only.
+- DJI AGRAS T70P: 70 kg spray payload; aircraft 52/56 kg including battery depending on battery option; maximum takeoff weights up to 130 kg depending on configuration; 62-inch propellers; 65 rpm/V motors; 52 V nominal battery. Source: `https://ag.dji.com/t70p/specs`.
+- DJI AGRAS T100: 100 kg spray payload; 75 kg spraying aircraft weight; 175 kg spraying MTOW; 62-inch propellers; 60 rpm/V motors; 52 V nominal battery. Source: `https://ag.dji.com/t100/specs`.
+- Hobbywing X11/X13/X15 family provides primary-source integrated propulsion reference regions from roughly 15–18 kg/axis through 37.5 kg/axis recommended load, with X15/X15 G2 maximum-thrust figures much higher than the recommended hover-load points. Sources are recorded in `PROPULSION_SCREENING_PRETRADE.json`.
 
 ## Screening hover loads
 
@@ -46,16 +47,16 @@ Before any thrust-reserve factor:
 - 150 kg MTOW: 4 rotors = 37.50 kgf/rotor; 6 = 25.00; 8 = 18.75.
 - 175 kg MTOW: 4 rotors = 43.75 kgf/rotor; 6 = 29.17; 8 = 21.88.
 
-No final MTOW, rotor count, motor-out policy, coaxial permission, vehicle span or thrust margin is frozen.
+The 4-rotor / 175 kg case exceeds X15's recommended per-axis loading even though it remains below published maximum thrust, so reserve margin is not proven and this case cannot be treated as acceptable without further criteria.
 
 ## Exact next recommended tasks
 
-1. Search primary motor/prop manufacturer data for candidates covering the screening hover-load regions.
-2. Build a propulsion operating-region matrix rather than selecting a single motor winner.
-3. Derive trade-only voltage/current/power/eRPM ranges for the ESC from feasible candidate operating points.
-4. Feed candidate motor/battery masses back into the concept vehicle model and iterate.
-5. Compare MOSFET/driver/sensing architecture robustness across the resulting electrical range.
-6. Keep G0/G1 product values OPEN until a coherent mechanical/system concept is explicitly accepted or validated.
+1. Extract manufacturer load-curve points for the most relevant X11/X13/X15 regions.
+2. Calculate trade-only per-motor power, current and rpm/eRPM ranges for each feasible screening point.
+3. Calculate total propulsion-system mass sensitivity for 4/6/8-rotor concepts using source-backed system weights.
+4. Feed propulsion mass back into the concept vehicle mass loop.
+5. Derive a provisional custom-ESC architecture stress range and test 100/120/150 V semiconductor/driver/sensing concepts against it without selecting a winner.
+6. Keep actual G0/G1 values OPEN until a coherent mechanical/system concept is explicitly accepted or validated.
 
 ## Anti-hallucination rules
 
@@ -67,4 +68,4 @@ No final MTOW, rotor count, motor-out policy, coaxial permission, vehicle span o
 
 ## Next-run briefing
 
-Start with propulsion candidate data from primary manufacturer sources. Do not wait for unavailable mechanical masses; use the co-trade loop, but never promote the screening cases into G0/G1. Mandatory product metrics remain **100% requirements structure / 2.2% G1 closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
+Start with manufacturer load-curve extraction and propulsion-mass/electrical-range sensitivity. Do not wait for unavailable mechanical masses, but never promote the screening cases into G0/G1. Mandatory product metrics remain **100% requirements structure / 2.2% G1 closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
