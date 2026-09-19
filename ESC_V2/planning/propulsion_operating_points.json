@@ -1,0 +1,105 @@
+{
+  "revision": "PROP-OP-01",
+  "date": "2026-09-19",
+  "status": "SCENARIO_EVIDENCE_NOT_PRODUCT_FREEZE",
+  "sources": [
+    {
+      "id": "HW_X15G2_2026",
+      "manufacturer": "Hobbywing",
+      "model": "X15 G2",
+      "url": "https://www.hobbywing.com/products/x15-g2",
+      "evidence": "PRIMARY_MANUFACTURER",
+      "verified": "2026-09-19"
+    },
+    {
+      "id": "TM_A16_18S",
+      "manufacturer": "T-Motor",
+      "model": "A16-18S",
+      "url": "https://store.tmotor.com/product/a16-18s-uav-modular-propulsion-system.html",
+      "evidence": "PRIMARY_MANUFACTURER",
+      "verified": "2026-09-19"
+    },
+    {
+      "id": "TM_XA14_18S",
+      "manufacturer": "T-Motor",
+      "model": "X-A14-18S coaxial",
+      "url": "https://store.tmotor.com/jp/product/x-a14-18s-uav-coaxial-modular-propulsion-system.html",
+      "evidence": "PRIMARY_MANUFACTURER",
+      "verified": "2026-09-19"
+    }
+  ],
+  "operating_points": [
+    {
+      "id": "X15G2_RATED_AXIS",
+      "source": "HW_X15G2_2026",
+      "battery": "18S_LiPo",
+      "rated_voltage_v": 69,
+      "recommended_axis_load_kg": 37.5,
+      "recommended_efficiency_g_per_w": 8.0,
+      "rated_input_power_w": 4640,
+      "rated_output_power_w": 3971,
+      "esc_continuous_current_a": 120,
+      "esc_peak_current_a": 300,
+      "peak_duration_s": 3,
+      "max_thrust_kgf": 82,
+      "motor_kv": 45,
+      "propeller": "MFP_63x24",
+      "notes": "Manufacturer rated/recommended point. 37.5 kg / 8 g/W implies ~4687.5 W first-order, close to the published 4640 W rated input; do not use this arithmetic as a replacement for the full thrust table."
+    },
+    {
+      "id": "A16_18S_RATED_AXIS",
+      "source": "TM_A16_18S",
+      "battery": "14_to_18S_LiPo",
+      "rated_thrust_range_kgf": [35, 40],
+      "reference_efficiency_thrust_kgf": 38,
+      "reference_efficiency_g_per_w": 8.7,
+      "derived_input_power_at_reference_w": 4367.82,
+      "max_thrust_kgf": 74.5,
+      "esc_peak_current_a": 260,
+      "esc_max_voltage_v": 83,
+      "motor_kv": 54,
+      "propeller": "EFZ6324_63in",
+      "notes": "Derived power is thrust/efficiency arithmetic from manufacturer rated point; not a measured intermediate curve point."
+    },
+    {
+      "id": "XA14_18S_RATED_AXIS",
+      "source": "TM_XA14_18S",
+      "battery": "18S_LiPo",
+      "rated_thrust_range_kgf": [45, 50],
+      "reference_efficiency_thrust_kgf": 45,
+      "reference_efficiency_g_per_w": 7.4,
+      "derived_input_power_at_reference_w": 6081.08,
+      "max_thrust_kgf": 105,
+      "esc_model": "18S_FOC_200A",
+      "motor_kv": 49.6,
+      "propeller": "EFZ5720",
+      "notes": "Coaxial propulsion reference. Derived power is first-order thrust/efficiency arithmetic, not a manufacturer current point."
+    }
+  ],
+  "scenario_mapping": {
+    "Q150": {
+      "architecture": "quad_single_rotor",
+      "candidate": "X15G2_RATED_AXIS",
+      "status": "PLAUSIBLE_REFERENCE_NOT_FROZEN",
+      "reason": "37.5 kg recommended axis load corresponds to 150 kg total at four axes; candidate class directly brackets heavy agricultural quad architecture."
+    },
+    "H175": {
+      "architecture": "hex_single_rotor",
+      "candidate": "A16_18S_RATED_AXIS",
+      "status": "OVERSIZED_REFERENCE_NOT_FROZEN",
+      "reason": "175/6 = 29.2 kg hover per axis, below A16 rated 35-40 kg; useful upper-envelope candidate but exact efficiency/current point requires manufacturer curve extraction."
+    },
+    "COAX_HEAVY": {
+      "architecture": "coaxial_reference",
+      "candidate": "XA14_18S_RATED_AXIS",
+      "status": "REFERENCE_NOT_FROZEN",
+      "reason": "Manufacturer explicitly positions this propulsion class for 180-200 kg quad and 270-300 kg hex takeoff weight classes."
+    }
+  },
+  "rules": [
+    "No phase-current value is inferred from DC current.",
+    "No product rotor count or MTOW is frozen by this file.",
+    "Derived thrust/efficiency power values are CALCULATED_FIRST_ORDER and remain distinct from measured manufacturer table rows.",
+    "Final ESC envelope requires selected vehicle architecture and exact operating-point data."
+  ]
+}
