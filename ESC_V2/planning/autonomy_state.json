@@ -1,36 +1,55 @@
 {
-  "revision":"AUTO-STATE-44",
+  "revision":"AUTO-STATE-45",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_U1_RATED_HIGH_PERFORMANCE_STRATEGY_LOCKED",
+  "last_run_status":"PROGRESS_PLAN_AUDITED_SPRINT_S1_ACTIVATED_TRACEABILITY_ALIGNED",
   "current_gate":"G0_G1",
-  "current_task":"PB02_PHASE_CURRENT_PWM_ENERGY_ENVIRONMENT_CLOSURE",
+  "current_task":"S1_1_PHASE_CURRENT_MODEL_CLOSURE",
+  "active_sprint":{
+    "id":"S1",
+    "name":"PB-02_TO_G1_SYSTEM_FREEZE",
+    "status":"ACTIVE",
+    "authority":"SPRINT_PB02_TO_G1_CLOSURE.md",
+    "execution_order":[
+      "S1.1_phase_current_model",
+      "S1.2_PWM_ripple_switching_loss",
+      "S1.3_18S_energy_minimum_loaded_bus",
+      "S1.4_environment_derating_protection",
+      "S1.5_exact_power_stage_G2_prefreeze",
+      "S1.6_configuration_control_closeout"
+    ]
+  },
   "completed_this_run":[
-    "verified current uav-rebaseline branch and PB-02 planning authorities before new work",
-    "preserved PB-02 frozen 18S heavy-lift baseline without creating an unnecessary PB-03",
-    "recorded user-approved first-release strategy to optimize U1 for the upper-performance 18S baseline rather than compromise initial hardware for guaranteed lower-S compatibility",
-    "created U1_RATED_VARIANT_STRATEGY.md defining U1 Rated 18S first release and future 12S_14S_16S lower-power derivatives as controlled revisions",
-    "clarified that the open dc_bus_min_v requirement will be closed from 18S loaded sag cutoff behavior rather than from a future low-voltage compatibility goal",
-    "clarified that lower-voltage operation must not be advertised without exact-revision electrical thermal protection and propulsion verification",
-    "corrected stale REQUIREMENTS_MASTER progress metadata from legacy 1_of_46_2p2_percent to the current PB-02 authority 22_of_46_47p8_percent without changing the controlling G1 matrix",
-    "kept phase_RMS_peak_current PWM pack_energy environment exact_MPNs and thermal implementation OPEN"
+    "verified current uav-rebaseline branch and all mandatory planning/configuration-control authorities before editing",
+    "audited UAV_PRODUCT_PLAN against PB-02 and found that the phase/gate structure remained valid but lacked a short execution sprint layer between the current partial baseline and G1 closure",
+    "identified stale UAV_TRACEABILITY entries that still described MOSFET voltage class battery architecture and rotor architecture as OPEN despite PB-01/PB-02 freezes",
+    "created SPRINT_PB02_TO_G1_CLOSURE.md as active Sprint S1 without adding or bypassing a product gate",
+    "updated UAV_PRODUCT_PLAN with A6 Sprint S1 and queued S2 Architecture Freeze transition after G1",
+    "updated uav_backlog to UAV-PLAN-06 with Sprint S1 overlay and changed UAV-004 UAV-005 UAV-006 to IN_PROGRESS because bounded PB-02 evidence now supports active work while final acceptance remains open",
+    "kept UAV-008 UAV-009 UAV-012 UAV-013 UAV-014 gate-blocked but explicitly allowed bounded G2 prework where it cannot silently become a frozen architecture decision",
+    "updated UAV_TRACEABILITY so PB-02 frozen X8 18S >=150V DC capability gate-driver architecture CAN and arming decisions no longer appear OPEN",
+    "added traceability records TR-043 PB-02 controlled baseline TR-044 rated 18S product-family strategy and TR-045 active Sprint S1",
+    "preserved U1-SCH-R001 as unallocated because AR-001 and AR-002 remain OPEN",
+    "kept controlling metrics unchanged because no new G1 row or backlog DONE task was closed by planning cleanup"
   ],
   "blocked_tasks":[
-    {"task":"close_G0_mass_allocation_energy_environment","reason":"combined <=80kg operating-empty budget is frozen but structure battery and fixed-equipment allocations plus mission duration and environment remain open","blocking_scope":"G0_completion"},
-    {"task":"freeze_exact_motor_prop_MPN","reason":"PB02 freezes performance class and operating envelope but production supplier/MPN still needs availability package and vehicle correlation","blocking_scope":"final_G1B_G2_MFG"},
-    {"task":"freeze_battery_energy_and_min_bus","reason":"18S nominal/full-charge architecture is frozen but Ah Wh sag cutoff reserve and BMS disconnect behavior remain open; minimum bus will now be closed specifically from 18S behavior","blocking_scope":"remaining_G1C"},
-    {"task":"freeze_phase_current_and_PWM","reason":"requires motor electrical parameters/phase-current model or measurement and 150V switching-loss/ripple trade","blocking_scope":"remaining_G1"},
-    {"task":"freeze_exact_power_stage_MPN_and_parallel_count","reason":"150V class and DC capability are frozen but phase-current PWM hot-loss SOA and thermal path remain open","blocking_scope":"G2_power_stage"},
-    {"task":"allocate_U1_SCH_R001","reason":"G1 phase/PWM/energy/environment and key G2 sensing/DC-link/thermal readiness remain open","blocking_scope":"G3"}
+    {"task":"close_G0_mass_energy_environment","reason":"battery/structure/fixed-equipment allocation mission duration environment and vehicle span remain open","blocking_scope":"G0_completion"},
+    {"task":"freeze_phase_current","reason":"requires motor electrical model/evidence consistent with the frozen 56x20 45KV 18S class","blocking_scope":"S1.1_G1-03_G1-04"},
+    {"task":"freeze_PWM","reason":"requires phase-current model plus motor inductance/electrical-time-constant evidence and 150V switching-loss/ripple trade","blocking_scope":"S1.2_G1-07"},
+    {"task":"freeze_battery_energy_and_min_bus","reason":"18S series/nominal/full-charge are frozen but Ah Wh loaded minimum sag reserve and disconnect behavior remain open","blocking_scope":"S1.3_remaining_G1C_G0"},
+    {"task":"freeze_environment_and_protection_thresholds","reason":"product ambient altitude ingress baseplate temperature watchdog timeout OV UV OCP OTP numeric values remain open","blocking_scope":"S1.4_remaining_G1"},
+    {"task":"freeze_exact_power_stage_MPN_and_parallel_count","reason":">=150V class is frozen but exact device/count requires phase-current PWM hot-loss SOA and thermal evidence","blocking_scope":"S1.5_G2_prefreeze"},
+    {"task":"allocate_U1_SCH_R001","reason":"G1 system envelope and page-level G2 architecture allocation conditions remain open","blocking_scope":"G3_AR-001_AR-002"}
   ],
   "next_candidates":[
-    "derive phase RMS and peak current from a motor electrical model consistent with the frozen 56x20_45KV_18S class instead of copying DC current",
-    "freeze PWM frequency range using >=60keRPM control requirement motor inductance evidence and 150V MOSFET loss trade",
-    "close 18S pack Ah Wh minimum-loaded-bus sag reserve and flight-time targets with an explicit energy budget",
-    "allocate the <=80kg operating-empty mass budget across propulsion battery frame fixed mission equipment avionics wiring and landing gear",
-    "select exact 150V MOSFET MPN parallel count and high-voltage half-bridge driver after phase/PWM closure",
-    "update the preliminary datasheet to PDS-02 with PB-02 frozen values highlighted"
+    "execute S1.1 by deriving phase RMS and phase peak current from the frozen propulsion class without equating DC and phase current",
+    "source or bound motor electrical parameters needed for phase-current and PWM-ripple calculations",
+    "after S1.1 execute S1.2 PWM frequency and 150V switching-loss sweep",
+    "then execute S1.3 rated 18S energy minimum-loaded-bus sag reserve and battery-mass closure",
+    "then execute S1.4 environment derating and protection thresholds",
+    "perform S1.5 exact MOSFET parallel-count and gate-driver shortlist only after parent values are available",
+    "issue next preliminary datasheet revision after new values actually freeze"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -50,9 +69,14 @@
     "product_baseline_pb01_definition_percent":100.0,
     "product_baseline_pb01_ci_consistency_percent":100.0,
     "product_baseline_pb02_definition_percent":100.0,
-    "product_baseline_pb02_ci_consistency_percent":100.0
+    "product_baseline_pb02_ci_consistency_percent":100.0,
+    "active_sprint_S1_definition_percent":100.0
   },
   "evidence_refs":[
+    "UAV_PRODUCT_PLAN.md",
+    "SPRINT_PB02_TO_G1_CLOSURE.md",
+    "uav_backlog.json",
+    "UAV_TRACEABILITY.md",
     "PRODUCT_BASELINE_PB-02.json",
     "U1_RATED_VARIANT_STRATEGY.md",
     "BATTERY_VOLTAGE_RATIONALE_PB02.md",
@@ -60,12 +84,25 @@
     "G1_REQUIREMENTS_MATRIX.json",
     "REQUIREMENTS_PROGRESS.json",
     "REQUIREMENTS_MASTER.json",
-    "uav_backlog.json",
-    "verify_product_baseline_pb02.py",
-    "GitHub Actions run 35456003134 SUCCESS",
-    "Hobbywing X13 G2 primary manufacturer load curve"
+    "U1_SCHEMATIC_ALLOCATION_READINESS.json"
   ],
-  "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false,"frozen_product_decision_changes_require_new_pb_revision_or_engineering_change_record":true,"lower_voltage_derivatives_require_controlled_variant_revision_and_reverification":true},
-  "evidence_policy":{"unknown_values":"OPEN_OR_NULL","benchmark_values_must_not_promote_without_documented_product_decision":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"User approved a high-end-first product strategy: optimize initial U1 around the PB-02 18S rated baseline; lower-series-count operation is not an initial-release requirement and may be explored after the rated product through controlled lower-power derivatives. Controlling metrics remain 100% requirements structure / 47.8% G1 closure / 8% backlog DONE / 0% major gates / 0% component-bearing U1 schematic."
+  "write_policy":{
+    "allow_branch":"uav-rebaseline",
+    "deny_main":true,
+    "allow_reversible_commits":true,
+    "allow_release_without_user_approval":false,
+    "schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE",
+    "superseded_schematic_revision_mutation_allowed":false,
+    "legacy_b1_electrical_source_mutation_allowed":false,
+    "frozen_product_decision_changes_require_new_pb_revision_or_engineering_change_record":true,
+    "lower_voltage_derivatives_require_controlled_variant_revision_and_reverification":true
+  },
+  "evidence_policy":{
+    "unknown_values":"OPEN_OR_NULL",
+    "benchmark_values_must_not_promote_without_documented_product_decision":true,
+    "physical_test_claim_without_measurement":false,
+    "flight_qualification_claim_without_gate_closure":false,
+    "verify_handoff_against_repository_each_run":true
+  },
+  "notes":"Plan audit confirms the A-G phase/gate architecture is still sound. The missing layer was execution cadence, so Sprint S1 was added under Phase A rather than inventing a new gate. The next safe engineering action is S1.1 phase-current closure. Metrics remain 100% requirements structure / 47.8% G1 / 8% backlog DONE / 0% major gates / 0% component-bearing U1 schematic."
 }
