@@ -1,105 +1,91 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 20:35+03:00  
+Date: 2026-09-19 21:18+03:00  
 Branch: `uav-rebaseline`  
-Run status: `S1_2_MEASUREMENT_PATH_DEFINED_POWER_STAGE_PREWORK_ADVANCED_S1_3_SENSITIVITY_ADDED`
+Repository HEAD after run writes: `35a1601729923e9962462dae9569181fe33088fd` before this handoff commit  
+Run status: `S1_2_HOT_THERMAL_SENSITIVITY_ADVANCED_NO_FALSE_FREEZE`
 
-## Repository state and controlling metrics
-
-PB-03 remains the current controlled product baseline. Sprint S1.1 is DONE and S1.2 is ACTIVE. No new G1 row was promoted merely because trade/prework evidence improved.
+## Controlling metrics
 
 - Requirements planned-domain/schema structure: **12/12 = 100%**.
 - G1 SYSTEM FREEZE value closure: **25/46 PASS = 54.3%**.
 - Backlog tasks explicitly DONE: **2/25 = 8%**.
 - Major product gates closed: **0/8 = 0%**.
-- U1 component-bearing production-intent schematic: **0%**.
+- Component-bearing U1 schematic: **0%**.
 
-## Completed this run
+No metric was increased from analysis-only evidence.
 
-### 1. S1.2 motor-inductance blocker now has an executable verification path
+## Tasks attempted / completed
 
-Created:
+1. Re-read and verified the controlling PB-03 planning state, requirements progress, backlog, mission requirements and previous handoff.
+2. Continued highest-priority safe S1.2/S1.5 work while exact motor inductance remains measurement-blocked.
+3. Created `POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md`.
+4. Added TR-047 traceability for the hot conduction/thermal sensitivity work.
+5. Updated `autonomy_state.json` and this handoff.
 
-- `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`
-- `MOTOR_IMPEDANCE_MEASUREMENT_RESULT.template.json`
+## Files changed
 
-The procedure requires propeller-removed, low-energy characterization of:
+- `ESC_V2/planning/POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md` — new.
+- `ESC_V2/planning/UAV_TRACEABILITY.md` — TR-047 additive continuation; prior TR-001..TR-046 exact detailed authority remains preserved at blob `558a79e824d957844766031e357996bc8e0cee01`.
+- `ESC_V2/planning/autonomy_state.json` — AUTO-STATE-48.
+- `ESC_V2/planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
 
-- U-V / V-W / W-U line-line DC resistance,
-- line-line impedance/inductance over rotor position and multiple frequencies,
-- low-voltage current step-response cross-check,
-- temperature, fixture compensation, instrument and uncertainty.
+No A2/B1 electrical source, U1 component-bearing schematic, PCB, Gerber, production BOM or release package was changed.
 
-The result template deliberately leaves all physical result values null. A KV value, geometry or a related older motor's inductance is not accepted as proof of the exact production motor Ld/Lq/effective ripple inductance.
+## Engineering decisions / calculations added
 
-### 2. Exact 150 V MOSFET prework advanced
+The current Infineon `IAUTN15S6N025T` TOLT anchor remains a calculation candidate, not a selection. Current manufacturer data confirms 150 V, 2.5 mOhm maximum RDS(on) at 10 V, 139 nC maximum Qg, 0.4 K/W maximum RthJC and 175 C operating limit. The manufacturer hot RDS(on) curve is not treated as a guaranteed production maximum.
 
-Created `POWER_STAGE_TRADE_PB03_G2_PREWORK.md`.
+To avoid inventing a hot limit, the study defines `Khot = RDS(on)_hot / 2.5mOhm` and evaluates **1.6 / 2.0 / 2.3 as sensitivity points only**.
 
-Exact current calculation anchors:
+At Khot=2.3:
 
-- Infineon `IAUTN15S6N025G` — 150 V, 2.5 mOhm max at 25 C, TOLG, RthJC max 0.42 K/W, Qg 107 nC typ / 139 nC max.
-- Infineon `IAUTN15S6N025T` — same low-resistance 150 V class in top-side-cooled TOLT, RthJC max 0.40 K/W.
-- Vishay `SQJQ570ER` — independent-vendor 150 V comparison with explicit hot RDS(on) maximums and RthJC 0.4 C/W.
+- N=2: 125 A RMS -> 134.8 W total conduction / 11.2 W per FET.
+- N=3: 125 A RMS -> 89.8 W total / 5.0 W per FET.
+- N=2: 265 A RMS -> 605.7 W total / 50.5 W per FET.
+- N=3: 265 A RMS -> 403.8 W total / 22.4 W per FET.
 
-A conduction-only N=1/2/3 parallel screen was calculated against PB-03 125 A RMS continuous / 265 A RMS overload. It is explicitly not a production parallel-count selection because switching loss, hot worst-case conduction, SOA, current sharing and baseplate thermal path remain open.
+Using 0.4 K/W RthJC only as an internal junction-to-case sanity screen gives approximately 4.5 K, 2.0 K, 20.2 K and 9.0 K respectively. These are **not junction-temperature predictions** because switching loss, transient ZthJC, TIM/baseplate/ambient path, current sharing and initial temperature are absent.
 
-Current pre-freeze direction:
+Engineering disposition: N=1 is no longer a priority detailed-study branch; N=2 and N=3 remain. TOLT remains the first thermal-package branch to investigate. No exact MPN/count/package/PWM is frozen.
 
-- Infineon OptiMOS 6 150 V family remains the primary electrical calculation anchor.
-- TOLT is the first thermal-package branch to investigate because it can support a direct top-side baseplate path, but package/MPN are not frozen.
-- Vishay is retained as an independent supplier/evidence comparison.
+## Assumptions and evidence level
 
-### 3. S1.3 energy/mass sensitivity started safely
+- Khot=1.6/2.0/2.3: **analysis sensitivity only**, not requirement, datasheet guarantee or measurement.
+- 0.4 K/W RthJC: **primary-source device rating**, but steady multiplication is not accepted as the final 3 s transient thermal model.
+- PB-03 125/265/375 A phase envelope: controlled design requirement, physical correlation still pending.
+- No physical thermal, switching, EMI, dyno or flight result was introduced.
 
-Created `BATTERY_ENERGY_SENSITIVITY_PB03.md` from the frozen/source-backed max-MTOW hover sizing reference.
+## Unresolved blockers
 
-Eight PB-03 reference propulsion channels at the max-MTOW hover point imply approximately **24.420 kW total propulsion input** at the manufacturer reference condition. Raw hover-equivalent propulsion energy is therefore approximately:
+1. Exact production motor Ld/Lq/effective PWM ripple inductance or measured result.
+2. Guaranteed hot-RDS policy for intended MOSFET.
+3. Switching-energy/waveform correlation at intended VBUS/current/RG/layout.
+4. Transient ZthJC plus TIM/baseplate/cooling path.
+5. Parallel current-sharing/layout tolerance.
+6. Mission duration/reserve and exact 18S pack/minimum loaded bus/sag/disconnect behavior.
+7. Environment/protection numeric requirements.
+8. G2 exact power-stage/control/sensing/DC-link architecture.
 
-- 8 min -> 3.256 kWh,
-- 10 min -> 4.070 kWh,
-- 12 min -> 4.884 kWh,
-- 15 min -> 6.105 kWh.
+## Regressions / risks discovered
 
-Reserve fractions and 160/180/200/220 Wh/kg complete-pack specific-energy values are shown only as sensitivity cases. No flight-time, Ah/Wh, pack mass or reserve requirement is frozen.
+The hot sensitivity demonstrates that N=2 overload conduction can become several hundred watts for the inverter before switching loss. Therefore selecting two parallel devices solely from 25 C RDS(on), headline ID or RthJC would be unsafe. N=3 materially lowers conduction but increases device count, gate charge, layout area and sharing complexity.
 
-The important system result is that the frozen <=80 kg operating-empty budget is strongly coupled to endurance. After the 33.48 kg eight-propulsion-unit reference mass, only 46.52 kg remains for battery + frame/arms + fixed mission equipment + avionics + landing gear + wiring. Long max-payload hover endurance therefore rapidly consumes the mechanical mass budget.
+Traceability editing briefly produced a compact replacement commit; the following commit immediately restored explicit authority to the exact historical TR-001..TR-046 blob and added TR-047 as an additive continuation. No historical Git object or A2/B1 evidence was deleted. Future consolidation should reconstruct the full matrix from blob `558a79e824d957844766031e357996bc8e0cee01` plus TR-047.
 
-## S1.2 status
+## Exact next recommended tasks
 
-`G1-07 PWM` remains OPEN.
-
-Current 20/24/32/40 kHz values remain analysis points only. The >=60 keRPM parent gives timing density, but a defensible ripple/loss selection still requires exact motor inductance and intended-device switching-loss/waveform evidence.
-
-No PB-04 was created because no additional product value is yet sufficiently evidenced to freeze.
-
-## Current blockers
-
-1. Exact production motor Ld/Lq/effective PWM ripple inductance or physical measurement result.
-2. Exact switching-loss correlation at intended bus/current/RG/layout plus hot conduction/thermal model.
-3. Mission duration and reserve policy for S1.3.
-4. Exact battery candidate, loaded minimum bus/sag/current and disconnect behavior.
-5. G0 airframe/battery/fixed-equipment allocation and environment.
-6. S1.4 ambient/altitude/baseplate/OV/UV/OCP/OTP/watchdog/timeout values.
-7. G2 exact MOSFET count/driver/sensing/DC-link/thermal architecture.
-
-## Configuration / release boundary
-
-No B1 source, component-bearing U1 schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated because AR-001 G1 and AR-002 G2 are still OPEN.
-
-## Exact next engineering path
-
-1. Continue S1.2 using the new motor impedance procedure or exact supplier L/R data.
-2. Extend the 150 V MOSFET model into hot conduction + switching waveform + TOLT/baseplate thermal screening.
-3. In parallel, continue S1.3 by closing a defensible mission-time/reserve target and exact 18S pack candidate when evidence permits.
-4. Then S1.4 environment/protection targets, S1.5 exact power-stage pre-freeze and S1.6 configuration closeout.
+1. Build a parameterized switching-loss screen from exact primary-source switching conditions without inventing Eon/Eoff where unavailable.
+2. Obtain/measure exact motor L/R using the already-defined PB-03 impedance procedure before PWM freeze.
+3. Add transient ZthJC and case-to-baseplate/TIM thermal model once source/mechanical inputs are controlled.
+4. Continue S1.3 pack/mission-energy closure independently when evidence permits.
 
 Dependency chain:
 
-`PB-03 -> S1.2 motor R/L + PWM/loss -> S1.3 18S energy/min bus -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
+`PB-03 -> exact motor R/L + switching/hot thermal evidence -> PWM -> S1.3 18S energy/min bus -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
 
 ## Next-run briefing
 
-Start from PB-03, `PWM_RIPPLE_LOSS_STUDY_PB03.md`, `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`, `POWER_STAGE_TRADE_PB03_G2_PREWORK.md` and `BATTERY_ENERGY_SENSITIVITY_PB03.md`. Preserve PWM, Ah/Wh, exact MOSFET count/MPN and environment as OPEN until their evidence supports a controlled product decision.
+Start from PB-03, `PWM_RIPPLE_LOSS_STUDY_PB03.md`, `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`, `POWER_STAGE_TRADE_PB03_G2_PREWORK.md` and the new `POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md`. Keep PWM, exact MOSFET count/MPN, Khot guarantee, thermal stack, pack energy and environment OPEN. Do not treat the Khot sensitivity points as datasheet limits. Preserve the exact TR-001..TR-046 history and append future traceability rather than replacing it.
 
-Mandatory progress snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 54.3% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
+Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 54.3% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
