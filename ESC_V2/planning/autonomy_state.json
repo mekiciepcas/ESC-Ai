@@ -1,19 +1,47 @@
 {
-  "revision": "AUTO-STATE-06",
+  "revision": "AUTO-STATE-07",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status": "PROGRESS_BUS_SENSE_AND_VBUS_COMPONENT_AUDIT",
+  "last_run_status": "PROGRESS_EXACT_VBUS_BOM_AND_LOSS_MODEL_FRAMEWORK",
   "current_gate": "G0_G1",
   "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "current_task": "POWER_STAGE_LOSS_MODEL_AND_EXACT_VBUS_BOM_AUDIT",
-  "completed_this_run": ["recalculated_existing_B1_bus_divider_for_18S_full_charge_and_true_ideal_ADC_full_scale","created_120V_and_150V_bus_measurement_range_trade_without_freezing_resistor_values","separated_measurement_full_scale_from_hardware_overvoltage_protection_requirement","verified_LM5164_6V_to_100V_input_domain_from_TI_primary_source","created_partial_B1_VBUS_exposed_component_audit_for_18S_candidate"],
-  "blocked_tasks": [{"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_mass_mission_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_only"},{"task":"freeze_UAV_004_operating_point","reason":"rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_operating_point_only"},{"task":"freeze_18S_voltage_domain","reason":"switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_and_sensing_freeze"}],
-  "next_candidates": ["extract_exact_B1_bulk_capacitor_and_VBUS_protection_references_and_ratings","build_parameterized_power_stage_loss_model_inputs_for_100V_120V_150V_silicon_classes","audit_divider_resistor_individual_working_voltage_and_ADC_injection_path","update_UAV_TRACEABILITY_with_bus_sense_and_LM5164_voltage_domain_constraints","research_higher_voltage_aux_front_end_candidates_only_if_transient_requirement_exceeds_100V"],
+  "current_task": "DIVIDER_WORKING_VOLTAGE_AND_INPUT_PROTECTION_CONTRACT",
+  "completed_this_run": [
+    "audited_exact_B1_VBUS_exposed_BOM_from_bom_review_and_source",
+    "confirmed_main_DC_link_is_3x470uF_100V_with_exact_MPN_open",
+    "confirmed_local_inverter_ceramics_are_3x2.2uF_100V_X7R_with_exact_MPN_open",
+    "confirmed_160V_capacitor_labels_apply_to_aux_buck_local_input_not_main_DC_link",
+    "confirmed_external_input_precharge_fuse_reverse_polarity_and_brake_clamp_are_not_closed_on_B1_board",
+    "created_parameterized_semiconductor_loss_model_framework_for_100V_120V_150V_trade",
+    "updated_UAV_traceability_with_common_voltage_domain_and_DC_link_findings"
+  ],
+  "blocked_tasks": [
+    {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_mass_mission_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_only"},
+    {"task":"freeze_UAV_004_operating_point","reason":"rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_operating_point_only"},
+    {"task":"freeze_18S_voltage_domain","reason":"switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
+    {"task":"run_numeric_semiconductor_loss_comparison","reason":"phase_RMS_peak_current_PWM_and_candidate_datasheet_parameters_not_frozen","blocking_scope":"final_MPN_class_selection"}
+  ],
+  "next_candidates": [
+    "audit_RT0805_upper_divider_working_voltage_and_ADC_clamp_injection_path",
+    "define_external_input_module_electrical_contract_for_fuse_precharge_reverse_polarity_disconnect_and_clamp",
+    "build_DC_link_ripple_and_capacitor_selection_framework_without_selecting_MPN",
+    "populate_loss_model_with_legacy_CSD19536KTT_datasheet_parameters_as_reference_only",
+    "continue_propulsion_operating_point_evidence_to_reduce_phase_current_uncertainty"
+  ],
   "last_verified_gate": "REBASELINE_INIT",
-  "evidence_refs": ["planning/BUS_SENSE_18S_REBASELINE.md","planning/B1_VBUS_COMPONENT_AUDIT.md","planning/POWER_DOMAIN_VOLTAGE_CLASS_TRADE.md","planning/DC_BUS_TRANSIENT_REQUIREMENTS.md","hardware_b1/build_b1.py","https://www.ti.com/product/LM5164","https://www.ti.com/lit/ds/symlink/lm5164.pdf","https://www.ti.com/product/DRV8353"],
+  "evidence_refs": [
+    "planning/B1_EXACT_VBUS_BOM_AUDIT.md",
+    "planning/POWER_STAGE_LOSS_MODEL.md",
+    "planning/BUS_SENSE_18S_REBASELINE.md",
+    "planning/B1_VBUS_COMPONENT_AUDIT.md",
+    "hardware_b1/bom_review.json",
+    "hardware_b1/build_b1.py",
+    "hardware_b1/connection_manifest.json",
+    "planning/UAV_TRACEABILITY.md"
+  ],
   "write_policy": {"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy": {"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
   "continuity_policy": {"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
-  "notes": "Existing B1 divider maps 75.6 V to about 2.434 V and ideal 3.3 V full-scale to about 102.5 V, but this is not transient qualification. LM5164 is a 100 V input-domain device and therefore joins DRV8353 and 100 V MOSFETs as voltage-domain-critical items for an unresolved 18S transient ceiling."
+  "notes": "B1 exact source audit shows the main DC-link is still a 100 V candidate domain: 3x470uF 100V bulk and 3x2.2uF 100V local inverter ceramics have no exact qualified MPN. 160 V labels exist at the LM5164 local input only. External input protection/precharge and regen clamp are not closed designs. Voltage class selection remains open pending a common transient ceiling and phase-current envelope."
 }
