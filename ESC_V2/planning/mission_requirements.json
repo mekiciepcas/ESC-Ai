@@ -1,5 +1,5 @@
 {
-  "revision": "MISSION-03",
+  "revision": "MISSION-04",
   "date": "2026-09-19",
   "status": "OPEN_G0_PARTIAL_PRODUCT_BASELINE_APPLIED",
   "application": "heavy_lift_agricultural_multirotor_uav",
@@ -8,10 +8,10 @@
       "min_kg": 70,
       "nominal_kg": 85,
       "max_kg": 100,
-      "status": "FROZEN_PB-02_INHERITED_BY_PB-03"
+      "status": "FROZEN_PB-02_INHERITED_BY_PB-04"
     },
     "vehicle_operating_empty_mass_budget_kg": 80,
-    "vehicle_operating_empty_mass_budget_status": "FROZEN_TARGET_PB-02_INHERITED_BY_PB-03",
+    "vehicle_operating_empty_mass_budget_status": "FROZEN_TARGET_PB-02_INHERITED_BY_PB-04",
     "airframe_empty_mass_kg": null,
     "battery_mass_kg": null,
     "mission_equipment_mass_kg": null,
@@ -19,14 +19,19 @@
       "min_kg": 150,
       "nominal_kg": 165,
       "max_kg": 180,
-      "status": "FROZEN_TARGET_PB-02_INHERITED_BY_PB-03"
+      "status": "FROZEN_TARGET_PB-02_INHERITED_BY_PB-04"
     },
     "flight_profile": {
-      "target_total_flight_time_min": null,
-      "target_hover_time_min": null,
+      "target_total_flight_time_min": 10,
+      "target_total_flight_time_status": "FROZEN_PB-04_AT_NOMINAL_85KG_PAYLOAD_165KG_MTOW_REFERENCE",
+      "target_hover_time_min": 10,
+      "target_hover_time_status": "FROZEN_PB-04_HOVER_EQUIVALENT_ENERGY_SIZING_REFERENCE_AT_165KG",
       "takeoff_climb_duration_s": null,
       "cruise_or_translation_duration_min": null,
-      "reserve_energy_fraction": null
+      "reserve_energy_fraction": 0.20,
+      "reserve_energy_fraction_status": "FROZEN_PB-04_PACK_SIZING_MARGIN_NOT_BMS_SOC_CUTOFF",
+      "stretch_endurance_target_min": 12,
+      "stretch_endurance_target_status": "TRADE_ONLY_NOT_FROZEN"
     },
     "environment": {
       "minimum_ambient_c": null,
@@ -37,19 +42,19 @@
     },
     "vehicle": {
       "architecture": "X8_COAXIAL_4_ARM_8_INDEPENDENT_PROPULSION_CHANNELS",
-      "architecture_status": "FROZEN_PB-01_INHERITED_BY_PB-03",
+      "architecture_status": "FROZEN_PB-01_INHERITED_BY_PB-04",
       "rotor_count": 8,
-      "rotor_count_status": "FROZEN_PB-01_INHERITED_BY_PB-03",
+      "rotor_count_status": "FROZEN_PB-01_INHERITED_BY_PB-04",
       "coaxial_allowed": true,
       "coaxial_packaging_baseline": true,
       "coaxial_thrust_sizing_factor": 0.85,
-      "coaxial_thrust_sizing_factor_status": "FROZEN_SIZING_FACTOR_PB-02_INHERITED_BY_PB-03_PENDING_PHYSICAL_CORRELATION",
+      "coaxial_thrust_sizing_factor_status": "FROZEN_SIZING_FACTOR_PB-02_INHERITED_BY_PB-04_PENDING_PHYSICAL_CORRELATION",
       "normal_static_thrust_to_weight_min": 1.6,
-      "normal_static_thrust_to_weight_status": "FROZEN_PB-02_INHERITED_BY_PB-03",
+      "normal_static_thrust_to_weight_status": "FROZEN_PB-02_INHERITED_BY_PB-04",
       "maximum_vehicle_span_m": null,
       "degraded_operation_requirement": "CONTROLLED_LANDING_AFTER_SINGLE_PROPULSION_CHANNEL_LOSS",
       "single_motor_failure_requirement": "CONTROLLED_LANDING_REQUIRED",
-      "single_motor_failure_status": "FROZEN_PB-01_INHERITED_BY_PB-03",
+      "single_motor_failure_status": "FROZEN_PB-01_INHERITED_BY_PB-04",
       "continued_hover_at_max_payload_after_single_failure_required": false,
       "thrust_requirements": {
         "nominal_mtow_vehicle_share_per_rotor_kgf": 20.625,
@@ -58,12 +63,12 @@
         "max_mtow_isolated_equivalent_per_rotor_kgf": 26.471,
         "normal_1p6_TW_isolated_equivalent_per_rotor_kgf": 42.353,
         "single_channel_loss_controlled_landing_isolated_equivalent_per_remaining_rotor_kgf": 30.252,
-        "status": "FROZEN_DERIVED_PB-02_INHERITED_BY_PB-03"
+        "status": "FROZEN_DERIVED_PB-02_INHERITED_BY_PB-04"
       }
     },
     "propulsion": {
       "performance_class": "56x20_INCH_45KV_18S_CLASS",
-      "performance_class_status": "FROZEN_PB-02_INHERITED_BY_PB-03_EXACT_MPN_OPEN",
+      "performance_class_status": "FROZEN_PB-02_INHERITED_BY_PB-04_EXACT_MPN_OPEN",
       "propeller_diameter_in": 56,
       "propeller_pitch_in": 20,
       "motor_kv_rpm_per_v": 45,
@@ -72,12 +77,14 @@
       "isolated_rated_thrust_per_axis_kgf_min": 27,
       "isolated_max_thrust_per_axis_kgf_min": 60,
       "propulsion_unit_mass_target_kg_max": 4.3,
-      "controller_electrical_rpm_capability_min": 60000,
+      "controller_electrical_rpm_capability_min": 90000,
+      "controller_electrical_rpm_status": "FROZEN_CORRECTED_PB-04",
+      "outer_bus_no_load_linear_screen_erpm": 75600,
       "reference_anchor_not_selection": "Hobbywing X13 G2 + MFP 56x20"
     },
     "battery": {
       "series_count": 18,
-      "series_count_status": "FROZEN_PB-02_INHERITED_BY_PB-03",
+      "series_count_status": "FROZEN_PB-02_INHERITED_BY_PB-04",
       "chemistry_class": "LiPo_or_equivalent_high_rate_lithium_4p2V_max_cell",
       "nominal_cell_v": 3.7,
       "nominal_bus_v": 66.6,
@@ -87,7 +94,23 @@
       "capacity_ah": null,
       "energy_wh": null,
       "exact_cell_or_pouch": null,
-      "status": "PARTIAL_FROZEN_PB-03_CAPACITY_OPEN"
+      "s1_3_nominal_energy_bound": {
+        "reference_mtow_kg": 165,
+        "reference_hover_input_power_w": 21441,
+        "mission_energy_wh_for_10min": 3574,
+        "gross_energy_wh_with_20pct_reserve_approx": 4467,
+        "nominal_equivalent_capacity_ah_at_66p6V_approx": 67.1,
+        "status": "DERIVED_BOUND_NOT_PACK_FREEZE"
+      },
+      "s1_3_max_mtow_stress_bound": {
+        "reference_mtow_kg": 180,
+        "reference_hover_input_power_w": 24420,
+        "mission_energy_wh_for_10min": 4070,
+        "gross_energy_wh_with_20pct_reserve_approx": 5088,
+        "nominal_equivalent_capacity_ah_at_66p6V_approx": 76.4,
+        "status": "TRADE_ONLY_NOT_RATED_ENDURANCE_PROMISE"
+      },
+      "status": "PARTIAL_FROZEN_PB-04_EXACT_CAPACITY_SAG_AND_PACK_OPEN"
     },
     "esc": {
       "continuous_dc_current_a_min": 70,
@@ -100,15 +123,18 @@
       "phase_peak_current_a": 375,
       "phase_peak_current_duration_s_min": 3,
       "phase_current_sense_range_a": [-400, 400],
-      "phase_current_status": "FROZEN_PB-03_DERIVED_DESIGN_REQUIREMENT_PHYSICAL_CORRELATION_PENDING",
+      "phase_current_status": "FROZEN_PB-03_INHERITED_BY_PB-04_DERIVED_DESIGN_REQUIREMENT_PHYSICAL_CORRELATION_PENDING",
       "pwm_frequency_hz": null,
-      "status": "PARTIAL_FROZEN_PB-03_PWM_AND_PROTECTION_DOMAIN_OPEN"
+      "pwm_preferred_analysis_window_hz": [24000, 32000],
+      "pwm_boundary_sensitivity_hz": [20000, 40000],
+      "pwm_status": "OPEN_S1_2_EXACT_MOTOR_INDUCTANCE_REQUIRED",
+      "status": "PARTIAL_FROZEN_PB-04_PWM_AND_PROTECTION_DOMAIN_OPEN"
     },
     "control_and_interface": {
       "flight_controller_interface": "CAN_FD_CAPABLE_CLASSIC_CAN_COMPATIBLE",
-      "flight_controller_interface_status": "FROZEN_PB-01_INHERITED_BY_PB-03",
+      "flight_controller_interface_status": "FROZEN_PB-01_INHERITED_BY_PB-04",
       "arming_interface": "VALID_FC_COMMAND_PLUS_INDEPENDENT_HARDWARE_INHIBIT_AUTHORITY",
-      "arming_policy_status": "FROZEN_PB-01_INHERITED_BY_PB-03",
+      "arming_policy_status": "FROZEN_PB-01_INHERITED_BY_PB-04",
       "automatic_rearm_after_fault_or_reset": false,
       "telemetry_update_rate_hz": null,
       "command_timeout_ms": null
@@ -123,8 +149,10 @@
   "assumption_policy": {
     "rule": "Unknown mission parameters remain null until provided, researched or explicitly approved as engineering assumptions or controlled product-baseline decisions.",
     "payload_interpretation": "70-100 kg is payload target, not MTOW.",
-    "product_baseline_authority": "PRODUCT_BASELINE_PB-03.json",
+    "product_baseline_authority": "PRODUCT_BASELINE_PB-04.json",
     "phase_current_evidence": ["PHASE_CURRENT_MODEL_PB02.md", "PHASE_CURRENT_MODEL_PB02.json"],
+    "mission_energy_evidence": ["MISSION_DURATION_ENERGY_BASELINE_PB04.md"],
+    "erpm_pwm_evidence": ["ERPM_PWM_TIMING_CORRECTION_PB04.md"],
     "flight_qualification": "No flight qualification claim is made from this requirements file. Frozen architecture and sizing decisions still require detailed design and physical verification at later gates."
   },
   "g0_acceptance": [
