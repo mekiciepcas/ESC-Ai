@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-19T20:20:28+00:00",
-  "source_commit": "3495fc555bc7",
+  "generated_at": "2026-09-19T20:20:40+00:00",
+  "source_commit": "7d1ed942b9e6",
   "plan_revision": "UAV-PLAN-08",
   "task_count": 25,
   "done_count": 2,
@@ -16,5 +16,5 @@
   "missing_g0_inputs": 11,
   "next_schematic_revision": "U1-SCH-R001",
   "current_task": "S1_3_BATTERY_ARCHITECTURE",
-  "last_run_status": "PB06_PACK_PEAK_CURRENT_FROZEN_ARCHITECTURE_FRAMEWORK_DEFINED"
+  "last_run_status": "PB06_HIGH_CURRENT_PATH_SCREENED_SELECTION_OPEN"
 }
