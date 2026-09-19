@@ -1,0 +1,24 @@
+name: Verify PB-06 Battery Baseline
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-06.json'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/REQUIREMENTS_MASTER.json'
+      - 'ESC_V2/planning/verify_pb06_battery_peak.py'
+      - '.github/workflows/pb06-battery-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify-pb06-battery:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+      - name: Verify PB-06 consistency
+        run: python3 ESC_V2/planning/verify_pb06_battery_peak.py
