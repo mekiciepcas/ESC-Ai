@@ -1,0 +1,17 @@
+{
+  "revision": "U1-ALLOC-READY-01",
+  "date": "2026-09-19",
+  "status": "BLOCKED",
+  "candidate_revision": "U1-SCH-R001",
+  "purpose": "Machine-readable guard for the first component-bearing U1 schematic allocation. This record does not allocate a revision.",
+  "required_conditions": [
+    {"id":"AR-001","condition":"G1 SYSTEM electrical envelope is frozen and traceable","status":"OPEN","evidence":"G1_REQUIREMENTS_MATRIX.json"},
+    {"id":"AR-002","condition":"G2 page-level architecture needed by the first migrated sheet is frozen","status":"OPEN","evidence":"U1_SCHEMATIC_MIGRATION_CONTRACT.md"},
+    {"id":"AR-003","condition":"source revision register still identifies U1-SCH-R001 as next unused component-bearing revision","status":"PASS","evidence":"SCHEMATIC_REVISION_REGISTER.json"},
+    {"id":"AR-004","condition":"revision-specific ERC/BOM/interface evidence contract exists","status":"PASS","evidence":"U1_G3_ERC_POLICY.json; SCHEMATIC_REVISION_MANIFEST.template.json"},
+    {"id":"AR-005","condition":"no legacy B1 or frozen R000 source mutation is required for allocation","status":"PASS","evidence":"SCHEMATIC_VERSIONING_POLICY.md; schematic-revision-policy CI"}
+  ],
+  "requirement_refs": ["G1_REQUIREMENTS_MATRIX.json","U1_SCHEMATIC_MIGRATION_CONTRACT.md","SCHEMATIC_VERSIONING_POLICY.md"],
+  "allocation_rule": "status may become READY only when every required condition is PASS. The helper must refuse --allocate otherwise.",
+  "anti_hallucination_rule": "READY/allocated/revision identity does not imply G3, bench, thermal, EMC, dyno or flight qualification."
+}
