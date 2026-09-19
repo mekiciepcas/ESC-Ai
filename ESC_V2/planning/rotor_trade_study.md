@@ -1,50 +1,39 @@
-# Rotor architecture trade study — preliminary
+# Rotor architecture trade study — bounded screening
 
 Date: 2026-09-19
-Status: PRELIMINARY / G0 NOT CLOSED
+Status: IN_PROGRESS / G0 NOT CLOSED
 Branch: `uav-rebaseline`
 Backlog: UAV-002
 
 ## Purpose
 
-Compare rotor-count implications before selecting the propulsion architecture. This study uses source-backed market MTOW examples only as benchmark cases. It does **not** freeze our MTOW or thrust margin.
+Compare rotor-count implications before selecting the propulsion architecture. Product-specific G0 values remain OPEN. Numerical MTOW cases in this document are controlled `ASSUMPTION_FOR_TRADE_ONLY` cases governed by `G0_TRADE_BOUNDING_CASES.md`; they do not freeze our vehicle MTOW, thrust margin or rotor count.
 
-## Benchmark MTOW cases
+## Primary-source benchmark anchors
 
-Current heavy agricultural products span approximately:
-- 125 kg: XAG P150 maximum spraying takeoff weight, 70 kg payload.
-- 136 kg: XAG P150 Max maximum spraying takeoff weight, 80 kg payload.
-- 175 kg: DJI Agras T100 maximum spraying takeoff weight, 100 kg payload.
+Current heavy agricultural products provide three useful architecture anchors:
+- XAG P150: 54 kg aircraft weight with spraying system and batteries, 70 kg max payload, 125 kg max spraying MTOW, quad, 55 kgf max thrust/motor, 4.7 kW rated power/motor, 120 A continuous ESC.
+- XAG P150 Max: 56 kg empty weight with spraying system and batteries, 80 kg max payload, 136 kg max spraying MTOW, four motors, 56 kgf max thrust/motor, 4.85 kW rated power/motor, 140 A continuous ESC.
+- DJI Agras T100: 75 kg spraying weight, 100 kg operating spraying payload, 175 kg max spraying MTOW, 60 rpm/V motors and 62-inch propellers. DJI also publishes a Turkey-specific 149.9 kg MTOW use limit for T100; that statement is a constraint on that product/use context and is not copied into our product requirements.
 
 Primary sources:
 - https://www.xa.com/en/p150/p150specs
 - https://xa.com/en/p150max/p150maxspecs
 - https://ag.dji.com/t100/specs
 
-A 150 kg intermediate case is included only to show sensitivity.
+## Controlled analysis cases
 
-## Calculation method
+`T125`, `T150`, and `T175` are analysis cases only. T125 and T175 bracket current published heavy-agriculture examples; T150 is a sensitivity/interpolation case. The 1.6 and 1.8 static thrust/weight multipliers are also screening values, not requirements.
 
 For N lifting axes and aircraft mass M:
 
 `hover_thrust_per_axis_kgf = M / N`
-
-Two preliminary static thrust-to-weight study cases are shown:
-- 1.6: lower benchmark study case.
-- 1.8: higher benchmark study case.
-
-These are **not standards and not frozen requirements**. They were selected because current products show similar order-of-magnitude static margin: XAG P150 is approximately 1.76 using published maximum single-motor thrust and maximum spraying MTOW, while XAG P150 Max is approximately 1.65.
-
-## Required thrust per lifting axis
 
 | MTOW | Axes | Hover kgf/axis | Max kgf/axis @ T/W 1.6 | Max kgf/axis @ T/W 1.8 |
 |---:|---:|---:|---:|---:|
 | 125 kg | 4 | 31.25 | 50.00 | 56.25 |
 | 125 kg | 6 | 20.83 | 33.33 | 37.50 |
 | 125 kg | 8 | 15.63 | 25.00 | 28.13 |
-| 136 kg | 4 | 34.00 | 54.40 | 61.20 |
-| 136 kg | 6 | 22.67 | 36.27 | 40.80 |
-| 136 kg | 8 | 17.00 | 27.20 | 30.60 |
 | 150 kg | 4 | 37.50 | 60.00 | 67.50 |
 | 150 kg | 6 | 25.00 | 40.00 | 45.00 |
 | 150 kg | 8 | 18.75 | 30.00 | 33.75 |
@@ -56,112 +45,84 @@ These are **not standards and not frozen requirements**. They were selected beca
 
 ### Quad class
 
-XAG P150:
-- quad-rotor,
-- max MTOW 125 kg,
-- 55 kgf max thrust per motor.
+XAG P150 and P150 Max establish direct commercial precedent for heavy agricultural quads in the 125-136 kg published spraying-MTOW range. Their published per-axis rated powers are 4.7 and 4.85 kW respectively, so the legacy B1 3 kW target is not a defensible heavy-quad product rating.
 
-This corresponds to 31.25 kgf hover load per rotor and approximately 1.76 maximum static thrust/weight ratio from published values.
+Hobbywing X15 G2 provides a separate 18S/69 V propulsion reference with 37.5 kg recommended takeoff weight per axis and 82 kgf maximum thrust. Four recommended-load axes correspond to 150 kg total supported mass as a benchmark, not as our MTOW requirement.
 
-XAG P150 Max:
-- 4 motors,
-- max MTOW 136 kg,
-- 56 kgf max thrust per motor.
+### Upper-bound / multi-rotor class
 
-This corresponds to 34 kgf hover load per rotor and approximately 1.65 maximum static thrust/weight ratio.
+DJI T100 provides current evidence that the 100 kg payload / 175 kg spraying-MTOW region is implemented with a multi-propeller architecture rather than an ordinary quad. Public DJI data is not used to infer its ESC current rating.
 
-Hobbywing X15 G2:
-- recommended takeoff weight per axis 37.5 kg,
-- max thrust 82 kgf per axis,
-- 18S / 69 V,
-- rated input power 4.64 kW.
+## Architecture screening
 
-Four X15 G2 axes correspond to 150 kg manufacturer-recommended takeoff mass total, which is directly relevant to the middle of our benchmark range.
+### Ordinary quad
 
-### Coaxial architecture
+Strengths:
+- minimum ESC/motor count;
+- simplest harness and maintenance burden;
+- direct commercial precedent at 125-136 kg spraying MTOW.
 
-DJI T100:
-- maximum spraying MTOW 175 kg,
-- coaxial dual-rotor propulsion,
-- 82 kgf single-axis maximum thrust.
+Constraints:
+- complete loss of one motor/ESC cannot satisfy a future requirement for continued controlled hover using only the remaining three fixed-pitch lifting axes; therefore a later G0 `single_motor_failure_requirement = continued_hover` would eliminate ordinary quad before detailed ESC sizing;
+- T175 requires 43.75 kgf/axis just to hover and 70-78.75 kgf/axis in the two static-margin screening cases, making it the highest per-axis electrical-stress branch.
 
-This is important evidence that the upper end of the requested payload class can drive the vehicle toward coaxial/multi-rotor architecture when compact footprint and redundancy are desired. Public DJI product data is insufficient to derive the ESC current rating, so T100 is not used for electrical sizing.
-
-## Architecture implications
-
-### Quad
-
-Advantages:
-- minimum ESC/motor count,
-- lowest component and harness count,
-- fewer failure points and simpler maintenance,
-- current commercial precedent exists at 70–80 kg agricultural payload.
-
-Challenges:
-- each ESC/motor is high power,
-- no single-motor-out hover capability in an ordinary quad,
-- at the 175 kg class, each axis must produce 43.75 kgf just to hover and roughly 70–79 kgf for the two study margins.
-
-Preliminary conclusion:
-- very credible around ~125–150 kg MTOW with X15-class propulsion,
-- increasingly demanding at ~175 kg MTOW unless using very large propulsion units.
+Screening status: `RETAIN` if motor-out continued hover is waived; `CONDITIONALLY_ELIMINATED` if motor-out continued hover is required.
 
 ### Hex
 
-Advantages:
-- lowers per-axis thrust and ESC power,
-- potentially better degraded-control options than quad,
-- easier to reach upper MTOW without 70–80 kgf class single-axis propulsion.
+Strengths:
+- lower per-axis thrust/power than quad;
+- more control authority after a propulsion-unit loss, subject to flight-control/airframe proof;
+- T175 screening gives 29.17 kgf hover and 46.67-52.50 kgf/axis at the two margin cases, near current heavy-agriculture propulsion capability.
 
-Challenges:
-- +50% motors/ESCs versus quad,
-- more wiring, mass, cost and maintenance,
-- propeller/airframe interference and disk-loading must be checked.
+Costs:
+- six ESC/motor channels, +50% versus quad;
+- additional harness, mass, maintenance and aerodynamic interaction.
 
-At 175 kg MTOW:
-- hover = 29.2 kgf/axis,
-- 1.6 study max = 46.7 kgf/axis,
-- 1.8 study max = 52.5 kgf/axis.
+Screening status: `RETAIN` across T125-T175 pending mass/reliability analysis.
 
-This sits near the capability of current 55–60 kgf agricultural propulsion systems.
+### Octo / coaxial multi-rotor
 
-### Octo / coaxial-octo
+Strengths:
+- lowest per-unit thrust requirement of the compared architectures;
+- strongest candidate when degraded-operation capability or compact multi-propeller packaging dominates.
 
-Advantages:
-- significantly lower thrust requirement per propulsion unit,
-- strongest path toward motor-out/degraded-mode capability,
-- compact coaxial implementations are demonstrated commercially.
+Costs:
+- eight propulsion channels;
+- higher component/fault count;
+- coaxial aerodynamic interaction and thermal/integration penalties require physical validation.
 
-Challenges:
-- eight ESCs/motors increase cost, mass and fault-count,
-- coaxial pairs incur aerodynamic interaction losses,
-- thermal, harness and flight-control integration are more complex.
+At T175, hover is 21.88 kgf/axis and the 1.6-1.8 screening points are 35.0-39.38 kgf/axis.
 
-At 175 kg MTOW:
-- hover = 21.9 kgf/axis,
-- 1.6 study max = 35.0 kgf/axis,
-- 1.8 study max = 39.4 kgf/axis.
+Screening status: `RETAIN`, particularly for redundancy-driven G0 outcomes; not selected by default.
 
-This shifts each ESC into a substantially easier electrical range, but increases system count and redundancy-management requirements.
+## Decision tree for G1A
 
-## What can be concluded now
+1. If G0 requires continued hover after one motor/ESC loss -> eliminate ordinary quad; compare hex versus octo/coaxial using mass, control authority, efficiency and span.
+2. If that requirement is waived -> keep quad, hex and octo; use actual MTOW and span constraint to select.
+3. If actual MTOW lands near the T125/T136 benchmark region and failure survival is waived -> quad has strong commercial precedent.
+4. If actual MTOW approaches T175 -> do not default to quad; hex/multi-rotor must remain in the final trade because per-axis static thrust and electrical stress rise sharply.
 
-1. A 70–100 kg **payload** target cannot be translated directly into an ESC rating. Airframe, battery and mission-system mass are first-order inputs.
-2. Current agricultural products indicate a plausible MTOW envelope roughly from 125 kg to 175 kg for the requested payload class, but this is benchmark evidence only.
-3. Quad is demonstrably realizable at 70–80 kg payload and about 125–136 kg MTOW.
-4. Around 150 kg MTOW, an X15 G2 class 18S propulsion system is a realistic quad reference.
-5. At ~175 kg MTOW, quad becomes a very high per-axis power problem; hex or coaxial/multi-rotor deserves a formal reliability/mass/efficiency comparison.
-6. The legacy 3 kW B1 power target cannot be frozen until rotor architecture is selected. For a heavy quad, source-backed commercial references are closer to ~4.6–5 kW rated input per axis, with much higher transient capability.
+This tree narrows the architecture space without inventing our vehicle requirement.
 
-## Open inputs blocking rotor freeze
+## What is now resolved
 
-G0 must still supply:
-- actual/target airframe structural mass,
-- battery mass and energy target,
-- nominal payload inside the 70–100 kg range,
-- mission duration / hover duration,
-- target altitude and maximum ambient temperature,
-- maximum vehicle span constraint,
-- requirement for single-motor/ESC failure survival or explicit waiver.
+- UAV-002 has a controlled numerical sensitivity envelope and explicit elimination logic.
+- Single-motor-failure policy is confirmed as a first-order G0 architecture discriminator.
+- Quad is no longer treated as a neutral default for the entire 70-100 kg payload class.
+- The benchmark/current evidence is sufficient for architecture screening; collecting more competitor products is not the critical path.
 
-Until these are fixed, rotor count remains **OPEN**.
+## Inputs still blocking G1A freeze
+
+G0 must still supply or explicitly approve:
+- nominal payload;
+- actual/target airframe structural mass;
+- battery mass / energy target;
+- mission-equipment mass;
+- resulting MTOW min/nom/max;
+- mission duration / hover duration / reserve;
+- environment and altitude;
+- maximum span/coaxial constraints;
+- degraded-operation and single-motor/ESC failure policy.
+
+Until those are fixed, rotor count and thrust margin remain **OPEN** and UAV-004 cannot be frozen.
