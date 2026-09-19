@@ -1,49 +1,45 @@
 {
-  "revision": "AUTO-STATE-03",
+  "revision": "AUTO-STATE-04",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status": "PROGRESS_G1_PROPULSION_AND_VOLTAGE_RISK",
+  "last_run_status": "PROGRESS_X15_CURVE_AND_TRANSIENT_METHOD",
   "current_gate": "G0_G1",
   "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "current_task": "PROPULSION_CURVE_EXTRACTION_AND_TRANSIENT_ENVELOPE",
+  "current_task": "PROPULSION_SCENARIO_MAPPING_AND_VOLTAGE_CLASS_TRADE",
   "selection_rule": "highest_priority_unblocked_dependency_opening_task_then_continue_same_run",
   "completed_this_run": [
-    "verified_X15_G2_current_2026_primary_source_and_rated_operating_point",
-    "added_TMotor_A16_18S_and_XA14_18S_heavy_propulsion_primary_source_references",
-    "created_propulsion_operating_points_json_with_evidence_levels_and_scenario_mapping",
-    "performed_B1_18S_voltage_compatibility_precheck",
-    "flagged_100V_power_domain_as_not_18S_qualified_until_transient_regen_BMS_disconnect_closure",
-    "flagged_B1_80V_bus_measurement_check_ceiling_as_insufficient_for_final_18S_diagnostic_range"
+    "extracted_full_Hobbywing_X15_G2_69V_manufacturer_operating_curve_into_structured_json",
+    "created_parameterized_DC_bus_transient_model_without_inventing_harness_parasitics",
+    "documented_voltage_class_closure_requirements_and_future_bench_evidence",
+    "kept_100V_power_domain_unqualified_pending_transient_regen_BMS_disconnect_closure"
   ],
   "blocked_tasks": [
     {"task":"freeze_G0_mission_mass_envelope","reason":"airframe_mass_battery_mass_nominal_payload_flight_duration_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_only"},
-    {"task":"freeze_UAV_004_operating_point","reason":"rotor_architecture_and_MTOW_not_frozen; exact_curve_point_needed_for_selected_axis","blocking_scope":"final_operating_point_only"},
-    {"task":"freeze_18S_semiconductor_voltage_class","reason":"DC_bus_transient_regen_and_BMS_disconnect_ceiling_not_established","blocking_scope":"power_stage_voltage_freeze"}
+    {"task":"freeze_UAV_004_operating_point","reason":"rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_operating_point_only"},
+    {"task":"freeze_18S_semiconductor_voltage_class","reason":"measured_or_approved_harness_loop_inductance_current_interruption_regen_and_clamp_ceiling_not_established","blocking_scope":"power_stage_voltage_freeze"}
   ],
   "next_candidates": [
-    "extract_full_X15_G2_69V_thrust_current_power_RPM_rows_from_primary_source",
-    "extract_TMotor_A16_18S_test_rows_if available_and_compare_at_29_to_40kgf_axis_load",
-    "build_DC_bus_transient_requirement_model_for_18S_with_explicit_inductance_and_di_dt_parameters",
-    "audit_B1_bus_voltage_sensing_and_aux_supply_against_proposed_measurement_and_transient_full_scale",
-    "define_candidate_semiconductor_voltage_classes_without_freezing_part_number"
+    "map_X15_G2_real_curve_rows_to_Q150_and_H175_axis_load_scenarios_without_freezing_architecture",
+    "extract_TMotor_A16_18S_test_rows_if_accessible_and_compare_29_to_40kgf_region",
+    "build_candidate_100V_120V_150V_semiconductor_class_trade_with_loss_and_margin_inputs_open",
+    "recalculate_bus_voltage_sense_full_scale_candidates_for_18S_diagnostic_headroom",
+    "audit_DRV8353_and_aux_power_absolute_voltage_exposure_for_candidate_bus_classes"
   ],
   "last_verified_gate": "REBASELINE_INIT",
   "evidence_refs": [
-    "planning/propulsion_benchmark.md",
-    "planning/rotor_trade_study.md",
-    "planning/battery_architecture_pretrade.md",
-    "planning/esc_envelope_parametric.md",
+    "planning/x15g2_operating_curve.json",
+    "planning/dc_bus_transient_model.py",
+    "planning/DC_BUS_TRANSIENT_REQUIREMENTS.md",
     "planning/propulsion_operating_points.json",
     "planning/B1_18S_VOLTAGE_COMPATIBILITY.md",
     "planning/UAV_TRACEABILITY.md",
     "https://www.hobbywing.com/products/x15-g2",
-    "https://www.hobbywing.com/en/uploads/file/20260116/62d5ba4081855ad0fcce8168536954bd.pdf",
-    "https://store.tmotor.com/product/a16-18s-uav-modular-propulsion-system.html",
-    "https://store.tmotor.com/jp/product/x-a14-18s-uav-coaxial-modular-propulsion-system.html"
+    "https://www.hobbywing.com/en/uploads/file/20260114/be1f730c79a49c6a7fe8f7da589ebe8f.pdf",
+    "https://store.tmotor.com/product/a16-18s-uav-modular-propulsion-system.html"
   ],
   "write_policy": {"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy": {"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
   "continuity_policy": {"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
-  "notes": "No product rotor count, MTOW, voltage class or current rating was frozen. 18S remains a preferred analysis family only."
+  "notes": "No product rotor count, MTOW, voltage class or current rating was frozen. X15 G2 curve is source-backed at 69 V only; transient model is parametric only."
 }
