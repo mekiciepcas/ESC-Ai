@@ -12,7 +12,7 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-003 | FOC + SVPWM | Hedef | Firmware yok | KEEP target | SIL + bench |
 | TR-004 | Sensorless | Hedef/opsiyon | Firmware yok | REVALIDATE | startup/observer tests |
 | TR-005 | 3 low-side shunt | Seçili | Mevcut | REVALIDATE | phase current + PWM windows |
-| TR-006 | DC-bus + U/V/W sensing | Var | Divider + BAT54H rail clamps | Divider concept RECALCULATE; B1 rail-clamp/back-power implementation REPLACE IF REQUIRED. Existing divider ideal FS ~102.5 V, but VBUS-present/control-rails-off can back-power +3V3A/+3V3 through BAT54H and TLV75533 output. | `ADC_CLAMP_INJECTION_CLOSURE.md`, `ANALOG_RAIL_BACKPOWER_AUDIT.md`, `NON_BACKPOWER_HV_SENSE_ARCHITECTURES.md`, final VBUS/transient + sequencing/bench evidence |
+| TR-006 | DC-bus + U/V/W sensing | Var | Divider + BAT54H rail clamps | Divider concept RECALCULATE; B1 rail-clamp/back-power implementation REPLACE IF REQUIRED. Existing divider ideal FS ~102.5 V, but VBUS-present/control-rails-off can back-power +3V3A/+3V3 through BAT54H and TLV75533 output. LT6015/LT6016/LT6017 now provide exact primary-source evidence for a non-isolated power-off-high-impedance buffer study path; no MPN/topology freeze yet. | `ADC_CLAMP_INJECTION_CLOSURE.md`, `ANALOG_RAIL_BACKPOWER_AUDIT.md`, `NON_BACKPOWER_HV_SENSE_ARCHITECTURES.md`, `POWER_OFF_TOLERANT_SENSE_CANDIDATES.md`, final VBUS/transient + sequencing/bench evidence |
 | TR-007 | CAN | Var | Var | KEEP | FC protocol/failsafe |
 | TR-008 | SPI gate-driver | Var | Var | KEEP | final driver |
 | TR-009 | service/debug | UART/JTAG | SWD/UART | KEEP functionally | MCU pin contract |
@@ -20,7 +20,7 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-011 | MCU | TMS320F280041C | STM32G474RET3 | OPEN trade | timing/trip/FOC benchmark |
 | TR-012 | Aux buck | LM5164 | LM5164 | REVALIDATE; 100 V input domain couples it to bus transient requirement | final VBUS transient/load/precharge |
 | TR-013 | MOSFET | CSD19536KTT single/switch | 2 parallel/switch candidate | RECALCULATE / REPLACE | `POWER_STAGE_LOSS_MODEL.md`, `CSD19536KTT_REFERENCE_PARAMETERS.md`, `SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md`, VDS/loss/SOA/thermal/sharing |
-| TR-014 | MOSFET voltage class | 100 V | 100 V target | OPEN; primary-source trade anchors now exist for 100/120/150 V, but class remains blocked by G1 transient/current/PWM envelope | `SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md`, `POWER_STAGE_LOSS_MODEL.md` + transient ceiling |
+| TR-014 | MOSFET voltage class | 100 V | 100 V target | OPEN; primary-source trade anchors now exist for 100/120/150 V and include Qgd/Coss/Qrr/RthJC evidence, but class remains blocked by G1 transient/current/PWM envelope | `SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md`, `POWER_STAGE_LOSS_MODEL.md` + transient ceiling |
 | TR-015 | PWM | 40 kHz | 20 kHz | RECALCULATE | motor L + switching loss |
 | TR-016 | continuous phase current | 60 A RMS | 80 A RMS target | OPEN | motor operating points |
 | TR-017 | overload/peak phase current | ~80/~100 A | 120 A SW/150 A sense | OPEN | motor operating points + duration |
@@ -49,10 +49,12 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 - Rotor screening now has an explicit architecture discriminator: if continued hover after complete loss of one motor/ESC becomes a G0 requirement, ordinary quad is eliminated before detailed ESC sizing; otherwise quad remains a candidate.
 - Hobbywing X15 G2, 37.5 kg/axis önerilen yükte 18S/69 V, 4.64 kW rated input, 120 A continuous ve 300 A/3 s ESC ile doğrudan ağır-zirai propulsion referansı sağlıyor.
 - 18S tam şarj 75.6 V olduğundan 100 V MOSFET sınıfı transient kanıtı olmadan dondurulamaz.
-- 100/120/150 V için güncel primary-source MOSFET trade anchors kaydedildi: TI CSD19536KTT 100 V legacy reference; Infineon IPT017N12NM6 120 V; Infineon IAUTN15S6N025 150 V. Bu tablo yalnız trade input'tur; manufacturer ID değerleri ESC rating değildir ve G1 kapanmadan voltage class seçilmez.
+- 100/120/150 V için güncel primary-source MOSFET trade anchors kaydedildi: TI CSD19536KTT 100 V legacy reference; Infineon IPT017N12NM6 120 V; Infineon IAUTN15S6N025 150 V. Dinamik tablo artık Qgd/Coss/Qrr/RthJC verisini ve farklı test koşullarının normalize edilmesi gerektiğini de kaydediyor. Bu tablo yalnız trade input'tur; manufacturer ID değerleri ESC rating değildir ve G1 kapanmadan voltage class seçilmez.
 - B1 exact BOM audit: ana DC-link bankı ve local inverter ceramics nominal 100 V ve exact capacitor MPN'leri açık; 160 V etiketli parçalar yalnız LM5164 girişindeki yerel kapasitörlerdir.
 - B1 DC input protection ve regen clamp/chopper işlevleri harici modül/interface olarak bırakılmıştır; final transient ceiling bu modüller tanımlanmadan kapanmaz.
 - B1 voltage-sense upper BAT54H doğrudan +3V3A rayına clamp eder. +3V3A, 0R ile +3V3'e; +3V3 ise TLV75533 çıkışına bağlıdır. TI TLV755P reverse-current guidance, output input yokken biaslandığında ters akım/reliability riski tanımlar. Bu nedenle mevcut rail-clamp çözümü UAV için power-sequencing kanıtı olmadan korunamaz.
+- LT6015/LT6016/LT6017 ailesi için ADI datasheet ve design-note kanıtı, `VS=0` iken canlı girişlerin yüksek empedanslı kalabildiğini ve 0–76 V common-mode giriş davranışının karakterize edildiğini gösteriyor. Bu, U1 için non-backpower buffered sensing yolunu gerçek komponent düzeyinde çalışılabilir hale getiriyor; yine de divider, output-to-ADC sequencing, accuracy/bandwidth ve bench qualification açık.
+- ADA4177 rail-pumping davranışını önleyen OVP açısından güçlü bir robustness referansı, fakat mevcut tek 3.3 V analog domainine drop-in değildir. TI OPAx206 ise OVP akımını supply railine yönlendirdiği için mevcut non-backpower hedefi açısından varsayılan aday olmaktan çıkarılmıştır.
 - `G1_REQUIREMENTS_MATRIX.json` G0/G1A/G1B/G1C/G1 kapanışındaki açık alanları makine-okunabilir biçimde takip eder; açık alanlar competitor değerleriyle otomatik doldurulmaz.
 
 ## Korunacak çekirdek
