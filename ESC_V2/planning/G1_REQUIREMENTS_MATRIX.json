@@ -1,14 +1,14 @@
 {
-  "revision": "G1-MATRIX-01",
+  "revision": "G1-MATRIX-02",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "purpose": "Mechanically expose every critical system requirement that must close before G1 SYSTEM FREEZE without filling unsupported values.",
   "gate_status": "OPEN",
   "completion_rule": "G1 may close only when every REQUIRED row is PASS with a numeric/bounded value and evidence reference, and G0/G1A/G1B/G1C parent gates are closed.",
   "summary": {
-    "required_rows": 29,
+    "required_rows": 30,
     "pass": 1,
-    "open": 28,
+    "open": 29,
     "blocked_by_vehicle_inputs": 13,
     "blocked_by_propulsion_selection": 8,
     "blocked_by_battery_transient_definition": 7
@@ -27,23 +27,19 @@
     {"id":"G0-11","field":"mission_requirements.requirements.environment.maximum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
     {"id":"G0-12","field":"mission_requirements.requirements.environment.maximum_operating_altitude_m","gate":"G0","status":"OPEN","blocker":"operating environment"},
     {"id":"G0-13","field":"mission_requirements.requirements.vehicle.single_motor_failure_requirement","gate":"G0","status":"OPEN","blocker":"vehicle-level failure policy"},
-
     {"id":"G1A-01","field":"system_requirement.vehicle_architecture","gate":"G1A","status":"OPEN","blocker":"G0 MTOW/failure policy; rotor_trade_study exists but final architecture not selected"},
     {"id":"G1A-02","field":"system_requirement.rotor_count","gate":"G1A","status":"OPEN","blocker":"G1A-01"},
     {"id":"G1A-03","field":"system_requirement.required_hover_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"MTOW + rotor count"},
     {"id":"G1A-04","field":"system_requirement.required_max_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"thrust margin + degraded-mode policy"},
     {"id":"G1A-05","field":"system_requirement.thrust_margin","gate":"G1A","status":"OPEN","blocker":"vehicle control/failure requirement"},
-
     {"id":"G1B-01","field":"system_requirement.propeller_diameter_in","gate":"G1B","status":"OPEN","blocker":"final motor/prop operating-point selection"},
     {"id":"G1B-02","field":"system_requirement.motor_kv","gate":"G1B","status":"OPEN","blocker":"final motor/prop operating-point selection"},
     {"id":"G1B-03","field":"system_requirement.electrical_rpm_max","gate":"G1B","status":"OPEN","blocker":"motor pole-pairs + speed operating point"},
-
     {"id":"G1C-01","field":"system_requirement.battery_series_count","gate":"G1C","status":"OPEN","blocker":"propulsion point and pack architecture; 18S remains candidate only"},
     {"id":"G1C-02","field":"system_requirement.dc_bus_min_v","gate":"G1C","status":"OPEN","blocker":"cell chemistry, sag and cutoff"},
     {"id":"G1C-03","field":"system_requirement.dc_bus_nominal_v","gate":"G1C","status":"OPEN","blocker":"battery architecture"},
     {"id":"G1C-04","field":"system_requirement.dc_bus_full_charge_v","gate":"G1C","status":"OPEN","blocker":"battery architecture"},
     {"id":"G1C-05","field":"system_requirement.dc_bus_transient_max_v","gate":"G1C","status":"OPEN","blocker":"harness/PCB inductance, switching, regen, BMS/contact behavior, clamp design"},
-
     {"id":"G1-01","field":"system_requirement.esc_continuous_power_w","gate":"G1","status":"OPEN","blocker":"selected propulsion hover/continuous point"},
     {"id":"G1-02","field":"system_requirement.esc_peak_power_w_and_duration","gate":"G1","status":"OPEN","blocker":"selected max-thrust point and overload duration"},
     {"id":"G1-03","field":"system_requirement.esc_continuous_phase_current_a","gate":"G1","status":"OPEN","blocker":"motor/prop operating point"},
