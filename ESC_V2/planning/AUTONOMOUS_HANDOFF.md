@@ -1,93 +1,103 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 14:58+03:00
+Date: 2026-09-19 15:03+03:00
 Branch: `uav-rebaseline`
-Status: `PROGRESS_SENSE_SEQUENCING_DYNAMIC_MODELS_AND_PRELIMINARY_BOM_MATRIX`
-Repository HEAD immediately before this handoff update: `756ec5e08817a1db98f5d74bc3d94fae7cb02b15`.
+Status: `PROGRESS_SENSE_MODELS_PRELIM_BOM_AND_HIGH_VOLTAGE_DRIVER_AUX_TRADE`
+Repository HEAD immediately before this handoff update: `ad87e83a768452273d9b1f2800c64ff6ad8d2158`.
 
 ## Run summary
-This run first re-verified the latest planning state against the branch and then completed three previously queued independent engineering tasks: LT6017-study output-to-STM32 power sequencing, a no-default dynamic HV-sense/ADC settling model, and a no-default condition-normalized MOSFET loss calculator skeleton. It then used the now-structured evidence to create the first explicit U1 preliminary BOM candidate matrix. No product voltage/current rating, voltage class, sensing MPN, final BOM item, PCB implementation or qualification claim was frozen.
+This run verified the planning state against the real branch, closed the LT6017-study output-to-STM32 sequencing ambiguity, added mandatory-input dynamic sensing and MOSFET loss screening tools, created/deepened the first explicit U1 preliminary BOM candidate matrix, and completed a primary-source higher-voltage gate-driver / auxiliary-supply architecture trade. No vehicle-dependent G0/G1 value, semiconductor class, driver, auxiliary converter, sensing MPN, production BOM item or PCB implementation was frozen.
 
 ## Tasks attempted / completed
-1. Re-read/verified the latest `AUTONOMOUS_HANDOFF.md`, `autonomy_state.json`, `UAV_PRODUCT_PLAN.md`, `uav_backlog.json`, `mission_requirements.json` and `UAV_TRACEABILITY.md` against `uav-rebaseline`.
-2. Verified current branch state before work: the product remains in G0/G1 with G2 prework only; G0 vehicle-specific mass/mission/environment/failure fields remain legitimately OPEN/null.
-3. Verified repository `hardware_b1/mcu_pin_contract.json` maps `V_BUS_ADC` to U1701 package pin 8.
-4. Verified ST primary pin data maps STM32G474 LQFP64 pin 8 to PA0, `TT_a`, ADC12_IN1.
-5. Verified ST absolute/input-injection guidance: TT_xx input absolute ceiling is 4.0 V; normal operation must not rely on out-of-rail injection and MCU supplies are required in their permitted ranges.
-6. Re-checked ADI LT6015/LT6016/LT6017 primary evidence: powered-down inputs remain high impedance; `VS=0, VCM=0..76 V` behavior is characterized; output shutdown tolerance is not a defined ADC output state.
-7. Added `HV_SENSE_OUTPUT_SEQUENCING.md` with explicit S1–S4 states.
-8. Classified LT6017-ON / STM32-VDDA-OFF as **not permitted as a normal study state** unless separately proven. Preferred study rule: LT6017 and STM32 analog domain share controlled shutdown; no independent always-on buffer rail.
-9. Added `hv_sense_dynamic_model.py`. It requires caller-supplied divider, RC, op-amp, ADC, sample-time, resolution and target-settling inputs; no product defaults are embedded.
-10. Added `power_stage_loss_calculator.py`. It requires caller-supplied VBUS, switch RMS/commutation current, effective switching rate, hot RDS(on), transition times, Coss, Qrr, parallel count and sharing factor; no ESC rating/current/PWM is assumed.
-11. Updated `UAV_TRACEABILITY.md` to link the new sensing sequencing and normalized loss evidence.
-12. Added `U1_BOM_CANDIDATES.json`, separating exact evidence-backed candidate/reference items from G1-blocked/open items instead of pretending a production BOM exists.
-13. Updated `autonomy_state.json`.
+1. Re-read and verified the latest handoff, autonomy state, `UAV_PRODUCT_PLAN.md`, `uav_backlog.json`, `mission_requirements.json` and `UAV_TRACEABILITY.md` against `uav-rebaseline`.
+2. Confirmed G0/G1 remain OPEN; vehicle mass/mission/environment/failure fields remain legitimately null and were not inferred from competitor aircraft.
+3. Verified B1 `V_BUS_ADC` maps to U1701 package pin 8 and ST primary pin data maps STM32G474 LQFP64 pin 8 to PA0 / TT_a / ADC12_IN1.
+4. Added `HV_SENSE_OUTPUT_SEQUENCING.md` with four explicit power-sequencing states. LT6017-ON / STM32 VDD/VDDA-OFF is prohibited as a normal study state unless separately proven; preferred study rule is a shared controlled analog shutdown domain.
+5. Added `hv_sense_dynamic_model.py`; divider RC, op-amp first-order/slew settling and ADC acquisition RC are calculated only from explicit caller inputs.
+6. Added `power_stage_loss_calculator.py`; conduction, linear transition overlap and optional Coss/Qrr screening are calculated only from explicit caller inputs.
+7. Created `U1_BOM_CANDIDATES.json` and then deepened it. It distinguishes `LEGACY_REFERENCE`, `CANDIDATE`, `REVALIDATE`, `BLOCKED_BY_G1`, `OPEN` and `REPLACE_IF_REQUIRED` rather than claiming a production BOM.
+8. Added `GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md` using current primary manufacturer evidence.
+9. Recorded gate-driver architecture anchors: legacy DRV8353 REVALIDATE; UCC27282 as a 120 V-bootstrap reference but **not** proof of >100 V normal HS operation; UCC27712 as a high-voltage non-isolated half-bridge candidate; UCC21540-Q1 as a reinforced-isolated candidate.
+10. Recorded auxiliary-power anchors: legacy LM5164 REVALIDATE; LTC3639 as a 4–150 V / up-to-100 mA housekeeping candidate; LTC7801 as a 4–140 V operating / 150 V absolute-maximum synchronous buck-controller candidate for a higher-current rail.
+11. Updated `U1_BOM_CANDIDATES.json` with those gate-driver and auxiliary-power candidates while keeping G1-dependent DC-link, shunt, fuse, precharge, clamp and connectors OPEN/BLOCKED.
+12. Updated `UAV_TRACEABILITY.md` and `autonomy_state.json` to match the actual repository changes.
 
 ## Files changed
 - `planning/HV_SENSE_OUTPUT_SEQUENCING.md` — new
 - `planning/hv_sense_dynamic_model.py` — new
 - `planning/power_stage_loss_calculator.py` — new
-- `planning/U1_BOM_CANDIDATES.json` — new
+- `planning/U1_BOM_CANDIDATES.json` — new and then deepened
+- `planning/GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md` — new
 - `planning/UAV_TRACEABILITY.md` — updated
-- `planning/autonomy_state.json` — updated
+- `planning/autonomy_state.json` — updated to AUTO-STATE-18
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-- A robust powered-down **input** does not automatically make the amplifier **output-to-unpowered-MCU** connection safe.
-- Current U1 study rule: do not intentionally power the LT6017 analog output stage while STM32 VDD/VDDA is absent. Use a shared controlled analog shutdown domain unless a future architecture proves a different state with manufacturer evidence and current limiting.
-- B1 `V_BUS_ADC` is PA0 / TT_a in the current STM32G474RET3 mapping; ST's limits must be applied to that exact pin structure rather than a generic GPIO assumption.
-- Buffer OFF / MCU ON is an invalid-measurement state until the buffer rail is valid; firmware must gate use of those samples.
-- Buffer OFF / MCU OFF with HV input live is the key LT6015-family robustness state, but final acceptance still requires a current-limited powered/unpowered bench test.
-- The dynamic HV-sense and power-stage loss tools deliberately refuse to generate product conclusions from hidden defaults.
-- A preliminary U1 BOM matrix now exists. It is not a purchase/release BOM: MOSFET class, shunt, DC-link, precharge, fuse, clamp, connectors and multiple architecture items remain parent-requirement blocked.
+- Robust powered-down amplifier input behavior does not prove that an actively driven amplifier output is safe when the MCU analog supply is absent.
+- Present LT6017 study rule: buffer and STM32 analog domain share controlled shutdown; do not intentionally allow buffer-ON / MCU-OFF operation without separate manufacturer-backed isolation/current-limiting proof.
+- UCC27282's 120 V bootstrap absolute-maximum headline must not be misread as a >100 V normal switch-node solution; TI still specifies a 100 V HS operating ceiling.
+- UCC27712 provides a credible non-isolated higher-voltage driver path, but requires three half-bridge channels and separate sensing/protection architecture.
+- UCC21540-Q1 provides a credible reinforced-isolated path, but adds isolated/local bias, propagation/skew, creepage/CMTI, area and cost requirements.
+- LTC3639 is a credible 150 V low-current housekeeping path, not a direct high-current replacement for the complete legacy auxiliary tree if fan/gate/control loads exceed its 100 mA class.
+- LTC7801 is a credible higher-power high-voltage-controller path, but output-current capability is a complete converter-design result, not a controller headline rating.
+- Higher-VDS MOSFETs cannot be paired with unchanged ~100 V support ICs by default; the support-domain architecture must follow the final G1 transient envelope.
+- `U1_BOM_CANDIDATES.json` is now the explicit bridge toward a final BOM, but it intentionally preserves unresolved items as null/OPEN.
 
 ## Calculations / evidence added
-- Source-backed pin-structure closure for the B1 bus-sense ADC input.
-- Four-state sensing power-sequencing logic and acceptance criteria.
-- Parametric divider Thevenin RC, op-amp first-order/slew settling and ADC acquisition RC calculation framework.
-- Parametric conduction + linear overlap + optional Coss/Qrr screening framework at caller-supplied common conditions.
-- Preliminary BOM status taxonomy: `LEGACY_REFERENCE`, `CANDIDATE`, `REVALIDATE`, `BLOCKED_BY_G1`, `OPEN`, `REPLACE_IF_REQUIRED`.
+- Exact sensing sequencing/fault-state classification for S1–S4.
+- Parametric divider/op-amp/ADC dynamic-settling model with no hidden product values.
+- Parametric common-condition MOSFET-loss screening framework with no hidden VBUS/current/PWM assumptions.
+- Source-backed gate-driver and auxiliary-power voltage-domain architecture alternatives.
+- Candidate-BOM dependency/status map identifying which parts are source-backed candidates versus G1-blocked/open functions.
 
 ## Primary evidence
-- ST STM32G474 DS12288 datasheet: https://www.st.com/resource/en/datasheet/stm32g474ve.pdf
-- ST STM32G474RE product page: https://www.st.com/en/microcontrollers-microprocessors/stm32g474re.html
-- ADI LT6015/LT6016/LT6017 datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/601567ff.pdf
-- ADI powered-down high-input-impedance article / DN533: https://www.analog.com/en/resources/technical-articles/robust-high-voltage-over-the-top-op-amps-maintain-high-input-impedance-with-inputs-driven-apart-or.html
-- Repository B1 MCU contract and existing source-backed semiconductor/BOM audit files.
+- ST STM32G474 DS12288 and STM32G474RE product documentation.
+- Analog Devices LT6015/LT6016/LT6017 datasheet and powered-down high-input-impedance technical note.
+- TI UCC27282/UCC27282-Q1 product and datasheet documentation.
+- TI UCC27712/UCC27712-Q1 product and datasheet documentation.
+- TI UCC21540-Q1 product and datasheet documentation.
+- ADI LTC3639 product/datasheet documentation.
+- ADI LTC7801 product/datasheet documentation.
+- Existing repository B1 source/BOM/traceability evidence.
 
 ## Assumptions and evidence level
-- PA0 / TT_a mapping: REPOSITORY + PRIMARY ST EVIDENCE.
+- STM32 PA0 / TT_a mapping: REPOSITORY + PRIMARY ST EVIDENCE.
 - LT6015-family powered-down input behavior: PRIMARY ADI EVIDENCE.
-- Shared LT6017 + STM32 analog shutdown domain: ARCHITECTURE STUDY RULE, not final schematic selection.
-- Dynamic-model formulas: FIRST-ORDER ENGINEERING SCREENING, explicitly not SPICE/bench proof.
-- `U1_BOM_CANDIDATES.json`: PRELIMINARY CANDIDATE/DEPENDENCY MATRIX, not production release.
+- Shared LT6017 + STM32 analog shutdown domain: ARCHITECTURE STUDY RULE, not final selection.
+- UCC27282/UCC27712/UCC21540-Q1 and LTC3639/LTC7801: PRIMARY-SOURCE TRADE CANDIDATES, not selections.
+- Dynamic calculation scripts: FIRST-ORDER SCREENING TOOLS, not SPICE/bench or qualification evidence.
+- Preliminary U1 BOM: CANDIDATE/DEPENDENCY MATRIX ONLY.
 - No physical measurements were performed.
 
 ## Unresolved blockers
-- G0 nominal payload, airframe/battery/equipment mass, actual MTOW, flight profile, environment and failure/degraded-mode policy.
+- G0 nominal payload, airframe/battery/equipment mass, actual MTOW, mission duration/profile, environment and degraded/single-motor-failure policy.
 - Final rotor architecture/thrust margin and product motor/prop operating point.
 - Motor pole pairs, phase RMS/peak current, eRPM and final PWM envelope.
 - Battery min/nom/full-charge/transient envelope and pack current/energy/sag/disconnect behavior.
-- Final VBUS transient ceiling including harness/PCB inductance, switching, regen and BMS/contact behavior.
-- Final sensing range/error/bandwidth, output-series impedance, LT6017 selection/package and powered/unpowered bench proof.
-- Final semiconductor voltage class/parallel count/hot-loss/SOA/cooling.
-- Exact DC-link, precharge, fuse, clamp/brake, connectors/harness and production BOM.
+- Final switching/harness/regen/BMS-disconnect transient ceiling.
+- Final MOSFET voltage class/parallel count/hot-loss/SOA/cooling.
+- Final gate-driver architecture and required gate-current/timing/fault coverage.
+- Final auxiliary load budget and converter topology.
+- Final sensing range/error/bandwidth/series impedance and powered/unpowered bench proof.
+- Exact DC-link capacitors, precharge, fuse, regen clamp/brake path, connectors and production BOM.
 
 ## Regressions / risks discovered
-- No repository regression found in this run.
-- Treating the STM32 4.0 V absolute input ceiling as proof that a powered buffer may safely drive an unpowered MCU would be unsafe reasoning; the MCU supply/normal-operation conditions remain governing.
-- LT6017 shutdown output fault tolerance must not be confused with a guaranteed shutdown output voltage.
-- The simplified Coss/Qrr/linear-overlap loss model can create false precision if device data are not normalized to common current, voltage, di/dt and temperature; the script labels itself screening-only.
-- Preliminary BOM status must not be interpreted as orderable production BOM completeness.
+- No repository regression identified in this run.
+- A higher-VDS MOSFET choice alone does not solve support-IC voltage-domain limitations.
+- Bootstrap absolute-maximum voltage can be materially different from the normal switch-node operating limit; those values must not be conflated.
+- Isolated gate drivers can solve level-shift voltage-domain issues while introducing isolated-bias and CMTI/creepage/timing complexity.
+- The simplified loss and sensing models can create false precision if caller inputs are guessed; therefore they require explicit inputs and label outputs as screening-only.
+- Preliminary BOM candidates must not be interpreted as orderable production BOM completeness.
 
 ## Exact next recommended tasks
-1. Build a primary-source gate-driver / auxiliary-supply trade for candidate bus domains above the legacy ~100 V component ceiling, so G2 has alternatives if G1 transient ceiling disqualifies DRV8353/LM5164.
-2. Deepen `U1_BOM_CANDIDATES.json` only for support parts whose parent function is stable and exact MPN/footprint evidence can be verified without freezing G1-dependent ratings.
-3. Add input-template examples for `hv_sense_dynamic_model.py` and `power_stage_loss_calculator.py` that contain field names/placeholders only, not invented product values.
-4. Keep G0/G1 product fields OPEN until actual vehicle-specific targets are supplied/approved.
+1. Inventory the existing B1 auxiliary loads and power domains from repository evidence, producing a bounded legacy load budget without promoting it to a U1 requirement.
+2. Begin a primary-source STM32G474 vs TMS320F280041C control-platform pretrade focused on PWM/ADC synchronization, hardware trip, CAN, processing/motor-control resources and toolchain, without selecting a winner before G1/G2.
+3. Add placeholder-only input templates for `hv_sense_dynamic_model.py` and `power_stage_loss_calculator.py`; no numeric product defaults.
+4. Deepen the candidate BOM only where exact MPN/footprint evidence is independent of unresolved G1 ratings.
+5. Keep all vehicle-dependent G0/G1 fields OPEN until actual product inputs are supplied or explicitly approved.
 
 ## Dependency chain
 `G0 vehicle inputs -> G1A rotor selection -> G1B product operating point + motor electrical data -> G1C battery/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 U1 schematic -> U1 production BOM/PCB/firmware -> physical validation`
 
 ## Next-run briefing
-Do not repeat the LT6017 input/output sequencing work or the generic MOSFET calculator. Start with gate-driver and auxiliary-power alternatives that can survive a bus/transient domain above the legacy 100 V ceiling, using primary manufacturer evidence only and without selecting a winner before G1. In parallel, improve the preliminary U1 BOM matrix only where parent requirements are already stable. Any G0-dependent number remains OPEN/null; competitor values stay trade-only.
+Do not repeat the sensing sequencing or generic gate-driver voltage search. Start by extracting the B1 auxiliary load/domain budget from repository evidence, then begin the STM32G474 vs TMS320F280041C primary-source control-platform pretrade. Use the new driver/aux candidates only as trade anchors; do not select them until G1 transient, gate-charge/PWM and auxiliary load requirements close. Preserve all vehicle-dependent fields as OPEN/null.
