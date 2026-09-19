@@ -1,0 +1,109 @@
+{
+  "revision": "U1-G3-ERC-POLICY-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "DEFINED_PRE_G3_NOT_YET_APPLIED_TO_COMPONENT_BEARING_U1",
+  "purpose": "Define which KiCad ERC conditions are mandatory, reviewable, or waivable before any U1 schematic revision can pass G3.",
+  "scope": "Applies to future component-bearing U1 schematic revisions. Does not retroactively qualify LEGACY-B1 or the zero-component U1-SCH-R000 scaffold.",
+  "source_evidence": [
+    "B1_KICAD_BASELINE_AUDIT.json",
+    "KICAD_CI_VERIFICATION.json",
+    "SCHEMATIC_VERSIONING_POLICY.md",
+    "UAV_PRODUCT_PLAN.md"
+  ],
+  "baseline_observation": {
+    "legacy_b1_enabled_erc_messages_after_library_resolution": 0,
+    "legacy_b1_ignored_categories_observed": [
+      "Global label only appears once in the schematic",
+      "Four connection points are joined together",
+      "SPICE model issue",
+      "Assigned footprint doesn't match footprint filters"
+    ],
+    "interpretation": "Zero enabled messages is not a complete G3 pass while ignored categories exist. Each ignored category must be governed explicitly for U1."
+  },
+  "policy": [
+    {
+      "id": "ERC-P-001",
+      "category": "electrical_errors_and_warnings",
+      "g3_rule": "MANDATORY_ZERO_OR_EXPLICIT_WAIVER",
+      "acceptance": "KiCad ERC errors shall be zero. Any warning retained at G3 must have an individual traceable waiver with owner, rationale, affected nets/symbols, risk statement and verification evidence.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-002",
+      "category": "single_use_global_label",
+      "g3_rule": "ENABLE_OR_MANUAL_AUDIT_EVERY_INSTANCE",
+      "acceptance": "Every single-use global label shall either be removed/corrected or listed in the revision manifest as intentionally single-ended with interface rationale. Blanket ignore is not accepted for G3.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-003",
+      "category": "four_connection_points_joined",
+      "g3_rule": "MANUAL_AUDIT_EVERY_INSTANCE",
+      "acceptance": "Every four-way junction flagged or suppressed by KiCad shall be reviewed for unambiguous connectivity. Ambiguous crossing/junction constructs are not accepted in released U1 schematics.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-004",
+      "category": "spice_model_issue",
+      "g3_rule": "CONDITIONAL",
+      "acceptance": "SPICE-model issues may be waived for symbols not used in simulation, but the waiver must identify the symbol and state that no simulation evidence relies on that missing/invalid model. Simulation-critical symbols require a valid model before the relevant analysis can be accepted.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-005",
+      "category": "footprint_filter_mismatch",
+      "g3_rule": "MANDATORY_REVIEW_ZERO_UNEXPLAINED",
+      "acceptance": "Assigned footprints must match the exact selected MPN land pattern and project footprint policy. A footprint-filter mismatch cannot be dismissed merely because the board opens; exact package/land-pattern evidence is required for production-intent parts.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-006",
+      "category": "power_input_not_driven",
+      "g3_rule": "MANDATORY_REVIEW",
+      "acceptance": "Power-input drive warnings must resolve through actual power-source semantics or deliberate PWR_FLAG usage with rationale. PWR_FLAG shall not be used to silence an unresolved power-path question.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-007",
+      "category": "unconnected_required_pin",
+      "g3_rule": "MANDATORY_ZERO_OR_EXPLICIT_NC",
+      "acceptance": "Unconnected pins expected by the symbol shall be connected or marked no-connect with datasheet-backed rationale. Safety/fault/gate-driver/MCU supply pins may not be blanket-waived.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-008",
+      "category": "pin_type_conflict",
+      "g3_rule": "MANDATORY_ZERO_OR_COMPONENT_SPECIFIC_WAIVER",
+      "acceptance": "Driver/contention conflicts must be zero unless a component-specific datasheet-backed electrical reason justifies the connection and the waiver is recorded.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-009",
+      "category": "hierarchical_interface_consistency",
+      "g3_rule": "MANDATORY",
+      "acceptance": "Hierarchical labels, sheet pins and top-level interfaces shall be consistent and traceable to the interface contract for the exact schematic revision.",
+      "auto_pass_without_review": false
+    },
+    {
+      "id": "ERC-P-010",
+      "category": "library_resolution",
+      "g3_rule": "MANDATORY_REPRODUCIBLE",
+      "acceptance": "CI must resolve every project and standard symbol/footprint library required by the revision without environment-only false errors. CI-only library mapping may be used, but the effective mapping and KiCad version must be recorded as evidence.",
+      "auto_pass_without_review": false
+    }
+  ],
+  "g3_required_evidence": [
+    "exact schematic revision ID",
+    "exact Git commit SHA",
+    "KiCad version",
+    "non-empty netlist export",
+    "ERC report artifact",
+    "ignored/suppressed category inventory",
+    "individual waiver register if any",
+    "exact MPN-to-footprint evidence for production-intent components",
+    "interface audit result"
+  ],
+  "waiver_rule": "A project-level ignored ERC category is not itself a waiver. G3 waivers are revision-specific, item-specific, evidence-backed and do not automatically carry to later revisions.",
+  "anti_hallucination_rule": "Do not convert an ignored ERC category, a clean zero-component scaffold, or a clean legacy B1 run into a G3 PASS for a future component-bearing U1 revision."
+}
