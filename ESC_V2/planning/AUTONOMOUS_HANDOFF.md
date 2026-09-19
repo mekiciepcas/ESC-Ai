@@ -1,8 +1,8 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 18:58+03:00  
+Date: 2026-09-19 19:06+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_ESC_ELECTRICAL_PRETRADE_VERIFIED`
+Status: `PROGRESS_PRELIMINARY_DATASHEET_PDS00_CREATED`
 
 ## Progress percentages
 
@@ -12,89 +12,50 @@ Status: `PROGRESS_ESC_ELECTRICAL_PRETRADE_VERIFIED`
 - Major product gates closed: **0/8 = 0%**.
 - U1 KiCad architecture scaffold: **100% structure coverage**.
 - U1 component-bearing production-intent schematic: **0%**.
-- ESC electrical-envelope pretrade: **100% for the current benchmark-derived stress-screen scope**.
-- ESC pretrade source/arithmetic CI consistency check: **100% / observed PASS**.
+- Preliminary engineering datasheet: **100% for the current PDS-00 concept snapshot only**.
 
-Product counters remain unchanged because no benchmark value has been promoted into G0/G1.
+Product counters remain unchanged because PDS-00 documents the current evidence state; it does not freeze new product ratings.
 
 ## Run summary
 
-The project continued from the source-backed heavy-lift propulsion screening into a concrete electrical architecture stress screen. `ESC_ELECTRICAL_ENVELOPE_PRETRADE.json` now converts the current commercial benchmark set into a machine-readable trade-only electrical envelope. The calculations are executable and were verified by GitHub Actions run `35453244140` with PASS.
+The user requested a datasheet while continuing the ESC design. A versioned preliminary engineering datasheet, `ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md`, was created as a controlled concept-stage snapshot. The document explicitly separates user targets, planned architecture, candidates, OPEN requirements and TRADE_ONLY benchmark stress references so the datasheet cannot accidentally be read as a production rating sheet.
 
-## Verified trade-only electrical reference results
+A four-page PDF derivative was also generated for user delivery and visually inspected page-by-page after rendering. No clipping, overlap or missing-glyph issue was observed.
 
-- Highest observed commercial input-voltage reference in the current benchmark set: **81 V**.
-- Highest observed continuous DC-bus current example: **120 A**.
-- Highest observed peak/short DC-bus current example: **300 A**.
-- Highest observed rated input-power example: **4640 W**.
-- `4640 W / 69 V = 67.246 A` is retained only as arithmetic scale, not a custom ESC current requirement.
-- 45 rpm/V x 81 V = 3645 rpm is retained only as a no-load linear speed screen; eRPM remains OPEN because motor pole-pair count and loaded RPM are not frozen.
+## Datasheet contents
 
-## Power-stage voltage-class narrowing
+PDS-00 records:
 
-Static headroom to the 81 V benchmark, before any switching/transient allowance:
+- 70-100 kg as **payload target**, not MTOW.
+- DC operating voltage, phase current, power, PWM and eRPM as **OPEN** product requirements.
+- 81 V, 120 A continuous, 300 A / 3 s and 4.64 kW only as **TRADE_ONLY architecture stress references** from the current benchmark set.
+- 120 V and 150 V MOSFET classes as carried-forward trade candidates; no winner selected.
+- 100 V as legacy/reference comparison, not the preferred primary path for the current ~80 V benchmark screen.
+- Planned 3-phase VSI, FOC/SVPWM-capable control, current/voltage/temperature sensing, hardware trip, PWM inhibit and CAN-family interface direction.
+- Candidate MCU, gate-driver and CAN parts without promoting them to production selection.
+- Mechanical dimensions, mass, cooling, environmental and connector requirements as OPEN.
+- Verification state: scaffold/software-baseline evidence exists, but component-bearing U1 schematic, PCB, physical switching, thermal, EMI, dyno and flight qualification remain NOT RUN / NOT STARTED.
 
-- **100 V class -> 19 V headroom (19% of device rating)**: deprioritized as the primary 80 V-class design path. It remains a legacy/reference option only if the final bus/transient envelope later proves materially lower.
-- **120 V class -> 39 V headroom (32.5%)**: carried forward.
-- **150 V class -> 69 V headroom (46%)**: carried forward.
+## Files changed
 
-This is not a final MOSFET selection. 120 V and 150 V must still be compared at common current, PWM, junction temperature, package/cooling, switching energy and transient assumptions.
+- `planning/ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md` - new versioned preliminary datasheet source.
+- `planning/autonomy_state.json` - AUTO-STATE-37.
+- `planning/AUTONOMOUS_HANDOFF.md` - this handoff.
 
-## Current-domain boundary
+No B1/U1 KiCad electrical source, PCB, Gerber, production BOM or release package was modified.
 
-Commercial DC-bus current is not treated as motor phase current. The following remain OPEN/null:
+## Engineering boundary
 
-- phase RMS current,
-- phase peak current,
-- switch RMS/peak current,
-- MOSFET parallel count,
-- PWM frequency,
-- exact semiconductor MPN selection.
-
-## Concrete files added
-
-- `planning/ESC_ELECTRICAL_ENVELOPE_PRETRADE.json`
-- `planning/POWER_STAGE_VOLTAGE_CLASS_SCREENING.md`
-- `planning/verify_esc_electrical_pretrade.py`
-- `.github/workflows/esc-pretrade-check.yml`
-- `planning/RUN_2026-09-19_1855_TRACEABILITY.md`
-- `planning/autonomy_state.json` -> AUTO-STATE-36
-
-## Executed verification
-
-GitHub Actions run `35453244140` completed SUCCESS. Executed output:
-
-```text
-PASS
-reference_voltage_v=81
-reference_continuous_bus_current_a=120
-reference_peak_bus_current_a=300
-reference_power_w=4640
-class_100V_headroom=19V
-class_120V_headroom=39V
-class_150V_headroom=69V
-phase_current_frozen=false
-product_baseline_frozen=false
-```
-
-This proves source-to-derived-value consistency only; it is not bench, thermal, EMC, dyno or flight validation.
+PDS-00 is explicitly **not a production datasheet**. `OPEN`, `TRADE_ONLY`, `PLANNED`, `CANDIDATE` and `REVALIDATE` fields are not guaranteed product ratings. The document is intended to align the mechanical, propulsion, battery and ESC co-design while G0/G1 remain open.
 
 ## Exact next recommended tasks
 
-1. Run a normalized **120 V vs 150 V MOSFET loss comparison** using explicit trade-only current/PWM/junction-temperature sweep points.
-2. Screen gate-driver voltage-domain compatibility for both carried-forward classes.
-3. Build a trade-only DC-link transient/precharge bounding model around the current 80 V-class benchmark.
-4. Extract manufacturer motor load-curve points so phase/bus current estimates can be tied to thrust operating points rather than broad published maxima.
-5. Calculate total propulsion-system mass sensitivity for 4/6/8 rotor concepts and feed that mass back into the vehicle co-design loop.
-
-## Anti-hallucination rules
-
-- Competitor/benchmark values stay `BENCHMARK` or `TRADE_ONLY`.
-- 81 V / 120 A / 300 A are not custom ESC requirements.
-- No phase current is inferred directly from DC bus current.
-- No product MOSFET, driver, parallel count, capacitor or PWM value is frozen before G1/G2 closure.
-- No B1/U1 schematic is edited in place; `U1-SCH-R001` remains unallocated until readiness closes.
+1. Run the normalized **120 V vs 150 V MOSFET loss comparison** using explicit trade-only sweep points for current, PWM and junction temperature.
+2. Screen gate-driver voltage-domain and gate-current compatibility for both classes.
+3. Build trade-only DC-link/precharge/transient bounding calculations around the current 80 V-class benchmark.
+4. Extract source-backed motor load-curve operating points to begin replacing broad bus-current references with propulsion-linked estimates.
+5. Keep `U1-SCH-R001` unallocated until G1/G2 page readiness closes.
 
 ## Next-run briefing
 
-Start with the normalized 120 V versus 150 V power-stage loss trade. Prefer executable calculations with explicit assumptions and keep all trade sweep points visibly non-binding. Dashboard should refresh from `autonomy_state.json` automatically. Mandatory product metrics remain **100% requirements structure / 2.2% G1 closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
+Start with the 120 V versus 150 V loss trade. PDS-00 is now the human-readable concept snapshot and should be revised as PDS-01, PDS-02, etc. rather than silently rewriting released snapshots when major design status changes. Mandatory product metrics remain **100% requirements structure / 2.2% G1 closure / 4% backlog DONE / 0% major gates / 0% component-bearing U1 schematic** until evidence changes them.
