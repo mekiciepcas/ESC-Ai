@@ -1,0 +1,64 @@
+{
+  "revision": "KICAD-CI-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PASS_ARCHITECTURE_SCAFFOLD_ONLY",
+  "workflow": {
+    "name": "KiCad U1 Verify",
+    "run_id": 35446125432,
+    "run_number": 2,
+    "event": "push",
+    "head_sha": "6fe8638508df7533eb9cb27ac200e77d0915b00b",
+    "job_id": 105905233317,
+    "runner_os": "Ubuntu 24.04.5 LTS",
+    "kicad_source": "official KiCad Ubuntu PPA ppa:kicad/kicad-10.0-releases",
+    "kicad_cli_version": "10.0.6",
+    "conclusion": "success"
+  },
+  "checks": {
+    "repository_scaffold_checker": {
+      "status": "PASS",
+      "blocks": 12,
+      "component_symbols": 0,
+      "premature_baseline_tokens": 0,
+      "s_expression_balance": 0
+    },
+    "kicad_cli_netlist_export": {
+      "status": "PASS",
+      "input": "ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch",
+      "output": "verification/kicad_u1/ESC_U1_SCAFFOLD.net",
+      "nonempty_output_required": true
+    },
+    "kicad_cli_erc": {
+      "status": "PASS",
+      "violations": 0,
+      "errors": 0,
+      "warnings": 0,
+      "report": "verification/kicad_u1/ERC.rpt"
+    }
+  },
+  "artifact": {
+    "id": 10584899264,
+    "name": "kicad-u1-verification",
+    "size_bytes": 1105,
+    "digest": "sha256:0ed6b0dac1818c79558c0c9429088ab104e5ca71bccec9dd4add1de762113ab3",
+    "expired_at_record_time": false
+  },
+  "evidence_scope": {
+    "proves": [
+      "KiCad 10.0.6 can parse the committed U1 architecture scaffold",
+      "KiCad CLI can export a non-empty netlist from the scaffold",
+      "KiCad ERC reports zero errors and zero warnings for this architecture-only scaffold",
+      "the repository anti-hallucination checker passes on the same commit"
+    ],
+    "does_not_prove": [
+      "component-bearing U1 schematic correctness",
+      "power-stage electrical correctness",
+      "production readiness",
+      "BOM closure",
+      "PCB DRC or manufacturability",
+      "physical validation"
+    ]
+  },
+  "anti_hallucination_rule": "This PASS applies only to the component-free architecture scaffold at the exact recorded commit. It shall not be promoted to G3 schematic-design-review PASS or production readiness."
+}
