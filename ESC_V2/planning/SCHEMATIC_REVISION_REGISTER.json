@@ -1,0 +1,43 @@
+{
+  "revision": "SCH-REV-REGISTER-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "policy": "SCHEMATIC_VERSIONING_POLICY.md",
+  "status": "ACTIVE",
+  "rules": {
+    "electrical_schematic_changes_require_new_revision": true,
+    "superseded_revisions_immutable": true,
+    "legacy_b1_source_immutable": true,
+    "full_hierarchical_snapshot_required": true,
+    "release_requires_explicit_user_approval": true,
+    "main_merge_requires_explicit_user_approval": true
+  },
+  "revision_series": {
+    "u1_schematic_prefix": "U1-SCH-R",
+    "next_component_bearing_revision": "U1-SCH-R001",
+    "number_reuse_forbidden": true
+  },
+  "baselines": [
+    {
+      "revision_id": "LEGACY-B1",
+      "path": "ESC_V2/hardware_b1/",
+      "role": "LEGACY_MIGRATION_REFERENCE",
+      "status": "FROZEN_REFERENCE",
+      "component_bearing": true,
+      "u1_product_revision": false,
+      "notes": "Reproducible KiCad 10.0.6 parser/netlist/ERC software baseline exists, but legacy ratings and architecture are not U1-qualified. Do not edit source in place."
+    },
+    {
+      "revision_id": "U1-SCH-R000",
+      "path": "ESC_V2/hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch",
+      "role": "ARCHITECTURE_SCAFFOLD_BASELINE",
+      "status": "FROZEN_SCAFFOLD_REFERENCE",
+      "component_bearing": false,
+      "u1_product_revision": false,
+      "notes": "Zero-component architecture scaffold with observed KiCad parser/netlist/ERC evidence. It is not a G3 component-bearing product schematic."
+    }
+  ],
+  "allocated_revisions": [],
+  "release_rule": "No U1 schematic revision may be marked RELEASED and no manufacturing output may be released without explicit user approval.",
+  "anti_hallucination_rule": "A revision identifier records document lineage only. It does not imply electrical qualification, G3 closure, bench validation, thermal validation, EMC validation or flight readiness."
+}
