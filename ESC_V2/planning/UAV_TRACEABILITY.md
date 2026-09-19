@@ -1,11 +1,11 @@
 # UAV ESC tasarım izlenebilirlik matrisi
 
-Tarih: 19.09.2026  
+Tarih: 20.09.2026  
 Amaç: Faz 2 / Faz 3 dokümanları, B1 ve PB-01..PB-07 tarihsel çalışmaları PB-08 düşük güç ürün yönüne bağlamak.
 
 Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIRED**, **OPEN**, **FROZEN**, **SUPERSEDED**.
 
-> TR-001..TR-046 canonical content is preserved byte-for-byte in commit history through blob `558a79e824d957844766031e357996bc8e0cee01`. The current continuation records TR-047..TR-056 while preserving that history as prior evidence; no historical evidence is deleted.
+> TR-001..TR-046 canonical content is preserved byte-for-byte in commit history through blob `558a79e824d957844766031e357996bc8e0cee01`. The current continuation records TR-047 onward while preserving that history as prior evidence; no historical evidence is deleted.
 
 ## Additive continuation
 
@@ -21,6 +21,7 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-054 | PB-07 product-family power rebaseline | **FROZEN PRODUCT DIRECTION.** Aggregate propulsion electrical input family range is 1.5–3.0 kW. Former heavy-lift numeric requirements are explicitly superseded as active product authority. | `PRODUCT_BASELINE_PB-07.json`; inherited by PB-08. |
 | TR-055 | PB-07 low-power architecture screen | **TRADE ACTIVE / NO ROTOR SELECTION.** At 3 kW aggregate, current manufacturer curves give roughly 16.3 kg Quad vs 18.3 kg Hexa MTOW screen at 1.6 T/W using Hobbywing data, with T-Motor cross-check in a similar range. | Full installed-axis/frame mass roll-up and degraded-mode decision. |
 | TR-056 | PB-08 common electrical platform | **FROZEN PARTIAL SYSTEM BASELINE.** 3 kW is the upper continuous family design point; 12S common bus is frozen at 43.2 V nominal / 50.4 V full / 36.0 V full-rated-power floor. Per ESC hardware capability is >=1.0 kW / 30 A continuous and >=1.5 kW / 50 A for >=3 s. Power semiconductor class is >=100 V with <=75 V repetitive controlled terminal-stress target and no repetitive avalanche reliance. 3 kW variant gross pack target is >=750 Wh. Quad/Hexa and exact pack/motor remain OPEN. | `PRODUCT_BASELINE_PB-08.json`; `PB08_COMMON_ELECTRICAL_PLATFORM.md`; switching/thermal/pack physical evidence later. |
+| TR-057 | PB-08 Quad/Hexa architecture mass closure | **CONTROLLED PARAMETRIC DECISION RULE.** Hexa residual-mass advantage is `2.025 - 2*m_axis - delta_structure - delta_common` kg at the current 3 kW screen. Rotor count remains OPEN until installed-axis/structural/common mass terms are evidence-backed and degraded-mode policy is controlled. | `PB08_QUAD_HEXA_MASS_CLOSURE_CONTRACT.md`; exact motor/prop/ESC/frame mass evidence. |
 
 ## Canonical PB-08 current state
 
@@ -32,7 +33,7 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 - Power semiconductor class is **>=100 V**; repetitive controlled switch-terminal stress target is **<=75 V** and normal operation may not rely on repetitive avalanche. Exact MOSFET MPN/count remains OPEN.
 - Previous heavy-lift 70–100 kg payload / 150–180 kg MTOW / X8 / 18S / 500–1050 A pack / >=150 V semiconductor / 125–375 A phase-current values remain preserved but are **not active PB-08 requirements**.
 - >=10 min nominal mission target and 20% gross-energy reserve remain active retained targets.
-- Quad and Hexa remain active candidates. PB-08 quantifies the propulsion-axis installed-mass break-even at **1.0125 kg per added axis** before extra Hexa structural mass; rotor count is not frozen.
+- Quad and Hexa remain active candidates. PB-08 quantifies the propulsion-axis installed-mass break-even at **1.0125 kg per added axis before extra Hexa structural/common mass**; `PB08_QUAD_HEXA_MASS_CLOSURE_CONTRACT.md` now controls the full inequality. Rotor count is not frozen.
 - Exact payload, MTOW, motor/prop MPN, battery cell/P-count/pack mass/peak current, phase current, PWM/eRPM, protection thresholds and thermal limits remain OPEN.
 - CAN-FD/Classic-CAN interface and power-up/reset DISARMED + hardware-inhibit + no-auto-rearm safety policy remain retained.
 - B1's historical ~3 kW / ~48 V / 100 V MOSFET domain is now a **requalification candidate**. The old 100 V voltage class is directionally aligned, but no B1 part/count/driver/sensing value is automatically approved.
