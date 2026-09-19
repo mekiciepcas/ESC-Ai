@@ -1,0 +1,25 @@
+name: Verify PB-07 Rebaseline
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-07.json'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/uav_backlog.json'
+      - 'ESC_V2/planning/SCHEMATIC_REVISION_REGISTER.json'
+      - 'ESC_V2/planning/verify_product_baseline_pb07.py'
+      - '.github/workflows/pb07-rebaseline-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+      - name: Verify PB07 consistency
+        run: python3 ESC_V2/planning/verify_product_baseline_pb07.py
