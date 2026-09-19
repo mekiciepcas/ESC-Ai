@@ -1,20 +1,20 @@
 {
-  "revision":"AUTO-STATE-37",
+  "revision":"AUTO-STATE-38",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_PRELIMINARY_DATASHEET_PDS00_CREATED",
+  "last_run_status":"PROGRESS_PDS01_FROZEN_VALUES_MARKED",
   "current_gate":"G0_G1",
   "current_task":"NORMALIZED_120V_150V_POWER_STAGE_LOSS_AND_GATE_DRIVE_PRETRADE",
   "completed_this_run":[
-    "re_read_current_UAV_product_plan_traceability_backlog_mission_requirements_requirements_master_requirements_progress_handoff_state_and_G1_matrix_against_actual_uav_rebaseline_branch",
-    "created_versioned_preliminary_engineering_datasheet_ESC_U1_PRELIMINARY_DATASHEET_PDS_00_md",
-    "kept_70_100kg_as_payload_target_not_MTOW",
-    "separated_OPEN_product_requirements_from_TRADE_ONLY_81V_120A_300A_4640W_architecture_stress_references",
-    "documented_120V_and_150V_as_carried_forward_power_semiconductor_classes_without_selecting_a_winner",
-    "documented_control_sensing_CAN_fault_and_mechanical_environment_status_with_explicit_OPEN_PLANNED_CANDIDATE_labels",
-    "preserved_component_bearing_U1_schematic_at_zero_percent_and_did_not_allocate_U1_SCH_R001",
-    "generated_and_visually_verified_four_page_PDS_00_PDF_for_user_delivery"
+    "verified_current_uav_rebaseline_branch_and_requirements_freeze_authority_before marking datasheet values",
+    "created_versioned_ESC_U1_PRELIMINARY_DATASHEET_PDS_01_md_instead_of overwriting PDS_00",
+    "marked_only_70_100kg_payload_target_bounds_as_FROZEN because G1_REQUIREMENTS_MATRIX_row_G0_01_is_the_only_PASS_product_value_row",
+    "kept_81V_120A_300A_3s_4640W_as_TRADE_ONLY_not_product_ratings",
+    "kept_120V_150V_power_device_classes_and_MCU_gate_driver_options_as_CANDIDATE_not frozen selections",
+    "kept_all_mechanical_environment_voltage_phase_current_PWM_eRPM_and_production_rating_fields_OPEN",
+    "generated_and_render_verified_color_coded_PDS_01_PDF_with_frozen_trade_candidate_open_legend",
+    "preserved_product_progress_counters_and_did_not_allocate_U1_SCH_R001"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; product-specific mass, mission and environment values remain unresolved","blocking_scope":"G0_and_final_G1A"},
@@ -50,13 +50,12 @@
   },
   "evidence_refs":[
     "ESC_U1_PRELIMINARY_DATASHEET_PDS-00.md",
-    "PROPULSION_SCREENING_PRETRADE.json",
-    "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json",
-    "POWER_STAGE_VOLTAGE_CLASS_SCREENING.md",
-    "verify_esc_electrical_pretrade.py",
-    "GitHub Actions run 35453244140 SUCCESS"
+    "ESC_U1_PRELIMINARY_DATASHEET_PDS-01.md",
+    "G1_REQUIREMENTS_MATRIX.json",
+    "REQUIREMENTS_PROGRESS.json",
+    "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"PDS-00 provides a controlled preliminary datasheet snapshot without converting benchmark stress references into product ratings. Product G1 closure and U1 component-bearing schematic progress remain unchanged. The next engineering task is still the normalized 120 V versus 150 V power-stage loss and gate-drive trade."
+  "notes":"PDS-01 now makes freeze state visually explicit. Only the 70-100 kg payload target bounds are frozen at product-value level because G1 closure remains 1/46. Trade-only electrical stress references and candidate component classes remain clearly non-frozen."
 }
