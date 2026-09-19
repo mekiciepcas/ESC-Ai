@@ -1,71 +1,73 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 08:19+03:00  
+Date: 2026-09-19 09:21+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_EXACT_VBUS_BOM_AND_LOSS_MODEL_FRAMEWORK`
+Status: `PROGRESS_SENSE_CLAMP_INPUT_CONTRACT_DC_LINK_FRAMEWORK`
 
 ## Run summary
-This run completed the exact repository-level B1 VBUS BOM audit and established the parameterized semiconductor loss-model contract. It also updated traceability so DC-link, MOSFET, DRV8353, LM5164 and sensing share one unresolved bus-transient requirement. No voltage class, MPN, phase-current rating, PWM frequency, rotor architecture or MTOW was frozen.
+This run closed the first-order B1 upper-divider component stress question with primary manufacturer evidence, separated the BAT54H low-energy ADC clamp from the actual DC-bus energy-clamp requirement, defined the missing external DC-input/protection interface contract, and created the DC-link capacitor qualification framework. No voltage class, capacitor MPN, protection topology, rotor architecture, phase-current rating or MTOW was frozen.
 
 ## Tasks attempted / completed
-1. Verified previous handoff/state against current branch source.
-2. Extracted B1 VBUS-exposed BOM facts from `hardware_b1/bom_review.json` and source.
-3. Confirmed main DC-link bank is C101-C103 = 3 x 470 uF 100 V, exact MPN open.
-4. Confirmed local half-bridge ceramics C104-C106 = 3 x 2.2 uF 100 V X7R, exact MPN open.
-5. Confirmed the 160 V capacitor labels belong to the LM5164 local HV input network, not the main inverter DC-link qualification.
-6. Confirmed DC input fuse/precharge/reverse-polarity assembly and regen/brake clamp are external/open interfaces, so B1 cannot claim a closed bus-clamp design.
-7. Added `B1_EXACT_VBUS_BOM_AUDIT.md`.
-8. Added `POWER_STAGE_LOSS_MODEL.md` with explicit conduction, switching, gate, recovery and thermal evidence requirements for 100/120/150 V trade.
-9. Updated `UAV_TRACEABILITY.md` and `autonomy_state.json`.
+1. Verified previous handoff/state against branch source.
+2. Confirmed B1 BOM uses YAGEO `RT0805BRD0749K9L` 49.9 kOhm 0.1% upper-divider parts and Nexperia `BAT54H,115` clamp diode.
+3. Verified YAGEO primary limits: 150 V max continuous voltage at full rated power, 300 V max over-voltage, 200 V dielectric withstand, 0.125 W at 70 C.
+4. Calculated each 49.9 kOhm upper resistor at 75.6 V bus: ~36.6 V and ~26.8 mW; at screening-only 120 V: ~58.1 V/~67.6 mW; at screening-only 150 V: ~72.6 V/~105.5 mW.
+5. Verified Nexperia BAT54H primary data: 30 V reverse, 200 mA forward, low-forward-voltage Schottky intended among other uses for voltage clamping.
+6. Documented that BAT54H cannot be credited as the DC-bus transient-energy clamp and that ADC clamp-rail injection/backfeed remains to be closed.
+7. Added `BUS_SENSE_CLAMP_AUDIT.md`.
+8. Added `DC_INPUT_PROTECTION_CONTRACT.md` defining fuse/precharge/disconnect/regen-clamp/harness guarantees without guessing component values.
+9. Added `DC_LINK_SELECTION_FRAMEWORK.md` defining effective capacitance, ESR/ripple, lifetime, voltage/transient and validation evidence requirements.
+10. Updated machine-readable autonomy state.
 
 ## Files changed
-- `planning/B1_EXACT_VBUS_BOM_AUDIT.md` — new
-- `planning/POWER_STAGE_LOSS_MODEL.md` — new
-- `planning/UAV_TRACEABILITY.md` — updated
+- `planning/BUS_SENSE_CLAMP_AUDIT.md` — new
+- `planning/DC_INPUT_PROTECTION_CONTRACT.md` — new
+- `planning/DC_LINK_SELECTION_FRAMEWORK.md` — new
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-- B1 is not 18S-qualified by the presence of some 160 V capacitors. Main energy-storage and local inverter ceramics are nominal 100 V candidates with exact capacitor MPNs still open.
-- 75.6 V to 100 V leaves 24.4 V nameplate difference, but this is not a permitted overshoot budget and cannot substitute for transient/derating/lifetime analysis.
-- The existing B1 board depends on an external protected/precharged DC-input assembly and external brake/clamp interface. These cannot be credited as protection until their electrical contracts and components are defined.
-- Semiconductor class comparison now has a common loss-model framework; higher VDS is not automatically accepted because hot RDS(on), Qg/Qgd, switching/recovery loss, thermal path and gate-drive feasibility must close at the same operating point.
-- Normal operation will not be allowed to rely on unspecified repetitive avalanche as a substitute for bus transient control.
+- The exact RT0805 upper-divider part is not the first steady-state blocker for the 75.6 V 18S candidate; each upper resistor is far below its 150 V continuous working-voltage rating and below its 0.125 W/70 C nominal power at that point.
+- This does not qualify a 120/150 V bus range. At the 150 V screening point each upper is already about 105.5 mW before temperature derating, and the ADC/clamp/range/PCB constraints are independent.
+- BAT54H is a sensing-node clamp only. The destination rail's ability to absorb injected current and STM32 powered/unpowered injection limits must close before UAV bus-sense qualification.
+- External fuse/precharge/reverse-polarity/disconnect/regen-clamp behavior is now an explicit system contract rather than an implicit B1 assumption.
+- DC-link selection must use effective capacitance, ESR/ripple heating, transient energy and manufacturer lifetime evidence; nominal uF/V alone is insufficient.
 
 ## Calculations / evidence added
-- First-order bridge conduction screening equation and switching/gate-loss equations documented in `POWER_STAGE_LOSS_MODEL.md`.
-- Exact B1 source/BOM references documented in `B1_EXACT_VBUS_BOM_AUDIT.md`.
-- Traceability TR-006/010/012/013/014/022/023/024 updated to reflect common voltage-domain dependencies.
+- Divider stress calculation for 75.6/120/150 V screening cases.
+- Primary-source YAGEO RT0805BRD0749K9L electrical limits.
+- Primary-source Nexperia BAT54H quick-reference limits and clamp application.
+- DC-input protection acceptance criteria and DC-link qualification equations/framework.
 
 ## Assumptions and evidence level
-- 18S full-charge candidate remains 75.6 V from prior rebaseline work; not a transient ceiling.
-- B1 component values/references: REPOSITORY_SOURCE evidence.
-- Loss equations: ENGINEERING_SCREENING framework, not thermal validation.
-- Exact capacitor effective C/ESR/ripple/lifetime: OPEN.
+- 18S full-charge candidate = 75.6 V: prior engineering candidate, not transient ceiling.
+- 120 V and 150 V divider calculations: SCREENING CASES ONLY, not selected bus requirements.
+- RT0805 and BAT54H limits: PRIMARY MANUFACTURER EVIDENCE.
+- Exact clamp injection/backfeed behavior: OPEN pending topology and MCU limit audit.
 - No physical measurements performed.
 
 ## Unresolved blockers
 - G0 mass/mission/environment/failure policy.
-- Rotor architecture and exact propulsion operating point.
+- Rotor architecture and final propulsion operating point.
 - Phase RMS/peak current and final PWM.
 - Harness/PCB inductance and switching/regen/BMS-disconnect transient ceiling.
 - Exact DC-link capacitor MPN/effective capacitance/ripple/lifetime.
-- External input protection and regen-clamp electrical design.
+- Exact input protection/clamp component sizing and BMS behavior.
+- ADC clamp destination-rail sink capability and MCU powered/unpowered injection limits.
 
 ## Risks / regressions
-- A 100 V bulk-capacitor nameplate is now explicitly part of the 18S voltage-margin problem; MOSFET-only voltage upgrades would not solve it.
-- An external protection-module placeholder can create false confidence unless its disconnect/clamp behavior is defined together with the ESC.
-- Higher-voltage MOSFET selection may increase conduction/switching loss; class cannot be chosen on VDS alone.
+- A divider that survives steady-state voltage does not imply the sensing chain is safe during over-range or unpowered-MCU events.
+- A Schottky clamp can backfeed the 3.3 V rail if the rail cannot sink the injected current.
+- 100 V DC-link and semiconductor domains remain unresolved even though the divider resistors themselves have greater individual voltage capability.
 
 ## Exact next recommended tasks
-1. Audit RT0805 49.9k upper-divider individual working-voltage/pulse limits and BAT54H clamp injection/backfeed path.
-2. Define an external DC-input/protection module electrical contract: fuse, precharge, reverse-polarity, contact/disconnect behavior, clamp/regen energy path, harness inductance interface.
-3. Create a DC-link ripple/effective-capacitance/lifetime selection framework without choosing an MPN.
-4. Populate the loss model with legacy CSD19536KTT parameters as reference-only if primary datasheet evidence is available; do not freeze it.
-5. Continue propulsion evidence to reduce phase-current/PWM uncertainty.
+1. Verify exact BAT54H orientation/destination rail in B1 source and STM32G474 ADC injection limits from ST primary documentation; calculate worst-case clamp current parametrically.
+2. Populate the semiconductor loss framework with legacy CSD19536KTT primary datasheet parameters as reference-only.
+3. Extend the input contract with a parametric precharge/disconnect-energy calculator using OPEN inputs rather than guessed values.
+4. Continue propulsion evidence to reduce phase-current/PWM uncertainty.
 
 ## Dependency chain
 `G0 vehicle inputs -> rotor/propulsion point -> battery/DC/phase envelope -> transient ceiling + input protection contract -> semiconductor/driver/aux/DC-link/sensing voltage domains -> loss/thermal closure -> schematic/firmware -> PCB -> bench/propulsion validation`
 
 ## Next-run briefing
-Start with divider working-voltage/clamp injection and the external input-module contract because both are independent of final MTOW and directly close 18S safety ambiguity. Then build the DC-link selection framework. Keep all capacitor MPNs and 100/120/150 V semiconductor classes OPEN until transient and current envelopes exist. Verify any external component limits from primary manufacturer data before changing status.
+Start by resolving the low-energy sensing clamp topology and STM32 injection/backfeed limits because the resistor working-voltage question is now screened. Then add primary-source CSD19536KTT reference parameters to the loss model and a parametric precharge/energy tool. Do not interpret the 120/150 V divider screening cases as selected voltage classes. Keep the real DC-bus transient ceiling, protection topology and capacitor/semiconductor MPNs OPEN until propulsion, harness and BMS behavior close.
