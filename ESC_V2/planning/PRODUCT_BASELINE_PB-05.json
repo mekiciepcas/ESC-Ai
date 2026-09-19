@@ -1,0 +1,102 @@
+{
+  "revision": "PB-05",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "supersedes": "PRODUCT_BASELINE_PB-04.json",
+  "inherits_all_pb04_frozen_decisions_except_explicit_supersession": true,
+  "purpose": "Advance Sprint S1.3 by freezing gross battery-energy, rated-power minimum-loaded-bus and continuous pack-current requirements while keeping exact cell/pack implementation open.",
+  "change_control": {
+    "rule": "PB-05 inherits PB-04 unless a PB-05 decision explicitly supersedes an inherited value. Any later change to a PB-05 frozen value requires PB-06 or an explicitly linked engineering change record; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "inherited_baseline": {
+    "authority": "PRODUCT_BASELINE_PB-04.json",
+    "summary": [
+      "70-100 kg payload target; 85 kg nominal",
+      "X8 coaxial / eight independent propulsion channels",
+      "150/165/180 kg MTOW design targets",
+      "56x20 inch / 45KV / 18S propulsion performance class",
+      "18S battery architecture / 75.6 V full charge / <=80 V outer input ceiling",
+      ">=10 min nominal mission target and >=10 min hover-equivalent sizing target",
+      "20% gross-pack energy reserve policy",
+      ">=70 A continuous DC and >=200 A for >=3 s per-ESC capability",
+      ">=4.8 kW continuous and >=11.5 kW short-duration per-ESC input capability",
+      "<=120 V repetitive controlled semiconductor-terminal stress",
+      ">=150 V power-semiconductor class",
+      ">=125 A RMS continuous phase current, >=265 A RMS for >=3 s and >=375 A instantaneous phase peak",
+      "phase-current measurement range at least -400 A to +400 A",
+      ">=90,000 eRPM controller capability",
+      "CAN-FD capable / Classic-CAN compatible interface",
+      "power-up/reset DISARMED and no automatic re-arm after fault"
+    ]
+  },
+  "clarifications": [
+    {
+      "field": "battery_energy_sizing_reserve_fraction_min",
+      "value": 0.20,
+      "meaning": "Nominal mission energy may consume no more than 80% of gross rated pack energy at the sizing reference. This is not the final BMS SOC cutoff or firmware landing threshold.",
+      "status": "SEMANTIC_CLARIFICATION_NO_NUMERIC_CHANGE"
+    },
+    {
+      "field": "nominal_bus_voltage_convention",
+      "meaning": "PB-04's 66.6 V convention is retained as a system-level 18S/3.7 V reference. Current Molicel candidate cells are rated 3.6 V nominal and would therefore be 64.8 V nameplate nominal if selected. Exact pack nominal labeling remains implementation-dependent and must be reconciled under change control when the cell MPN freezes.",
+      "status": "NO_SILENT_NOMINAL_VOLTAGE_SUPERSESSION"
+    }
+  ],
+  "new_frozen_decisions": [
+    {
+      "id": "PB-029",
+      "field": "battery_gross_rated_energy_wh_min",
+      "value": 5000,
+      "unit": "Wh",
+      "comparison": ">=",
+      "reference_condition": "85 kg nominal payload / 165 kg nominal MTOW / >=10 min hover-equivalent first-order mission sizing",
+      "status": "FROZEN_PRODUCT_REQUIREMENT",
+      "rationale": "PB-04 gives ~3.574 kWh terminal mission energy and ~4.467 kWh gross energy before battery internal losses when 20% of gross energy is reserved. Current high-rate 21700 candidate DCR screens add roughly 0.26-0.30 kWh over the 10-minute nominal reference. >=5.0 kWh is adopted as the rated pack-energy floor while exact cell/topology remains open.",
+      "evidence": ["BATTERY_CELL_PACK_TRADE_PB05.md", "MISSION_DURATION_ENERGY_BASELINE_PB04.md"]
+    },
+    {
+      "id": "PB-030",
+      "field": "battery_minimum_loaded_bus_for_full_rated_power_v",
+      "value": 54.0,
+      "unit": "V",
+      "comparison": ">=",
+      "equivalent_per_cell_v_for_18s": 3.0,
+      "status": "FROZEN_PRODUCT_REQUIREMENT",
+      "rationale": "54.0 V is adopted as the minimum loaded bus at which full rated power must be supported. Below this point the vehicle/ESC must derate or terminate the mission according to S1.4 policy. The hard cell/BMS cutoff remains exact-pack-specific and OPEN.",
+      "evidence": ["BATTERY_CELL_PACK_TRADE_PB05.md"]
+    },
+    {
+      "id": "PB-031",
+      "field": "battery_pack_continuous_current_a_min",
+      "value": 500,
+      "unit": "A",
+      "comparison": ">=",
+      "status": "FROZEN_PRODUCT_REQUIREMENT",
+      "rationale": "The 180 kg maximum-MTOW hover reference is ~24.420 kW. At the frozen 54.0 V rated-power floor this is ~452.2 A. Approximately 10% design allowance gives ~497 A, rounded upward to >=500 A continuous pack capability.",
+      "evidence": ["BATTERY_CELL_PACK_TRADE_PB05.md", "MISSION_DURATION_ENERGY_BASELINE_PB04.md"]
+    }
+  ],
+  "battery_candidate_disposition": {
+    "exact_cell_mpn_frozen": false,
+    "primary_qualification_candidate": "Molicel INR-21700-P50B in an 18S16P calculation topology",
+    "mass_optimization_candidate": "Molicel INR-21700-P60B in an 18S14P calculation topology",
+    "mature_alternate": "Molicel INR-21700-P45B in an 18S18P calculation topology",
+    "candidate_only_warning": "Topology counts are engineering screens against >=5.0 kWh minimum cell energy and >=500 A pack capability. They are not production pack releases."
+  },
+  "remaining_s1_critical_open_items": [
+    "exact battery cell/pouch MPN, pack topology, mass and usable SOC",
+    "low-SOC/cold/aged sag correlation and hard BMS cutoff behavior",
+    "peak pack current / duration requirement",
+    "PWM frequency/current ripple final closure after exact motor inductance evidence",
+    "environment and thermal design boundaries",
+    "OV/UV/OCP/OTP/watchdog/command-timeout numeric requirements",
+    "exact 150 V MOSFET MPN and parallel count",
+    "exact high-voltage half-bridge gate-driver MPN",
+    "current-sense implementation, DC-link, precharge and thermal architecture"
+  ],
+  "physical_verification_status": "NOT_PERFORMED",
+  "anti_hallucination_rule": "PB-05 values are controlled product design requirements supported by calculation and primary cell data. Candidate pack topologies are not physical pack validation, endurance proof, thermal qualification or flight qualification."
+}
