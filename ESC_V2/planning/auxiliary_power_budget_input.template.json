@@ -1,0 +1,44 @@
+{
+  "status": "INPUT_TEMPLATE_VALUES_INTENTIONALLY_NULL",
+  "note": "Replace nulls only with user-approved, primary-source, derived-from-frozen-parent, or measured values. This template is not executable until all required numeric fields are evidenced.",
+  "rails": {
+    "12V_candidate": {
+      "voltage_v": null,
+      "design_margin_fraction": null,
+      "loads": [
+        {"name": "gate_driver_non_gate_charge_load", "current_a": null},
+        {"name": "fan_or_cooling_aux", "current_a": null},
+        {"name": "downstream_converter_input_local_overhead", "power_w": null}
+      ]
+    },
+    "5V_candidate": {
+      "voltage_v": null,
+      "design_margin_fraction": null,
+      "loads": [
+        {"name": "hall_or_external_5V_interface", "current_a": null},
+        {"name": "other_5V_local_loads", "current_a": null}
+      ]
+    },
+    "3V3_candidate": {
+      "voltage_v": null,
+      "design_margin_fraction": null,
+      "loads": [
+        {"name": "MCU_dynamic_load", "current_a": null},
+        {"name": "communications_and_logic", "current_a": null},
+        {"name": "analog_domain_source_load", "current_a": null}
+      ]
+    }
+  },
+  "gate_drive": {
+    "source_rail": "12V_candidate",
+    "qg_c": null,
+    "v_drive": null,
+    "pwm_hz": null,
+    "devices_per_event": null,
+    "events_per_device_per_pwm_cycle": null
+  },
+  "converters": [
+    {"name": "12V_to_5V", "output_rail": "5V_candidate", "efficiency": null},
+    {"name": "5V_to_3V3", "output_rail": "3V3_candidate", "efficiency": null}
+  ]
+}
