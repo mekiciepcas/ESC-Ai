@@ -6,11 +6,13 @@ on:
     paths:
       - 'ESC_V2/hardware_u1_scaffold/**'
       - 'ESC_V2/hardware_u1/**'
+      - 'ESC_V2/hardware_b1/**'
       - '.github/workflows/kicad-u1-verify.yml'
   pull_request:
     paths:
       - 'ESC_V2/hardware_u1_scaffold/**'
       - 'ESC_V2/hardware_u1/**'
+      - 'ESC_V2/hardware_b1/**'
       - '.github/workflows/kicad-u1-verify.yml'
   workflow_dispatch:
 
@@ -52,4 +54,63 @@ jobs:
         with:
           name: kicad-u1-verification
           path: verification/kicad_u1/
+          if-no-files-found: warn
+
+  audit-legacy-b1:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install supported KiCad 10 CLI
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update
+          sudo apt-get install --yes --install-recommends kicad
+          mkdir -p verification/kicad_b1
+          kicad-cli --version | tee verification/kicad_b1/KICAD_VERSION.txt
+
+      - name: Audit legacy B1 parser and netlist without modifying source
+        run: |
+          set +e
+          kicad-cli sch export netlist \
+            -o verification/kicad_b1/ESC_3kW_B1.net \
+            ESC_V2/hardware_b1/ESC_3kW_B1.kicad_sch \
+            >verification/kicad_b1/NETLIST_STDOUT.txt \
+            2>verification/kicad_b1/NETLIST_STDERR.txt
+          rc=$?
+          set -e
+          echo "$rc" | tee verification/kicad_b1/NETLIST_EXIT_CODE.txt
+          cat verification/kicad_b1/NETLIST_STDOUT.txt || true
+          cat verification/kicad_b1/NETLIST_STDERR.txt || true
+          if [ -s verification/kicad_b1/ESC_3kW_B1.net ]; then
+            echo "NETLIST_NONEMPTY=1" | tee -a verification/kicad_b1/SUMMARY.txt
+          else
+            echo "NETLIST_NONEMPTY=0" | tee -a verification/kicad_b1/SUMMARY.txt
+          fi
+          echo "NETLIST_EXIT_CODE=$rc" | tee -a verification/kicad_b1/SUMMARY.txt
+
+      - name: Capture legacy B1 ERC as migration evidence
+        run: |
+          set +e
+          kicad-cli sch erc \
+            -o verification/kicad_b1/ERC.rpt \
+            ESC_V2/hardware_b1/ESC_3kW_B1.kicad_sch \
+            >verification/kicad_b1/ERC_STDOUT.txt \
+            2>verification/kicad_b1/ERC_STDERR.txt
+          rc=$?
+          set -e
+          echo "$rc" | tee verification/kicad_b1/ERC_EXIT_CODE.txt
+          cat verification/kicad_b1/ERC_STDOUT.txt || true
+          cat verification/kicad_b1/ERC_STDERR.txt || true
+          cat verification/kicad_b1/ERC.rpt || true
+          echo "ERC_EXIT_CODE=$rc" | tee -a verification/kicad_b1/SUMMARY.txt
+          echo "B1_AUDIT_ONLY=1" | tee -a verification/kicad_b1/SUMMARY.txt
+          echo "NOTE=Legacy B1 pass/fail is migration evidence only and does not qualify U1." | tee -a verification/kicad_b1/SUMMARY.txt
+
+      - name: Upload legacy B1 KiCad baseline evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kicad-b1-baseline-audit
+          path: verification/kicad_b1/
           if-no-files-found: warn
