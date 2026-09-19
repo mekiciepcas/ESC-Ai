@@ -1,76 +1,51 @@
 {
-  "revision": "AUTO-STATE-01",
+  "revision": "AUTO-STATE-02",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status": "READY_FOR_NEXT_RUN",
-  "current_gate": "G0",
+  "last_run_status": "PROGRESS_G1_DEPENDENCIES",
+  "current_gate": "G0_G1",
   "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "current_task": "G0_G1_PROPULSION_SIZING_AND_EVIDENCE",
+  "current_task": "SOURCE_BACKED_PROPULSION_OPERATING_POINTS",
   "selection_rule": "highest_priority_unblocked_dependency_opening_task_then_continue_same_run",
   "completed_this_run": [
-    "created_AUTONOMOUS_HANDOFF_protocol",
-    "extended_cross_run_continuity_policy",
-    "configured_same_run_next_task_progression"
+    "verified_existing_propulsion_benchmark_against_current_primary_sources",
+    "added_battery_architecture_pretrade_with_52V_and_18S_families",
+    "added_parametric_ESC_electrical_envelope_model",
+    "quantified_bus_current_and_I2R_voltage_trade",
+    "flagged_100V_FET_class_as_unfrozen_for_18S_transient_margin",
+    "updated_traceability_with_new_source_backed_evidence"
   ],
   "blocked_tasks": [
     {
       "task": "freeze_G0_mission_mass_envelope",
-      "reason": "airframe_mass_battery_mass_nominal_payload_flight_duration_environment_and_failure_policy_not_yet_frozen",
+      "reason": "airframe_mass_battery_mass_nominal_payload_flight_duration_environment_and_failure_policy_not_frozen",
       "blocking_scope": "full_G0_freeze_only"
+    },
+    {
+      "task": "freeze_UAV_004_operating_point",
+      "reason": "rotor_architecture_and_MTOW_not_frozen; exact_manufacturer_thrust_power_table_needed_for_selected_axis",
+      "blocking_scope": "final_operating_point_only"
     }
   ],
   "next_candidates": [
-    "source_backed_heavy_uav_propulsion_benchmark",
-    "parametric_rotor_thrust_trade_study",
-    "battery_voltage_architecture_trade_study",
-    "ESC_electrical_envelope_parametric_model",
-    "B1_requalification_precheck"
+    "extract_source_backed_X15_G2_thrust_power_current_table_and_build_operating_point_interpolation",
+    "find_second_current_55_to_60kgf_propulsion_table_for_hex_scenario",
+    "create_propulsion_operating_points_json_with_scenario_not_frozen_labels",
+    "perform_B1_18S_voltage_compatibility_precheck_for_aux_supply_voltage_sensing_and_gate_driver"
   ],
   "last_verified_gate": "REBASELINE_INIT",
   "evidence_refs": [
-    "design_basis.json",
-    "planning/UAV_PRODUCT_PLAN.md",
-    "planning/UAV_REBASELINE.md",
+    "planning/propulsion_benchmark.md",
+    "planning/rotor_trade_study.md",
+    "planning/battery_architecture_pretrade.md",
+    "planning/esc_envelope_parametric.md",
     "planning/UAV_TRACEABILITY.md",
-    "planning/mission_requirements.json",
-    "planning/AUTONOMOUS_HANDOFF.md"
+    "https://xa.com/en/p150max/p150maxspecs",
+    "https://www.hobbywing.com/en/uploads/file/20260114/8edfaf2969be848410994360b6ac2487.pdf"
   ],
-  "write_policy": {
-    "allow_branch": "uav-rebaseline",
-    "deny_main": true,
-    "allow_reversible_commits": true,
-    "allow_release_without_user_approval": false
-  },
-  "evidence_policy": {
-    "unknown_values": "OPEN_OR_NULL",
-    "physical_test_claim_without_measurement": false,
-    "flight_qualification_claim_without_gate_closure": false,
-    "erc_drc_equals_functional_validation": false,
-    "verify_handoff_against_repository_each_run": true
-  },
-  "continuity_policy": {
-    "read_handoff_first": true,
-    "verify_against_repository": true,
-    "continue_to_next_task_in_same_run": true,
-    "switch_tasks_when_blocked": true,
-    "update_handoff_at_end_of_every_run": true,
-    "update_state_at_end_of_every_run": true,
-    "filler_commits_forbidden": true,
-    "unknown_values_remain_open": true,
-    "physical_validation_must_not_be_invented": true,
-    "main_merge_requires_user_approval": true,
-    "production_release_requires_user_approval": true
-  },
-  "stop_conditions": [
-    "USER_PRODUCT_DECISION_REQUIRED",
-    "PHYSICAL_MEASUREMENT_REQUIRED",
-    "PRIMARY_SOURCE_UNAVAILABLE",
-    "SAFETY_CRITICAL_UNKNOWN",
-    "FOOTPRINT_OR_PINOUT_UNVERIFIED",
-    "PRODUCTION_RELEASE_REQUIRES_APPROVAL",
-    "FLIGHT_TEST_GATE_NOT_REACHED"
-  ],
-  "no_progress_policy": "If a critical-path task is blocked, move to another safe independent task. If no safe task exists, perform a consistency/verification audit and record BLOCKED_NO_SAFE_WORK with exact required input; never fabricate progress or create filler changes.",
-  "notes": "State file is a coordination record, not engineering evidence. Technical closure must reference requirement/source/calculation/simulation/test evidence."
+  "write_policy": {"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
+  "evidence_policy": {"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
+  "continuity_policy": {"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
+  "notes": "No product voltage, rotor count, current or power rating was frozen in this run. New values are source-backed benchmark or explicitly parametric scenario calculations."
 }
