@@ -1,73 +1,78 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 09:21+03:00  
+Date: 2026-09-19 10:18+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_SENSE_CLAMP_INPUT_CONTRACT_DC_LINK_FRAMEWORK`
+Status: `PROGRESS_ADC_CLAMP_REFERENCE_FET_PRECHARGE_REQUIREMENTS_GATE`
 
 ## Run summary
-This run closed the first-order B1 upper-divider component stress question with primary manufacturer evidence, separated the BAT54H low-energy ADC clamp from the actual DC-bus energy-clamp requirement, defined the missing external DC-input/protection interface contract, and created the DC-link capacitor qualification framework. No voltage class, capacitor MPN, protection topology, rotor architecture, phase-current rating or MTOW was frozen.
+This run verified the exact B1 voltage-sense clamp orientation, quantified powered/unpowered rail-injection screening, added STM32G474 primary-source injection constraints, populated the legacy CSD19536KTT reference row from TI primary data, added a no-guesses precharge/disconnect-energy model, and formalized requirements completion at G1 SYSTEM FREEZE. No vehicle mass, rotor architecture, battery architecture, transient ceiling, semiconductor class, protection MPN or release package was frozen.
 
 ## Tasks attempted / completed
-1. Verified previous handoff/state against branch source.
-2. Confirmed B1 BOM uses YAGEO `RT0805BRD0749K9L` 49.9 kOhm 0.1% upper-divider parts and Nexperia `BAT54H,115` clamp diode.
-3. Verified YAGEO primary limits: 150 V max continuous voltage at full rated power, 300 V max over-voltage, 200 V dielectric withstand, 0.125 W at 70 C.
-4. Calculated each 49.9 kOhm upper resistor at 75.6 V bus: ~36.6 V and ~26.8 mW; at screening-only 120 V: ~58.1 V/~67.6 mW; at screening-only 150 V: ~72.6 V/~105.5 mW.
-5. Verified Nexperia BAT54H primary data: 30 V reverse, 200 mA forward, low-forward-voltage Schottky intended among other uses for voltage clamping.
-6. Documented that BAT54H cannot be credited as the DC-bus transient-energy clamp and that ADC clamp-rail injection/backfeed remains to be closed.
-7. Added `BUS_SENSE_CLAMP_AUDIT.md`.
-8. Added `DC_INPUT_PROTECTION_CONTRACT.md` defining fuse/precharge/disconnect/regen-clamp/harness guarantees without guessing component values.
-9. Added `DC_LINK_SELECTION_FRAMEWORK.md` defining effective capacitance, ESR/ripple, lifetime, voltage/transient and validation evidence requirements.
-10. Updated machine-readable autonomy state.
+1. Re-read the prior handoff/state and product-plan gate definitions.
+2. Verified B1 source topology: each upper BAT54H has cathode at +3V3A and anode at V_ADC; lower BAT54H has cathode at V_ADC and anode at GND.
+3. Recomputed divider ratio = ~0.0321955 and clamp-source Thevenin resistance including 1 kOhm ADC series = ~4.213 kOhm.
+4. Screened powered clamp current using 3.6 V only as an illustrative clamp node: ~62 uA at 120 V and ~292 uA at 150 V screening cases.
+5. Screened the MCU/3V3A-off hazard: at 75.6 V bus, ideal divider node is ~2.434 V and an illustrative 0.3 V Schottky drop gives ~0.51 mA source-limited current into the dead analog rail. This is not a qualified value.
+6. Recorded ST STM32G474 primary-source guidance that normal-operation injection should be avoided and absolute injected-current characterization limits are not design targets.
+7. Added `ADC_CLAMP_INJECTION_CLOSURE.md`.
+8. Added TI primary-source CSD19536KTT reference parameters: 100 V, 2.4 mOhm max RDS(on) at 10 V, Qg typ 118 nC, Qgd typ 17 nC, package-limited ID 200 A; retained as legacy/reference only.
+9. Added `precharge_energy_model.py`, requiring explicit numeric inputs and leaving disconnect analysis OPEN unless current/stray-L are supplied.
+10. Added `REQUIREMENTS_COMPLETION_CHECKLIST.md`, defining system requirements as baselined only at G1 after G0/G1A/G1B/G1C closure.
+11. Updated machine-readable autonomy state.
 
 ## Files changed
-- `planning/BUS_SENSE_CLAMP_AUDIT.md` — new
-- `planning/DC_INPUT_PROTECTION_CONTRACT.md` — new
-- `planning/DC_LINK_SELECTION_FRAMEWORK.md` — new
+- `planning/ADC_CLAMP_INJECTION_CLOSURE.md` — new
+- `planning/CSD19536KTT_REFERENCE_PARAMETERS.md` — new
+- `planning/precharge_energy_model.py` — new
+- `planning/REQUIREMENTS_COMPLETION_CHECKLIST.md` — new
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-- The exact RT0805 upper-divider part is not the first steady-state blocker for the 75.6 V 18S candidate; each upper resistor is far below its 150 V continuous working-voltage rating and below its 0.125 W/70 C nominal power at that point.
-- This does not qualify a 120/150 V bus range. At the 150 V screening point each upper is already about 105.5 mW before temperature derating, and the ADC/clamp/range/PCB constraints are independent.
-- BAT54H is a sensing-node clamp only. The destination rail's ability to absorb injected current and STM32 powered/unpowered injection limits must close before UAV bus-sense qualification.
-- External fuse/precharge/reverse-polarity/disconnect/regen-clamp behavior is now an explicit system contract rather than an implicit B1 assumption.
-- DC-link selection must use effective capacitance, ESR/ripple heating, transient energy and manufacturer lifetime evidence; nominal uF/V alone is insufficient.
+- B1 source definitively makes the upper BAT54H an ADC-to-+3V3A rail clamp/backfeed path.
+- The existing high-value divider strongly limits clamp current, but low current alone does not qualify MCU-off behavior because +3V3A/TLV75533/upstream rails may be unintentionally back-powered.
+- STM32 absolute/characterization injection ratings are not accepted as normal-operation design targets.
+- CSD19536KTT is useful as a B1 loss anchor but its 100 V VDS remains unresolved for an 18S UAV bus because 75.6 V full charge leaves only 24.4 V static headroom before transient effects.
+- Requirements completion is now explicitly gated: G1 SYSTEM FREEZE requires G0 mission/MTOW, G1A rotor, G1B propulsion and G1C battery/current/transient evidence plus a non-null traceable ESC electrical envelope.
 
 ## Calculations / evidence added
-- Divider stress calculation for 75.6/120/150 V screening cases.
-- Primary-source YAGEO RT0805BRD0749K9L electrical limits.
-- Primary-source Nexperia BAT54H quick-reference limits and clamp application.
-- DC-input protection acceptance criteria and DC-link qualification equations/framework.
+- Divider ratio and Thevenin resistance.
+- Powered/unpowered clamp-current screening.
+- ST STM32G474 injection guidance/limits as primary evidence.
+- TI CSD19536KTT primary headline parameters.
+- Parametric RC precharge time/current/power/energy and optional disconnect inductive-energy equations.
+- Requirements completion checklist and critical path.
 
 ## Assumptions and evidence level
-- 18S full-charge candidate = 75.6 V: prior engineering candidate, not transient ceiling.
-- 120 V and 150 V divider calculations: SCREENING CASES ONLY, not selected bus requirements.
-- RT0805 and BAT54H limits: PRIMARY MANUFACTURER EVIDENCE.
-- Exact clamp injection/backfeed behavior: OPEN pending topology and MCU limit audit.
+- 18S full-charge candidate = 75.6 V: prior candidate, not frozen.
+- 120/150 V cases: screening only.
+- 0.3 V BAT54H drop and 3.6 V powered clamp node: illustrative screening assumptions only, not worst-case datasheet guarantees.
+- STM32G474 and CSD19536KTT limits: PRIMARY MANUFACTURER EVIDENCE.
 - No physical measurements performed.
 
 ## Unresolved blockers
-- G0 mass/mission/environment/failure policy.
-- Rotor architecture and final propulsion operating point.
+- G0 vehicle mass/mission/environment/failure policy.
+- Final rotor architecture and propulsion operating point.
 - Phase RMS/peak current and final PWM.
-- Harness/PCB inductance and switching/regen/BMS-disconnect transient ceiling.
-- Exact DC-link capacitor MPN/effective capacitance/ripple/lifetime.
-- Exact input protection/clamp component sizing and BMS behavior.
-- ADC clamp destination-rail sink capability and MCU powered/unpowered injection limits.
+- Harness/PCB inductance plus switching/regen/BMS-disconnect transient ceiling.
+- Exact DC-link capacitor and input protection/clamp sizing.
+- +3V3A/TLV75533/upstream rail behavior during external clamp backfeed.
+- Final semiconductor voltage class and MPN.
 
 ## Risks / regressions
-- A divider that survives steady-state voltage does not imply the sensing chain is safe during over-range or unpowered-MCU events.
-- A Schottky clamp can backfeed the 3.3 V rail if the rail cannot sink the injected current.
-- 100 V DC-link and semiconductor domains remain unresolved even though the divider resistors themselves have greater individual voltage capability.
+- With VBUS present while control rails are off, the existing upper BAT54H can inject into +3V3A; this must not be ignored in the UAV revision.
+- 100 V legacy MOSFET/driver/aux/DC-link domains remain coupled to the unresolved transient ceiling.
+- G1 cannot honestly close from competitor benchmarks alone; vehicle-specific G0 inputs are required for final product requirements.
 
 ## Exact next recommended tasks
-1. Verify exact BAT54H orientation/destination rail in B1 source and STM32G474 ADC injection limits from ST primary documentation; calculate worst-case clamp current parametrically.
-2. Populate the semiconductor loss framework with legacy CSD19536KTT primary datasheet parameters as reference-only.
-3. Extend the input contract with a parametric precharge/disconnect-energy calculator using OPEN inputs rather than guessed values.
-4. Continue propulsion evidence to reduce phase-current/PWM uncertainty.
+1. Audit TLV75533 and upstream 5 V rail reverse-current/back-power behavior from primary sources and decide whether B1 clamp architecture is retain/recalculate/replace for UAV.
+2. Continue propulsion evidence and translate selected scenario ranges into phase-current/eRPM/PWM requirement bounds without freezing unsupported values.
+3. Build a source-backed 100/120/150 V semiconductor candidate parameter table for trade-study use only.
+4. Map `REQUIREMENTS_COMPLETION_CHECKLIST.md` directly to null/open fields in `design_basis.json` and traceability so G1 completion is mechanically auditable.
+5. Run the precharge model only when Cbus, precharge target, resistor class, harness inductance/current or other numeric inputs have evidence; do not guess them.
 
 ## Dependency chain
-`G0 vehicle inputs -> rotor/propulsion point -> battery/DC/phase envelope -> transient ceiling + input protection contract -> semiconductor/driver/aux/DC-link/sensing voltage domains -> loss/thermal closure -> schematic/firmware -> PCB -> bench/propulsion validation`
+`G0 vehicle inputs -> G1A rotor -> G1B propulsion point -> G1C battery/current/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review -> firmware/PCB -> bench/propulsion validation`
 
 ## Next-run briefing
-Start by resolving the low-energy sensing clamp topology and STM32 injection/backfeed limits because the resistor working-voltage question is now screened. Then add primary-source CSD19536KTT reference parameters to the loss model and a parametric precharge/energy tool. Do not interpret the 120/150 V divider screening cases as selected voltage classes. Keep the real DC-bus transient ceiling, protection topology and capacitor/semiconductor MPNs OPEN until propulsion, harness and BMS behavior close.
+Start with the +3V3A backfeed closure because the exact diode topology is now known. Then improve G1 auditability by mapping open design-basis fields to the new requirements checklist, and continue propulsion/current evidence in parallel. Treat CSD19536KTT as a 100 V legacy reference, not a UAV selection. Do not turn 120/150 V screening cases into requirements and do not freeze 18S or any protection component until the real transient and vehicle envelope are evidenced.
