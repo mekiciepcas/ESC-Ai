@@ -1,0 +1,24 @@
+name: Verify PB-05 Battery Architecture
+
+on:
+  push:
+    branches: [uav-rebaseline]
+    paths:
+      - 'ESC_V2/planning/PRODUCT_BASELINE_PB-05.json'
+      - 'ESC_V2/planning/BATTERY_CELL_PACK_TRADE_PB05.md'
+      - 'ESC_V2/planning/mission_requirements.json'
+      - 'ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json'
+      - 'ESC_V2/planning/REQUIREMENTS_PROGRESS.json'
+      - 'ESC_V2/planning/verify_pb05_battery_architecture.py'
+      - '.github/workflows/pb05-battery-check.yml'
+  workflow_dispatch:
+
+jobs:
+  verify-pb05-battery:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: uav-rebaseline
+      - name: Verify PB-05 battery architecture consistency
+        run: python3 ESC_V2/planning/verify_pb05_battery_architecture.py
