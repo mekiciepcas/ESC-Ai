@@ -1,0 +1,27 @@
+{
+  "revision": "U1-PAGE-READINESS-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "artifact": "hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch",
+  "status": "PRE_G2_ARCHITECTURE_SCAFFOLD_NOT_PRODUCTION_SCHEMATIC",
+  "rules": {
+    "component_selection_allowed": false,
+    "legacy_values_may_be_copied_without_requalification": false,
+    "open_values_remain_open": true,
+    "production_release_allowed": false
+  },
+  "blocks": [
+    {"id":"PWR-INPUT","title":"DC INPUT / PRECHARGE","status":"OPEN","earliest_freeze_gate":"G1C/G2","parent_dependencies":["G1C battery architecture","G1 VBUS/transient envelope"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"INV-STAGE","title":"3-PHASE INVERTER","status":"OPEN","earliest_freeze_gate":"G2","parent_dependencies":["G1 electrical envelope","UAV-008 semiconductor trade"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"INV-GATE","title":"GATE DRIVE","status":"OPEN","earliest_freeze_gate":"G2","parent_dependencies":["UAV-008 semiconductor choice","fault coverage","auxiliary rail architecture"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"SNS-I","title":"CURRENT SENSE","status":"OPEN","earliest_freeze_gate":"G2","parent_dependencies":["phase RMS/peak current","PWM windows","ADC/trip architecture"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"SNS-V","title":"VOLTAGE SENSE","status":"OPEN","earliest_freeze_gate":"G2","parent_dependencies":["VBUS/transient range","accuracy/bandwidth requirement","power sequencing"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"PWR-AUX","title":"AUX POWER","status":"OPEN","earliest_freeze_gate":"G2","parent_dependencies":["VBUS transient","gate-driver choice","U1 load budget"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"CTRL-MCU","title":"MCU / PWM / ADC","status":"OPEN","earliest_freeze_gate":"G2/G4","parent_dependencies":["PWM/ADC timing","fault latency","control workload","CAN contract"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"IF-CAN","title":"CAN INTERFACE","status":"OPEN","earliest_freeze_gate":"G2/G3","parent_dependencies":["Classic CAN vs CAN FD","bitrate","harness/topology","EMC/transient","isolation need"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"SAF-FAULT","title":"FAULT / INHIBIT","status":"OPEN","earliest_freeze_gate":"G2/G3","parent_dependencies":["vehicle safe-state policy","semiconductor safe-action budget","fault thresholds"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"SNS-TEMP","title":"TEMP / HALL","status":"OPEN","earliest_freeze_gate":"G2/G3","parent_dependencies":["selected motor sensor","thermal limits","Hall strategy"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"MFG-IF","title":"BOARD / HARNESS","status":"OPEN","earliest_freeze_gate":"G3","parent_dependencies":["harness partition","electrical ratings","ENV/vibration/ingress"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]},
+    {"id":"VER-TP","title":"TEST / VERIFY","status":"OPEN","earliest_freeze_gate":"G3/G6","parent_dependencies":["frozen architecture","verification plan","critical nodes"],"kicad_component_population":"BLOCKED","allowed_now":["architecture annotation","requirement linkage","interface naming"],"not_allowed_now":["freeze component MPN","freeze numeric electrical rating","production footprint release"]}
+  ]
+}
