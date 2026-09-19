@@ -1,0 +1,54 @@
+{
+  "revision": "CPB-RESULT-TEMPLATE-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "EMPTY_RESULT_TEMPLATE_NO_MEASUREMENTS",
+  "contract": "CONTROL_PLATFORM_BENCH_CONTRACT.md",
+  "anti_hallucination_rule": "Measurement fields remain null until an actual SIL or bench run produces evidence. Null fields must never be populated from datasheet headlines, estimates, competitor values or the other MCU candidate.",
+  "candidate": {
+    "manufacturer": null,
+    "device_family": null,
+    "exact_orderable_mpn": null,
+    "package": null,
+    "board_or_eval_hardware": null,
+    "board_revision": null
+  },
+  "build": {
+    "firmware_commit_sha": null,
+    "toolchain": null,
+    "toolchain_version": null,
+    "compiler_flags": null,
+    "optimization_level": null,
+    "clock_tree_description": null,
+    "cpu_clock_hz": null,
+    "pwm_configuration": null,
+    "adc_configuration": null,
+    "can_configuration": null
+  },
+  "evidence": {
+    "classification": null,
+    "measurement_equipment": [],
+    "sample_count": null,
+    "operator_or_run_id": null,
+    "raw_data_reference": null,
+    "notes": null
+  },
+  "results": {
+    "CPB-01": {"name": "reset_to_pwm_safe_state", "status": "NOT_RUN", "pass_fail": null, "evidence": null},
+    "CPB-02": {"name": "six_pwm_complementary_relationship", "status": "NOT_RUN", "pass_fail": null, "dead_time_measured_ns": null, "evidence": null},
+    "CPB-03": {"name": "pwm_to_current_adc_trigger_phase", "status": "NOT_RUN", "pass_fail": null, "trigger_phase_ns": null, "jitter_min_ns": null, "jitter_mean_ns": null, "jitter_max_ns": null, "evidence": null},
+    "CPB-04": {"name": "three_current_acquisition_skew", "status": "NOT_RUN", "pass_fail": null, "skew_min_ns": null, "skew_mean_ns": null, "skew_max_ns": null, "evidence": null},
+    "CPB-05": {"name": "fault_to_pwm_inactive_latency", "status": "NOT_RUN", "pass_fail": null, "latency_min_ns": null, "latency_mean_ns": null, "latency_max_ns": null, "final_acceptance_limit_ns": null, "evidence": null},
+    "CPB-06": {"name": "foc_kernel_execution_time", "status": "NOT_RUN", "pass_fail": null, "iterations": null, "time_min_ns": null, "time_mean_ns": null, "time_max_ns": null, "control_period_ns": null, "worst_case_utilization_fraction": null, "evidence": null},
+    "CPB-07": {"name": "adc_isr_execution_time", "status": "NOT_RUN", "pass_fail": null, "time_min_ns": null, "time_mean_ns": null, "time_max_ns": null, "jitter_max_ns": null, "evidence": null},
+    "CPB-08": {"name": "can_service_load", "status": "NOT_RUN", "pass_fail": null, "declared_traffic_profile": null, "frames_sent": null, "frames_received": null, "frames_lost": null, "evidence": null},
+    "CPB-09": {"name": "memory_footprint", "status": "NOT_RUN", "pass_fail": null, "flash_used_bytes": null, "ram_used_bytes": null, "flash_available_bytes": null, "ram_available_bytes": null, "evidence": null},
+    "CPB-10": {"name": "watchdog_reset_recovery", "status": "NOT_RUN", "pass_fail": null, "pwm_safe_before_arm": null, "evidence": null},
+    "CPB-11": {"name": "brownout_power_cycle_behavior", "status": "NOT_RUN", "pass_fail": null, "supply_ramp_profile": null, "uncontrolled_pwm_observed": null, "evidence": null},
+    "CPB-12": {"name": "exact_64pin_pin_mux_closure", "status": "NOT_RUN", "pass_fail": null, "unresolved_pin_conflicts": null, "pin_contract_reference": null, "evidence": null}
+  },
+  "anomalies": [],
+  "requirement_ids_evaluated": [],
+  "selection_conclusion": null,
+  "selection_rule": "This result file alone cannot select an MCU until parent G1/G2 requirements and normalized evidence for surviving candidates are available."
+}
