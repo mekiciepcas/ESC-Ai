@@ -1,20 +1,19 @@
 {
-  "revision":"AUTO-STATE-19",
+  "revision":"AUTO-STATE-20",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_REQUIREMENTS_STRUCTURE_AUTHORITY_COMPLETE",
+  "last_run_status":"PROGRESS_AUX_INVENTORY_AND_CONTROL_BENCH_CONTRACT_COMPLETE",
   "current_gate":"G0_G1",
   "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION_WITH_SAFE_G2_PREWORK",
-  "current_task":"AUXILIARY_LOAD_BUDGET_AND_CONTROL_PLATFORM_PRETRADE",
+  "current_task":"LEGACY_TRACEABILITY_DEEPENING_AND_SAFE_G2_PREWORK",
   "completed_this_run":[
-    "verified_latest_handoff_product_plan_G1_matrix_backlog_mission_requirements_traceability_and_autonomy_state_against_uav_rebaseline",
-    "created_top_level_REQUIREMENTS_MASTER_authority_with_12_domain_hierarchy_and_anti_hallucination_rules",
-    "created_human_readable_REQUIREMENTS_SPEC_with_gate_and_status_semantics",
-    "created_REQUIREMENTS_VERIFICATION_MATRIX_with_domain_verification_methods_and_evidence_levels",
-    "created_machine_readable_REQUIREMENTS_PROGRESS_percentage_snapshot",
-    "updated_REQUIREMENTS_COMPLETION_CHECKLIST_to_distinguish_100_percent_structure_from_2p2_percent_G1_value_closure",
-    "established_percentage_reporting_policy_for_each_user_facing_project_output"
+    "verified_branch_tree_and_required_planning_authorities_against_uav_rebaseline",
+    "verified_B1_auxiliary_load_domain_inventory_exists_and_separates_source_capability_from_load_demand",
+    "verified_STM32G474_vs_TMS320F280041C_primary_source_pretrade_exists_without_selecting_a_winner",
+    "created_common_executable_control_platform_bench_contract_CPB_01_through_CPB_12",
+    "mapped_auxiliary_load_budget_and_control_benchmark_requirements_into_UAV_TRACEABILITY_as_TR_034_and_TR_035",
+    "kept_all_G0_G1_product_specific_unknowns_OPEN"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
@@ -22,15 +21,16 @@
     {"task":"freeze_UAV_004_operating_point","reason":"final_rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_motor_prop_hover_peak_points"},
     {"task":"derive_phase_current_requirement","reason":"manufacturer_curve_reports_DC_input_current_not_phase_RMS_peak_current","blocking_scope":"UAV006_power_stage_current_freeze"},
     {"task":"freeze_semiconductor_voltage_class","reason":"battery_transient_ceiling_phase_current_PWM_hot_junction_and_derating_policy_remain_open","blocking_scope":"UAV008_final_device_class_and_loss_trade"},
-    {"task":"freeze_gate_driver_and_aux_architecture","reason":"final_bus_transient_MOSFET_Qg_PWM_fault_coverage_and_auxiliary_load_budget_are_open","blocking_scope":"UAV010_and_auxiliary_power_architecture"},
+    {"task":"freeze_gate_driver_and_aux_architecture","reason":"final_bus_transient_MOSFET_Qg_PWM_fault_coverage_and_U1_auxiliary_load_budget_are_open","blocking_scope":"UAV010_and_auxiliary_power_architecture"},
+    {"task":"select_control_MCU","reason":"PWM_ADC_control_workload_fault_latency_CAN_contract_and_executable_candidate_bench_evidence_are_not_frozen","blocking_scope":"UAV010_MCU_freeze"},
     {"task":"freeze_voltage_sense_topology","reason":"input_power_off_candidate_and_output_sequence_rules_exist_but_final_VBUS_range_accuracy_bandwidth_series_impedance_and_bench_evidence_remain_open","blocking_scope":"G2_sensing_architecture_freeze"},
     {"task":"release_U1_production_BOM","reason":"G1_and_G2_not_frozen_and_U1_schematic_does_not_exist","blocking_scope":"UAV016_final_BOM_release"}
   ],
   "next_candidates":[
-    "inventory_existing_B1_auxiliary_loads_and_power_domains_to_create_an_evidence_based_aux_load_budget_without_assuming_U1_values",
-    "begin_primary_source_STM32G474_vs_TMS320F280041C_control_platform_pretrade_focused_on_PWM_ADC_trip_CAN_and_FOC_execution_resources_without_selecting_a_winner",
-    "map_new_derived_requirements_into_child_authorities_as_they_are_created_without_changing_OPEN_values",
+    "audit_remaining_critical_B1_legacy_decisions_for_traceability_gaps_that_can_be_closed_without_G1_values",
+    "define_machine_readable_control_platform_bench_result_schema_without_inventing_measurements",
     "deepen_U1_BOM_CANDIDATES_only_where_exact_orderable_support_part_evidence_is_independent_of_open_G1_ratings",
+    "map_new_derived_requirements_into_existing_master_domains_without_changing_OPEN_values",
     "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
@@ -42,18 +42,18 @@
   },
   "reporting_policy":{"include_progress_percentages_in_every_user_facing_project_output":true,"minimum_metrics":["requirements_structure_percent","g1_system_freeze_percent","backlog_done_percent"],"label_estimated_percentages_as_estimates":true},
   "evidence_refs":[
+    "planning/B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md",
+    "planning/CONTROL_PLATFORM_PRETRADE.md",
+    "planning/CONTROL_PLATFORM_BENCH_CONTRACT.md",
+    "planning/UAV_TRACEABILITY.md",
     "planning/REQUIREMENTS_MASTER.json",
-    "planning/REQUIREMENTS_SPEC.md",
-    "planning/REQUIREMENTS_VERIFICATION_MATRIX.json",
     "planning/REQUIREMENTS_PROGRESS.json",
-    "planning/REQUIREMENTS_COMPLETION_CHECKLIST.md",
     "planning/G1_REQUIREMENTS_MATRIX.json",
     "planning/UAV_PRODUCT_PLAN.md",
-    "planning/UAV_TRACEABILITY.md",
     "planning/uav_backlog.json",
     "planning/mission_requirements.json"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The planned requirements domain/schema structure is now complete and centrally governed. This is not system freeze: only 1 of 46 G1 rows passes, so G1 value closure remains 2.2 percent. Continue independent safe prework while vehicle-specific G0 fields remain OPEN."
+  "notes":"Safe G2 prework advanced without changing product baseline values. The B1 auxiliary inventory identifies rail consumers and explicit unknowns; the MCU pretrade now has a common executable CPB-01..12 contract. G1 remains 1/46 PASS and is still the critical dependency."
 }
