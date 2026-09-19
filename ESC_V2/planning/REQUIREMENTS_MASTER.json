@@ -1,5 +1,5 @@
 {
-  "revision": "REQ-MASTER-03",
+  "revision": "REQ-MASTER-04",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "authority": "ESC_V2/planning/REQUIREMENTS_MASTER.json",
@@ -27,21 +27,23 @@
     {"prefix":"SYS","name":"System scope and governance","gate_owner":"ALL","authority_refs":["UAV_PRODUCT_PLAN.md","mission_requirements.json"],"coverage":"DEFINED"},
     {"prefix":"VEH","name":"Vehicle mission mass and rotor architecture","gate_owner":"G0_G1A","authority_refs":["mission_requirements.json","rotor_trade_study.md"],"coverage":"DEFINED"},
     {"prefix":"PROP","name":"Motor propeller and propulsion operating point","gate_owner":"G1B","authority_refs":["propulsion_benchmark.md","propulsion_operating_points.json"],"coverage":"DEFINED"},
-    {"prefix":"PWR","name":"Battery bus input protection precharge regenerative and auxiliary energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
+    {"prefix":"PWR","name":"Battery bus input protection precharge regenerative and auxiliary energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md","B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json"],"coverage":"DEFINED"},
     {"prefix":"INV","name":"Inverter semiconductor PWM gate drive DC link and thermal power stage","gate_owner":"G1_G2_G3","authority_refs":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","POWER_STAGE_LOSS_MODEL.md","DC_LINK_SELECTION_FRAMEWORK.md"],"coverage":"DEFINED"},
-    {"prefix":"SNS","name":"Current voltage and temperature sensing","gate_owner":"G2_G3","authority_refs":["HV_SENSE_OUTPUT_SEQUENCING.md","POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","UAV_TRACEABILITY.md"],"coverage":"DEFINED"},
-    {"prefix":"CTRL","name":"MCU motor control timing firmware and watchdog","gate_owner":"G2_G4","authority_refs":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md","CONTROL_PLATFORM_PRETRADE.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
-    {"prefix":"SAF","name":"Protection fault response failsafe and FMEA","gate_owner":"G1_G2_G4","authority_refs":["G1_REQUIREMENTS_MATRIX.json","DC_INPUT_PROTECTION_CONTRACT.md","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
-    {"prefix":"IF","name":"Flight controller CAN arming telemetry service and power interfaces","gate_owner":"G1_G3_G4","authority_refs":["mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
+    {"prefix":"SNS","name":"Current voltage and temperature sensing","gate_owner":"G2_G3","authority_refs":["HV_SENSE_OUTPUT_SEQUENCING.md","POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","UAV_TRACEABILITY.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
+    {"prefix":"CTRL","name":"MCU motor control timing firmware and watchdog","gate_owner":"G2_G4","authority_refs":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md","CONTROL_PLATFORM_PRETRADE.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md"],"coverage":"DEFINED"},
+    {"prefix":"SAF","name":"Protection fault response failsafe and FMEA","gate_owner":"G1_G2_G4","authority_refs":["G1_REQUIREMENTS_MATRIX.json","DC_INPUT_PROTECTION_CONTRACT.md","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
+    {"prefix":"IF","name":"Flight controller CAN arming telemetry service and power interfaces","gate_owner":"G1_G3_G4","authority_refs":["mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","UAV_PRODUCT_PLAN.md","CONTROL_AUX_DERIVED_REQUIREMENTS.json","EXTERNAL_AUX_INTERFACE_CONTRACT.template.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
     {"prefix":"ENV","name":"Temperature altitude wind ingress vibration and cooling boundaries","gate_owner":"G0_G1_G5","authority_refs":["mission_requirements.json","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
-    {"prefix":"MFG","name":"BOM footprint derating DFM serviceability and configuration control","gate_owner":"G3_G5","authority_refs":["U1_BOM_CANDIDATES.json","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
-    {"prefix":"VER","name":"Bring-up switching dyno thermal fault injection and flight-readiness verification","gate_owner":"G6_G7","authority_refs":["UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"}
+    {"prefix":"MFG","name":"BOM footprint derating DFM serviceability and configuration control","gate_owner":"G3_G5","authority_refs":["U1_BOM_CANDIDATES.json","UAV_PRODUCT_PLAN.md","B1_LEGACY_TRACEABILITY_GAP_AUDIT.md","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"],"coverage":"DEFINED"},
+    {"prefix":"VER","name":"Bring-up switching dyno thermal fault injection and flight-readiness verification","gate_owner":"G6_G7","authority_refs":["UAV_PRODUCT_PLAN.md","CONTROL_PLATFORM_BENCH_CONTRACT.md"],"coverage":"DEFINED"}
   ],
   "child_requirement_authorities": {
     "mission_and_vehicle": "mission_requirements.json",
     "system_electrical_freeze": "G1_REQUIREMENTS_MATRIX.json",
     "legacy_design_traceability": "UAV_TRACEABILITY.md",
     "control_auxiliary_derived": "CONTROL_AUX_DERIVED_REQUIREMENTS.json",
+    "safety_interface_derived": "SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json",
+    "external_aux_interface_template": "EXTERNAL_AUX_INTERFACE_CONTRACT.template.json",
     "candidate_bom": "U1_BOM_CANDIDATES.json",
     "verification_mapping": "REQUIREMENTS_VERIFICATION_MATRIX.json"
   },
