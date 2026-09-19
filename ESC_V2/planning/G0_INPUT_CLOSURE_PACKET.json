@@ -1,15 +1,19 @@
 {
-  "revision": "G0-CLOSURE-01",
+  "revision": "G0-CLOSURE-02",
   "date": "2026-09-19",
-  "status": "OPEN_USER_VEHICLE_INPUT",
-  "purpose": "Minimal product-specific input set required to close G0 without importing competitor or legacy values.",
-  "source_authority": ["mission_requirements.json", "UAV_PRODUCT_PLAN.md", "G1_REQUIREMENTS_MATRIX.json"],
+  "status": "OPEN_PARTIALLY_CLOSED_BY_PB01",
+  "purpose": "Minimal product-specific input set required to close G0 without importing competitor or legacy values. PB-01 product decisions may close fields explicitly covered by the controlled baseline.",
+  "source_authority": ["PRODUCT_BASELINE_PB-01.json", "mission_requirements.json", "UAV_PRODUCT_PLAN.md", "G1_REQUIREMENTS_MATRIX.json"],
   "known": {
     "application": "heavy_lift_agricultural_multirotor_uav",
     "payload_min_kg": 70,
     "payload_max_kg": 100,
-    "payload_evidence": "USER_TARGET",
-    "payload_is_not_mtow": true
+    "payload_evidence": "FROZEN_USER_TARGET_BOUNDS",
+    "payload_is_not_mtow": true,
+    "vehicle_architecture": "X8_COAXIAL_4_ARM_8_INDEPENDENT_PROPULSION_CHANNELS",
+    "vehicle_architecture_evidence": "PB-01",
+    "rotor_count": 8,
+    "rotor_count_evidence": "PB-01"
   },
   "required_inputs": [
     {"id":"G0I-001","field":"payload_nominal_kg","value":null,"unit":"kg","required_for":["G0","MTOW_nominal"]},
@@ -22,18 +26,19 @@
     {"id":"G0I-008","field":"maximum_ambient_c","value":null,"unit":"degC","required_for":["G0","thermal_derating"]},
     {"id":"G0I-009","field":"maximum_operating_altitude_m","value":null,"unit":"m","required_for":["G0","propulsion_derating"]},
     {"id":"G0I-010","field":"maximum_wind_m_s","value":null,"unit":"m/s","required_for":["G0","mission_margin"]},
-    {"id":"G0I-011","field":"single_motor_failure_requirement","value":null,"unit":null,"allowed_examples":["continued_hover","controlled_landing","no_continued_operation_requirement"],"required_for":["G0","rotor_architecture"]},
-    {"id":"G0I-012","field":"coaxial_allowed","value":null,"unit":null,"type":"boolean","required_for":["G1A_architecture_screen"]},
+    {"id":"G0I-011","field":"single_motor_failure_requirement","value":"controlled_landing","unit":null,"status":"FROZEN_PB-01","allowed_examples":["continued_hover","controlled_landing","no_continued_operation_requirement"],"required_for":["G0","rotor_architecture"]},
+    {"id":"G0I-012","field":"coaxial_allowed","value":true,"unit":null,"status":"FROZEN_PB-01","type":"boolean","required_for":["G1A_architecture_screen"]},
     {"id":"G0I-013","field":"maximum_vehicle_span_m","value":null,"unit":"m","required_for":["G1A_rotor_diameter_envelope"]},
     {"id":"G0I-014","field":"rain_dust_ingress_target","value":null,"unit":null,"required_for":["ENV","connector_and_cooling_architecture"]}
   ],
-  "derived_only_after_inputs": {
+  "derived_or_product_decision_values": {
     "mtow_min_nom_max_kg": null,
-    "rotor_count": null,
+    "rotor_count": 8,
+    "rotor_count_status": "FROZEN_PB-01",
     "hover_thrust_per_rotor": null,
     "peak_thrust_per_rotor": null,
     "battery_energy": null,
     "esc_electrical_envelope": null
   },
-  "anti_hallucination_rule": "Null fields must not be filled from competitor UAV data, B1 values or trade-only bounding cases."
+  "anti_hallucination_rule": "Null fields must not be filled from competitor UAV data, B1 values or trade-only bounding cases. Controlled PB revisions may close fields only when the decision is explicitly recorded there."
 }
