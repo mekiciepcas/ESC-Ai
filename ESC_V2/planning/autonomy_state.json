@@ -1,32 +1,34 @@
 {
-  "revision":"AUTO-STATE-33",
+  "revision":"AUTO-STATE-34",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_B1_PASSIVE_SUPPORT_IDENTITY_AUDITED",
+  "last_run_status":"PROGRESS_MECHANICAL_ELECTRICAL_COTRADE_PRETRADE",
   "current_gate":"G0_G1",
-  "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_B1_MIGRATION_EVIDENCE",
+  "current_task":"CONCEPT_VEHICLE_ENVELOPE_AND_PROPULSION_COTRADE",
   "completed_this_run":[
-    "re_read_and_verified_UAV_PRODUCT_PLAN_UAV_TRACEABILITY_uav_backlog_mission_requirements_REQUIREMENTS_MASTER_REQUIREMENTS_PROGRESS_and_AUTONOMOUS_HANDOFF_against_actual_branch",
-    "confirmed_product_critical_path_remains_blocked_by_real_G0_inputs_and_no_product_values_were_invented",
-    "audited_B1_bom_review_for_exact_passive_support_part_identities_independent_of_open_G1_values",
-    "created_B1_PASSIVE_SUPPORT_IDENTITY_AUDIT_md_classifying_legacy_exact_MPNs_without_promoting_them_to_U1",
-    "recorded_gate_resistor_divider_filter_bleed_and_clamp_network_items_as_REVALIDATE_RECALCULATE_or_REPLACE_IF_REQUIRED_based_on_functional_dependency",
-    "preserved_B1_and_U1_schematic_revision_history_without_component_bearing_U1_allocation"
+    "verified_latest_uav_rebaseline_branch_and_current_handoff_before changing strategy",
+    "recorded_user_constraint_that_mechanical_design_is_not_yet_available_and_real_G0_vehicle_values_cannot_yet_be supplied",
+    "kept_all_14_product_specific_G0_fields_OPEN_null_instead_of forcing guesses",
+    "created_CONCEPT_VEHICLE_ENVELOPE_PRETRADE_json_with primary manufacturer DJI_T70P_and_T100 benchmark facts clearly tagged TRADE_STUDY_ONLY",
+    "created_MECHANICAL_ELECTRICAL_COTRADE_PLAN_md defining a parametric co_design loop rather than blocking the ESC project",
+    "created_non_binding_screening_cases_MTOW_130_150_175kg_and_rotor_counts_4_6_8_with_hover_load_matrix",
+    "preserved_product_progress_counters_and_did_not_promote benchmark values into mission requirements or G1"
   ],
   "blocked_tasks":[
-    {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved","blocking_scope":"G0_and_final_G1A"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy open","blocking_scope":"G1A_and_UAV004"},
-    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor_architecture open","blocking_scope":"G1B"},
-    {"task":"freeze_battery_and_ESC_envelope","reason":"product propulsion operating point not frozen","blocking_scope":"G1C_G1"},
+    {"task":"freeze_G0_mission_mass_envelope","reason":"mechanical vehicle concept is not yet designed; 14 product-specific mass, mission, environment and architecture values therefore remain unresolved","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"actual MTOW, span and single-motor-failure policy are not yet defined; trade-only rotor sweeps may proceed","blocking_scope":"G1A_and_UAV004"},
+    {"task":"freeze_UAV_004_operating_point","reason":"final vehicle MTOW and rotor architecture are open; candidate motor/prop operating regions may be screened only","blocking_scope":"G1B"},
+    {"task":"freeze_battery_and_ESC_envelope","reason":"final propulsion operating point is not frozen; only trade-only electrical ranges may be developed","blocking_scope":"G1C_G1"},
     {"task":"freeze_G2_architecture","reason":"parent G1 electrical and vehicle interface requirements remain open","blocking_scope":"G2"},
     {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open; component-bearing U1 schematic must not be allocated early","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "audit_remaining_requirement_independent_B1_support_parts_and_exact_package_identity_without_selecting_U1_parts",
-    "consolidate_new_passive_support_audit_into_canonical_traceability_when_safe_without_overwriting_concurrent_history",
-    "add_non_mutating_revision_guard_tests_if_current_repository_helper_exists",
-    "when_actual_G0_inputs_are_available_compute_MTOW_and_close_rotor_thrust_chain"
+    "build_parametric_propulsion_pretrade_for_MTOW_130_150_175kg_and_rotor_counts_4_6_8_using_primary_motor_prop_manufacturer_data",
+    "derive_trade_only_per_motor_power_current_voltage_and_eRPM_regions_from feasible propulsion candidates without selecting a winner",
+    "iterate estimated motor_battery_mass_back_into concept vehicle mass cases while retaining benchmark labels",
+    "compare ESC semiconductor_driver_sensing architecture robustness across the resulting electrical range without G1 promotion",
+    "continue requirement_independent_B1 migration audits in parallel"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -39,7 +41,8 @@
     "schematic_revision_control_policy_percent":100.0,
     "dashboard_current_uav_status_integration_percent":100.0,
     "dashboard_auto_refresh_ci_percent":100.0,
-    "dashboard_source_consistency_validation_percent":100.0
+    "dashboard_source_consistency_validation_percent":100.0,
+    "mechanical_electrical_cotrade_framework_percent":100.0
   },
   "evidence_refs":[
     "UAV_PRODUCT_PLAN.md",
@@ -48,11 +51,13 @@
     "mission_requirements.json",
     "REQUIREMENTS_MASTER.json",
     "REQUIREMENTS_PROGRESS.json",
-    "hardware_b1/bom_review.json",
-    "B1_SUPPORT_PART_EVIDENCE_AUDIT.md",
-    "B1_PASSIVE_SUPPORT_IDENTITY_AUDIT.md"
+    "G0_INPUT_CLOSURE_PACKET.json",
+    "CONCEPT_VEHICLE_ENVELOPE_PRETRADE.json",
+    "MECHANICAL_ELECTRICAL_COTRADE_PLAN.md",
+    "https://ag.dji.com/t70p/specs",
+    "https://ag.dji.com/t100/specs"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"Requirement-independent B1 migration evidence progressed by separating exact legacy passive MPN/footprint identity from U1 qualification. No lifecycle, derating, land-pattern, physical-test or product-selection claim was invented. Product counters remain unchanged because G0/G1 values remain open."
+  "notes":"Because the mechanical design does not yet exist, waiting for exact G0 inputs would stall concept development. The project now uses a two-layer approach: product G0/G1 values stay OPEN, while source-backed benchmark data and explicitly non-binding screening cases drive mechanical-electrical co-design studies. No benchmark value is a product requirement."
 }
