@@ -1,20 +1,20 @@
 {
-  "revision": "AUTO-STATE-10",
+  "revision": "AUTO-STATE-11",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status": "PROGRESS_BACKPOWER_G1_AUDIT_BACKLOG_RECONCILIATION",
+  "last_run_status": "PROGRESS_BACKPOWER_G1_MATRIX_EXHAUSTIVE_BACKLOG_RECONCILIATION",
   "current_gate": "G0_G1",
   "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "current_task": "G0_INPUT_CLOSURE_AND_G1_OPERATING_POINT_SELECTION",
+  "current_task": "G0_INPUT_CLOSURE_AND_G1A_OPERATING_POINT_SELECTION",
   "completed_this_run": [
     "verified_previous_handoff_against_current_branch_state",
     "audited_B1_voltage_sense_backpower_chain_through_BAT54H_3V3A_3V3_TLV75533",
     "recorded_TI_TLV755P_reverse_current_constraint_and_classified_B1_rail_clamp_as_recalculate_replace_if_required",
-    "created_machine_auditable_G1_requirements_matrix_with_open_fields_left_unfilled",
+    "created_and_extended_machine_auditable_G1_requirements_matrix_to_all_current_checklist_fields_with_open_values_left_unfilled",
     "reconciled_UAV_backlog_marking_rotor_trade_in_progress_and_propulsion_market_benchmark_done",
     "updated_traceability_with_analog_rail_backpower_and_G1_audit_evidence",
-    "corrected_G1_matrix_row_count_before_handoff"
+    "verified_G1_matrix_counts_after_extension_46_rows_1_pass_45_open"
   ],
   "blocked_tasks": [
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_and_downstream_final_sizing"},
@@ -26,11 +26,11 @@
   ],
   "next_candidates": [
     "obtain_or_define_G0_vehicle_inputs_without_copying_competitor_values_into_requirements",
+    "define_explicit_trade_only_G0_bounding_cases_if_user_specific_values_remain_open",
     "use_G0_bounds_to_select_rotor_architecture_and_close_G1A",
     "translate_selected_rotor_scenario_into_source_backed_propulsion_hover_peak_operating_points_and_eRPM_bounds",
     "build_100V_120V_150V_semiconductor_candidate_parameter_table_for_trade_only",
-    "audit_upstream_5V_path_reverse_behavior_and draft_candidate_non_backpower_voltage_sense_architectures",
-    "extend_G1_REQUIREMENTS_MATRIX_with_remaining_DC_current_PWM_sense_thermal_fault_and_comms_rows"
+    "audit_upstream_5V_path_reverse_behavior_and draft_candidate_non_backpower_voltage_sense_architectures"
   ],
   "last_verified_gate": "REBASELINE_INIT",
   "evidence_refs": [
@@ -48,5 +48,5 @@
   "write_policy": {"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy": {"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
   "continuity_policy": {"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
-  "notes": "The G1 critical path is now mechanically visible. Only the 70-100 kg payload bounds are presently PASS in the explicit matrix; vehicle-specific G0 inputs remain the dominant blocker to honest system freeze. The B1 BAT54H rail-clamp path is now additionally constrained by TLV755P reverse-current guidance: VBUS present with dead control rails can externally bias the LDO output, so the UAV revision must prove sequencing/sink capability or replace the clamp architecture. Propulsion market benchmarking itself is complete; product operating-point selection is not."
+  "notes": "G1 requirements are now explicitly enumerated in one machine-readable matrix: 46 rows, 1 PASS and 45 OPEN. This is intentionally strict and prevents hidden prose requirements from being treated as closed. The dominant critical-path blocker remains G0 vehicle inputs. B1 analog rail clamping is additionally constrained by TLV755P reverse-current guidance and is not retained as a production assumption."
 }
