@@ -1,81 +1,80 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 10:27+03:00  
+Date: 2026-09-19 11:22+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_BACKPOWER_G1_MATRIX_EXHAUSTIVE_BACKLOG_RECONCILIATION`
+Status: `PROGRESS_G0_CONTROLLED_BOUNDS_ROTOR_DECISION_TREE`
 
 ## Run summary
-This run converted previously implicit project risks and requirements into auditable engineering state. The B1 voltage-sense clamp now has a documented analog-rail/LDO back-power hazard; G1 requirements closure is now represented by an exhaustive machine-readable matrix rather than prose; and the stale backlog was reconciled so completed propulsion benchmarking is no longer shown as TODO. No vehicle mass, rotor architecture, battery architecture, voltage class, semiconductor MPN, transient ceiling, phase-current rating or production release was frozen.
+This run attacked the actual G0/G1A critical path rather than reorganizing requirements. It created governed trade-only MTOW bounds, refreshed the rotor trade against current primary-source heavy-agriculture anchors, and converted the single-motor-failure requirement into explicit rotor-architecture elimination logic. Product-specific G0 fields remain OPEN; no trade-only value was promoted to a requirement. No rotor count, battery architecture, ESC rating, semiconductor class, production package or physical-validation claim was frozen.
 
 ## Repository state verified at start
-- Prior handoff/status was read and checked against `uav-rebaseline`.
-- `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md`, `uav_backlog.json`, `mission_requirements.json`, `REQUIREMENTS_COMPLETION_CHECKLIST.md`, `design_basis.json` and `autonomy_state.json` were re-read.
-- G0 and G1 remain OPEN; downstream G2+ remains gated.
+- Re-read and cross-checked `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md`, `uav_backlog.json`, `mission_requirements.json`, `AUTONOMOUS_HANDOFF.md`, `autonomy_state.json`, `rotor_trade_study.md` and X15 scenario/curve evidence on `uav-rebaseline`.
+- G0/G1 remain OPEN; G2+ remain gated.
+- Prior handoff correctly identified G0/G1A as the next critical-path work.
 
 ## Tasks attempted / completed
-1. Traced the complete B1 analog back-power path from high-voltage measurement input through upper BAT54H into +3V3A, through the 0R analog link into +3V3 and the TLV75533 output.
-2. Verified TI TLV755P Rev. D reverse-current guidance: output bias while input is absent, or VOUT above VIN, is a documented reverse-current condition exceeding the stated VOUT > VIN + 0.3 V absolute-maximum relationship; excessive reverse current can degrade reliability/latch up.
-3. Added `ANALOG_RAIL_BACKPOWER_AUDIT.md` and classified the B1 rail-referenced clamp as `RECALCULATE / REPLACE IF REQUIRED` for the UAV revision.
-4. Added `G1_REQUIREMENTS_MATRIX.json`, leaving unsupported values OPEN and explicitly mapping G0/G1A/G1B/G1C/G1 closure fields.
-5. Extended the G1 matrix so DC current, PWM, current-sense range, DC-link ripple/energy, thermal, OV/UV/OCP/OT and communication/arming/watchdog/failsafe requirements are explicit rows instead of a side list.
-6. Verified the final matrix count for this run: **46 tracked rows, 1 PASS and 45 OPEN**. This is an audit count, not a project-completion percentage.
-7. Updated `UAV_TRACEABILITY.md` with the back-power/LDO evidence and machine-auditable requirements gate.
-8. Reconciled `uav_backlog.json`: UAV-002 rotor trade moved from TODO to IN_PROGRESS; UAV-003 heavy-lift market benchmark moved to DONE with evidence. UAV-004 remains BLOCKED because final MTOW/rotor architecture is not frozen.
-9. Updated `autonomy_state.json` for the next run.
+1. Reverified primary-source heavy-agriculture anchors: XAG P150, XAG P150 Max and DJI Agras T100.
+2. Added `G0_TRADE_BOUNDING_CASES.md` with T125/T150/T175 analysis cases and an explicit non-promotion rule. These cases may support sensitivity calculations but cannot populate product requirements or close G0/G1.
+3. Recorded primary-source anchors: P150 54 kg aircraft weight with spraying system+batteries, 70 kg max payload, 125 kg max spraying MTOW, quad, 55 kgf max thrust/motor, 4.7 kW rated motor and 120 A continuous ESC; P150 Max 56 kg empty with spraying system+batteries, 80 kg max payload, 136 kg max spraying MTOW, four motors, 56 kgf max thrust, 4.85 kW rated motor and 140 A continuous ESC; T100 75 kg spraying weight, 100 kg spraying payload, 175 kg max spraying MTOW, 60 rpm/V motors and 62-inch propellers.
+4. Recorded DJI's T100-specific Turkey note that users should keep T100 MTOW at 149.9 kg in Turkey as regulatory/use context only; it was NOT copied into our product requirement.
+5. Reworked `rotor_trade_study.md` into bounded screening with explicit quad/hex/octo statuses.
+6. Formalized architecture discriminator: if G0 later requires continued controlled hover after complete loss of one motor/ESC, ordinary quad is eliminated before detailed ESC sizing. If that requirement is waived, quad remains a candidate.
+7. Retained hex across T125-T175 for final trade; retained octo/coaxial particularly for redundancy-driven outcomes; did not select either.
+8. Updated `UAV_TRACEABILITY.md`, `uav_backlog.json` and `autonomy_state.json` with the new evidence and blockers.
 
 ## Files changed
-- `planning/ANALOG_RAIL_BACKPOWER_AUDIT.md` — new
-- `planning/G1_REQUIREMENTS_MATRIX.json` — new and extended to exhaustive current checklist coverage
-- `planning/UAV_TRACEABILITY.md` — updated
-- `planning/uav_backlog.json` — reconciled
+- `planning/G0_TRADE_BOUNDING_CASES.md` — new
+- `planning/rotor_trade_study.md` — updated from preliminary narrative to governed bounded screening
+- `planning/UAV_TRACEABILITY.md` — added TR-031/TR-032 and refreshed primary-source conclusions
+- `planning/uav_backlog.json` — UAV-001/UAV-002 evidence and remaining conditions updated
 - `planning/autonomy_state.json` — updated
 - `planning/AUTONOMOUS_HANDOFF.md` — updated
 
 ## Engineering decisions / findings
-- The B1 sensing divider itself can remain a reference concept, but the **BAT54H-to-control-rail clamp implementation is not UAV-qualified**.
-- With VBUS/phase input present while control rails are absent/collapsing, the upper BAT54H can externally bias +3V3A/+3V3 and therefore the TLV75533 output. TI explicitly documents reverse current when an LDO output is biased without established input.
-- Low source current from the high-value divider is useful for screening but does not establish deterministic/safe sequencing; normal-operation design must not rely on absolute-maximum or reverse-conduction behavior.
-- Derived sensing requirement carried forward: **no high-voltage measurement input may create an uncontrolled back-power path into MCU/control supply rails.**
-- Propulsion market benchmarking acceptance is complete: multiple current heavy-lift/agricultural candidates and a source-backed X15 G2 operating curve exist. Selecting the product operating point is a separate task and remains blocked by G0/G1A.
-- Requirements completion is now mechanically inspectable. The dominant system-freeze blocker is vehicle-specific G0 input closure, not lack of benchmark data or hidden checklist items.
+- The 125/150/175 kg numerical cases are now explicitly `ASSUMPTION_FOR_TRADE_ONLY`; they are useful for engineering sensitivity but have zero authority to close G0 or G1.
+- Single-motor/ESC failure policy is a first-order architecture decision. Continued-hover requirement eliminates ordinary quad; a waiver keeps quad in the trade.
+- Quad has direct current commercial precedent in the 125-136 kg spraying-MTOW region from XAG P150/P150 Max.
+- The T175 quad branch remains the highest per-axis stress case: 43.75 kgf/axis hover and 70-78.75 kgf/axis in the existing 1.6-1.8 static-margin sensitivity cases.
+- Hex at T175 reduces those figures to 29.17 kgf hover and 46.67-52.50 kgf/axis sensitivity points; octo reduces them further to 21.88 kgf hover and 35.0-39.38 kgf/axis.
+- These calculations narrow architecture choices but do not constitute a final rotor selection.
 
 ## Calculations / evidence added
-- No new product numerical requirement was invented this run.
-- TI TLV755P reverse-current behavior was added as primary-source architecture evidence.
-- G1 matrix currently records 46 explicit requirement rows: 1 PASS / 45 OPEN.
+- Controlled T125/T150/T175 x quad/hex/octo hover and 1.6/1.8 static-thrust sensitivity table.
+- Architecture decision tree driven by failure-survival policy and actual MTOW.
+- Fresh primary-source verification of XAG P150/P150 Max and DJI T100 mass/payload/propulsion architecture data.
 
-## Assumptions and evidence level
-- 70–100 kg remains the user payload target: USER REQUIREMENT.
-- 18S/75.6 V remains a candidate steady-state family, not frozen: ENGINEERING CANDIDATE.
-- TLV755P reverse-current behavior: PRIMARY MANUFACTURER EVIDENCE.
-- Existing B1 rail topology: REPOSITORY SOURCE EVIDENCE.
-- No physical measurements or qualification tests were performed.
+## Assumptions introduced and evidence level
+- T125/T150/T175: `ASSUMPTION_FOR_TRADE_ONLY`; not product requirements.
+- 1.6/1.8 static thrust/weight: existing sensitivity cases only; not requirements.
+- XAG/DJI published values: PRIMARY MANUFACTURER EVIDENCE.
+- 70-100 kg payload target: USER REQUIREMENT.
+- No physical measurements, qualification tests or flight evidence were generated.
 
 ## Unresolved blockers
-- G0 nominal payload, airframe mass, battery mass, mission-equipment mass and resulting MTOW.
-- Flight/hover duration, reserve-energy requirement and operating environment.
-- Single motor/ESC failure/degraded-mode policy.
-- Final rotor architecture/thrust margin.
-- Final motor/prop hover and peak operating points, phase RMS/peak current and eRPM.
-- Battery series count/min/nom/full-charge/transient envelope.
+- Product G0 nominal payload; airframe, battery and mission-equipment mass; MTOW min/nom/max.
+- Endurance/hover/reserve mission profile and environmental envelope.
+- Span/coaxial packaging constraints.
+- Degraded-operation and single-motor/ESC failure policy.
+- Final rotor count/thrust margin and therefore UAV-004 operating-point selection.
+- Battery series/min/nom/full-charge/transient envelope.
+- Phase RMS/peak current, eRPM and PWM requirement.
 - Harness/PCB inductance, switching/regen/BMS-disconnect transient ceiling.
-- Production voltage-sense clamp/power-sequencing architecture and powered/unpowered bench proof.
-- Final semiconductor voltage class/MPN, PWM and DC-link/precharge/clamp sizing.
+- Production non-backpower voltage-sense architecture and final semiconductor class/MPN.
 
-## Risks / regressions
-- Current B1 sensing clamps can create a back-power path during abnormal power sequencing; this is now a known design risk rather than an untracked assumption.
-- Existing 100 V MOSFET/DRV8353/LM5164/DC-link domains remain coupled to the unresolved transient ceiling.
-- The G1 matrix is intentionally strict. Open rows must not be converted to PASS by copying competitor values or legacy B1 targets.
+## Regressions / risks discovered
+- No repository regression discovered.
+- A design-process risk was reduced: benchmark MTOWs can no longer silently become baseline because the new governance file explicitly forbids promotion without product evidence/approval.
+- DJI's Turkey-specific 149.9 kg T100 note demonstrates that vehicle operational/regulatory constraints may be jurisdiction-specific; our final vehicle requirement must be handled separately rather than inferred from competitor maximums.
 
 ## Exact next recommended tasks
-1. Establish a controlled G0 assumption process: obtain user vehicle targets where possible and, where unavailable, create explicitly labelled `ASSUMPTION_FOR_TRADE_ONLY` bounding cases that cannot silently become baseline requirements.
-2. Use those bounded cases to finish the rotor architecture trade and narrow G1A without pretending final vehicle requirements are known.
-3. Translate bounded rotor scenarios into source-backed propulsion current/power/eRPM ranges; do not freeze UAV-004 until G0/G1A are approved.
-4. Continue non-G0-blocked architecture work: upstream +5 V reverse-current assessment, non-backpower voltage-sense topology candidates, and source-backed 100/120/150 V semiconductor candidates for trade use only.
-5. When G0/G1A are sufficiently bounded, populate the 46-row G1 matrix from evidence and use it as the mechanical condition for SYSTEM FREEZE.
+1. Use the existing X15 manufacturer curve to complete T125/T150/T175 quad/hex/octo trade-only current/power/RPM mapping where interpolation is within the measured curve; explicitly flag points above the published 120 A continuous ESC rating as non-continuous screening points.
+2. Use that mapping to identify architecture branches that create obviously excessive per-axis electrical stress without turning the result into product requirements.
+3. In parallel, draft non-backpower high-voltage sensing architecture candidates that remain valid independent of final VBUS.
+4. Build a primary-source 100/120/150 V semiconductor candidate parameter table for trade only; do not select voltage class before transient ceiling and phase current are frozen.
+5. Keep all product G0 fields OPEN until vehicle-specific values are supplied/approved; once they exist, run the decision tree and close G1A.
 
 ## Dependency chain
-`G0 vehicle inputs -> G1A rotor -> G1B operating point -> G1C battery/current/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review -> firmware/PCB -> bench/propulsion validation`
+`G0 vehicle inputs -> G1A rotor selection -> G1B/UAV-004 product operating point -> G1C battery/current/transient envelope -> G1 SYSTEM FREEZE -> G2 architecture freeze -> G3 schematic review -> firmware/PCB -> bench/propulsion validation`
 
 ## Next-run briefing
-Requirements tracking is now exhaustive for the current checklist; do not spend another run reorganizing requirements unless a new parent requirement appears. The next critical-path work is G0/G1A. Keep unknown user-specific values OPEN, but bounded trade-only cases may be used for calculations if clearly labelled and prevented from becoming baseline. In parallel continue non-blocked architecture audits. Do not promote 18S, 100/120/150 V screening classes, competitor current ratings or interpolated thrust points into product requirements without the G0/G1 decision chain. Propulsion market benchmark UAV-003 is DONE; focus on product operating-point selection, not redundant benchmarking.
+The requirements matrix itself is already exhaustive; do not spend the next run restructuring it. Continue numerical propulsion screening using only the governed T125/T150/T175 trade cases and the existing X15 primary curve. The useful next result is a complete architecture-vs-current/power/RPM map and identification of points that exceed the X15 published continuous ESC current. Maintain the hard boundary between trade-only values and product requirements. Do not freeze quad/hex/octo, 18S, semiconductor voltage class, phase-current rating or production hardware until the G0/G1 evidence chain permits it.
