@@ -1,74 +1,105 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 20:21+03:00  
+Date: 2026-09-19 20:35+03:00  
 Branch: `uav-rebaseline`  
-Run status: `S1_2_PWM_TIMING_BOUNDED_MOTOR_INDUCTANCE_BLOCKER_EXPLICIT`
+Run status: `S1_2_MEASUREMENT_PATH_DEFINED_POWER_STAGE_PREWORK_ADVANCED_S1_3_SENSITIVITY_ADDED`
 
-## Repository state verified at run start
+## Repository state and controlling metrics
 
-The repository is ahead of the previous handoff. Actual authorities show PB-03 is active, S1.1 is DONE, S1.2 is ACTIVE, and the controlling metrics are **Requirements structure 12/12 = 100% / G1 SYSTEM FREEZE 25/46 = 54.3% / Backlog DONE 2/25 = 8% / Major gates 0/8 = 0%**. The prior handoff's PB-02 / 47.8% snapshot was stale and is superseded by this record.
+PB-03 remains the current controlled product baseline. Sprint S1.1 is DONE and S1.2 is ACTIVE. No new G1 row was promoted merely because trade/prework evidence improved.
 
-## Tasks attempted
+- Requirements planned-domain/schema structure: **12/12 = 100%**.
+- G1 SYSTEM FREEZE value closure: **25/46 PASS = 54.3%**.
+- Backlog tasks explicitly DONE: **2/25 = 8%**.
+- Major product gates closed: **0/8 = 0%**.
+- U1 component-bearing production-intent schematic: **0%**.
 
-1. Verify planning state, product plan, traceability, backlog, mission requirements, requirements master/progress and previous handoff against the branch.
-2. Continue highest-priority unblocked work: Sprint S1.2 PWM/ripple/switching-loss study.
-3. Search current primary manufacturer evidence for X13 G2 motor data and >=150 V MOSFET candidates.
+## Completed this run
 
-## Tasks completed / measurable progress
+### 1. S1.2 motor-inductance blocker now has an executable verification path
 
-- Created `PWM_RIPPLE_LOSS_STUDY_PB03.md`.
-- Converted the frozen >=60,000 electrical-rpm capability into an explicit 1 kHz maximum electrical-frequency timing parent.
-- Quantified PWM timing density: 20/24/32/40 kHz provide 20/24/32/40 PWM periods per electrical period at 60 keRPM.
-- Established Infineon IAUTN15S6N025G as a current exact 150 V calculation anchor: 2.5 mOhm max RDS(on), 107 nC typical / 139 nC maximum Qg at 10 V, 0.42 K/W max RthJC, 175 C maximum operating temperature. TOLT IAUTN15S6N025T is retained as a top-side-cooled package comparison, not a selection.
-- Calculated idealized gate-charge power per MOSFET from Qg(max)=139 nC at 10 V: 27.8 / 33.4 / 44.5 / 55.6 mW at 20 / 24 / 32 / 40 kHz respectively.
-- Confirmed the current public Hobbywing X13 G2 evidence gives 45 KV, 36N42P, 18S, MFP56x20 and load-curve torque/power/RPM data but does not provide a defensible production winding Ld/Lq/phase inductance value in the source set used here.
+Created:
 
-## Engineering decisions
+- `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`
+- `MOTOR_IMPEDANCE_MEASUREMENT_RESULT.template.json`
 
-No new product PWM value or MOSFET MPN was frozen. G1-07 remains OPEN. This is deliberate: current-ripple-based PWM selection cannot be defended without exact motor inductance or a controlled measurement.
+The procedure requires propeller-removed, low-energy characterization of:
 
-20/24/32/40 kHz are analysis points only. Headline MOSFET ID/IDpulse ratings are explicitly not treated as design current capability.
+- U-V / V-W / W-U line-line DC resistance,
+- line-line impedance/inductance over rotor position and multiple frequencies,
+- low-voltage current step-response cross-check,
+- temperature, fixture compensation, instrument and uncertainty.
 
-## Assumptions and evidence level
+The result template deliberately leaves all physical result values null. A KV value, geometry or a related older motor's inductance is not accepted as proof of the exact production motor Ld/Lq/effective ripple inductance.
 
-No new unknown engineering input was promoted to a frozen value. The electrical-frequency and gate-charge calculations are deterministic calculations from already frozen/system or primary-source component data. Motor inductance remains OPEN rather than inferred from KV or geometry.
+### 2. Exact 150 V MOSFET prework advanced
 
-## Files changed
+Created `POWER_STAGE_TRADE_PB03_G2_PREWORK.md`.
 
-- `ESC_V2/planning/PWM_RIPPLE_LOSS_STUDY_PB03.md` — new engineering evidence artifact.
-- `ESC_V2/planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
-- `ESC_V2/planning/autonomy_state.json` — machine-readable run state.
+Exact current calculation anchors:
 
-No B1/A2 electrical source, U1 schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated.
+- Infineon `IAUTN15S6N025G` — 150 V, 2.5 mOhm max at 25 C, TOLG, RthJC max 0.42 K/W, Qg 107 nC typ / 139 nC max.
+- Infineon `IAUTN15S6N025T` — same low-resistance 150 V class in top-side-cooled TOLT, RthJC max 0.40 K/W.
+- Vishay `SQJQ570ER` — independent-vendor 150 V comparison with explicit hot RDS(on) maximums and RthJC 0.4 C/W.
 
-## Unresolved blockers
+A conduction-only N=1/2/3 parallel screen was calculated against PB-03 125 A RMS continuous / 265 A RMS overload. It is explicitly not a production parallel-count selection because switching loss, hot worst-case conduction, SOA, current sharing and baseplate thermal path remain open.
 
-- S1.2 / G1-07 PWM freeze: exact production-motor Ld/Lq or phase inductance with measurement convention is unavailable in the current primary-source evidence; alternatively a controlled impedance/step-response measurement is required.
-- Exact switching loss: operating-point Eon/Eoff or waveform-based transition data for the intended device/gate resistance/layout is required.
-- G0: battery/structure/fixed-equipment mass allocation, mission duration and environmental envelope remain open.
-- S1.3: pack Ah/Wh, minimum loaded bus, sag, reserve and disconnect behavior remain open.
-- S1.4: ambient/altitude/baseplate/protection/watchdog/command-timeout values remain open.
-- G2 exact MOSFET count/driver/sensing/DC-link/thermal architecture remains blocked from final closure by the parent values above.
+Current pre-freeze direction:
 
-## Regressions / risks discovered
+- Infineon OptiMOS 6 150 V family remains the primary electrical calculation anchor.
+- TOLT is the first thermal-package branch to investigate because it can support a direct top-side baseplate path, but package/MPN are not frozen.
+- Vishay is retained as an independent supplier/evidence comparison.
 
-The previous handoff was stale relative to repository authorities: it still reported PB-02, S1.1 pending and 22/46 G1 rows. Actual repository state is PB-03, S1.1 DONE and 25/46 PASS. This handoff corrects that continuity risk.
+### 3. S1.3 energy/mass sensitivity started safely
 
-A second risk is that PWM could be prematurely chosen from eRPM alone. The new study explicitly prevents that: eRPM constrains timing density but does not determine acceptable current ripple or switching loss.
+Created `BATTERY_ENERGY_SENSITIVITY_PB03.md` from the frozen/source-backed max-MTOW hover sizing reference.
 
-## Exact next recommended tasks
+Eight PB-03 reference propulsion channels at the max-MTOW hover point imply approximately **24.420 kW total propulsion input** at the manufacturer reference condition. Raw hover-equivalent propulsion energy is therefore approximately:
 
-1. Continue S1.2: source exact production-motor winding inductance/resistance if a primary source becomes available; otherwise add a controlled motor impedance measurement procedure with null result fields for future bench correlation.
-2. Expand exact >=150 V MOSFET prework with hot RDS(on), package thermal path, gate-charge and switching-data evidence without selecting the production MPN.
-3. If S1.2 remains physically blocked, proceed to independent S1.3 mission-energy bounding only where frozen parent data supports calculations; do not invent flight duration/reserve.
-4. Continue configuration consistency updates as new evidence is added.
+- 8 min -> 3.256 kWh,
+- 10 min -> 4.070 kWh,
+- 12 min -> 4.884 kWh,
+- 15 min -> 6.105 kWh.
 
-## Dependency chain
+Reserve fractions and 160/180/200/220 Wh/kg complete-pack specific-energy values are shown only as sensitivity cases. No flight-time, Ah/Wh, pack mass or reserve requirement is frozen.
 
-`PB-03 phase current + >=60 keRPM -> motor L/R evidence -> PWM/ripple/loss freeze -> S1.3 18S energy/min bus -> S1.4 environment/protection -> S1.5 exact power-stage pre-freeze -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
+The important system result is that the frozen <=80 kg operating-empty budget is strongly coupled to endurance. After the 33.48 kg eight-propulsion-unit reference mass, only 46.52 kg remains for battery + frame/arms + fixed mission equipment + avionics + landing gear + wiring. Long max-payload hover endurance therefore rapidly consumes the mechanical mass budget.
+
+## S1.2 status
+
+`G1-07 PWM` remains OPEN.
+
+Current 20/24/32/40 kHz values remain analysis points only. The >=60 keRPM parent gives timing density, but a defensible ripple/loss selection still requires exact motor inductance and intended-device switching-loss/waveform evidence.
+
+No PB-04 was created because no additional product value is yet sufficiently evidenced to freeze.
+
+## Current blockers
+
+1. Exact production motor Ld/Lq/effective PWM ripple inductance or physical measurement result.
+2. Exact switching-loss correlation at intended bus/current/RG/layout plus hot conduction/thermal model.
+3. Mission duration and reserve policy for S1.3.
+4. Exact battery candidate, loaded minimum bus/sag/current and disconnect behavior.
+5. G0 airframe/battery/fixed-equipment allocation and environment.
+6. S1.4 ambient/altitude/baseplate/OV/UV/OCP/OTP/watchdog/timeout values.
+7. G2 exact MOSFET count/driver/sensing/DC-link/thermal architecture.
+
+## Configuration / release boundary
+
+No B1 source, component-bearing U1 schematic, PCB, Gerber, production BOM or release package was changed. `U1-SCH-R001` remains unallocated because AR-001 G1 and AR-002 G2 are still OPEN.
+
+## Exact next engineering path
+
+1. Continue S1.2 using the new motor impedance procedure or exact supplier L/R data.
+2. Extend the 150 V MOSFET model into hot conduction + switching waveform + TOLT/baseplate thermal screening.
+3. In parallel, continue S1.3 by closing a defensible mission-time/reserve target and exact 18S pack candidate when evidence permits.
+4. Then S1.4 environment/protection targets, S1.5 exact power-stage pre-freeze and S1.6 configuration closeout.
+
+Dependency chain:
+
+`PB-03 -> S1.2 motor R/L + PWM/loss -> S1.3 18S energy/min bus -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
 
 ## Next-run briefing
 
-Start from PB-03 and `PWM_RIPPLE_LOSS_STUDY_PB03.md`. Do not revert to the stale PB-02 handoff state. S1.1 is already complete; S1.2 is active. Preserve 20/24/32/40 kHz as analysis points only until inductance/ripple and switching-loss evidence supports a freeze. Do not allocate `U1-SCH-R001` until AR-001 and AR-002 pass.
+Start from PB-03, `PWM_RIPPLE_LOSS_STUDY_PB03.md`, `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`, `POWER_STAGE_TRADE_PB03_G2_PREWORK.md` and `BATTERY_ENERGY_SENSITIVITY_PB03.md`. Preserve PWM, Ah/Wh, exact MOSFET count/MPN and environment as OPEN until their evidence supports a controlled product decision.
 
 Mandatory progress snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 54.3% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
