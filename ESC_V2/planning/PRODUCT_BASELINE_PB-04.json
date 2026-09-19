@@ -1,0 +1,118 @@
+{
+  "revision": "PB-04",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "supersedes": "PRODUCT_BASELINE_PB-03.json",
+  "inherits_all_pb03_frozen_decisions_except_explicit_supersession": true,
+  "purpose": "Freeze a market-aligned nominal mission-duration target and correct controller electrical-speed capability so it remains above the frozen 80 V / 45 KV / 42-pole propulsion envelope. PWM itself remains OPEN until motor-inductance evidence exists.",
+  "change_control": {
+    "rule": "PB-04 inherits PB-03 unless a PB-04 decision explicitly supersedes an inherited value. Any later change to a PB-04 frozen value requires PB-05 or an explicitly linked engineering change record; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "inherited_baseline": {
+    "authority": "PRODUCT_BASELINE_PB-03.json",
+    "summary": [
+      "70-100 kg payload target; 85 kg nominal",
+      "X8 coaxial / eight independent propulsion channels",
+      "150/165/180 kg MTOW design targets",
+      "56x20 inch / 45KV / 18S propulsion performance class",
+      "18S 66.6 V nominal convention / 75.6 V full charge / <=80 V outer input ceiling",
+      ">=70 A continuous DC and >=200 A for >=3 s DC capability",
+      ">=4.8 kW continuous and >=11.5 kW short-duration input capability",
+      "<=120 V repetitive controlled semiconductor-terminal stress",
+      ">=150 V power-semiconductor class",
+      ">=125 A RMS continuous phase current, >=265 A RMS for >=3 s and >=375 A instantaneous phase peak",
+      "phase-current measurement range at least -400 A to +400 A",
+      "CAN-FD capable / Classic-CAN compatible interface",
+      "power-up/reset DISARMED and no automatic re-arm after fault"
+    ]
+  },
+  "superseded_inherited_decisions": [
+    {
+      "field": "controller_electrical_rpm_capability_min",
+      "old_value": 60000,
+      "old_authority": "PB-02 inherited by PB-03",
+      "new_value": 90000,
+      "reason": "The previous 60 keRPM capability was based on the 2478 rpm loaded manufacturer curve. It did not bound the frozen 80 V outer bus ceiling combined with the 45 rpm/V, 42-pole reference class. The no-load linear screen is 80*45*21 = 75,600 eRPM, so 90 keRPM is adopted as controller capability headroom. This is a control-capability requirement, not an expected loaded flight speed."
+    }
+  ],
+  "new_frozen_decisions": [
+    {
+      "id": "PB-025",
+      "field": "controller_electrical_rpm_capability_min",
+      "value": 90000,
+      "unit": "eRPM",
+      "comparison": ">=",
+      "status": "FROZEN_CORRECTIVE_SYSTEM_REQUIREMENT",
+      "rationale": "At the frozen outer input ceiling, 80 V * 45 rpm/V = 3600 rpm mechanical no-load linear screen. With 42 poles / 21 pole pairs this is 75,600 eRPM. A >=90,000 eRPM controller capability provides about 19% headroom above that screen and avoids tying the controller limit to one loaded manufacturer curve point.",
+      "evidence": ["ERPM_PWM_TIMING_CORRECTION_PB04.md", "mission_requirements.json"]
+    },
+    {
+      "id": "PB-026",
+      "field": "target_total_flight_time_min_nominal_payload",
+      "value": 10,
+      "unit": "min",
+      "comparison": ">=",
+      "reference_condition": "85 kg nominal payload / 165 kg nominal MTOW design target; reference-condition sizing target, not a measured endurance claim",
+      "status": "FROZEN_PRODUCT_TARGET",
+      "rationale": "A 10-minute rated target is consistent with current heavy-lift market endurance while retaining room for an explicit energy reserve instead of sizing to battery depletion.",
+      "evidence": ["MISSION_DURATION_ENERGY_BASELINE_PB04.md"]
+    },
+    {
+      "id": "PB-027",
+      "field": "target_hover_equivalent_energy_sizing_time_min_nominal_mtow",
+      "value": 10,
+      "unit": "min",
+      "comparison": ">=",
+      "reference_condition": "165 kg nominal MTOW design target using current X13 G2 reference propulsion curve",
+      "status": "FROZEN_PRODUCT_SIZING_TARGET",
+      "rationale": "Using hover-equivalent time for first-order pack sizing is intentionally conservative for the slow agricultural/utility mission profile until a detailed mission power trace is frozen.",
+      "evidence": ["MISSION_DURATION_ENERGY_BASELINE_PB04.md"]
+    },
+    {
+      "id": "PB-028",
+      "field": "battery_energy_sizing_reserve_fraction_min",
+      "value": 0.20,
+      "unit": "fraction",
+      "comparison": ">=",
+      "status": "FROZEN_PRODUCT_SIZING_POLICY",
+      "rationale": "Pack energy is sized with at least 20% energy margin beyond the nominal mission-energy calculation. This is a sizing reserve, not yet the firmware low-battery cutoff or BMS SOC threshold.",
+      "evidence": ["MISSION_DURATION_ENERGY_BASELINE_PB04.md"]
+    }
+  ],
+  "derived_s1_3_bounds_not_pack_freeze": {
+    "nominal_165kg_reference": {
+      "reference_hover_input_power_w": 21441,
+      "ten_minute_mission_energy_wh": 3574,
+      "gross_energy_with_20pct_reserve_wh_approx": 4467,
+      "66p6V_nominal_equivalent_capacity_ah_approx": 67.1,
+      "status": "DERIVED_BOUND_ONLY_EXACT_PACK_OPEN"
+    },
+    "max_180kg_stress_reference": {
+      "reference_hover_input_power_w": 24420,
+      "ten_minute_mission_energy_wh": 4070,
+      "gross_energy_with_20pct_reserve_wh_approx": 5088,
+      "66p6V_nominal_equivalent_capacity_ah_approx": 76.4,
+      "status": "TRADE_ONLY_NOT_RATED_ENDURANCE_PROMISE"
+    }
+  },
+  "pwm_status": {
+    "frozen": false,
+    "preferred_analysis_window_hz": [24000, 32000],
+    "boundary_sensitivity_points_hz": [20000, 40000],
+    "reason_open": "Exact production motor Ld/Lq or equivalent PWM ripple inductance is still unavailable; switching-loss screen is parameterized but cannot substitute for ripple evidence."
+  },
+  "remaining_s1_critical_open_items": [
+    "PWM frequency/current ripple final closure after exact motor inductance evidence",
+    "18S exact Ah/Wh/minimum-loaded-bus/sag/BMS behavior and pack mass allocation",
+    "environment and thermal design boundaries",
+    "OV/UV/OCP/OTP/watchdog/command-timeout numeric requirements",
+    "exact 150 V MOSFET MPN and parallel count",
+    "exact high-voltage half-bridge gate-driver MPN",
+    "current-sense implementation, DC-link, precharge and thermal architecture"
+  ],
+  "physical_verification_status": "NOT_PERFORMED",
+  "anti_hallucination_rule": "PB-04 mission values are controlled product targets and the energy figures are sizing calculations. They are not measured endurance. The 90 keRPM value is controller capability, not a claim that the propeller will operate at that speed. PWM remains OPEN."
+}
