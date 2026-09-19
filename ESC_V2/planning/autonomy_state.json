@@ -1,52 +1,49 @@
 {
-  "revision": "AUTO-STATE-11",
-  "date": "2026-09-19",
-  "branch": "uav-rebaseline",
-  "mode": "AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status": "PROGRESS_BACKPOWER_G1_MATRIX_EXHAUSTIVE_BACKLOG_RECONCILIATION",
-  "current_gate": "G0_G1",
-  "current_phase": "PHASE_A_SYSTEM_AND_PROPULSION",
-  "current_task": "G0_INPUT_CLOSURE_AND_G1A_OPERATING_POINT_SELECTION",
-  "completed_this_run": [
-    "verified_previous_handoff_against_current_branch_state",
-    "audited_B1_voltage_sense_backpower_chain_through_BAT54H_3V3A_3V3_TLV75533",
-    "recorded_TI_TLV755P_reverse_current_constraint_and_classified_B1_rail_clamp_as_recalculate_replace_if_required",
-    "created_and_extended_machine_auditable_G1_requirements_matrix_to_all_current_checklist_fields_with_open_values_left_unfilled",
-    "reconciled_UAV_backlog_marking_rotor_trade_in_progress_and_propulsion_market_benchmark_done",
-    "updated_traceability_with_analog_rail_backpower_and_G1_audit_evidence",
-    "verified_G1_matrix_counts_after_extension_46_rows_1_pass_45_open"
+  "revision":"AUTO-STATE-12",
+  "date":"2026-09-19",
+  "branch":"uav-rebaseline",
+  "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
+  "last_run_status":"PROGRESS_G0_CONTROLLED_BOUNDS_ROTOR_DECISION_TREE",
+  "current_gate":"G0_G1",
+  "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION",
+  "current_task":"G0_INPUT_CLOSURE_AND_G1A_FINAL_SELECTION",
+  "completed_this_run":[
+    "verified_handoff_product_plan_traceability_backlog_mission_requirements_and_autonomy_state_against_branch",
+    "created_G0_TRADE_BOUNDING_CASES_with_125_150_175kg_analysis_cases_and_nonpromotion_governance",
+    "reverified_XAG_P150_P150Max_and_DJI_T100_primary_source_vehicle_architecture_anchors",
+    "formalized_rotor_architecture_elimination_logic_based_on_single_motor_failure_policy",
+    "updated_rotor_trade_study_from_preliminary_to_bounded_screening_without_freezing_product_values",
+    "updated_traceability_with_trade_bounds_and_rotor_architecture_discriminator",
+    "updated_backlog_evidence_and_remaining_conditions_for_UAV001_UAV002"
   ],
-  "blocked_tasks": [
-    {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_and_failure_policy_not_frozen","blocking_scope":"full_G0_freeze_and_downstream_final_sizing"},
-    {"task":"freeze_UAV_002_rotor_architecture","reason":"trade_study_exists_but_final_MTOW_and_failure_policy_are_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV_004"},
+  "blocked_tasks":[
+    {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
+    {"task":"freeze_UAV_002_rotor_architecture","reason":"bounded_screening_complete_but_actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV004"},
     {"task":"freeze_UAV_004_operating_point","reason":"final_rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_motor_prop_hover_peak_points"},
-    {"task":"freeze_18S_voltage_domain","reason":"switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
-    {"task":"qualify_ADC_clamp_path","reason":"TLV75533_reverse_current_risk_is_confirmed_and_production_clamp_power_sequencing_architecture_is_not_selected_or_bench_verified","blocking_scope":"bus_and_phase_sense_UAV_qualification"},
-    {"task":"run_final_numeric_semiconductor_loss_comparison","reason":"phase_RMS_peak_current_PWM_and_voltage_class_not_frozen","blocking_scope":"final_MPN_class_selection"}
+    {"task":"freeze_18S_voltage_domain","reason":"battery_architecture_and_switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
+    {"task":"qualify_ADC_clamp_path","reason":"production_nonbackpower_clamp_architecture_and_powered_unpowered_bench_evidence_open","blocking_scope":"bus_and_phase_sense_UAV_qualification"}
   ],
-  "next_candidates": [
-    "obtain_or_define_G0_vehicle_inputs_without_copying_competitor_values_into_requirements",
-    "define_explicit_trade_only_G0_bounding_cases_if_user_specific_values_remain_open",
-    "use_G0_bounds_to_select_rotor_architecture_and_close_G1A",
-    "translate_selected_rotor_scenario_into_source_backed_propulsion_hover_peak_operating_points_and_eRPM_bounds",
-    "build_100V_120V_150V_semiconductor_candidate_parameter_table_for_trade_only",
-    "audit_upstream_5V_path_reverse_behavior_and draft_candidate_non_backpower_voltage_sense_architectures"
+  "next_candidates":[
+    "use_existing_X15_curve_to_complete_T125_T150_T175_quad_hex_octo_trade_only_current_power_RPM_mapping_without_promoting_to_requirements",
+    "derive_which_architecture_scenarios_exceed_X15_published_120A_continuous_rating_and_mark_them_noncontinuous_only",
+    "draft_nonbackpower_voltage_sense_architecture_candidates_independent_of_final_VBUS",
+    "build_source_backed_semiconductor_candidate_parameter_table_for_100_120_150V_trade_only",
+    "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are supplied_or_approved"
   ],
-  "last_verified_gate": "REBASELINE_INIT",
-  "evidence_refs": [
-    "planning/ANALOG_RAIL_BACKPOWER_AUDIT.md",
+  "last_verified_gate":"REBASELINE_INIT",
+  "evidence_refs":[
+    "planning/G0_TRADE_BOUNDING_CASES.md",
+    "planning/rotor_trade_study.md",
+    "planning/X15_SCENARIO_MAPPING.md",
     "planning/G1_REQUIREMENTS_MATRIX.json",
-    "planning/ADC_CLAMP_INJECTION_CLOSURE.md",
-    "planning/REQUIREMENTS_COMPLETION_CHECKLIST.md",
     "planning/UAV_TRACEABILITY.md",
     "planning/uav_backlog.json",
-    "hardware/build_schematic.py",
-    "TI TLV755P Rev. D section 7.1.4 Reverse Current",
-    "ST STM32G474xB/xC/xE datasheet",
-    "TI CSD19536KTT Rev. C datasheet"
+    "XAG P150 official specs",
+    "XAG P150 Max official specs",
+    "DJI Agras T100 official specs"
   ],
-  "write_policy": {"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
-  "evidence_policy": {"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
-  "continuity_policy": {"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
-  "notes": "G1 requirements are now explicitly enumerated in one machine-readable matrix: 46 rows, 1 PASS and 45 OPEN. This is intentionally strict and prevents hidden prose requirements from being treated as closed. The dominant critical-path blocker remains G0 vehicle inputs. B1 analog rail clamping is additionally constrained by TLV755P reverse-current guidance and is not retained as a production assumption."
+  "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
+  "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"erc_drc_equals_functional_validation":false,"verify_handoff_against_repository_each_run":true},
+  "continuity_policy":{"read_handoff_first":true,"verify_against_repository":true,"continue_to_next_task_in_same_run":true,"switch_tasks_when_blocked":true,"update_handoff_at_end_of_every_run":true,"update_state_at_end_of_every_run":true,"filler_commits_forbidden":true},
+  "notes":"The G0 blocker is now controlled rather than bypassed. T125/T150/T175 exist only as trade bounds. Rotor architecture can be screened now, but final G1A still needs actual MTOW and failure policy. Ordinary quad becomes architecturally invalid if continued hover after complete loss of one motor/ESC is required; otherwise it remains a candidate with strong 125-136kg commercial precedent."
 }
