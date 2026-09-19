@@ -1,0 +1,136 @@
+{
+  "revision": "PB-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PARTIAL_PRODUCT_BASELINE_FROZEN",
+  "purpose": "Start productization by converting evidence-backed architecture choices into controlled product requirements while leaving propulsion-current, energy, thermal and mechanical values open where evidence is still insufficient.",
+  "change_control": {
+    "rule": "Any change to a FROZEN decision in this file requires a new PRODUCT_BASELINE_PB-xx revision or an explicitly linked engineering change record. Do not silently edit a frozen decision into a different value.",
+    "main_merge_or_release_without_user_approval": false,
+    "production_release_authorized": false
+  },
+  "frozen_decisions": [
+    {
+      "id": "PB-001",
+      "field": "payload_target_kg",
+      "value": {"min": 70, "max": 100},
+      "status": "FROZEN",
+      "rationale": "User product target; already the sole previously closed numerical G1 row.",
+      "evidence": ["mission_requirements.json", "G1_REQUIREMENTS_MATRIX.json"]
+    },
+    {
+      "id": "PB-002",
+      "field": "vehicle_architecture",
+      "value": "X8_COAXIAL_4_ARM_8_INDEPENDENT_PROPULSION_CHANNELS",
+      "status": "FROZEN",
+      "rationale": "For the 70-100 kg payload class, the eight-propulsor branch materially lowers per-axis thrust/electrical stress versus quad/hex at the upper MTOW screening region and provides a practical degraded-control path. Coaxial packaging keeps the concept compact; coaxial interaction losses remain a sizing input, not ignored.",
+      "evidence": ["rotor_trade_study.md", "PROPULSION_SCREENING_PRETRADE.json", "CONCEPT_VEHICLE_ENVELOPE_PRETRADE.json"]
+    },
+    {
+      "id": "PB-003",
+      "field": "single_motor_or_esc_failure_requirement",
+      "value": "CONTROLLED_LANDING_REQUIRED",
+      "status": "FROZEN",
+      "rationale": "Product safety baseline: one complete propulsion-channel loss shall not cause an intentional continued mission. Continued hover at maximum payload is not required; sufficient controllability for controlled landing is required and must later be physically proven.",
+      "evidence": ["rotor_trade_study.md", "FAULT_FMEA_SKELETON.json"]
+    },
+    {
+      "id": "PB-004",
+      "field": "dc_bus_full_charge_operating_ceiling_v",
+      "value": 80.0,
+      "comparison": "<=",
+      "status": "FROZEN_BOUNDED",
+      "rationale": "Defines the U1 high-voltage input domain and supports current heavy-lift 18S-class propulsion without forcing an exact cell chemistry or series count yet.",
+      "evidence": ["PROPULSION_SCREENING_PRETRADE.json", "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json"]
+    },
+    {
+      "id": "PB-005",
+      "field": "repetitive_dc_bus_and_switching_transient_ceiling_v",
+      "value": 120.0,
+      "comparison": "<=",
+      "status": "FROZEN_DESIGN_REQUIREMENT",
+      "rationale": "U1 protection, DC-link and layout shall control repetitive semiconductor terminal stress to at most 120 V. Normal operation shall not rely on MOSFET avalanche as the repetitive energy-management mechanism.",
+      "verification": "Measure VDS at the MOSFET terminals during staged switching, regenerative and disconnect tests; no production claim before physical verification.",
+      "evidence": ["DC_BUS_TRANSIENT_REQUIREMENTS.md", "POWER_STAGE_VOLTAGE_CLASS_SCREENING.md"]
+    },
+    {
+      "id": "PB-006",
+      "field": "power_semiconductor_vds_class_min_v",
+      "value": 150,
+      "comparison": ">=",
+      "status": "FROZEN",
+      "rationale": "With an 80 V operating ceiling and a 120 V repetitive transient design ceiling, a 150 V class keeps a controlled voltage margin. The 120 V class would consume the full device rating at the transient ceiling. The efficiency penalty versus current 120 V candidates is accepted at architecture level and will be managed by exact device/parallel-count/thermal optimization.",
+      "reference_anchor_not_selection": "Infineon IAUTN15S6N025",
+      "exact_production_mpn": null,
+      "evidence": ["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md", "POWER_STAGE_VOLTAGE_CLASS_SCREENING.md"]
+    },
+    {
+      "id": "PB-007",
+      "field": "gate_driver_architecture",
+      "value": "THREE_INDEPENDENT_HIGH_VOLTAGE_HALF_BRIDGE_GATE_DRIVERS",
+      "status": "FROZEN_ARCHITECTURE",
+      "rationale": "The legacy DRV8353 100 V-class integrated driver domain is not retained for the 150 V U1 power-stage baseline. Exact high-voltage driver MPN remains open until gate-charge/current, negative switch-node transient and fault-path checks close.",
+      "excluded_from_u1_primary_baseline": ["DRV8353FSRTAR"],
+      "candidate_anchor": "UCC27712-Q1",
+      "exact_production_mpn": null,
+      "evidence": ["GATE_DRIVER_AUX_SUPPLY_VOLTAGE_DOMAIN_TRADE.md", "U1_BOM_CANDIDATES.json"]
+    },
+    {
+      "id": "PB-008",
+      "field": "flight_controller_communication_interface",
+      "value": "CAN_FD_CAPABLE_CLASSIC_CAN_COMPATIBLE",
+      "status": "FROZEN",
+      "rationale": "CAN-FD capability provides payload for diagnostics/telemetry while preserving Classic CAN interoperability. Bit rate, upper-layer message map and termination remain separate open implementation values.",
+      "evidence": ["CAN_PHYSICAL_LAYER_PRETRADE.md"]
+    },
+    {
+      "id": "PB-009",
+      "field": "arming_and_rearm_policy",
+      "value": {
+        "power_up_state": "DISARMED",
+        "reset_state": "DISARMED",
+        "arm_request_path": "VALID_FLIGHT_CONTROLLER_COMMAND",
+        "hardware_inhibit_has_final_authority": true,
+        "latched_fault_forces_pwm_inhibit": true,
+        "automatic_rearm_after_fault_or_reset": false
+      },
+      "status": "FROZEN",
+      "rationale": "Switching permission is deliberately separated from driver awake state; a reset/fault cannot silently resume PWM.",
+      "evidence": ["B1_LEGACY_TRACEABILITY_GAP_AUDIT.md", "SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json", "FAULT_ARM_STATE_MATRIX.template.json"]
+    },
+    {
+      "id": "PB-010",
+      "field": "core_control_and_power_topology",
+      "value": {
+        "motor": "3_PHASE_BLDC_OR_PMSM",
+        "inverter": "THREE_PHASE_TWO_LEVEL_SIX_SWITCH_VSI",
+        "control": "FOC_WITH_SVPWM_CAPABILITY"
+      },
+      "status": "FROZEN",
+      "rationale": "This is the preserved core architecture from the prior program and remains appropriate for the heavy-lift propulsion objective; current/voltage/component values are requalified separately.",
+      "evidence": ["UAV_TRACEABILITY.md", "UAV_PRODUCT_PLAN.md"]
+    }
+  ],
+  "still_open_after_pb01": [
+    "nominal payload",
+    "empty airframe mass",
+    "battery mass and exact chemistry/series count",
+    "mission equipment mass",
+    "MTOW min/nom/max",
+    "flight duration and energy reserve",
+    "ambient/altitude/wind/ingress envelope",
+    "coaxial aerodynamic interference factor and exact arm geometry",
+    "hover and peak thrust per rotor",
+    "motor/propeller exact MPN and operating point",
+    "continuous and peak DC/phase current",
+    "PWM frequency and eRPM",
+    "MOSFET exact MPN and parallel count",
+    "gate-driver exact MPN",
+    "current-sense topology/value",
+    "DC-link capacitance and precharge components",
+    "thermal/cooling implementation",
+    "connectors and harness",
+    "MCU final production selection"
+  ],
+  "anti_hallucination_rule": "PB-01 freezes only the listed decisions. A frozen architecture requirement is not a claim that thermal, EMI, dyno, fault-tolerance or flight performance has already been physically verified."
+}
