@@ -1,43 +1,45 @@
 {
-  "revision":"AUTO-STATE-14",
+  "revision":"AUTO-STATE-15",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_NONBACKPOWER_HV_SENSE_ARCHITECTURE_TRADE",
+  "last_run_status":"PROGRESS_SOURCE_BACKED_SEMICONDUCTOR_CLASS_TABLE",
   "current_gate":"G0_G1",
   "current_phase":"PHASE_A_SYSTEM_AND_PROPULSION_WITH_SAFE_G2_PREWORK",
-  "current_task":"G0_INPUT_CLOSURE_AND_G1A_FINAL_SELECTION",
+  "current_task":"POWER_OFF_TOLERANT_HV_SENSE_DEVICE_EVIDENCE",
   "completed_this_run":[
-    "verified_prior_handoff_product_plan_traceability_backlog_mission_requirements_and_autonomy_state_against_uav_rebaseline",
-    "defined_derived_nonbackpower_HV_sensing_architecture_requirements",
-    "screened_four_voltage_sense_topology_families_without_selecting_production_MPNs",
-    "classified_B1_rail_referenced_BAT54H_clamp_as_not_default_KEEP_for_U1",
-    "defined_powered_unpowered_and_single_fault_verification_needed_before_G2_sensing_closure"
+    "verified_required_planning_state_and_prior_handoff_against_uav_rebaseline",
+    "built_primary_source_100V_120V_150V_MOSFET_candidate_table_for_trade_only",
+    "recorded_TI_CSD19536KTT_as_100V_legacy_reference_only",
+    "recorded_Infineon_IPT017N12NM6_as_120V_trade_anchor",
+    "recorded_Infineon_IAUTN15S6N025_as_150V_trade_anchor",
+    "defined_common_envelope_normalization_required_before_G2_semiconductor_freeze",
+    "updated_UAV_traceability_without_freezing_voltage_class"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"vehicle_specific_nominal_payload_airframe_battery_equipment_mass_flight_profile_environment_span_and_failure_policy_not_frozen","blocking_scope":"G0_and_final_G1A"},
     {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy_open","blocking_scope":"final_rotor_count_thrust_margin_and_UAV004"},
     {"task":"freeze_UAV_004_operating_point","reason":"final_rotor_architecture_and_MTOW_not_frozen","blocking_scope":"final_motor_prop_hover_peak_points"},
     {"task":"derive_phase_current_requirement","reason":"manufacturer_curve_reports_DC_input_current_not_phase_RMS_peak_current","blocking_scope":"UAV006_power_stage_current_freeze"},
-    {"task":"freeze_18S_voltage_domain","reason":"battery_architecture_and_switching_harness_regen_disconnect_clamp_transient_ceiling_not_established","blocking_scope":"semiconductor_driver_aux_DC_link_and_sensing_freeze"},
+    {"task":"freeze_semiconductor_voltage_class","reason":"battery/transient ceiling phase current PWM hot junction and derating policy remain open","blocking_scope":"UAV008_final_device_class_and_loss_trade"},
     {"task":"freeze_voltage_sense_topology","reason":"final_VBUS_transient_accuracy_bandwidth_and_exact_power_off_tolerant_device_evidence_open","blocking_scope":"G2_sensing_architecture_freeze"}
   ],
   "next_candidates":[
-    "build_primary_source_100V_120V_150V_semiconductor_candidate_parameter_table_for_trade_only",
-    "search_exact_power_off_tolerant_buffer_or_measurement_front_end_candidates_for_nonbackpower_sense_path",
-    "derive_architecture_elimination_notes_from_X15_map_without_promoting_trade_cases_to_requirements",
-    "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are_supplied_or_approved"
+    "search_exact_power_off_tolerant_buffer_or_measurement_front_end_candidates_with_manufacturer_VCC0_input_behavior",
+    "extend_candidate_table_with_hot_RDSon_Qgd_Qrr_Coss_and_package_thermal_data_only_where_primary_source_conditions_are comparable",
+    "keep_G0_product_fields_OPEN_until_vehicle_specific_targets_are supplied_or_approved"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "evidence_refs":[
+    "planning/SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md",
+    "planning/POWER_STAGE_LOSS_MODEL.md",
     "planning/NON_BACKPOWER_HV_SENSE_ARCHITECTURES.md",
-    "planning/ANALOG_RAIL_BACKPOWER_AUDIT.md",
-    "planning/ADC_CLAMP_INJECTION_CLOSURE.md",
-    "planning/X15_TRADE_OPERATING_MAP.md",
     "planning/UAV_PRODUCT_PLAN.md",
-    "planning/UAV_TRACEABILITY.md"
+    "planning/UAV_TRACEABILITY.md",
+    "planning/uav_backlog.json",
+    "planning/mission_requirements.json"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"A production-independent sensing architecture trade is now recorded. The U1 sense path must not rely on an unpowered MCU/control rail sinking clamp current. Candidate B (protected buffer with explicit power-off input behavior) or D (measurement front-end with explicit power-off tolerance) are preferred study paths; no device/topology is frozen. G0/G1 remain open."
+  "notes":"Current-generation primary-source MOSFET anchors now exist for 100/120/150 V trade classes. This removes the lack-of-real-device-data blocker for later loss comparison, but does not close the voltage-class decision. G0/G1 remain open and manufacturer current ratings are not product ESC ratings."
 }
