@@ -1,11 +1,11 @@
 {
-  "revision":"AUTO-STATE-34",
+  "revision":"AUTO-STATE-35",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_MECHANICAL_ELECTRICAL_COTRADE_PRETRADE",
+  "last_run_status":"PROGRESS_PROPULSION_SCREENING_PRETRADE",
   "current_gate":"G0_G1",
-  "current_task":"CONCEPT_VEHICLE_ENVELOPE_AND_PROPULSION_COTRADE",
+  "current_task":"PROPULSION_SCREENING_AND_TRADE_ONLY_ESC_ELECTRICAL_RANGE",
   "completed_this_run":[
     "verified_latest_uav_rebaseline_branch_and_current_handoff_before changing strategy",
     "recorded_user_constraint_that_mechanical_design_is_not_yet_available_and_real_G0_vehicle_values_cannot_yet_be supplied",
@@ -13,6 +13,9 @@
     "created_CONCEPT_VEHICLE_ENVELOPE_PRETRADE_json_with primary manufacturer DJI_T70P_and_T100 benchmark facts clearly tagged TRADE_STUDY_ONLY",
     "created_MECHANICAL_ELECTRICAL_COTRADE_PLAN_md defining a parametric co_design loop rather than blocking the ESC project",
     "created_non_binding_screening_cases_MTOW_130_150_175kg_and_rotor_counts_4_6_8_with_hover_load_matrix",
+    "searched_primary_Hobbywing_sources_and_created_PROPULSION_SCREENING_PRETRADE_json_with_X11_Plus_X11_Max_X13_X13_G2_X15_X15_G2_reference_regions",
+    "mapped_each_130_150_175kg_by_4_6_8_hover_case_to manufacturer recommended thrust regions without selecting a winner",
+    "recorded_trade_only_reference electrical classes 12_14S_and_18S plus high_end_input_voltage_and_current examples without promoting them into ESC requirements",
     "preserved_product_progress_counters_and_did_not_promote benchmark values into mission requirements or G1"
   ],
   "blocked_tasks":[
@@ -24,10 +27,10 @@
     {"task":"allocate_U1_SCH_R001","reason":"G1/G2 readiness remains open; component-bearing U1 schematic must not be allocated early","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "build_parametric_propulsion_pretrade_for_MTOW_130_150_175kg_and_rotor_counts_4_6_8_using_primary_motor_prop_manufacturer_data",
-    "derive_trade_only_per_motor_power_current_voltage_and_eRPM_regions_from feasible propulsion candidates without selecting a winner",
-    "iterate estimated motor_battery_mass_back_into concept vehicle mass cases while retaining benchmark labels",
-    "compare ESC semiconductor_driver_sensing architecture robustness across the resulting electrical range without G1 promotion",
+    "extract primary manufacturer load_curve points for the most relevant X11_X13_X15 regions and calculate trade_only per_motor power_current_rpm envelopes",
+    "calculate sensitivity of total propulsion mass across 4_6_8 rotor cases using source-backed integrated propulsion weights",
+    "derive a provisional custom_ESC architecture stress range from feasible propulsion regions while keeping voltage_current requirements OPEN",
+    "compare MOSFET_driver_current_sense_aux architecture robustness across 14S_to_18S commercial reference classes without selecting a production winner",
     "continue requirement_independent_B1 migration audits in parallel"
   ],
   "last_verified_gate":"REBASELINE_INIT",
@@ -42,7 +45,8 @@
     "dashboard_current_uav_status_integration_percent":100.0,
     "dashboard_auto_refresh_ci_percent":100.0,
     "dashboard_source_consistency_validation_percent":100.0,
-    "mechanical_electrical_cotrade_framework_percent":100.0
+    "mechanical_electrical_cotrade_framework_percent":100.0,
+    "propulsion_screening_pretrade_percent":100.0
   },
   "evidence_refs":[
     "UAV_PRODUCT_PLAN.md",
@@ -54,10 +58,14 @@
     "G0_INPUT_CLOSURE_PACKET.json",
     "CONCEPT_VEHICLE_ENVELOPE_PRETRADE.json",
     "MECHANICAL_ELECTRICAL_COTRADE_PLAN.md",
+    "PROPULSION_SCREENING_PRETRADE.json",
     "https://ag.dji.com/t70p/specs",
-    "https://ag.dji.com/t100/specs"
+    "https://ag.dji.com/t100/specs",
+    "https://www.hobbywing.com/en/drone-propulsion/multirotor/integrated/x-series",
+    "https://www.hobbywing.com/en/products/xrotorx13",
+    "https://www.hobbywing.com/en/products/xrotorx15"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"Because the mechanical design does not yet exist, waiting for exact G0 inputs would stall concept development. The project now uses a two-layer approach: product G0/G1 values stay OPEN, while source-backed benchmark data and explicitly non-binding screening cases drive mechanical-electrical co-design studies. No benchmark value is a product requirement."
+  "notes":"Mechanical design is not yet available, so the project now advances through source-backed concept co-trade instead of waiting for impossible exact masses. Product G0/G1 values remain OPEN. Primary-source Hobbywing propulsion data now maps the screening hover-load regions and provides an explicit trade-only electrical stress search space; no winner or production requirement is selected."
 }
