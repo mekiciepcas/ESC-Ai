@@ -1,91 +1,119 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 21:18+03:00  
+Date: 2026-09-19 21:44+03:00  
 Branch: `uav-rebaseline`  
-Repository HEAD after run writes: `35a1601729923e9962462dae9569181fe33088fd` before this handoff commit  
-Run status: `S1_2_HOT_THERMAL_SENSITIVITY_ADVANCED_NO_FALSE_FREEZE`
+Repository HEAD before this handoff commit: `88082a8a91d1907cd07ad6b151b33933eb84a5c9`  
+Run status: `PB04_MISSION_DURATION_ERPM_FROZEN_PWM_REMAINS_OPEN`
 
 ## Controlling metrics
 
 - Requirements planned-domain/schema structure: **12/12 = 100%**.
-- G1 SYSTEM FREEZE value closure: **25/46 PASS = 54.3%**.
+- G1 SYSTEM FREEZE value closure: **28/46 PASS = 60.9%**.
 - Backlog tasks explicitly DONE: **2/25 = 8%**.
 - Major product gates closed: **0/8 = 0%**.
 - Component-bearing U1 schematic: **0%**.
 
-No metric was increased from analysis-only evidence.
+No metric was increased from analysis-only evidence. Backlog DONE remains unchanged because no task acceptance criterion fully closed during this run.
 
-## Tasks attempted / completed
+## Tasks completed / advanced
 
-1. Re-read and verified the controlling PB-03 planning state, requirements progress, backlog, mission requirements and previous handoff.
-2. Continued highest-priority safe S1.2/S1.5 work while exact motor inductance remains measurement-blocked.
-3. Created `POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md`.
-4. Added TR-047 traceability for the hot conduction/thermal sensitivity work.
-5. Updated `autonomy_state.json` and this handoff.
+1. Re-read the mandatory planning, configuration-control and dashboard authority files against actual `uav-rebaseline` branch state before writes.
+2. Created `PRODUCT_BASELINE_PB-04.json` under explicit change control, inheriting PB-03 except the recorded eRPM supersession.
+3. Froze a market-aligned nominal mission target of **>=10 min** at 85 kg payload / 165 kg nominal-MTOW reference condition.
+4. Froze **>=10 min hover-equivalent energy-sizing duration** and **>=20% pack energy sizing reserve** for first-order S1.3 sizing.
+5. Created `MISSION_DURATION_ENERGY_BASELINE_PB04.md`; current X13 G2 reference interpolation gives about **4.47 kWh / 67.1 Ah nominal-equivalent** for the 165 kg / 10 min / 20% reserve case. This is a sizing bound, not an exact battery selection.
+6. Corrected inherited controller electrical-speed capability from >=60 keRPM to **>=90 keRPM**. The frozen 80 V / 45 rpm/V / 21-pole-pair envelope gives a 75.6 keRPM no-load linear screen, so the previous 60 keRPM capability was not envelope-complete.
+7. Created `ERPM_PWM_TIMING_CORRECTION_PB04.md`; final PWM remains OPEN, with 24-32 kHz now the preferred analysis window and 20/40 kHz retained as boundary sensitivity points.
+8. Added an IAUTN15S6N025T timing-based switching sensitivity screen using exact primary-source test conditions without presenting it as guaranteed Eon/Eoff.
+9. Updated mission requirements, G1 matrix, requirements master/progress and traceability to PB-04.
+10. Added `verify_pb04_consistency.py` and `.github/workflows/pb04-consistency-check.yml`; workflow run `35462025027` completed SUCCESS.
+11. Diagnosed the dashboard CI regression: `autonomy_state.json` had lost dashboard-required scaffold/revision-control progress keys. Restored those fields without changing engineering progress.
+12. Dashboard refresh run `35462070396` completed SUCCESS and generated bot commit `88082a8a91d1907cd07ad6b151b33933eb84a5c9` before this handoff update.
 
 ## Files changed
 
-- `ESC_V2/planning/POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md` — new.
-- `ESC_V2/planning/UAV_TRACEABILITY.md` — TR-047 additive continuation; prior TR-001..TR-046 exact detailed authority remains preserved at blob `558a79e824d957844766031e357996bc8e0cee01`.
-- `ESC_V2/planning/autonomy_state.json` — AUTO-STATE-48.
+- `ESC_V2/planning/PRODUCT_BASELINE_PB-04.json` — new controlled product baseline.
+- `ESC_V2/planning/MISSION_DURATION_ENERGY_BASELINE_PB04.md` — new mission/energy sizing basis.
+- `ESC_V2/planning/ERPM_PWM_TIMING_CORRECTION_PB04.md` — new eRPM correction / PWM timing screen.
+- `ESC_V2/planning/mission_requirements.json` — MISSION-04.
+- `ESC_V2/planning/G1_REQUIREMENTS_MATRIX.json` — G1-MATRIX-07, 28/46 PASS.
+- `ESC_V2/planning/REQUIREMENTS_PROGRESS.json` — REQ-PROGRESS-05.
+- `ESC_V2/planning/REQUIREMENTS_MASTER.json` — REQ-MASTER-09.
+- `ESC_V2/planning/UAV_TRACEABILITY.md` — additive TR-048/TR-049 continuation while preserving canonical TR-001..TR-046 history.
+- `ESC_V2/planning/verify_pb04_consistency.py` — new consistency checker.
+- `.github/workflows/pb04-consistency-check.yml` — new CI workflow.
+- `ESC_V2/planning/autonomy_state.json` — AUTO-STATE-49.
 - `ESC_V2/planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
 
-No A2/B1 electrical source, U1 component-bearing schematic, PCB, Gerber, production BOM or release package was changed.
+No A2/B1 electrical source, `.kicad_sch`, PCB, Gerber, production BOM or release package was changed.
 
-## Engineering decisions / calculations added
+## PB-04 controlled decisions
 
-The current Infineon `IAUTN15S6N025T` TOLT anchor remains a calculation candidate, not a selection. Current manufacturer data confirms 150 V, 2.5 mOhm maximum RDS(on) at 10 V, 139 nC maximum Qg, 0.4 K/W maximum RthJC and 175 C operating limit. The manufacturer hot RDS(on) curve is not treated as a guaranteed production maximum.
+### Newly frozen
 
-To avoid inventing a hot limit, the study defines `Khot = RDS(on)_hot / 2.5mOhm` and evaluates **1.6 / 2.0 / 2.3 as sensitivity points only**.
+- Total mission-duration target: **>=10 min** at 85 kg payload / 165 kg nominal-MTOW reference.
+- Hover-equivalent first-order energy-sizing duration: **>=10 min** at 165 kg nominal MTOW reference.
+- Battery energy sizing reserve: **>=20%** beyond the nominal mission-energy calculation.
+- Controller electrical-speed capability: **>=90,000 eRPM**.
 
-At Khot=2.3:
+### Still OPEN
 
-- N=2: 125 A RMS -> 134.8 W total conduction / 11.2 W per FET.
-- N=3: 125 A RMS -> 89.8 W total / 5.0 W per FET.
-- N=2: 265 A RMS -> 605.7 W total / 50.5 W per FET.
-- N=3: 265 A RMS -> 403.8 W total / 22.4 W per FET.
+- Exact battery cell/pouch/MPN, final Ah/Wh and pack mass.
+- Minimum loaded bus voltage, voltage sag, usable SOC window and BMS disconnect behavior.
+- Final PWM frequency; exact motor Ld/Lq/effective PWM ripple inductance is still required.
+- Exact MOSFET MPN/count, gate driver, DC-link, current-sense implementation and thermal stack.
+- Environment and numeric protection/failsafe thresholds.
 
-Using 0.4 K/W RthJC only as an internal junction-to-case sanity screen gives approximately 4.5 K, 2.0 K, 20.2 K and 9.0 K respectively. These are **not junction-temperature predictions** because switching loss, transient ZthJC, TIM/baseplate/ambient path, current sharing and initial temperature are absent.
+## Key calculations / boundaries
 
-Engineering disposition: N=1 is no longer a priority detailed-study branch; N=2 and N=3 remain. TOLT remains the first thermal-package branch to investigate. No exact MPN/count/package/PWM is frozen.
+Frozen outer bus / speed-class screen:
 
-## Assumptions and evidence level
+- 80 V * 45 rpm/V = 3600 rpm mechanical no-load linear screen.
+- 3600 rpm * 21 pole pairs = 75,600 eRPM.
+- 90,000 eRPM capability gives about 19% headroom over that screen.
 
-- Khot=1.6/2.0/2.3: **analysis sensitivity only**, not requirement, datasheet guarantee or measurement.
-- 0.4 K/W RthJC: **primary-source device rating**, but steady multiplication is not accepted as the final 3 s transient thermal model.
-- PB-03 125/265/375 A phase envelope: controlled design requirement, physical correlation still pending.
-- No physical thermal, switching, EMI, dyno or flight result was introduced.
+Nominal 165 kg current propulsion reference:
+
+- isolated-equivalent hover thrust: 24.265 kgf/axis;
+- interpolated reference input: about 2.68 kW/axis;
+- eight axes: about 21.44 kW hover-equivalent input;
+- 10 min energy: about 3.57 kWh;
+- with 20% sizing reserve: about 4.47 kWh nominal pack-energy bound;
+- at the current 66.6 V nominal convention: about 67.1 Ah equivalent.
+
+180 kg stress/reference case remains trade-only:
+
+- about 24.42 kW hover input;
+- about 4.07 kWh mission energy for 10 min;
+- about 5.09 kWh / 76.4 Ah nominal-equivalent with 20% sizing reserve.
+
+These are calculations from the current reference propulsion curve, not measured endurance or exact pack selections.
+
+## CI / dashboard state
+
+- PB-04 consistency workflow run `35462025027`: **SUCCESS**.
+- Dashboard refresh run `35462070396`: **SUCCESS** after restoring the required state keys.
+- The dashboard bot advanced the branch to `88082a8a91d1907cd07ad6b151b33933eb84a5c9` before this handoff commit.
 
 ## Unresolved blockers
 
-1. Exact production motor Ld/Lq/effective PWM ripple inductance or measured result.
-2. Guaranteed hot-RDS policy for intended MOSFET.
-3. Switching-energy/waveform correlation at intended VBUS/current/RG/layout.
-4. Transient ZthJC plus TIM/baseplate/cooling path.
-5. Parallel current-sharing/layout tolerance.
-6. Mission duration/reserve and exact 18S pack/minimum loaded bus/sag/disconnect behavior.
-7. Environment/protection numeric requirements.
-8. G2 exact power-stage/control/sensing/DC-link architecture.
-
-## Regressions / risks discovered
-
-The hot sensitivity demonstrates that N=2 overload conduction can become several hundred watts for the inverter before switching loss. Therefore selecting two parallel devices solely from 25 C RDS(on), headline ID or RthJC would be unsafe. N=3 materially lowers conduction but increases device count, gate charge, layout area and sharing complexity.
-
-Traceability editing briefly produced a compact replacement commit; the following commit immediately restored explicit authority to the exact historical TR-001..TR-046 blob and added TR-047 as an additive continuation. No historical Git object or A2/B1 evidence was deleted. Future consolidation should reconstruct the full matrix from blob `558a79e824d957844766031e357996bc8e0cee01` plus TR-047.
+1. Exact production-motor Ld/Lq or equivalent measured PWM ripple inductance for final PWM freeze.
+2. Exact battery cell/pouch selection, discharge curve, minimum loaded bus, sag, usable SOC, BMS behavior and pack mass.
+3. Airframe / battery / fixed-equipment mass allocation inside the <=80 kg operating-empty target.
+4. Environmental envelope: min/max ambient, altitude, ingress and associated derating.
+5. Exact switching-energy/waveform correlation, guaranteed hot-resistance policy, transient ZthJC, TIM/baseplate model and parallel current sharing.
+6. Numeric OV/UV/OCP/OTP/watchdog/command-timeout requirements.
+7. G2 exact power-stage/control/sensing/DC-link architecture.
 
 ## Exact next recommended tasks
 
-1. Build a parameterized switching-loss screen from exact primary-source switching conditions without inventing Eon/Eoff where unavailable.
-2. Obtain/measure exact motor L/R using the already-defined PB-03 impedance procedure before PWM freeze.
-3. Add transient ZthJC and case-to-baseplate/TIM thermal model once source/mechanical inputs are controlled.
-4. Continue S1.3 pack/mission-energy closure independently when evidence permits.
+1. Continue **S1.3 battery architecture** using PB-04's 4.47 kWh / 67.1 Ah nominal bound: compare real high-rate 18S-compatible cell/pack candidates, pack mass, current capability and voltage sag; do not freeze an exact pack until loaded-minimum-bus and mass closure are defensible.
+2. In parallel, obtain exact production motor winding L/R or execute `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`; then close S1.2 final PWM from the 24-32 kHz preferred analysis window.
+3. Proceed to S1.4 environment/protection once battery sag/minimum-bus and PWM parents are sufficiently bounded.
+4. Do not allocate `U1-SCH-R001` until AR-001 and AR-002 are PASS.
 
 Dependency chain:
 
-`PB-03 -> exact motor R/L + switching/hot thermal evidence -> PWM -> S1.3 18S energy/min bus -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
+`PB-04 -> S1.2 exact motor L/ripple + S1.3 exact battery/min bus -> S1.4 environment/protection -> S1.5 exact power stage -> S1.6 closeout -> G1 -> G2 -> U1-SCH-R001`
 
-## Next-run briefing
-
-Start from PB-03, `PWM_RIPPLE_LOSS_STUDY_PB03.md`, `MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md`, `POWER_STAGE_TRADE_PB03_G2_PREWORK.md` and the new `POWER_STAGE_HOT_THERMAL_SENSITIVITY_PB03.md`. Keep PWM, exact MOSFET count/MPN, Khot guarantee, thermal stack, pack energy and environment OPEN. Do not treat the Khot sensitivity points as datasheet limits. Preserve the exact TR-001..TR-046 history and append future traceability rather than replacing it.
-
-Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 54.3% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
+Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 60.9% / Backlog DONE 8% / Major gates 0% / component-bearing U1 schematic 0%**.
