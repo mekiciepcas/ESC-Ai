@@ -1,9 +1,9 @@
 # ESC autonomous handoff
 
-Date: 2026-09-19 15:14+03:00  
+Date: 2026-09-19 15:22+03:00  
 Branch: `uav-rebaseline`  
-Status: `PROGRESS_REQUIREMENTS_STRUCTURE_AUTHORITY_COMPLETE`  
-Repository HEAD immediately before this handoff update: `734040b8b3d25327a66bb0a3b1043bcf2f939ecc`.
+Status: `PROGRESS_AUX_INVENTORY_AND_CONTROL_BENCH_CONTRACT_COMPLETE`  
+Repository branch tree observed at start of run: `d090db87a818e7ff342faa747f3ab052e52a4cc3`. Latest known content commit before this handoff write: `1b7d995a37db0cc4326bdb8273d495714b04e4c6`.
 
 ## Progress percentages
 
@@ -12,61 +12,62 @@ Repository HEAD immediately before this handoff update: `734040b8b3d25327a66bb0a
 - Backlog tasks explicitly DONE: **1/25 = 4%**.
 - Major product gates closed: **0/8 = 0%**.
 
-The 100% requirements figure means the planned domain/schema/authority structure is complete. It does not mean product-specific requirement values, design, verification or release are complete.
+The percentages did not change because this run deliberately completed safe G2 prework without fabricating or promoting any still-open G0/G1 product value. Engineering evidence depth increased even though the conservative gate/backlog counters remain unchanged.
 
 ## Run summary
 
-This run first verified the current handoff, product plan, G1 matrix, backlog, mission requirements, traceability and autonomy state against the actual `uav-rebaseline` branch. The user then explicitly authorized continuing with the planned requirements-structure completion and requested percentage progress in every output. A top-level requirements authority, human-readable specification, verification matrix, percentage snapshot and updated completion checklist were created. Unknown product values remain OPEN/null/TBD; no competitor value, screening case, architecture candidate or legacy rating was promoted to a product requirement.
+The run verified the actual `uav-rebaseline` tree and re-read the current autonomy state, handoff, product plan, mission requirements, requirements master/progress, backlog and traceability authorities. The previously targeted B1 auxiliary-load inventory and STM32G474-vs-TMS320F280041C pretrade are now present in the branch and were checked for scope discipline. The main new engineering output is a common executable control-platform bench contract (`CONTROL_PLATFORM_BENCH_CONTRACT.md`) defining CPB-01..12 measurements for both MCU candidates without inventing timing results or selecting a winner. Traceability now contains explicit auxiliary-load-budget and MCU-benchmark rows.
 
 ## Tasks attempted / completed
 
-1. Re-read and verified `AUTONOMOUS_HANDOFF.md`, `UAV_PRODUCT_PLAN.md`, `G1_REQUIREMENTS_MATRIX.json`, `uav_backlog.json`, `mission_requirements.json`, `UAV_TRACEABILITY.md` and `autonomy_state.json`.
-2. Confirmed G0/G1 remain OPEN and the current G1 matrix is 1 PASS / 45 OPEN.
-3. Added `REQUIREMENTS_MASTER.json` as the top-level requirements-structure authority.
-4. Defined 12 planned domains: SYS, VEH, PROP, PWR, INV, SNS, CTRL, SAF, IF, ENV, MFG and VER.
-5. Added a mandatory child-requirement schema: ID, parent/domain, statement, status, value/range, source/evidence, rationale, verification method, acceptance criteria, dependencies and revision.
-6. Added explicit anti-hallucination rules for unknown values, competitor data, legacy evidence, simulation/physical-test distinction and release claims.
-7. Added `REQUIREMENTS_SPEC.md` as the human-readable hierarchy, gate semantics and percentage-reporting rule.
-8. Added `REQUIREMENTS_VERIFICATION_MATRIX.json` with domain verification methods and evidence levels from ANALYSIS through QUALIFICATION.
-9. Added `REQUIREMENTS_PROGRESS.json` with machine-readable percentages.
-10. Updated `REQUIREMENTS_COMPLETION_CHECKLIST.md` so structural completion and system-value closure cannot be conflated.
-11. Updated `autonomy_state.json` to AUTO-STATE-19 and persisted the user's progress-percentage reporting rule.
+1. Verified repository branch/tree and required planning authorities against `uav-rebaseline`.
+2. Verified `B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md`: B1 rail tree and visible consumers are inventoried, source current ratings are explicitly not treated as U1 loads, and unknown fan/gate/Hall/interface/MCU/analog loads remain OPEN.
+3. Verified `CONTROL_PLATFORM_PRETRADE.md`: exact STM32G474 and TMS320F280041C candidate evidence is compared without selecting an MCU.
+4. Created `CONTROL_PLATFORM_BENCH_CONTRACT.md` with a common logical workload and CPB-01..12 measurement contract covering reset-safe PWM, complementary PWM, PWM/ADC synchronization, acquisition skew, hardware fault latency, FOC execution, ISR jitter, CAN load, memory footprint, watchdog/reset, brownout and exact 64-pin pin mux.
+5. Added derived CTRL/SAF/IF bench requirements while keeping numeric limits dependent on frozen parent requirements.
+6. Updated `UAV_TRACEABILITY.md`: TR-011/TR-012/TR-020/TR-028 now point to the new evidence; TR-034 records auxiliary load-budget status and TR-035 records MCU benchmark acceptance status.
+7. Updated `autonomy_state.json` to AUTO-STATE-20.
 
 ## Files changed
 
-- `planning/REQUIREMENTS_MASTER.json` — new top-level requirement authority; corrected to REQ-MASTER-02 domain/schema structure.
-- `planning/REQUIREMENTS_SPEC.md` — new human-readable requirement specification structure.
-- `planning/REQUIREMENTS_VERIFICATION_MATRIX.json` — new verification/evidence authority.
-- `planning/REQUIREMENTS_PROGRESS.json` — new machine-readable percentage snapshot.
-- `planning/REQUIREMENTS_COMPLETION_CHECKLIST.md` — updated with authorities and separate structure/value/gate metrics.
-- `planning/autonomy_state.json` — updated to AUTO-STATE-19 with progress/reporting policy.
-- `planning/AUTONOMOUS_HANDOFF.md` — updated.
+- `planning/CONTROL_PLATFORM_BENCH_CONTRACT.md` — new common executable MCU comparison/acceptance contract.
+- `planning/UAV_TRACEABILITY.md` — linked auxiliary inventory and MCU pretrade/bench evidence; added TR-034 and TR-035.
+- `planning/autonomy_state.json` — AUTO-STATE-20 with completed work, blockers and next candidates.
+- `planning/AUTONOMOUS_HANDOFF.md` — this continuity record.
 
-## Engineering / process decisions made
+Verified existing evidence used this run:
+- `planning/B1_AUXILIARY_LOAD_DOMAIN_INVENTORY.md`
+- `planning/CONTROL_PLATFORM_PRETRADE.md`
+- `planning/REQUIREMENTS_MASTER.json`
+- `planning/REQUIREMENTS_PROGRESS.json`
+- `planning/UAV_PRODUCT_PLAN.md`
+- `planning/mission_requirements.json`
+- `planning/uav_backlog.json`
 
-- Requirements **structure completeness** and **product-value closure** are now separate tracked metrics.
-- The planned structure is considered complete when all 12 domains have authority, gate ownership, child schema and verification linkage. This status is now 100%.
-- `G1_REQUIREMENTS_MATRIX.json` remains the controlling numerical/selection closure authority for G0/G1A/G1B/G1C/G1, and remains only 2.2% PASS.
-- Requirements remain distributed by functional child authority rather than copying all values into one giant file; this avoids silent divergence from existing evidence files.
-- Every future user-facing project progress output must include at least requirements-structure %, G1 system-freeze %, and backlog-DONE %; any broader engineering percentage must be labeled an estimate.
-- No final architecture, voltage class, MCU, driver, battery, rotor count, production BOM or verification result was selected by this run.
+## Engineering decisions made
+
+- No MCU selected. STM32 B1 reuse and TI motor-control integration remain trade factors only.
+- The MCU decision must use the same representative workload and traceable timing/safety evidence on both surviving candidates; CPU MHz alone is explicitly insufficient.
+- Fault-to-PWM-inactive latency must eventually be physically measured and compared with the final semiconductor safe-action budget.
+- FOC execution margin must be calculated from measured worst-case execution time and the frozen control/PWM period; no runtime number was invented.
+- Existing B1 regulator headline ratings remain source capabilities, not U1 load requirements.
+- Exact U1 auxiliary converter selection remains blocked by final VBUS transient plus a real U1 load budget.
 
 ## Calculations / evidence added
 
-- Requirements structure coverage: 12 defined domains / 12 planned domains = 100%.
-- G1 value closure: 1 PASS / 46 required rows = 2.17%, reported as 2.2%.
-- Conservative backlog completion: 1 DONE / 25 tasks = 4%.
-- Major gate closure: 0 / 8 = 0%.
+No new physical measurement was claimed. The new evidence is a reproducible measurement contract rather than fabricated timing values.
 
-These are repository-state metrics, not subjective engineering-completion estimates.
+The verified B1 auxiliary inventory carries one bounded arithmetic result: the three visible passive trip-reference divider currents total approximately 0.371 mA at 3.3 V. This is only a passive-divider subtotal and is not promoted to total +3V3A demand.
+
+The control benchmark now defines evidence records for exact MCU/package, board revision, toolchain, compiler flags, clock tree, PWM/ADC setup, firmware SHA, measurement equipment/sample count, timing statistics and anomalies. This closes a process/evidence gap without closing the MCU selection itself.
 
 ## Assumptions and evidence level
 
-- 70–100 kg remains the user target payload range, not MTOW: USER TARGET / repository evidence.
-- Requirements structure 100%: STRUCTURAL COVERAGE METRIC relative to the explicitly planned 12-domain hierarchy; it is not a claim that no future derived requirement can ever be added.
-- G1 2.2%: DIRECT REPOSITORY MATRIX COUNT from `G1_REQUIREMENTS_MATRIX.json`.
-- Backlog 4%: DIRECT REPOSITORY STATUS COUNT from `uav_backlog.json`; IN_PROGRESS and safe G2 prework are intentionally excluded from DONE.
-- No physical measurement, SPICE result, flight validation or production qualification was introduced.
+- 70–100 kg remains USER TARGET payload, not MTOW.
+- B1 auxiliary topology/load visibility is LEGACY REPOSITORY EVIDENCE, not a U1 requirement.
+- STM32G474 and TMS320F280041C family/device capabilities in the pretrade are PRIMARY MANUFACTURER EVIDENCE; final execution margin is not yet evidence-backed.
+- CPB-01..12 are DEFINED VERIFICATION REQUIREMENTS / PREWORK. Numeric thresholds that depend on PWM, semiconductor protection, sensing or FC protocol remain OPEN.
+- No physical bench, dyno, flight, thermal or EMI result was introduced.
 
 ## Unresolved blockers
 
@@ -76,23 +77,26 @@ These are repository-state metrics, not subjective engineering-completion estima
 - Battery series/min/nom/full-charge/transient envelope, current, usable energy, sag and disconnect behavior.
 - Final switching/harness/regen/BMS-disconnect transient ceiling.
 - Final semiconductor class/count, gate driver, auxiliary converter, sensing topology and thermal architecture.
+- U1 auxiliary loads: gate-drive dynamic power, fan inrush, Hall/interface loads, MCU/control dynamic load and analog rail sequencing/fault load.
+- MCU freeze: final PWM/ADC workload, hardware-fault latency budget, CAN contract and executable candidate benchmark evidence.
 - Exact DC-link capacitors, shunt, fuse, precharge, regen clamp, connectors and production BOM.
 - Physical bench/dyno/flight evidence.
 
 ## Regressions / risks discovered
 
-- No repository regression identified in this run.
-- A 100% structure metric can be misread as product completion; the repository now explicitly prevents that interpretation by pairing it with the 2.2% G1 value-closure metric.
-- A single monolithic copied requirement table would risk divergence from `mission_requirements.json`, G1 matrix and specialized evidence files; therefore the new master points to child authorities instead of duplicating unsupported values.
-- Future derived requirements may be added under the existing domains without reducing current planned-domain structure coverage; such additions must still follow the mandatory child schema.
+- No repository regression identified.
+- Benchmark-contract completion must not be mistaken for benchmark-result completion; no CPB timing measurement exists yet.
+- B1 fan <=0.2 A remains a legacy starting budget only; fan inrush is explicitly unmeasured.
+- A regulator maximum-current rating cannot substitute for rail demand. Doing so would conceal startup/transient and thermal risk.
+- MCU family peripheral counts cannot substitute for exact package pin-mux and trigger-routing proof.
 
 ## Exact next recommended tasks
 
-1. Inventory existing B1 auxiliary loads and power domains from repository evidence to produce a bounded legacy load budget without promoting it to a U1 requirement.
-2. Begin primary-source STM32G474 vs TMS320F280041C control-platform pretrade focused on PWM/ADC synchronization, trip resources/latency, CAN, motor-control resources, execution/toolchain and availability; do not select a winner before parent requirements close.
-3. Map any newly derived requirements from those studies into the appropriate master domain/child authority while keeping unresolved values OPEN.
-4. Deepen `U1_BOM_CANDIDATES.json` only where exact support-part evidence is independent of unresolved G1 ratings.
-5. Keep vehicle-dependent G0/G1 values OPEN until supplied or explicitly approved.
+1. Audit remaining critical B1 legacy decisions for traceability gaps that can be closed without G1 values.
+2. Add a machine-readable empty CPB result schema/template so future STM32/TI measurements cannot omit toolchain, exact part, timing distribution or evidence class; leave measurement fields null.
+3. Deepen `U1_BOM_CANDIDATES.json` only for support components whose exact selection is independent of unresolved G1 ratings.
+4. Map any newly derived requirements into the existing 12-domain authority without altering OPEN product values.
+5. Keep G0/G1 values OPEN until vehicle-specific inputs are supplied or explicitly approved.
 
 ## Dependency chain
 
@@ -100,4 +104,4 @@ These are repository-state metrics, not subjective engineering-completion estima
 
 ## Next-run briefing
 
-The requirement-domain/schema work is no longer the critical path. Do not spend the next run reformatting requirements. Start with the B1 auxiliary-load/power-domain inventory, then move directly into the STM32G474 vs TMS320F280041C control-platform pretrade. Any new requirement discovered should be linked into the existing SYS/VEH/PROP/PWR/INV/SNS/CTRL/SAF/IF/ENV/MFG/VER hierarchy rather than creating a new parallel requirements system. Report requirements structure %, G1 value closure %, and backlog DONE % in the user-facing output.
+Do not redo the auxiliary inventory or source-level MCU comparison. They are now usable prework. The next safe action is to make the CPB evidence format machine-readable with null measurement fields, then continue traceability/BOM support-part work that does not depend on open G1 ratings. Do not claim MCU selection or benchmark performance. Report requirements structure %, G1 value closure %, and backlog DONE % in every user-facing progress output.
