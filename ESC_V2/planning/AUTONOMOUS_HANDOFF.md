@@ -1,62 +1,77 @@
 # ESC autonomous handoff
 
-Tarih: 2026-09-19  
-Branch: `uav-rebaseline`  
-Durum: `READY_FOR_NEXT_RUN`
+Date: 2026-09-19 03:23+03:00
+Branch: `uav-rebaseline`
+Status: `PROGRESS_G1_DEPENDENCIES`
 
-Bu dosya her otonom çalışma koşusunun sonunda güncellenecek ve bir sonraki koşunun ilk okuduğu süreklilik kaydı olacaktır. Bu kayıt tek başına design authority değildir; her koşuda gerçek repository durumu ile doğrulanacaktır.
+## Run summary
 
-## Son doğrulanmış proje yönü
+This run verified the existing heavy-UAV benchmark against current manufacturer primary sources and advanced two G1 dependency-opening analyses without freezing unknown product values.
 
-- Ürün hedefi: 70–100 kg payload sınıfında heavy-lift / agricultural multirotor UAV ESC.
-- Eski 3 kW / 13S / Golden Motor B1: tarihsel candidate/reference; UAV ürün baseline değildir.
-- Aktif design authority: `../design_basis.json`, `UAV_PRODUCT_PLAN.md`, `UAV_REBASELINE.md`, `UAV_TRACEABILITY.md`, `mission_requirements.json`.
-- A2/B1 geçmişi korunacak; `main` otomatik olarak değiştirilmeyecek.
-- Final Gerber/production release ve flight-qualified iddiası kullanıcı onayı + fiziksel kanıt olmadan yapılmayacak.
+## Tasks attempted
 
-## Çalışma zinciri
+- Continue UAV-003 source-backed propulsion benchmark verification.
+- Advance UAV-005 battery architecture trade study while final UAV-004 remains blocked.
+- Advance UAV-006 electrical-envelope methodology parametrically while final operating points remain blocked.
+- Update legacy B1 traceability with new evidence.
 
-`mission -> MTOW -> rotor/thrust -> motor/prop -> battery -> ESC electrical envelope -> power stage -> protection/sensing/thermal -> firmware -> PCB -> staged validation`
+## Tasks completed / measurable progress
 
-## Başlangıç durumu
+1. Existing XAG P150 Max values were re-verified from the current manufacturer specification: 136 kg max spraying MTOW, 4 motors, 56 kgf max thrust/motor, 4.85 kW rated power/motor, 140 A continuous ESC, 380 A/30 s maximum output current.
+2. Hobbywing X15 G2 was re-verified from its 2026 manufacturer specification: 18S/69 V, 25–80 V input, 4.64 kW rated input, 3.971 kW rated output, 120 A continuous ESC, 300 A/3 s peak, 82 kgf max thrust and 37.5 kg recommended takeoff weight/axis.
+3. Added `battery_architecture_pretrade.md`: carries ~50–53 V high-current and 18S/69 V candidates forward instead of inheriting 13S.
+4. Quantified ideal bus-current reduction at equal power: 69 V versus 52.5 V reduces current by about 23.9%; ideal conductor I²R loss ratio is about 0.579 (~42% lower), before mass/device/switching trade effects.
+5. Added `esc_envelope_parametric.md` with Q150, H175 and O175 scenarios and explicit OPEN fields required for UAV-006 closure.
+6. Updated `UAV_TRACEABILITY.md` so 3 kW, 13S and 100 V semiconductor assumptions are linked to the new evidence and remain unfrozen.
 
-### Tamamlanan yön düzeltmeleri
+## Files changed
 
-- UAV uygulama hedefi aktif tasarım temeline alındı.
-- Eski ground-drive assumption ürün otoritesinden çıkarıldı.
-- Ürün geliştirme gate planı oluşturuldu.
-- Faz 2/Faz 3/B1 için traceability yaklaşımı oluşturuldu.
-- Bilinmeyen görev parametreleri `null/TBD/OPEN` politikasıyla ayrıldı.
+- `planning/battery_architecture_pretrade.md` — new
+- `planning/esc_envelope_parametric.md` — new
+- `planning/UAV_TRACEABILITY.md` — updated
+- `planning/autonomy_state.json` — updated
+- `planning/AUTONOMOUS_HANDOFF.md` — updated
 
-### Kritik açık işler
+## Engineering decisions
 
-1. G0 mission / mass envelope kapatma.
-2. Rotor mimarisi ve thrust sizing.
-3. Gerçek ağır UAV motor/propulsion benchmark kanıtlarının repository içinde kalıcılaştırılması.
-4. Battery architecture.
-5. ESC continuous/peak voltage-current-power envelope.
-6. Mevcut B1/Faz2/Faz3 tasarımının yeni envelope'a göre requalification'ı.
+- Do not preserve 13S as product baseline.
+- Carry at least two voltage families: ~50–53 V and 18S/69 V.
+- 18S is the preferred family for deeper analysis, not a frozen choice, because it has current heavy-agricultural precedent and materially reduces bus current at 4–5 kW/axis.
+- Legacy 100 V MOSFET class is not frozen. 18S reaches 75.6 V at 4.2 V/cell, leaving transient margin that must be quantified before VDS selection.
+- Legacy 3 kW is not accepted as a universal heavy-lift rating; current quad-class references are ~4.64–4.85 kW rated/axis.
 
-### Bilinen blokajlar
+## Evidence level / assumptions
 
-- Airframe empty mass bilinmiyor.
-- Battery mass bilinmiyor.
-- Nominal payload henüz dondurulmadı.
-- Hedef hover / flight duration bilinmiyor.
-- Çevresel zarf ve single-motor failure beklentisi henüz dondurulmadı.
+- Manufacturer specifications: SOURCE_BACKED.
+- 52.5 V vs 69 V current and I²R comparisons: CALCULATED_FIRST_ORDER.
+- Q150/H175/O175: PARAMETRIC_SCENARIOS, not product requirements.
+- 18S preference: TRADE_STUDY_PREFERENCE, not design freeze.
+- No physical measurements or flight qualification claims were introduced.
 
-Bu blokajlar bütün işi durdurmaz. Güvenilir kaynaklarla yapılabilecek propulsion benchmark, rotor trade study, mimari analiz, hesap altyapısı, firmware/verification scaffolding ve B1 requalification hazırlıkları bağımsız olarak ilerletilebilir.
+## Unresolved blockers
 
-## Sonraki koşu için çalışma kuralı
+- G0 cannot freeze without airframe mass, battery mass, nominal payload, mission duration, environmental envelope and failure/degraded-mode policy.
+- UAV-004 cannot freeze until rotor architecture/MTOW is selected and exact propulsion operating points are sourced.
+- Phase RMS/peak current cannot be inferred safely from bus P/V; motor operating data/model remains required.
+- DC-bus transient ceiling remains unknown, so semiconductor VDS class cannot close.
 
-1. Önce bu dosyayı ve machine-readable `autonomy_state.json` dosyasını oku.
-2. Repository HEAD ve ilgili plan/backlog dosyalarıyla tutarlılığı kontrol et.
-3. En yüksek öncelikli unblocked işi seç.
-4. Bir iş tamamlanınca aynı koşu içinde sıradaki unblocked işe geç.
-5. Bir iş bloklanırsa blocker kaydet ve başka bağımsız işe geç.
-6. Salt görünür aktivite için filler commit yapma.
-7. Koşu sonunda bu dosyayı gerçek değişiklikler, kanıtlar, riskler ve sonraki görevlerle güncelle.
+## Risks/regressions discovered
+
+- If 18S is selected, 100 V MOSFET margin may be too narrow depending on switching/regen/BMS-disconnect overshoot.
+- B1's 80 V bus-check convention cannot automatically be treated as the final verification ceiling for an 18S design.
+- A high-current ~50 V architecture may preserve easier voltage margin but increases conductor, connector and parallel-device burden.
+
+## Exact next recommended tasks
+
+1. Obtain/extract a source-backed X15 G2 thrust-current-power table and create scenario operating-point interpolation for Q150.
+2. Find a second current propulsion system with a published 55–60 kgf-class thrust/power/current table for H175 comparison.
+3. Create `propulsion_operating_points.json` with scenario labels and evidence references; do not mark UAV-004 complete until MTOW/rotor freeze.
+4. Perform B1 voltage-compatibility precheck against the 18S candidate: aux buck, voltage dividers, gate driver, capacitors, connectors and FET class.
+
+## Dependency chain
+
+`G0 inputs -> rotor freeze -> source-backed motor/prop operating points -> battery freeze -> ESC electrical envelope -> semiconductor/PWM/control selection -> schematic/firmware/PCB`
 
 ## Next-run briefing
 
-İlk hedef, mevcut planın sadece metin olarak kalmamasını sağlamak: G0/G1'e hizmet eden kaynaklı propulsion benchmark ve hesap artefaktlarını repository'ye bağla; ardından bunlardan rotor/motor/battery/ESC sizing kararlarını türet. Bilinmeyen kullanıcı parametrelerini uydurma; parametrik aralıklarla çalış ve hangi kararın hangi girdiye duyarlı olduğunu göster. Eğer G0 tamamen kapanamıyorsa, G1 için güvenilir aralık analizi üret ve kritik kullanıcı girdilerini net biçimde ayır.
+Start with primary-source propulsion performance tables, not generic ratings. Convert thrust points relevant to Q150/H175 into electrical input power/current and RPM only where manufacturer tables provide those values. Keep all scenario outputs explicitly non-frozen. If a full X15 G2 table cannot be retrieved, use the published 37.5 kg/axis efficiency (8 g/W) only as a source-backed rated-point check and label derived power accordingly; do not fabricate intermediate curve points. Then use the 18S candidate to audit B1 component voltage compatibility without editing historical A2/B1 design files.
