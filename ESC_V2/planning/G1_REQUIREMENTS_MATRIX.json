@@ -1,18 +1,19 @@
 {
-  "revision": "G1-MATRIX-03",
+  "revision": "G1-MATRIX-04",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
-  "purpose": "Mechanically expose every critical system requirement that must close before G1 SYSTEM FREEZE without filling unsupported values.",
+  "purpose": "Expose every critical system requirement that must close before G1 SYSTEM FREEZE and record controlled PB-01 product decisions without pretending later verification is complete.",
   "gate_status": "OPEN",
   "completion_rule": "G1 may close only when every REQUIRED row is PASS with a numeric/bounded value and evidence reference, and G0/G1A/G1B/G1C parent gates are closed.",
+  "product_baseline_authority": "PRODUCT_BASELINE_PB-01.json",
   "summary": {
     "required_rows": 46,
-    "pass": 1,
-    "open": 45
+    "pass": 8,
+    "open": 38
   },
   "rows": [
-    {"id":"G0-01","field":"system_requirement.payload_target_kg.min_max","gate":"G0","status":"PASS","value":"70-100 kg payload target","evidence":["design_basis.json","mission_requirements.json"],"note":"Nominal payload still open; this row only confirms user target bounds."},
-    {"id":"G0-02","field":"mission_requirements.requirements.payload.nominal_kg","gate":"G0","status":"OPEN","blocker":"vehicle-specific mission definition"},
+    {"id":"G0-01","field":"system_requirement.payload_target_kg.min_max","gate":"G0","status":"PASS","value":"70-100 kg payload target","evidence":["PRODUCT_BASELINE_PB-01.json","design_basis.json","mission_requirements.json"],"note":"Nominal payload still open; this row confirms frozen user target bounds."},
+    {"id":"G0-02","field":"mission_requirements.requirements.payload.nominal_kg","gate":"G0","status":"OPEN","blocker":"nominal payload product definition"},
     {"id":"G0-03","field":"mission_requirements.requirements.airframe_empty_mass_kg","gate":"G0","status":"OPEN","blocker":"vehicle-specific mass model"},
     {"id":"G0-04","field":"mission_requirements.requirements.battery_mass_kg","gate":"G0","status":"OPEN","blocker":"battery architecture and vehicle energy target"},
     {"id":"G0-05","field":"mission_requirements.requirements.mission_equipment_mass_kg","gate":"G0","status":"OPEN","blocker":"vehicle-specific agricultural equipment"},
@@ -23,23 +24,23 @@
     {"id":"G0-10","field":"mission_requirements.requirements.environment.minimum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
     {"id":"G0-11","field":"mission_requirements.requirements.environment.maximum_ambient_c","gate":"G0","status":"OPEN","blocker":"operating environment"},
     {"id":"G0-12","field":"mission_requirements.requirements.environment.maximum_operating_altitude_m","gate":"G0","status":"OPEN","blocker":"operating environment"},
-    {"id":"G0-13","field":"mission_requirements.requirements.vehicle.single_motor_failure_requirement","gate":"G0","status":"OPEN","blocker":"vehicle-level failure policy"},
+    {"id":"G0-13","field":"mission_requirements.requirements.vehicle.single_motor_failure_requirement","gate":"G0","status":"PASS","value":"CONTROLLED_LANDING_REQUIRED; continued hover at maximum payload not required","evidence":["PRODUCT_BASELINE_PB-01.json","mission_requirements.json","rotor_trade_study.md"],"note":"Physical degraded-control capability remains a later verification obligation."},
 
-    {"id":"G1A-01","field":"system_requirement.vehicle_architecture","gate":"G1A","status":"OPEN","blocker":"G0 MTOW/failure policy; rotor_trade_study exists but final architecture not selected"},
-    {"id":"G1A-02","field":"system_requirement.rotor_count","gate":"G1A","status":"OPEN","blocker":"G1A-01"},
-    {"id":"G1A-03","field":"system_requirement.required_hover_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"MTOW + rotor count"},
-    {"id":"G1A-04","field":"system_requirement.required_max_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"thrust margin + degraded-mode policy"},
-    {"id":"G1A-05","field":"system_requirement.thrust_margin","gate":"G1A","status":"OPEN","blocker":"vehicle control/failure requirement"},
+    {"id":"G1A-01","field":"system_requirement.vehicle_architecture","gate":"G1A","status":"PASS","value":"X8 coaxial: 4 arms / 8 independently controlled propulsion channels","evidence":["PRODUCT_BASELINE_PB-01.json","rotor_trade_study.md","PROPULSION_SCREENING_PRETRADE.json"],"note":"MTOW and coaxial interference are still open sizing inputs; changing the architecture now requires a new product-baseline revision."},
+    {"id":"G1A-02","field":"system_requirement.rotor_count","gate":"G1A","status":"PASS","value":8,"evidence":["PRODUCT_BASELINE_PB-01.json","mission_requirements.json","design_basis.json"]},
+    {"id":"G1A-03","field":"system_requirement.required_hover_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"actual MTOW + coaxial interference sizing"},
+    {"id":"G1A-04","field":"system_requirement.required_max_thrust_per_rotor_n","gate":"G1A","status":"OPEN","blocker":"MTOW + thrust margin + degraded-mode proof"},
+    {"id":"G1A-05","field":"system_requirement.thrust_margin","gate":"G1A","status":"OPEN","blocker":"vehicle control and propulsion margin requirement"},
 
     {"id":"G1B-01","field":"system_requirement.propeller_diameter_in","gate":"G1B","status":"OPEN","blocker":"final motor/prop operating-point selection"},
     {"id":"G1B-02","field":"system_requirement.motor_kv","gate":"G1B","status":"OPEN","blocker":"final motor/prop operating-point selection"},
     {"id":"G1B-03","field":"system_requirement.electrical_rpm_max","gate":"G1B","status":"OPEN","blocker":"motor pole-pairs + speed operating point"},
 
-    {"id":"G1C-01","field":"system_requirement.battery_series_count","gate":"G1C","status":"OPEN","blocker":"propulsion point and pack architecture; 18S remains candidate only"},
+    {"id":"G1C-01","field":"system_requirement.battery_series_count","gate":"G1C","status":"OPEN","blocker":"exact chemistry/series remains open inside the PB-01 <=80 V full-charge ceiling"},
     {"id":"G1C-02","field":"system_requirement.dc_bus_min_v","gate":"G1C","status":"OPEN","blocker":"cell chemistry, sag and cutoff"},
-    {"id":"G1C-03","field":"system_requirement.dc_bus_nominal_v","gate":"G1C","status":"OPEN","blocker":"battery architecture"},
-    {"id":"G1C-04","field":"system_requirement.dc_bus_full_charge_v","gate":"G1C","status":"OPEN","blocker":"battery architecture"},
-    {"id":"G1C-05","field":"system_requirement.dc_bus_transient_max_v","gate":"G1C","status":"OPEN","blocker":"harness/PCB inductance, switching, regen, BMS/contact behavior, clamp design"},
+    {"id":"G1C-03","field":"system_requirement.dc_bus_nominal_v","gate":"G1C","status":"OPEN","blocker":"exact battery architecture"},
+    {"id":"G1C-04","field":"system_requirement.dc_bus_full_charge_v","gate":"G1C","status":"PASS","value":"<=80.0 V DC","evidence":["PRODUCT_BASELINE_PB-01.json","design_basis.json","ESC_ELECTRICAL_ENVELOPE_PRETRADE.json"],"note":"This is a bounded U1 product requirement, not a statement that battery chemistry/series count is already selected."},
+    {"id":"G1C-05","field":"system_requirement.dc_bus_transient_max_v","gate":"G1C","status":"PASS","value":"<=120.0 V repetitive controlled semiconductor-terminal stress; normal operation shall not rely on avalanche","evidence":["PRODUCT_BASELINE_PB-01.json","design_basis.json","POWER_STAGE_VOLTAGE_CLASS_SCREENING.md","DC_BUS_TRANSIENT_REQUIREMENTS.md"],"note":"Must later be physically measured at staged switching/regen/disconnect conditions."},
 
     {"id":"G1-01","field":"system_requirement.esc_continuous_power_w","gate":"G1","status":"OPEN","blocker":"selected propulsion hover/continuous point"},
     {"id":"G1-02","field":"system_requirement.esc_peak_power_w_and_duration","gate":"G1","status":"OPEN","blocker":"selected max-thrust point and overload duration"},
@@ -47,22 +48,23 @@
     {"id":"G1-04","field":"system_requirement.esc_peak_phase_current_a_and_duration","gate":"G1","status":"OPEN","blocker":"motor/prop transient operating point"},
     {"id":"G1-05","field":"system_requirement.esc_continuous_dc_current_a","gate":"G1","status":"OPEN","blocker":"battery voltage + continuous propulsion input power"},
     {"id":"G1-06","field":"system_requirement.esc_peak_dc_current_a_and_duration","gate":"G1","status":"OPEN","blocker":"battery voltage + peak propulsion input power/duration"},
-    {"id":"G1-07","field":"system_requirement.pwm_frequency_range_hz","gate":"G1","status":"OPEN","blocker":"motor inductance/eRPM + semiconductor loss trade; 20/40 kHz legacy values are not baseline"},
+    {"id":"G1-07","field":"system_requirement.pwm_frequency_range_hz","gate":"G1","status":"OPEN","blocker":"motor inductance/eRPM + 150 V semiconductor loss trade"},
     {"id":"G1-08","field":"system_requirement.current_sense_range_a","gate":"G1","status":"OPEN","blocker":"phase peak current + protection margin"},
     {"id":"G1-09","field":"system_requirement.dc_link_ripple_current_requirement_a_rms","gate":"G1","status":"OPEN","blocker":"DC current waveform/PWM/propulsion point"},
-    {"id":"G1-10","field":"system_requirement.dc_link_transient_energy_requirement_j","gate":"G1","status":"OPEN","blocker":"harness/PCB inductance + regen/BMS disconnect behavior"},
+    {"id":"G1-10","field":"system_requirement.dc_link_transient_energy_requirement_j","gate":"G1","status":"OPEN","blocker":"harness/PCB inductance + regen/BMS disconnect energy"},
     {"id":"G1-11","field":"system_requirement.esc_ambient_temperature_range_c","gate":"G1","status":"OPEN","blocker":"G0 environmental envelope"},
     {"id":"G1-12","field":"system_requirement.baseplate_max_temperature_c","gate":"G1","status":"OPEN","blocker":"thermal architecture/derating policy"},
-    {"id":"G1-13","field":"system_requirement.overvoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"battery/transient envelope and energy path"},
+    {"id":"G1-13","field":"system_requirement.overvoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"exact battery operating range and energy-management path; PB-01 only freezes the outer transient ceiling"},
     {"id":"G1-14","field":"system_requirement.undervoltage_threshold_and_response","gate":"G1","status":"OPEN","blocker":"battery sag/cutoff and propulsion safe-state policy"},
     {"id":"G1-15","field":"system_requirement.overcurrent_threshold_latency_and_response","gate":"G1","status":"OPEN","blocker":"phase current envelope + hardware protection architecture"},
     {"id":"G1-16","field":"system_requirement.overtemperature_threshold_and_response","gate":"G1","status":"OPEN","blocker":"thermal limits and sensor placement"},
-    {"id":"G1-17","field":"system_requirement.flight_controller_communication_interface","gate":"G1","status":"OPEN","blocker":"CAN is candidate; final FC interface/protocol not frozen"},
-    {"id":"G1-18","field":"system_requirement.arming_interface_and_state_policy","gate":"G1","status":"OPEN","blocker":"vehicle/flight-controller safety architecture"},
-    {"id":"G1-19","field":"system_requirement.watchdog_requirement","gate":"G1","status":"OPEN","blocker":"control safety requirement"},
-    {"id":"G1-20","field":"system_requirement.command_timeout_and_failsafe_response","gate":"G1","status":"OPEN","blocker":"flight-controller interface and degraded-mode policy"}
+    {"id":"G1-17","field":"system_requirement.flight_controller_communication_interface","gate":"G1","status":"PASS","value":"CAN-FD capable physical layer with Classic CAN compatibility","evidence":["PRODUCT_BASELINE_PB-01.json","mission_requirements.json","CAN_PHYSICAL_LAYER_PRETRADE.md"],"note":"Bit rate, exact transceiver/MPN, termination and application message map remain G2/G4 implementation decisions."},
+    {"id":"G1-18","field":"system_requirement.arming_interface_and_state_policy","gate":"G1","status":"PASS","value":"Power-up/reset=DISARMED; valid FC command requests arm; independent hardware inhibit has final authority; latched fault inhibits PWM; no automatic re-arm","evidence":["PRODUCT_BASELINE_PB-01.json","mission_requirements.json","SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json","FAULT_ARM_STATE_MATRIX.template.json"]},
+    {"id":"G1-19","field":"system_requirement.watchdog_requirement","gate":"G1","status":"OPEN","blocker":"watchdog architecture and timeout still need numeric closure"},
+    {"id":"G1-20","field":"system_requirement.command_timeout_and_failsafe_response","gate":"G1","status":"OPEN","blocker":"command-timeout value and detailed response timing remain open"}
   ],
   "evidence_files": [
+    "PRODUCT_BASELINE_PB-01.json",
     "REQUIREMENTS_COMPLETION_CHECKLIST.md",
     "mission_requirements.json",
     "design_basis.json",
@@ -70,11 +72,14 @@
     "propulsion_benchmark.md",
     "propulsion_operating_points.json",
     "battery_architecture_pretrade.md",
+    "ESC_ELECTRICAL_ENVELOPE_PRETRADE.json",
+    "POWER_STAGE_VOLTAGE_CLASS_SCREENING.md",
+    "SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md",
     "DC_BUS_TRANSIENT_REQUIREMENTS.md",
     "DC_INPUT_PROTECTION_CONTRACT.md",
     "DC_LINK_SELECTION_FRAMEWORK.md",
-    "ADC_CLAMP_INJECTION_CLOSURE.md",
-    "ANALOG_RAIL_BACKPOWER_AUDIT.md"
+    "CAN_PHYSICAL_LAYER_PRETRADE.md",
+    "SAFETY_INTERFACE_DERIVED_REQUIREMENTS.json"
   ],
-  "anti_hallucination_rule": "OPEN rows remain OPEN. Competitor benchmark values, interpolation values and 120/150 V screening cases must not be copied into product requirement fields without a documented vehicle/propulsion/battery decision."
+  "anti_hallucination_rule": "PB-01 documented product decisions may close their mapped rows. All other OPEN rows remain OPEN; benchmarks and interpolation values must not silently become product values. PASS means the requirement value is frozen/traceable, not that later physical verification has already passed."
 }
