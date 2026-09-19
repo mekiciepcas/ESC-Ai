@@ -1,30 +1,33 @@
 {
-  "revision":"AUTO-STATE-30",
+  "revision":"AUTO-STATE-31",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_U1_ALLOCATION_GUARD_PREPARED",
+  "last_run_status":"PROGRESS_DASHBOARD_CURRENT_UAV_STATUS_AUTO_REFRESH",
   "current_gate":"G0_G1",
   "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
   "completed_this_run":[
-    "re_read_required_product_plan_traceability_backlog_mission_requirements_master_progress_handoff_and_state_against_actual_uav_rebaseline_HEAD_c9428523",
-    "verified_product_critical_path_remains_blocked_by_14_real_G0_inputs_and_did_not_substitute_competitor_or_legacy_values",
-    "created_U1_SCHEMATIC_ALLOCATION_READINESS_json_with_explicit_G1_G2_revision_and_G3_evidence_prerequisites",
-    "created_prepare_u1_schematic_revision_py_defaulting_to_dry_run_and_refusing_allocation_unless_readiness_is_READY",
-    "preserved_LEGACY_B1_and_U1_SCH_R000_immutability_and_did_not_allocate_U1_SCH_R001",
-    "recorded_additive_traceability_TR_055_TR_056",
-    "verified_recent_schematic_revision_policy_GitHub_Action_remains_successful"
+    "re_read_current_UAV_plan_backlog_mission_requirements_requirements_progress_autonomy_state_and_handoff_against_uav_rebaseline",
+    "located_existing_ESC_V2_dashboard_and_verified_it_was_still_reading_legacy_B1_3kW_backlog_and_status_sources",
+    "rewrote_dashboard_builder_to_use_current_uav_backlog_REQUIREMENTS_PROGRESS_autonomy_state_G0_input_packet_revision_register_and_KiCad_evidence",
+    "added_simple_language_dashboard_sections_for_what_changed_current_task_next_steps_blockers_missing_G0_inputs_and_revision_status",
+    "kept_structure_progress_G1_value_closure_backlog_DONE_and_component_bearing_schematic_percentages_separate_to_prevent_false_readiness_impression",
+    "created_GitHub_Actions_dashboard_refresh_workflow_with_contents_write_permission_and_path_scoped_non_recursive_generated_commit_behavior",
+    "observed_dashboard_refresh_run_35448814837_complete_successfully",
+    "observed_build_dashboard_PASS_static_validation_PASS_25_task_cards_25_local_links_and_embedded_snapshot_match",
+    "observed_generated_dashboard_commit_136ca270bb2f8eeff4143f697298fb3599f48682",
+    "updated_dashboard_README_with_automatic_and_manual_refresh_instructions"
   ],
   "blocked_tasks":[
     {"task":"freeze_G0_mission_mass_envelope","reason":"14 product-specific vehicle/mission/environment inputs remain unresolved","blocking_scope":"G0_and_final_G1A"},
     {"task":"freeze_UAV_002_rotor_architecture","reason":"actual_MTOW_and_single_motor_failure_policy open","blocking_scope":"G1A_and_UAV004"},
-    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor architecture open","blocking_scope":"G1B"},
+    {"task":"freeze_UAV_004_operating_point","reason":"actual_MTOW_and_final_rotor_architecture open","blocking_scope":"G1B"},
     {"task":"freeze_battery_and_ESC_envelope","reason":"product propulsion operating point not frozen","blocking_scope":"G1C_G1"},
     {"task":"freeze_G2_architecture","reason":"parent G1 electrical and vehicle interface requirements remain open","blocking_scope":"G2"},
     {"task":"allocate_U1_SCH_R001","reason":"allocation readiness AR-001 G1 freeze and AR-002 page-level G2 architecture remain OPEN","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "consolidate_additive_TR_043_through_TR_056_into_canonical_UAV_TRACEABILITY_without_dropping_history",
+    "consolidate_additive_TR_043_through_latest_into_canonical_UAV_TRACEABILITY_without_dropping_history",
     "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and_exact_package_identity",
     "add_non_mutating_tests_for_prepare_u1_schematic_revision_helper_if_safe_without_allocating_R001",
     "when_actual_G0_inputs_are_available_compute_MTOW_and_close_rotor_thrust_chain",
@@ -43,18 +46,23 @@
     "schematic_revision_control_policy_percent":100.0,
     "schematic_revision_policy_ci_validation_percent":100.0,
     "future_u1_g3_erc_policy_definition_percent":100.0,
-    "u1_revision_allocation_guard_definition_percent":100.0
+    "u1_revision_allocation_guard_definition_percent":100.0,
+    "dashboard_current_uav_status_integration_percent":100.0,
+    "dashboard_auto_refresh_ci_percent":100.0
   },
   "evidence_refs":[
+    "dashboard/build_dashboard.py",
+    "dashboard/index.html",
+    "dashboard/snapshot.json",
+    "dashboard/validation.json",
+    "dashboard/README.md",
+    ".github/workflows/dashboard-refresh.yml",
+    "GitHub Actions run 35448814837 success",
+    "generated dashboard commit 136ca270bb2f8eeff4143f697298fb3599f48682",
     "planning/U1_SCHEMATIC_ALLOCATION_READINESS.json",
-    "planning/prepare_u1_schematic_revision.py",
-    "planning/RUN_2026-09-19_1724_TRACEABILITY.md",
-    "planning/SCHEMATIC_REVISION_REGISTER.json",
-    "planning/SCHEMATIC_VERSIONING_POLICY.md",
-    "planning/U1_G3_ERC_POLICY.json",
-    "GitHub Actions run 35448141446 success"
+    "planning/SCHEMATIC_REVISION_REGISTER.json"
   ],
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false,"schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE","superseded_schematic_revision_mutation_allowed":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"This run reduced future configuration-control risk without allocating a component-bearing schematic. U1-SCH-R001 remains unused. Allocation helper is deliberately fail-closed until explicit machine-readable readiness becomes READY."
+  "notes":"The existing dashboard is now wired to the current UAV rebaseline instead of the legacy B1/3 kW planning view. It explains progress in plain Turkish, separates structural/tooling progress from real product closure, exposes current blockers and missing G0 inputs, and auto-regenerates through an observed successful GitHub Actions workflow. Product electrical closure remains unchanged."
 }
