@@ -1,0 +1,134 @@
+{
+  "revision": "PB-07",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "PRODUCT_REBASELINE_DIRECTION_FROZEN_PARTIAL",
+  "supersedes": "PRODUCT_BASELINE_PB-06.json",
+  "purpose": "Rebaseline the UAV ESC product from the former 70-100 kg payload heavy-lift vehicle to a 1.5-3.0 kW aggregate-propulsion product family while preserving non-conflicting control/safety/process decisions.",
+  "change_control": {
+    "rule": "PB-07 supersedes incompatible PB-06 vehicle, battery and ESC sizing values. Later changes to PB-07 frozen values require PB-08 or an explicitly linked ECO; no silent overwrite is allowed.",
+    "production_release_authorized": false,
+    "main_merge_or_release_without_user_approval": false
+  },
+  "new_frozen_decisions": [
+    {
+      "id": "PB-033",
+      "field": "vehicle_aggregate_propulsion_input_power_product_family_range_w",
+      "min": 1500,
+      "max": 3000,
+      "unit": "W",
+      "status": "FROZEN_PRODUCT_DIRECTION",
+      "rationale": "User-approved product pivot: a 1.5-3.0 kW total-propulsion UAV is sufficient, so the previous heavy-lift sizing is no longer the active product objective.",
+      "evidence": ["LOW_POWER_PROPULSION_REBASELINE_PB07.md"]
+    },
+    {
+      "id": "PB-034",
+      "field": "heavy_lift_pb02_pb06_numeric_scope",
+      "value": "SUPERSEDED_AS_ACTIVE_PRODUCT_SCOPE",
+      "status": "FROZEN_REBASELINE_ACTION",
+      "superseded_items": [
+        "70-100 kg payload target and 85 kg nominal payload",
+        "150/165/180 kg MTOW targets",
+        "X8 coaxial / eight-channel rotor baseline",
+        "56x20 inch / 45KV propulsion performance class",
+        "18S / 75.6 V full-charge battery baseline",
+        ">=5.0 kWh pack-energy requirement",
+        ">=500 A continuous and >=1050 A for >=3 s whole-pack requirements",
+        ">=4.8 kW continuous and >=11.5 kW short-duration per-ESC requirements",
+        ">=125 A RMS / >=265 A RMS / >=375 A peak phase-current requirements",
+        ">=150 V power-semiconductor class requirement",
+        ">=90 keRPM controller requirement derived from the old 45KV/42-pole envelope"
+      ],
+      "historical_evidence_preserved": true,
+      "evidence": ["PRODUCT_BASELINE_PB-06.json", "LOW_POWER_PROPULSION_REBASELINE_PB07.md"]
+    }
+  ],
+  "retained_non_conflicting_decisions": [
+    {
+      "field": "nominal_mission_duration_target_min",
+      "value": 10,
+      "comparison": ">=",
+      "status": "RETAINED_FROZEN_TARGET_PENDING_NEW_MASS_ENERGY_CORRELATION"
+    },
+    {
+      "field": "gross_pack_energy_reserve_fraction_min",
+      "value": 0.20,
+      "status": "RETAINED_FROZEN_SIZING_POLICY"
+    },
+    {
+      "field": "motor_and_inverter_core_topology",
+      "value": "3-phase BLDC/PMSM + 3-phase two-level VSI + FOC/SVPWM capability",
+      "status": "RETAINED_FROZEN_ARCHITECTURE_PRINCIPLE"
+    },
+    {
+      "field": "flight_controller_interface",
+      "value": "CAN-FD capable with Classic CAN compatibility",
+      "status": "RETAINED_FROZEN_INTERFACE"
+    },
+    {
+      "field": "arming_and_fault_authority",
+      "value": "power-up/reset DISARMED; independent hardware inhibit final authority; latched fault inhibits PWM; no automatic re-arm",
+      "status": "RETAINED_FROZEN_SAFETY_POLICY"
+    }
+  ],
+  "candidate_direction_not_frozen": {
+    "rotor_architecture": {
+      "leading": "HEXA_NON_COAXIAL",
+      "alternate": "QUAD_NON_COAXIAL",
+      "reason": "At equal 1.5-3.0 kW aggregate input, current 28-30 inch market curves show the hexa operating each rotor at a more efficient lower-power point, at the cost of two extra propulsion units."
+    },
+    "battery_voltage": {
+      "leading": "12S_HIGH_RATE_LITHIUM",
+      "alternate": "14S_HIGH_RATE_LITHIUM",
+      "reason": "Current 28-30 inch reference propulsion systems directly support the 12S-14S class; 3 kW at 12S is only about 68-83 A over nominal-to-low-loaded-bus screening."
+    },
+    "propulsion_reference_class": "28-30 inch propeller / approximately 85-110KV / 12S-class benchmark only",
+    "reference_anchors_not_selections": [
+      "Hobbywing X8 G2 12S + MFP 30x11S",
+      "T-Motor U8 Lite 12S"
+    ],
+    "battery_calculation_candidates": [
+      "Molicel P50B 12S3P",
+      "Molicel P50B 12S4P"
+    ]
+  },
+  "derived_screening_results_not_frozen": {
+    "hobbywing_12s_curve": {
+      "3000w_quad": {
+        "power_per_axis_w": 750,
+        "thrust_per_axis_kgf": 6.511,
+        "total_static_thrust_kgf": 26.044,
+        "mtow_screen_kg_at_1p6_tw": 16.278
+      },
+      "3000w_hexa": {
+        "power_per_axis_w": 500,
+        "thrust_per_axis_kgf": 4.881,
+        "total_static_thrust_kgf": 29.285,
+        "mtow_screen_kg_at_1p6_tw": 18.303
+      }
+    },
+    "independent_tmotor_crosscheck": {
+      "3000w_quad_mtow_screen_kg_at_1p6_tw": 15.32,
+      "3000w_hexa_mtow_screen_kg_at_1p6_tw": 17.745
+    },
+    "interpretation": "Approximately 15-18 kg MTOW at the 3 kW upper study point is a credible exploration band with a 1.6 T/W screen, but exact MTOW and payload remain OPEN."
+  },
+  "reopened_product_items": [
+    "payload min/nom/max",
+    "vehicle operating-empty mass budget and MTOW",
+    "rotor architecture/count and single-motor-failure behavior",
+    "thrust margin",
+    "exact motor/propeller MPN and winding parameters",
+    "battery series/parallel count, loaded bus, energy, mass, sag and BMS",
+    "per-ESC continuous/short-duration power and DC current",
+    "phase RMS/peak current and current-sense range",
+    "controller eRPM and PWM frequency",
+    "semiconductor voltage class/MPN/count",
+    "gate driver",
+    "DC-link/precharge/regen",
+    "environment, protection thresholds and thermal design"
+  ],
+  "physical_verification_status": "NOT_PERFORMED",
+  "schematic_allocation_status": "U1-SCH-R001 remains unallocated",
+  "anti_hallucination_rule": "PB-07 freezes only the product-family power direction and explicit retained policies. Quad/Hexa, 12S/14S, MTOW, payload, cell topology and component choices remain candidates until later controlled decisions. Manufacturer curves are sizing evidence, not flight qualification."
+}
