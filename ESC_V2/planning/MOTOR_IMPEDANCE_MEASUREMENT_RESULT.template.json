@@ -1,0 +1,70 @@
+{
+  "revision": "MOTOR-IMPEDANCE-RESULT-TEMPLATE-01",
+  "date": "2026-09-19",
+  "branch": "uav-rebaseline",
+  "status": "TEMPLATE_NOT_PERFORMED",
+  "procedure": "MOTOR_IMPEDANCE_MEASUREMENT_PROCEDURE_PB03.md",
+  "motor_identification": {
+    "manufacturer": null,
+    "mpn": null,
+    "revision": null,
+    "serial_number": null,
+    "winding_connection": "OPEN",
+    "pole_count": null,
+    "pole_pairs": null,
+    "kv_rpm_per_v": null
+  },
+  "instrumentation": {
+    "lcr_or_impedance_analyzer": null,
+    "dc_resistance_instrument": null,
+    "oscilloscope": null,
+    "current_probe_or_shunt": null,
+    "voltage_probe": null,
+    "calibration_dates": null,
+    "fixture_compensation": null
+  },
+  "test_conditions": {
+    "propeller_removed": null,
+    "rotor_locked": null,
+    "winding_temperature_c_before": null,
+    "winding_temperature_c_after": null,
+    "ambient_temperature_c": null
+  },
+  "line_line_dc_resistance": {
+    "uv_ohm": null,
+    "vw_ohm": null,
+    "wu_ohm": null,
+    "measurement_current_a": null,
+    "uncertainty_percent": null,
+    "status": "NOT_PERFORMED"
+  },
+  "impedance_sweep": {
+    "frequencies_hz": [100, 1000, 5000, 10000],
+    "raw_measurements": [],
+    "minimum_line_line_inductance_h": null,
+    "maximum_line_line_inductance_h": null,
+    "rotor_angle_dependence_percent": null,
+    "frequency_dependence_percent": null,
+    "status": "NOT_PERFORMED"
+  },
+  "step_response_crosscheck": {
+    "raw_waveform_reference": null,
+    "fitted_line_line_resistance_ohm": null,
+    "fitted_line_line_inductance_h": null,
+    "fitted_tau_s": null,
+    "fit_valid": null,
+    "uncertainty_percent": null,
+    "status": "NOT_PERFORMED"
+  },
+  "derived_model": {
+    "winding_topology_confirmed": false,
+    "conversion_equations_reference": null,
+    "phase_resistance_ohm": null,
+    "ld_h": null,
+    "lq_h": null,
+    "minimum_effective_pwm_ripple_inductance_h": null,
+    "status": "OPEN"
+  },
+  "s1_2_blocker_disposition": "OPEN_UNTIL_PRIMARY_SUPPLIER_DATA_OR_PHYSICAL_MEASUREMENT",
+  "anti_hallucination_rule": "Null result fields must remain null until measured or supplied for the exact selected production motor with a documented measurement convention."
+}
