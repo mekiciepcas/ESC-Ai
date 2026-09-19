@@ -69,7 +69,31 @@ jobs:
           mkdir -p verification/kicad_b1
           kicad-cli --version | tee verification/kicad_b1/KICAD_VERSION.txt
 
-      - name: Audit legacy B1 parser and netlist without modifying source
+      - name: Build CI-only effective footprint table
+        run: |
+          cp ESC_V2/hardware_b1/fp-lib-table verification/kicad_b1/fp-lib-table.repository
+          python3 - <<'PY'
+          from pathlib import Path
+
+          root = Path('/usr/share/kicad/footprints')
+          if not root.is_dir():
+              raise SystemExit(f'Installed KiCad footprint directory not found: {root}')
+
+          libs = sorted(p for p in root.glob('*.pretty') if p.is_dir())
+          out = ['(fp_lib_table', '  (version 7)']
+          for lib in libs:
+              name = lib.name[:-7]
+              out.append(f'  (lib (name "{name}")(type "KiCad")(uri "{lib.as_posix()}")(options "")(descr "CI installed KiCad standard library"))')
+          out.append('  (lib (name "ESC_B1")(type "KiCad")(uri "${KIPRJMOD}/ESC_B1.pretty")(options "")(descr "Local engineering footprints"))')
+          out.append(')')
+          target = Path('ESC_V2/hardware_b1/fp-lib-table')
+          target.write_text('\n'.join(out) + '\n', encoding='utf-8')
+          Path('verification/kicad_b1/STANDARD_FOOTPRINT_LIBRARY_COUNT.txt').write_text(str(len(libs)) + '\n')
+          Path('verification/kicad_b1/fp-lib-table.ci-effective').write_text(target.read_text(encoding='utf-8'), encoding='utf-8')
+          print(f'CI effective footprint libraries: {len(libs)} standard + ESC_B1 local')
+          PY
+
+      - name: Audit legacy B1 parser and netlist without modifying repository source
         run: |
           set +e
           kicad-cli sch export netlist \
