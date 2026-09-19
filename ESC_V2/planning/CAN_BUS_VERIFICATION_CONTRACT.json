@@ -1,0 +1,38 @@
+{
+  "revision":"CAN-VER-01",
+  "date":"2026-09-19",
+  "status":"STRUCTURE_DEFINED_VALUES_OPEN",
+  "purpose":"Define the evidence required to freeze and verify the vehicle CAN physical layer without selecting protocol, transceiver, termination or protection prematurely.",
+  "inputs":{
+    "protocol":null,
+    "nominal_bitrate_bps":null,
+    "data_bitrate_bps":null,
+    "node_count":null,
+    "total_bus_length_m":null,
+    "longest_stub_m":null,
+    "cable_type_impedance_ohm":null,
+    "termination_topology":null,
+    "termination_ohm_each_end":null,
+    "grounding_strategy":null,
+    "galvanic_isolation_required":null,
+    "common_mode_environment_v":null,
+    "vehicle_transient_standard_or_waveform":null,
+    "emc_target":null,
+    "connector_and_harness":null
+  },
+  "candidate_scope":"See CAN_PHYSICAL_LAYER_PRETRADE.md; candidate presence is not selection evidence.",
+  "verification_cases":[
+    {"id":"CANV-01","name":"bit_timing_margin","method":"calculation_plus_scope","acceptance":null,"evidence":null},
+    {"id":"CANV-02","name":"bus_propagation_and_stub_margin","method":"calculation_plus_scope","acceptance":null,"evidence":null},
+    {"id":"CANV-03","name":"termination_and_idle_resistance","method":"unpowered_measurement","acceptance":null,"evidence":null},
+    {"id":"CANV-04","name":"dominant_recessive_differential_levels","method":"oscilloscope","acceptance":null,"evidence":null},
+    {"id":"CANV-05","name":"common_mode_margin","method":"analysis_plus_staged_test","acceptance":null,"evidence":null},
+    {"id":"CANV-06","name":"unpowered_node_bus_loading","method":"bench","acceptance":null,"evidence":null},
+    {"id":"CANV-07","name":"bus_short_and_fault_response","method":"current_limited_fault_injection","acceptance":null,"evidence":null},
+    {"id":"CANV-08","name":"command_timeout_and_safe_action","method":"HIL_or_bench","acceptance":null,"evidence":null},
+    {"id":"CANV-09","name":"transient_protection_coordination","method":"component_analysis_then_lab","acceptance":null,"evidence":null},
+    {"id":"CANV-10","name":"EMC_precompliance","method":"lab","acceptance":null,"evidence":null}
+  ],
+  "freeze_rule":"IF-CAN may be frozen only after protocol/bitrate/topology/harness/environment inputs are non-null and the selected physical layer is checked against them. Physical verification claims require measured evidence.",
+  "safety_note":"Fault-injection and transient tests are staged/current-limited and are not inferred from datasheet ratings."
+}
