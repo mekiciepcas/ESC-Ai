@@ -1,22 +1,18 @@
 {
-  "revision":"AUTO-STATE-27",
+  "revision":"AUTO-STATE-28",
   "date":"2026-09-19",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PROGRESS_B1_KICAD_BASELINE_CLEAN_AND_SUPPORT_PART_EVIDENCE",
+  "last_run_status":"PROGRESS_SCHEMATIC_VERSIONING_POLICY_ENFORCED",
   "current_gate":"G0_G1",
   "current_task":"G0_INPUT_CLOSURE_AND_REQUIREMENT_INDEPENDENT_MIGRATION_EVIDENCE",
   "completed_this_run":[
-    "re_read_required_handoff_state_product_plan_traceability_backlog_mission_requirements_master_and_progress_against_actual_uav_rebaseline",
-    "extended_KiCad10_CI_with_non_destructive_legacy_B1_parser_netlist_and_ERC_baseline_job",
-    "observed_initial_B1_audit_netlist_PASS_and_198_warnings_all_classified_as_footprint_link_issues_from_missing_standard_library_mappings",
-    "counted_initial_missing_library_warnings_Resistor_SMD_98_Capacitor_SMD_50_Package_TO_SOT_SMD_19_Diode_SMD_12_TestPoint_12_Package_SO_6_Package_QFP_1",
-    "updated_CI_to_build_runner_only_effective_fp_lib_table_from_155_installed_standard_KiCad_libraries_plus_ESC_B1_without_modifying_repository_B1_source",
-    "observed_GitHub_Actions_run_35446577458_B1_job_success_with_KiCad_10_0_6_nonempty_netlist_and_zero_enabled_ERC_violations_errors_warnings",
-    "recorded_ignored_ERC_check_categories_so_zero_messages_cannot_be_overclaimed_as_full_design_qualification",
-    "created_B1_KICAD_BASELINE_AUDIT_json_with_exact_run_job_artifact_digest_environment_correction_and_evidence_scope",
-    "created_B1_SUPPORT_PART_EVIDENCE_AUDIT_md_for_exact_TPS62160DGKR_and_TLV75533PDBVR_lifecycle_package_class_evidence_as_REVALIDATE_only",
-    "updated_additive_traceability_TR_047_through_TR_049",
+    "preserved_previous_B1_KiCad_baseline_and_support_part_evidence_state",
+    "recorded_user_direction_that_all_future_schematic_updates_must_use_explicit_versioning",
+    "created_SCHEMATIC_VERSIONING_POLICY_with_immutable_revision_full_hierarchy_snapshot_and_release_rules",
+    "created_SCHEMATIC_REVISION_REGISTER_with_LEGACY_B1_frozen_reference_U1_SCH_R000_scaffold_reference_and_next_component_bearing_revision_U1_SCH_R001",
+    "prohibited_in_place_updates_to_superseded_U1_schematic_revisions",
+    "bound_future_BOM_PCB_ERC_netlist_and_validation_evidence_to_exact_schematic_revision_ids",
     "kept_G0_G1_G2_product_values_and_component_bearing_U1_schematic_OPEN"
   ],
   "blocked_tasks":[
@@ -33,7 +29,7 @@
     "audit_additional_requirement_independent_B1_support_parts_with_current_primary_sources_and_exact_package_identity",
     "review_B1_ERC_ignored_check_categories_and_decide_which_must_be_enabled_or_manually_audited_for_future_U1_G3_contract",
     "consolidate_TR_043_through_TR_049_into_canonical_UAV_TRACEABILITY_without_dropping_history",
-    "promote_first_component_bearing_U1_page_only_after_parent_requirements_freeze"
+    "when_parent_requirements_freeze_allocate_U1_SCH_R001_before_any_component_bearing_schematic_edit"
   ],
   "last_verified_gate":"REBASELINE_INIT",
   "progress_percentages":{
@@ -44,9 +40,12 @@
     "u1_kicad_architecture_scaffold_percent":100.0,
     "u1_kicad_scaffold_parser_erc_validation_percent":100.0,
     "u1_component_bearing_schematic_percent":0.0,
-    "legacy_b1_kicad_reproducible_baseline_audit_percent":100.0
+    "legacy_b1_kicad_reproducible_baseline_audit_percent":100.0,
+    "schematic_revision_control_policy_percent":100.0
   },
   "evidence_refs":[
+    "planning/SCHEMATIC_VERSIONING_POLICY.md",
+    "planning/SCHEMATIC_REVISION_REGISTER.json",
     "planning/B1_KICAD_BASELINE_AUDIT.json",
     "planning/B1_SUPPORT_PART_EVIDENCE_AUDIT.md",
     "planning/KICAD_CI_VERIFICATION.json",
@@ -58,7 +57,15 @@
     "hardware_u1_scaffold/ESC_U1_SCAFFOLD.kicad_sch",
     "planning/G0_INPUT_CLOSURE_PACKET.json"
   ],
-  "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_reversible_commits":true,"allow_release_without_user_approval":false},
+  "write_policy":{
+    "allow_branch":"uav-rebaseline",
+    "deny_main":true,
+    "allow_reversible_commits":true,
+    "allow_release_without_user_approval":false,
+    "schematic_revision_policy":"MANDATORY_NEW_REVISION_BEFORE_ANY_KICAD_SCHEMATIC_CHANGE",
+    "superseded_schematic_revision_mutation_allowed":false,
+    "legacy_b1_electrical_source_mutation_allowed":false
+  },
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","trade_only_values_must_not_promote_to_baseline":true,"physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false,"verify_handoff_against_repository_each_run":true},
-  "notes":"The legacy B1 KiCad design is now reproducibly parseable in KiCad 10.0.6 with a nonempty netlist and zero messages from the enabled ERC checks once the CI environment maps the installed standard footprint libraries. The initial 198 warnings were entirely library-resolution footprint-link issues, not electrical ERC faults. Ignored ERC categories are explicitly retained as open review scope. This evidence improves migration confidence but does not requalify legacy ratings or authorize copying B1 into U1. Two auxiliary support parts now have current exact identity/lifecycle/package-class evidence and remain REVALIDATE only."
+  "notes":"User-directed schematic versioning is now a hard project rule. Legacy B1 remains immutable. U1-SCH-R000 identifies only the zero-component architecture scaffold reference; the first future component-bearing revision is reserved as U1-SCH-R001 and must be allocated as a complete hierarchical snapshot before any electrical schematic edit. Revision identity does not imply qualification or release approval."
 }
