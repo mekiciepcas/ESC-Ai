@@ -1,55 +1,70 @@
 {
-  "revision": "REQ-MASTER-01",
+  "revision": "REQ-MASTER-02",
   "date": "2026-09-19",
   "branch": "uav-rebaseline",
   "authority": "ESC_V2/planning/REQUIREMENTS_MASTER.json",
-  "scope": "Heavy-lift agricultural multirotor UAV ESC requirements from mission through verification/release.",
+  "scope": "Heavy-lift agricultural multirotor UAV ESC requirements from mission definition through verification and release.",
+  "completion_definition": "Structure completion means the full planned requirement-domain hierarchy, status semantics, evidence rules, gate ownership and verification linkage exist. It does NOT mean product-specific values are frozen.",
   "status_model": {
     "definition_status": {
-      "DEFINED": "Requirement statement, gate, verification method, acceptance criteria and evidence/dependency references are present.",
-      "NEEDS_REVIEW": "Requirement record exists but its structure is incomplete."
+      "DEFINED": "Requirement family/schema exists with authority, gate and verification path.",
+      "OPEN": "Requirement family or child record still needs definition."
     },
     "value_status": {
-      "OPEN": "Product value/selection is unknown and shall remain null/TBD.",
-      "BOUNDED": "A user-approved or evidence-backed bound exists, but final value/selection is not frozen.",
-      "FROZEN": "Requirement value/decision is baseline-backed and traceable.",
-      "NA": "No product numeric/selection value is required; requirement is procedural/verification."
+      "OPEN": "Product value/selection is unknown and remains null/TBD.",
+      "BOUNDED": "A user-approved or evidence-backed range exists but final value/selection is not frozen.",
+      "FROZEN": "Product value/selection is baseline-backed and traceable."
     }
   },
   "anti_hallucination_policy": {
-    "unknowns": "OPEN/null/TBD remain open until user input, primary evidence, derived calculation from frozen parents, or physical measurement exists.",
-    "competitor_data": "Benchmark values may bound or inform trades but shall not be copied into product requirements without a documented product decision.",
+    "unknowns": "OPEN/null/TBD remain open until user input, primary evidence, a derived calculation from frozen parent requirements, or physical measurement exists.",
+    "competitor_data": "Benchmark values may inform or bound trades but shall not be copied into product requirement fields without a documented product decision.",
     "legacy": "Faz2/Faz3/A2/B1 are historical evidence and candidate inputs, not automatic design authority.",
-    "simulation": "Screening calculations, scripts and simulations are not physical validation.",
-    "release_claims": "No flight-qualified/production-qualified claim before corresponding gate closure."
+    "simulation": "Screening calculations, scripts and simulations are not physical verification.",
+    "release_claims": "No flight-qualified or production-qualified claim before corresponding gate closure."
   },
-  "domain_counts": {
-    "SYS": 4,
-    "VEH": 9,
-    "PROP": 9,
-    "PWR": 14,
-    "INV": 15,
-    "SNS": 11,
-    "CTRL": 11,
-    "SAF": 12,
-    "IF": 7,
-    "ENV": 7,
-    "MFG": 7,
-    "VER": 10
+  "requirement_domains": [
+    {"prefix":"SYS","name":"System scope and governance","gate_owner":"ALL","authority_refs":["UAV_PRODUCT_PLAN.md","mission_requirements.json"],"coverage":"DEFINED"},
+    {"prefix":"VEH","name":"Vehicle mission mass and rotor architecture","gate_owner":"G0_G1A","authority_refs":["mission_requirements.json","rotor_trade_study.md"],"coverage":"DEFINED"},
+    {"prefix":"PROP","name":"Motor propeller and propulsion operating point","gate_owner":"G1B","authority_refs":["propulsion_benchmark.md","propulsion_operating_points.json"],"coverage":"DEFINED"},
+    {"prefix":"PWR","name":"Battery bus input protection precharge and regenerative energy","gate_owner":"G1C_G2","authority_refs":["battery_architecture_pretrade.md","DC_INPUT_PROTECTION_CONTRACT.md","DC_BUS_TRANSIENT_REQUIREMENTS.md"],"coverage":"DEFINED"},
+    {"prefix":"INV","name":"Inverter semiconductor PWM gate drive DC link and thermal power stage","gate_owner":"G1_G2_G3","authority_refs":["SEMICONDUCTOR_VOLTAGE_CLASS_CANDIDATES.md","POWER_STAGE_LOSS_MODEL.md","DC_LINK_SELECTION_FRAMEWORK.md"],"coverage":"DEFINED"},
+    {"prefix":"SNS","name":"Current voltage and temperature sensing","gate_owner":"G2_G3","authority_refs":["HV_SENSE_OUTPUT_SEQUENCING.md","POWER_OFF_TOLERANT_SENSE_CANDIDATES.md","UAV_TRACEABILITY.md"],"coverage":"DEFINED"},
+    {"prefix":"CTRL","name":"MCU motor control timing firmware and watchdog","gate_owner":"G2_G4","authority_refs":["UAV_PRODUCT_PLAN.md","UAV_TRACEABILITY.md"],"coverage":"DEFINED"},
+    {"prefix":"SAF","name":"Protection fault response failsafe and FMEA","gate_owner":"G1_G2_G4","authority_refs":["G1_REQUIREMENTS_MATRIX.json","DC_INPUT_PROTECTION_CONTRACT.md","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
+    {"prefix":"IF","name":"Flight controller CAN arming telemetry service and power interfaces","gate_owner":"G1_G3_G4","authority_refs":["mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
+    {"prefix":"ENV","name":"Temperature altitude wind ingress vibration and cooling boundaries","gate_owner":"G0_G1_G5","authority_refs":["mission_requirements.json","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
+    {"prefix":"MFG","name":"BOM footprint derating DFM serviceability and configuration control","gate_owner":"G3_G5","authority_refs":["U1_BOM_CANDIDATES.json","UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"},
+    {"prefix":"VER","name":"Bring-up switching dyno thermal fault injection and flight-readiness verification","gate_owner":"G6_G7","authority_refs":["UAV_PRODUCT_PLAN.md"],"coverage":"DEFINED"}
+  ],
+  "child_requirement_authorities": {
+    "mission_and_vehicle": "mission_requirements.json",
+    "system_electrical_freeze": "G1_REQUIREMENTS_MATRIX.json",
+    "legacy_design_traceability": "UAV_TRACEABILITY.md",
+    "candidate_bom": "U1_BOM_CANDIDATES.json",
+    "verification_mapping": "REQUIREMENTS_VERIFICATION_MATRIX.json"
   },
-  "summary": {
-    "requirement_records": 116,
-    "structure_complete_records": 116,
-    "structure_completeness_percent": 100.0,
-    "product_value_or_selection_required": 91,
-    "product_value_frozen": 1,
-    "product_value_bounded": 1,
-    "product_value_open": 89,
-    "product_value_frozen_percent": 1.1,
-    "product_value_bounded_or_frozen_percent": 2.2,
-    "g1_matrix_pass": 1,
-    "g1_matrix_required_rows": 46,
-    "g1_system_freeze_closure_percent": 2.2
+  "required_fields_for_every_child_requirement": [
+    "id",
+    "parent/domain",
+    "requirement_statement",
+    "status",
+    "value_or_range",
+    "source/evidence",
+    "rationale",
+    "verification_method",
+    "acceptance_criteria",
+    "dependencies",
+    "revision"
+  ],
+  "progress": {
+    "planned_domains": 12,
+    "defined_domains": 12,
+    "structure_domain_coverage_percent": 100.0,
+    "g1_required_rows": 46,
+    "g1_pass_rows": 1,
+    "g1_system_freeze_value_closure_percent": 2.2,
+    "note": "100% refers to the planned requirement-domain/schema structure, not product value closure or verification completion."
   },
-  "requirements": []
+  "gate_chain": ["G0","G1A","G1B","G1C","G1","G2","G3","G4","G5","G6","G7"]
 }
