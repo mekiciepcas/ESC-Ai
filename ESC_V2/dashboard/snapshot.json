@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-20T00:19:40+00:00",
-  "source_commit": "73a0908bd49a",
+  "generated_at": "2026-09-20T00:20:10+00:00",
+  "source_commit": "0d21bc67c721",
   "plan_revision": "UAV-PLAN-10",
   "task_count": 25,
   "done_count": 1,
@@ -15,6 +15,6 @@
   "schematic_revision_control_percent": 100.0,
   "missing_g0_inputs": 12,
   "next_schematic_revision": "U1-SCH-R001",
-  "current_task": "S1R_2_EXACT_CUSTOM_AXIS_AND_STRUCTURE_MASS_CLOSURE",
-  "last_run_status": "PB08_CUSTOM_AXIS_PARTIAL_MASS_LEDGER_ADDED"
+  "current_task": "S1R_2_CUSTOM_ESC_MECHANICAL_AND_STRUCTURE_MASS_CLOSURE",
+  "last_run_status": "PB08_EXACT_MOTOR_PROP_PAIR_MASS_EVIDENCE_ADDED"
 }
