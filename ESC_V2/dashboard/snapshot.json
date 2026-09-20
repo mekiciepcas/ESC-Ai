@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-20T01:20:18+00:00",
-  "source_commit": "1331e33626ab",
+  "generated_at": "2026-09-20T01:20:47+00:00",
+  "source_commit": "f1d391d61820",
   "plan_revision": "UAV-PLAN-10",
   "task_count": 25,
   "done_count": 1,
@@ -16,5 +16,5 @@
   "missing_g0_inputs": 12,
   "next_schematic_revision": "U1-SCH-R001",
   "current_task": "S1R_2_CUSTOM_ESC_MECHANICAL_AND_STRUCTURE_MASS_CLOSURE",
-  "last_run_status": "PB08_EXACT_MOTOR_PROP_PAIR_MASS_EVIDENCE_ADDED"
+  "last_run_status": "PB08_B1_12S_VOLTAGE_REQUALIFICATION_AUDIT_ADDED"
 }
