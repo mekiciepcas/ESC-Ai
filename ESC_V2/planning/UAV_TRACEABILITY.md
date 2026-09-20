@@ -25,6 +25,7 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 | TR-058 | PB-08 installed-axis primary mass evidence | **TRADE EVIDENCE.** Hobbywing X8 G2 complete set is 1095 g including cable/propeller, above the 1.0125 kg optimistic added-axis break-even. | Exact custom-axis and structural delta. |
 | TR-059 | PB-08 custom-axis partial mass ledger | **SUPERSEDED PARTIAL ANCHOR.** Initial U8 Lite KV85 243 g + HEP-L 29-inch 63 g sum was only a same-class 306 g anchor because exact compatibility was not established. | Replaced by TR-060 exact-pair evidence. |
 | TR-060 | PB-08 U8 Lite KV85 + NS28x9.2 exact-pair mass evidence | **TRADE EVIDENCE ADDED / NO PRODUCT SELECTION.** Current T-Motor primary material explicitly pairs U8 Lite KV85 at 12S with NS28x9.2; published masses are 243 g motor incl. cable + 59 g integrated propeller = 302 g exact-pair partial subtotal. Against the 1.0125 kg optimistic axis break-even, 710.5 g/axis remains for custom ESC/cooling/enclosure/harness/connectors/mounts before any Hexa structural/common penalty. | `PB08_U8LITE_KV85_NS28_EXACT_PAIR_EVIDENCE.md`; controlled custom ESC/mechanical mass and structural delta. |
+| TR-061 | PB-08 B1 12S voltage-domain requalification | **REQUALIFICATION EVIDENCE / NO COMPONENT APPROVAL.** PB-08 50.4 V full charge restores 49.6 V static nameplate headroom to 100 V-class B1 devices, while the frozen <=75 V repetitive terminal-stress target leaves 25 V nameplate headroom. B1 therefore becomes a credible 12S requalification candidate rather than an 18S-voltage-limited architecture; exact MOSFET/driver/DC-link/protection reuse remains conditional on phase-current/PWM/loss/transient evidence. | `PB08_B1_12S_VOLTAGE_REQUALIFICATION_AUDIT.md`; phase-current/PWM closure and <=75 V switching-stress proof. |
 
 ## Canonical PB-08 current state
 
@@ -37,6 +38,7 @@ Durum etiketleri: **KEEP**, **REVALIDATE**, **RECALCULATE**, **REPLACE IF REQUIR
 - >=10 min nominal mission target and 20% gross-energy reserve retained.
 - Quad and Hexa remain candidates. PB-08 added-axis break-even is **1.0125 kg/axis before extra Hexa structure/common mass**.
 - T-Motor U8 Lite KV85 + NS28x9.2 now provides a manufacturer-explicit compatible motor/prop mass anchor of **0.302 kg partial subtotal**, but custom ESC/mechanical installed terms remain OPEN; this is not a motor/prop selection.
+- B1's 100 V-class power domain is a **PB-08 requalification candidate only**: 12S resolves the old 18S static-headroom concern, but <=75 V repetitive stress, loss/thermal, exact DC-link and protection evidence remain open.
 - Exact payload, MTOW, battery implementation, phase current, PWM/eRPM, protection thresholds and thermal limits remain OPEN.
 - CAN-FD/Classic-CAN and power-up/reset DISARMED + hardware-inhibit + no-auto-rearm safety policy retained.
 - B1 remains requalification candidate only. A2/B1 electrical source remains immutable.
