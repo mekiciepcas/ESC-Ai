@@ -1,0 +1,85 @@
+{
+  "schema_revision": "PB08-PACK-R-MEAS-01",
+  "status": "TEMPLATE_NO_PHYSICAL_RESULT",
+  "purpose": "Capture controlled four-wire evidence for the installed non-cell traction-pack series resistance used by PB08 36 V loaded-floor verification.",
+  "rules": {
+    "do_not_enter_invented_values": true,
+    "result_is_not_pack_qualification_by_itself": true,
+    "ocv_rdc_condition_match_required": true,
+    "simultaneous_current_condition_required_for_final_loaded_floor_check": true,
+    "negative_or_zero_measured_resistance_requires_investigation": true
+  },
+  "article_under_test": {
+    "pack_id": null,
+    "pack_revision": null,
+    "cell_mpn": null,
+    "series_count": null,
+    "parallel_count": null,
+    "bms_mpn": null,
+    "fuse_mpn": null,
+    "disconnect_mpn": null,
+    "connector_mpn": null,
+    "harness_description": null,
+    "configuration_evidence_ref": null
+  },
+  "test_condition": {
+    "date_time": null,
+    "ambient_c": null,
+    "pack_temperature_c": null,
+    "soc_percent": null,
+    "soh_or_cycle_state": null,
+    "rest_time_before_test_min": null,
+    "pack_state_notes": null
+  },
+  "instrumentation": {
+    "current_source_or_load": null,
+    "current_measurement_instrument": null,
+    "voltage_measurement_instrument": null,
+    "calibration_refs": [],
+    "four_wire_kelvin_method_confirmed": null,
+    "sample_rate_hz": null
+  },
+  "measurement_boundaries": {
+    "source_voltage_points": null,
+    "load_voltage_points": null,
+    "included_series_elements": [],
+    "excluded_series_elements": [],
+    "boundary_diagram_ref": null
+  },
+  "measurement": {
+    "method": "DELTA_V_OVER_DELTA_I_PREFERRED_TO_REDUCE_OFFSET_ERROR",
+    "current_low_a": null,
+    "current_high_a": null,
+    "voltage_drop_low_v": null,
+    "voltage_drop_high_v": null,
+    "delta_current_a": null,
+    "delta_voltage_drop_v": null,
+    "derived_noncell_resistance_mohm": null,
+    "repeat_count": null,
+    "repeat_results_mohm": [],
+    "uncertainty_mohm": null,
+    "raw_data_ref": null
+  },
+  "thermal_observation": {
+    "duration_s": null,
+    "initial_component_temperatures_c": {},
+    "final_component_temperatures_c": {},
+    "thermal_method": null,
+    "notes": null
+  },
+  "acceptance_context": {
+    "applicable_pack_current_a": null,
+    "condition_matched_pack_ocv_v": null,
+    "condition_matched_cell_rdc_mohm": null,
+    "derived_cell_only_pack_resistance_mohm": null,
+    "predicted_loaded_bus_v": null,
+    "pb08_loaded_floor_v": 36.0,
+    "loaded_floor_result": "OPEN_UNTIL_ALL_FIELDS_HAVE_CONTROLLED_EVIDENCE"
+  },
+  "review": {
+    "operator": null,
+    "reviewer": null,
+    "evidence_level": "UNPOPULATED_TEMPLATE",
+    "disposition": "OPEN"
+  }
+}
