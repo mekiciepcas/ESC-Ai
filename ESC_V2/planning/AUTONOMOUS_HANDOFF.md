@@ -1,81 +1,55 @@
 # ESC autonomous handoff
 
-Date: 2026-09-20 14:23+03:00  
+Date: 2026-09-20 15:20+03:00  
 Branch: `uav-rebaseline`  
-Repository HEAD immediately before this handoff write: `2b2f4c43bae249fc50999b9e9680f9a4bc17fc16`  
-Run status: `PB08_B1_GATE_DRIVE_AUXILIARY_SCREEN_ADDED`
+Repository HEAD at run start: `5d5f631678d12d9fcba0926cbf9478eee51c1799`  
+Run status: `TRACEABILITY_TR071_CONTINUITY_REPAIRED`
 
 ## Repository continuity verification
-Verified the actual `uav-rebaseline` tree at run start (HEAD `749b1de242179b6c8384a878c1fee22249d97b60`) and read `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md`, `uav_backlog.json`, `mission_requirements.json`, `REQUIREMENTS_MASTER.json`, `REQUIREMENTS_PROGRESS.json`, prior handoff and autonomy state. PB-08 remains active authority. S1R.2 remains highest-priority but blocked by missing controlled custom-axis/structural mass and degraded-mode evidence, so the run advanced independent evidence-backed auxiliary-load closure prework.
+Read and verified the actual branch planning state and prior handoff. PB-08 remains active authority. S1R.2 remains highest-priority but blocked by missing controlled custom-axis/structural mass and degraded-mode evidence. Audit found a concrete repository consistency regression: AUTO-STATE-69, prior handoff and the 14:23 run trace recorded TR-071, while canonical `UAV_TRACEABILITY.md` stopped at TR-070.
 
 ## Controlling metrics
 - Requirements structure: **12/12 = 100%**.
 - G1 SYSTEM FREEZE/value closure: **15/48 = 31.3%**.
 - Backlog DONE: **1/25 = 4.0%**.
 - Major gates: **0/8 = 0%**.
-Counters intentionally unchanged because no product value, exact component, PWM, pack current or gate was frozen.
+No counter advanced.
 
 ## Tasks attempted / completed
-1. Verified repository/planning continuity against actual branch state.
-2. Confirmed S1R.2 remains blocked by missing mechanical/degraded-mode evidence.
-3. Reviewed B1 auxiliary-load inventory, B1 12S requalification audit and CSD19536KTT controlled reference parameters.
-4. Added `PB08_B1_GATE_DRIVE_AUXILIARY_POWER_SCREEN.md`.
-5. Derived the controlled first-order dependency `P_gate,ideal = N_gate * Qg * V_gate * f_pwm` for the legacy B1 population.
-6. Added TR-071 run trace in `RUN_2026-09-20_1423_TRACEABILITY.md`.
-7. Synchronized `autonomy_state.json` to AUTO-STATE-69.
+1. Verified repository continuity at actual branch HEAD.
+2. Confirmed S1R.2 remains blocked.
+3. Detected missing canonical TR-071 continuation.
+4. Restored TR-071 continuity and recorded consistency repair as TR-072.
+5. Added `RUN_2026-09-20_1520_TRACEABILITY.md`.
+6. Synchronized autonomy state to AUTO-STATE-70.
 
 ## Files changed
-- `PB08_B1_GATE_DRIVE_AUXILIARY_POWER_SCREEN.md` — new parametric requalification prework.
-- `RUN_2026-09-20_1423_TRACEABILITY.md` — TR-071 run record.
-- `autonomy_state.json` — AUTO-STATE-69.
-- `AUTONOMOUS_HANDOFF.md` — this continuity record.
+- `UAV_TRACEABILITY.md` — TR-071 restoration / TR-072 continuity record.
+- `RUN_2026-09-20_1520_TRACEABILITY.md` — TR-072 run record.
+- `autonomy_state.json` — AUTO-STATE-70.
+- `AUTONOMOUS_HANDOFF.md` — this record.
 
-No A2/B1 electrical source, KiCad schematic, PCB, Gerber, manufacturing package or release package was modified. `U1-SCH-R001` remains unallocated.
+No A2/B1 electrical source, KiCad schematic, PCB, Gerber, manufacturing or release package was modified. `U1-SCH-R001` remains unallocated.
 
-## Engineering decisions / calculations / evidence added
-B1 repository evidence identifies CSD19536KTT at 2 parallel devices per switch position. A three-phase two-level inverter therefore has 12 physical MOSFET gates. The controlled CSD19536KTT reference gives Qg typical = 118 nC.
+## Engineering decisions / calculations / evidence
+No new product value or component decision. TR-071 remains parametric legacy-B1 gate-drive prework only: `P_gate,ideal = N_gate * Qg * V_gate * f_pwm`; its 10/12 V and 20/30 kHz sensitivities are not U1 requirements. This run repaired evidence continuity only.
 
-For a first-order PWM-cycle gate-charge screen:
-`P_gate,ideal = N_gate * Qg * V_gate * f_pwm`.
-
-Legacy-B1 arithmetic sensitivities:
-- 10 V / 20 kHz: 0.2832 W;
-- 10 V / 30 kHz: 0.4248 W;
-- 12 V / 20 kHz: 0.3398 W;
-- 12 V / 30 kHz: 0.5098 W.
-At 12 V this corresponds to 28.3 mA at 20 kHz and 42.5 mA at 30 kHz for the ideal gate-charge term only.
-
-These values are not U1 load requirements or measurements. Exact U1 MOSFET/count, PWM, gate amplitude, driver loss and converter loss remain OPEN. The contribution cannot yet be promoted into numeric `P_aux,pack`.
-
-## Assumptions introduced and evidence level
-No new product assumption. The 12-gate count is legacy B1 topology evidence; 118 nC is a typical datasheet/reference anchor. The 10/12 V and 20/30 kHz rows are explicit sensitivity points only, not frozen operating values. No physical-test, thermal, EMI, sag, production-readiness or flight-qualification claim was introduced.
+## Assumptions and evidence level
+No new engineering assumption. Repository-consistency evidence is direct: committed AUTO-STATE-69 and prior run trace/handoff referenced TR-071 while the canonical matrix did not.
 
 ## Unresolved blockers
-1. Custom ESC/baseplate/enclosure/harness/connector/mount installed mass.
-2. Quad/Hexa structural/common-system mass delta and degraded-mode policy.
-3. Complete installed 12S pack hardware mass/geometry.
-4. Dominant simultaneous traction-pack auxiliary loads and conversion-path efficiencies.
-5. Exact U1 MOSFET/count, PWM and gate-drive amplitude before gate-drive auxiliary power can close.
-6. Residual continuous-load/model uncertainty; numeric `M_cont` remains OPEN.
-7. Pack SOC/temperature/SOH sag/current-sharing evidence.
-8. Vehicle simultaneous peak-current/power policy.
-9. Exact motor/prop and winding inductance.
-10. Phase current/PWM/loss and <=75 V repetitive switching-stress proof.
-11. G2/U1 remain blocked by G1.
+Custom installed-axis mass; Quad/Hexa structural/common mass delta and degraded-mode policy; complete pack hardware mass/geometry; simultaneous auxiliary demand and conversion loss; exact U1 MOSFET/count/PWM/gate amplitude; residual continuous-current uncertainty; pack sag/current-sharing; vehicle peak policy; exact motor/prop/winding data; phase-current/PWM/loss/transient proof; G1/G2.
 
-## Regressions or risks discovered
-No new design regression. A planning risk was reduced: gate-drive power is no longer an unstructured auxiliary unknown and can be recomputed deterministically after MOSFET/PWM selection. Remaining risk is promoting typical-Qg sensitivity arithmetic into a requirement before exact component and operating-point closure.
+## Regressions / risks discovered
+Canonical traceability omission of TR-071 was repaired. Historical TR-001..TR-070 remains preserved by commit history and explicit continuity anchor. No design regression found.
 
 ## Exact next recommended tasks
-1. Resume S1R.2 custom installed-axis and Quad/Hexa structural mass closure when controlled evidence becomes available.
-2. Otherwise extend auxiliary-load closure only from evidence-backed selected-device/interface demand; keep regulator capability separate from demand.
-3. Complete installed-pack non-cell hardware mass/geometry evidence.
-4. Close exact propulsion/winding data, then phase current and PWM; immediately replace the gate-drive screen with a worst-case selected-part budget including driver/converter loss exactly once.
-5. Then sag/current-path evidence -> B1/U1 requalification -> G1/G2.
+1. Resume S1R.2 when controlled custom-axis/structural evidence exists.
+2. Otherwise extend only evidence-backed auxiliary-load or installed-pack mass closure.
+3. After exact propulsion/winding closure, calculate phase current/PWM and replace gate-drive sensitivity with selected-part worst-case budget.
+4. Then sag/current-path -> B1/U1 requalification -> G1 -> G2.
 
-Dependency chain: `PB-08 common platform -> installed-axis/structural + complete pack mass -> Quad/Hexa/MTOW -> exact propulsion + pack -> phase current/eRPM/PWM -> gate-drive/power-stage requalification -> G1 -> G2 -> U1-SCH-R001`.
+Dependency chain: `PB-08 -> installed-axis/structural + complete pack mass -> Quad/Hexa/MTOW -> exact propulsion + pack -> phase current/eRPM/PWM -> gate-drive/power-stage requalification -> G1 -> G2 -> U1-SCH-R001`.
 
 ## Next-run briefing
-Start from PB-08 and AUTO-STATE-69. Verify actual branch HEAD rather than trusting this pre-handoff SHA. S1R.2 mass closure remains primary. If mechanical evidence is still unavailable, continue only independent evidence-backed closure work. Preserve 83.33 A as propulsion-only lower bound and keep `P_aux,pack`/`M_cont` OPEN. TR-071 provides a gate-drive dependency but not a numeric U1 auxiliary requirement. Do not allocate U1 or modify A2/B1 electrical sources while G1/G2 remain open.
-
-Mandatory snapshot: **Requirements structure 100% / G1 SYSTEM FREEZE 31.3% / Backlog DONE 4.0% / Major gates 0% / component-bearing U1 0%**.
+Start from PB-08 and AUTO-STATE-70. Verify actual branch HEAD. S1R.2 remains primary and blocked. Preserve 83.33 A as propulsion-only lower bound; keep `P_aux,pack` and `M_cont` OPEN. Do not allocate U1 or mutate A2/B1 electrical sources while G1/G2 remain open. Mandatory snapshot remains **Requirements structure 100% / G1 31.3% / Backlog DONE 4.0% / Major gates 0% / component-bearing U1 0%**.
