@@ -1,40 +1,41 @@
 {
-  "revision":"AUTO-STATE-60",
+  "revision":"AUTO-STATE-61",
   "date":"2026-09-20",
   "branch":"uav-rebaseline",
   "mode":"AUTONOMOUS_GATED_CONTINUOUS_HANDOFF",
-  "last_run_status":"PB08_U8LITE_KV85_OPERATING_CURVE_ERPM_EVIDENCE_ADDED",
+  "last_run_status":"PB08_P50B_12S4P_CELL_LEVEL_MASS_ENERGY_BOUND_ADDED",
   "current_gate":"G0_G1_PARTIAL_PB08",
   "current_task":"S1R_2_CUSTOM_ESC_MECHANICAL_AND_STRUCTURE_MASS_CLOSURE",
   "active_sprint":{"id":"S1R","status":"ACTIVE","completed_steps":["S1R.1_PRODUCT_POWER_REBASELINE","S1R.3A_COMMON_12S_ESC_PLATFORM"],"current_step":"S1R.2_ROTOR_ARCHITECTURE_MTOW_PAYLOAD"},
   "completed_this_run":[
-    "verified PB08 authority, planning state, handoff, requirements and backlog counters against branch state",
+    "verified PB08 authority and required planning/handoff state against uav-rebaseline",
     "confirmed primary S1R.2 mass closure remains blocked by absent controlled custom ESC/mechanical/structural mass evidence",
-    "used independent S1R.4 prework to capture current T-Motor U8 Lite KV85 12S 36N42P G28x9.2 operating-curve evidence",
-    "derived 67,200 eRPM and 1,120 Hz electrical fundamental from the manufacturer 3200 rpm maximum curve point and 21 pole pairs",
-    "kept G28x9.2 operating-curve identity separate from prior NS28x9.2 mass evidence; no exact propeller selection inferred",
-    "created PB08_U8LITE_KV85_OPERATING_CURVE_ERPM_EVIDENCE.md and run trace TR-062"
+    "advanced independent S1R.3B using current Molicel P50B primary-source cell data",
+    "derived 12S4P reference topology as 48 cells, 864 Wh typical and 840 Wh minimum cell-level energy",
+    "derived 3.408 kg maximum-weight cell-only inventory and explicitly kept complete installed pack mass OPEN",
+    "bounded 4P current arithmetic at 240 A but explicitly prohibited treating it as a pack rating",
+    "created PB08_P50B_12S4P_CELL_LEVEL_MASS_ENERGY_BOUND.md and TR-063 run trace"
   ],
   "blocked_tasks":[
-    {"task":"freeze_PB08_rotor_architecture","reason":"exact motor+prop partial mass anchor exists, but populated custom ESC/cooling/enclosure/harness/mount mass, Quad/Hexa structural/common mass delta and degraded-mode policy remain unresolved","blocking_scope":"S1R.2"},
-    {"task":"freeze_PB08_payload_MTOW","reason":"payload residual requires complete frame/pack/avionics/mission-equipment mass roll-up","blocking_scope":"G0_S1R.2"},
-    {"task":"freeze_PB08_exact_pack","reason":"12S electrical platform and >=750Wh target frozen; exact cell/P-count/pack hardware mass/sag/BMS/fuse/disconnect remain open","blocking_scope":"S1R.3B"},
-    {"task":"freeze_exact_motor_prop","reason":"U8 Lite KV85 G28x9.2 manufacturer curve is a trade anchor only; rotor architecture/MTOW and exact production prop identity remain open","blocking_scope":"S1R.4"},
+    {"task":"freeze_PB08_rotor_architecture","reason":"populated custom ESC/cooling/enclosure/harness/mount mass, Quad/Hexa structural/common mass delta and degraded-mode policy remain unresolved","blocking_scope":"S1R.2"},
+    {"task":"freeze_PB08_payload_MTOW","reason":"payload residual requires complete frame/pack/avionics/mission-equipment mass roll-up; P50B 12S4P now has a 3.408 kg cell-only bound but pack hardware mass remains open","blocking_scope":"G0_S1R.2"},
+    {"task":"freeze_PB08_exact_pack","reason":"12S4P P50B cell-level mass/energy now bounded; exact production cell/P-count, interconnect, BMS, fuse/disconnect, enclosure/cooling, sag and installed mass remain open","blocking_scope":"S1R.3B"},
+    {"task":"freeze_exact_motor_prop","reason":"manufacturer operating curves are trade anchors only; rotor architecture/MTOW and exact production prop identity remain open","blocking_scope":"S1R.4"},
     {"task":"freeze_PWM","reason":"requires exact selected motor/propeller and winding inductance plus switching-loss/ripple study","blocking_scope":"S1R.5"},
     {"task":"promote_B1_power_domain_into_U1","reason":"PB08 phase current/PWM/loss, <=75 V repetitive switching-stress proof, exact DC-link and external protection contract remain open","blocking_scope":"G2_G3"},
     {"task":"allocate_U1_SCH_R001","reason":"PB08 G1 and required G2 architecture remain open","blocking_scope":"G3"}
   ],
   "next_candidates":[
-    "obtain controlled populated custom ESC PCB/baseplate/enclosure/local-harness/connector/mount mass; do not infer from B1 dimensions without evidence",
+    "obtain controlled populated custom ESC PCB/baseplate/enclosure/local-harness/connector/mount mass",
     "derive Quad-versus-Hexa arm/joint/reinforcement structural delta from source-backed candidate geometry or explicit mechanical allocation",
-    "continue S1R.3B exact 12S pack hardware mass/sag/BMS closure independently if structure/custom-axis evidence stalls",
-    "map PB08 candidate MTOW/thrust points onto the T-Motor KV85 curve after rotor architecture closes; do not merge G28 and NS28 prop identities",
+    "extend S1R.3B from 3.408 kg cell inventory to complete installed 12S pack mass using sourced interconnect/BMS/protection/enclosure/cooling hardware",
+    "build PB08 pack sag model only with controlled SOC/temperature/SOH evidence and real current-path resistance bounds",
     "obtain exact selected motor winding inductance or execute controlled impedance measurement before PWM freeze"
   ],
   "last_verified_gate":"G1_PARTIAL_PB08_15_OF_48",
   "progress_percentages":{"requirements_structure_percent":100.0,"g1_system_freeze_percent":31.3,"backlog_done_percent":4.0,"major_gate_closure_percent":0.0,"u1_kicad_architecture_scaffold_percent":100.0,"u1_component_bearing_schematic_percent":0.0,"schematic_revision_control_policy_percent":100.0},
-  "evidence_refs":["PRODUCT_BASELINE_PB-08.json","PB08_COMMON_ELECTRICAL_PLATFORM.md","PB08_QUAD_HEXA_MASS_CLOSURE_CONTRACT.md","PB08_CUSTOM_AXIS_MASS_LEDGER.md","PB08_U8LITE_KV85_NS28_EXACT_PAIR_EVIDENCE.md","PB08_U8LITE_KV85_OPERATING_CURVE_ERPM_EVIDENCE.md","RUN_2026-09-20_0522_TRACEABILITY.md","PB08_B1_12S_VOLTAGE_REQUALIFICATION_AUDIT.md","mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","uav_backlog.json","UAV_TRACEABILITY.md"],
-  "last_run_status_detail":"Primary mass closure remains externally evidence-limited. Independent S1R.4 prework added a primary-source KV85 operating curve and a derived 67.2 keRPM electrical-speed anchor while explicitly preserving the G28x9.2 versus NS28x9.2 propeller identity boundary.",
+  "evidence_refs":["PRODUCT_BASELINE_PB-08.json","PB08_COMMON_ELECTRICAL_PLATFORM.md","PB08_QUAD_HEXA_MASS_CLOSURE_CONTRACT.md","PB08_CUSTOM_AXIS_MASS_LEDGER.md","PB08_U8LITE_KV85_NS28_EXACT_PAIR_EVIDENCE.md","PB08_U8LITE_KV85_OPERATING_CURVE_ERPM_EVIDENCE.md","PB08_P50B_12S4P_CELL_LEVEL_MASS_ENERGY_BOUND.md","RUN_2026-09-20_0619_TRACEABILITY.md","PB08_B1_12S_VOLTAGE_REQUALIFICATION_AUDIT.md","mission_requirements.json","G1_REQUIREMENTS_MATRIX.json","REQUIREMENTS_PROGRESS.json","uav_backlog.json","UAV_TRACEABILITY.md"],
+  "last_run_status_detail":"Primary S1R.2 mass closure remains evidence-limited. Independent S1R.3B prework converted the existing P50B 12S4P reference into a primary-source cell-level energy and mass bound: 48 cells, 840-864 Wh cell-level energy and 3.408 kg maximum-weight cell inventory. Complete pack mass/current/sag remain OPEN.",
   "write_policy":{"allow_branch":"uav-rebaseline","deny_main":true,"allow_release_without_user_approval":false,"legacy_b1_electrical_source_mutation_allowed":false},
   "evidence_policy":{"unknown_values":"OPEN_OR_NULL","physical_test_claim_without_measurement":false,"flight_qualification_claim_without_gate_closure":false}
 }
