@@ -1,0 +1,67 @@
+{
+  "schema_revision": "PB08-P50B-OCV-RDC-RESULT-01",
+  "status": "EMPTY_TEMPLATE_NO_PHYSICAL_RESULT",
+  "purpose": "Condition-matched cell OCV/Rdc evidence record for PB-08 TR-077. This template is not a measurement and shall not be populated from ratings, interpolation across mismatched conditions, or synthetic data.",
+  "cell_article": {
+    "manufacturer": "Molicel",
+    "model": "P50B",
+    "sample_id": null,
+    "lot_or_batch_id": null,
+    "cycle_count": null,
+    "soh_percent": null,
+    "soh_basis": null
+  },
+  "instrumentation": {
+    "voltage_instrument_id": null,
+    "current_instrument_id": null,
+    "temperature_instrument_id": null,
+    "calibration_refs": [],
+    "raw_data_ref": null
+  },
+  "test_method": {
+    "soc_preparation_method": null,
+    "rest_time_before_ocv_s": null,
+    "temperature_stabilization_criterion": null,
+    "pulse_duration_s": null,
+    "rdc_sample_time_after_pulse_start_s": null,
+    "polarity": "DISCHARGE",
+    "notes": null
+  },
+  "points": [
+    {
+      "point_id": null,
+      "soc_percent": null,
+      "cell_temperature_c": null,
+      "soh_percent": null,
+      "pre_pulse_ocv_v": null,
+      "pulse_current_a": null,
+      "pulse_voltage_v": null,
+      "rdc_mohm_reported": null,
+      "rdc_mohm_recalculated": null,
+      "recovery_voltage_v": null,
+      "repeat_count": null,
+      "repeat_results_ref": null,
+      "uncertainty_or_tolerance_note": null,
+      "valid_for_envelope": false
+    }
+  ],
+  "pack_transform_context": {
+    "reference_topology_only": "12S4P",
+    "ns": 12,
+    "np": 4,
+    "cell_resistance_to_pack_factor": 3.0,
+    "loaded_floor_v": 36.0,
+    "simultaneous_pack_current_a": null,
+    "installed_noncell_resistance_mohm": null,
+    "loaded_voltage_result_v": null,
+    "loaded_floor_compliance": null
+  },
+  "review": {
+    "condition_matching_confirmed": false,
+    "raw_data_reviewed": false,
+    "calibration_reviewed": false,
+    "physical_measurement": false,
+    "reviewer": null,
+    "review_date": null
+  }
+}
