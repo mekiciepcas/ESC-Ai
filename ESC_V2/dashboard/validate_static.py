@@ -15,6 +15,15 @@ def load_json(path):
     return json.loads((root / path).read_text(encoding='utf-8-sig'))
 
 
+def pct(value):
+    """Mirror build_dashboard.py semantics for optional progress dimensions."""
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        n = 0.0
+    return max(0.0, min(100.0, n))
+
+
 class Check(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -60,6 +69,7 @@ g0 = load_json('planning/G0_INPUT_CLOSURE_PACKET.json')
 register = load_json('planning/SCHEMATIC_REVISION_REGISTER.json')
 
 tasks = backlog.get('tasks', [])
+state_p = state.get('progress_percentages', {})
 expected = {
     'plan_revision': backlog.get('revision'),
     'task_count': len(tasks),
@@ -70,9 +80,12 @@ expected = {
     'g1_system_freeze_percent': float(progress['g1_system_freeze']['percent']),
     'backlog_done_percent': float(progress['backlog']['done_percent']),
     'major_gate_closure_percent': float(progress['gate_closure']['percent']),
-    'u1_kicad_scaffold_percent': float(state['progress_percentages']['u1_kicad_architecture_scaffold_percent']),
-    'u1_component_bearing_schematic_percent': float(state['progress_percentages']['u1_component_bearing_schematic_percent']),
-    'schematic_revision_control_percent': float(state['progress_percentages']['schematic_revision_control_policy_percent']),
+    # These are legacy/optional dashboard dimensions. AUTO-STATE may intentionally
+    # omit them; the builder then renders 0 via pct(None). Validation must mirror
+    # that behavior instead of crashing with KeyError.
+    'u1_kicad_scaffold_percent': pct(state_p.get('u1_kicad_architecture_scaffold_percent')),
+    'u1_component_bearing_schematic_percent': pct(state_p.get('u1_component_bearing_schematic_percent')),
+    'schematic_revision_control_percent': pct(state_p.get('schematic_revision_control_policy_percent')),
     'missing_g0_inputs': sum(x.get('value') is None for x in g0.get('required_inputs', [])),
     'next_schematic_revision': register['revision_series']['next_component_bearing_revision'],
     'current_task': state.get('current_task'),
