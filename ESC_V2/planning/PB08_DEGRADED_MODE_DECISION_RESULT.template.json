@@ -1,0 +1,21 @@
+{
+  "schema":"PB08_DEGRADED_MODE_DECISION_RESULT_V1",
+  "physical_test":false,
+  "decision_id":null,
+  "revision":null,
+  "date":null,
+  "authority":{"type":null,"reference":null,"approver":null},
+  "product_applicability":"PB-08 utility multirotor 1.5-3.0 kW aggregate propulsion family",
+  "selected_decision_class":null,
+  "normative_requirement_statement":null,
+  "failure_boundary":{"single_complete_propulsion_axis_loss":null,"additional_failures":[]},
+  "required_vehicle_response":null,
+  "prohibited_unsafe_responses":[],
+  "acceptance_criteria":{"controlled_landing_duration_s":null,"continued_mission_duration_s":null,"minimum_control_authority":null,"other":[]},
+  "evidence_refs":[],
+  "architecture_independence_attestation":null,
+  "review":{"reviewed":false,"reviewer":null,"date":null},
+  "architecture_frozen":false,
+  "g0_advanced":false,
+  "g1_advanced":false
+}
