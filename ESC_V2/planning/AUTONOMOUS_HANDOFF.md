@@ -1,15 +1,13 @@
 # ESC autonomous handoff
 
-Date: 2026-09-21 02:23+03:00  
+Date: 2026-09-21 03:18+03:00  
 Branch: `uav-rebaseline`  
-Repository HEAD/tree at run start: `155ddbf3b70ed24ea4e689d30262a0ca6c5240ae`  
-Repository commit after engineering/state updates before this handoff: `1e220e88b36c577ff9993ed4203c17623e5bc730`  
-Run status: `CANONICAL_TRACEABILITY_TR081_TR082_REPAIRED_TR083`
+Repository HEAD at run start: `984d61522093124dcdc5dfb597c49a451642cb83`  
+Repository commit after engineering/state updates before this handoff: `7fddc2600b7a51f9ba794cbe95225b0df6747376`  
+Run status: `S1R2_MASS_EVIDENCE_SCHEMA_AND_FAIL_CLOSED_VERIFIER_TR084_TR085`
 
 ## Repository continuity verification
-Required planning authorities were read from the actual `uav-rebaseline` branch: `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md`, `uav_backlog.json`, `mission_requirements.json`, `REQUIREMENTS_MASTER.json`, `REQUIREMENTS_PROGRESS.json`, prior handoff and autonomy state. PB-08 remains active authority. S1R.2 remains highest-priority but blocked by missing controlled custom-axis/structural mass and degraded-mode evidence.
-
-A consistency audit found a concrete continuity defect: controlled run records and AUTO-STATE-80 contained TR-081/TR-082, while canonical `UAV_TRACEABILITY.md` stopped at TR-080. This was repaired without changing engineering values.
+Mandatory PB-08 authorities were read from the actual branch: `UAV_PRODUCT_PLAN.md`, `UAV_TRACEABILITY.md`, `uav_backlog.json`, `mission_requirements.json`, `REQUIREMENTS_MASTER.json`, `REQUIREMENTS_PROGRESS.json`, prior handoff and autonomy state. S1R.2 remains highest-priority. It cannot be closed safely because controlled installed-axis/structural mass and degraded-mode evidence are absent. Rather than infer those values, this run converted the mass blocker into a controlled evidence-acquisition interface and fail-closed verifier.
 
 ## Controlling metrics
 - Requirements structure: **12/12 = 100%**.
@@ -19,41 +17,40 @@ A consistency audit found a concrete continuity defect: controlled run records a
 No counter advanced.
 
 ## Tasks attempted / completed
-1. Verified mandatory PB-08 planning authorities against actual branch state.
-2. Confirmed S1R.2 remains blocked; no mass, architecture or degraded-mode value was inferred.
-3. Audited canonical traceability against the previous two run records and autonomy state.
-4. Restored TR-081 and TR-082 into canonical `UAV_TRACEABILITY.md` from their controlled run evidence.
-5. Added TR-083 documenting the canonical traceability repair and explicitly preserving the no-physical-result/no-gate-advance semantics.
-6. Added `RUN_2026-09-21_0223_TRACEABILITY.md`.
-7. Advanced autonomy state to AUTO-STATE-81.
+1. Verified mandatory planning state and run-start HEAD.
+2. Confirmed S1R.2 primary blocker rather than bypassing it.
+3. Added `PB08_INSTALLED_AXIS_STRUCTURE_MASS_RESULT.template.json` (TR-084), with configuration identity, scale/calibration evidence, exact installed-axis boundary, repeat measurements, Quad/Hexa structure boundary/masses, uncertainty/raw-data and reviewer fields. All physical results remain null.
+4. Added `verify_pb08_axis_structure_mass.py` (TR-085). It fails closed unless physical-measurement flag, >=3 repeats, calibration, raw data, complete boundaries, same-basis structure comparison and review attestations exist; it recomputes means and structure delta.
+5. The verifier evaluates the controlled mass-screen equation `2*M_axis + DeltaM_structure` against the existing 2.025 kg Hexa MTOW screen gain, but explicitly returns physical qualification false and rotor architecture frozen false.
+6. Updated canonical `UAV_TRACEABILITY.md` through TR-085 and autonomy state to AUTO-STATE-82.
 
 ## Files changed
-- `UAV_TRACEABILITY.md` — restored TR-081/TR-082 and added TR-083 consistency repair.
-- `RUN_2026-09-21_0223_TRACEABILITY.md` — run evidence for TR-083.
-- `autonomy_state.json` — AUTO-STATE-81.
-- `AUTONOMOUS_HANDOFF.md` — this continuity record.
+- `PB08_INSTALLED_AXIS_STRUCTURE_MASS_RESULT.template.json` — new controlled physical-evidence schema.
+- `verify_pb08_axis_structure_mass.py` — new fail-closed evidence/arithmetic checker.
+- `UAV_TRACEABILITY.md` — TR-084/TR-085.
+- `autonomy_state.json` — AUTO-STATE-82.
+- `AUTONOMOUS_HANDOFF.md` — this record.
 
 No A2/B1 electrical source, KiCad schematic, PCB, Gerber, manufacturing or release package was modified. `U1-SCH-R001` remains unallocated.
 
 ## Engineering decisions / calculations / evidence added
-No new product numeric value, pack selection, architecture selection or physical result was introduced. The engineering action was repository evidence-chain repair: TR-081 is canonically recorded as an empty condition-matched P50B OCV/Rdc evidence schema; TR-082 is canonically recorded as fail-closed verification software; TR-083 records why those rows were restored. Their original semantics are unchanged: neither establishes physical measurement, pack qualification or 36 V loaded-floor compliance.
+No new mass, architecture, propulsion, pack or physical result was introduced. The existing PB-08 trade screen is encoded without changing its meaning: Hexa's controlled manufacturer-curve MTOW screen gain over Quad is 2.025 kg, with zero-structure-delta break-even 1.0125 kg per each of two added propulsion axes. The new checker only permits an evidence-backed incremental-mass screen after controlled measurements exist. Architecture freeze still requires degraded-mode policy and remaining G0/G1 evidence.
 
 ## Assumptions introduced and evidence level
-No engineering assumptions introduced. Evidence level: **CONTROLLED REPOSITORY CONSISTENCY / TRACEABILITY REPAIR; NO PHYSICAL MEASUREMENT**.
+No engineering assumption introduced. The template intentionally sets `physical_measurement=false`; result fields are null. Evidence level: **CONTROLLED VERIFICATION SCHEMA/SOFTWARE; NO PHYSICAL MASS MEASUREMENT**.
 
 ## Unresolved blockers
-Custom installed-axis mass; Quad/Hexa structural/common mass delta; degraded-mode policy; exact installed pack overhead mass/geometry; actual condition-matched P50B OCV/resistance envelope over SOC/temperature/SOH; exact installed interconnect/fuse/BMS/disconnect/connector/harness selections; physical installed-path resistance; usable-energy/cutoff definition; simultaneous auxiliary demand and conversion loss; pack current-sharing; exact motor/prop/winding data; phase-current/PWM/loss/transient proof; exact U1 MOSFET/count/gate amplitude; G1/G2.
+Controlled installed-axis mass; controlled Quad/Hexa structural delta; degraded-mode/single-motor-failure policy; exact installed pack overhead mass/geometry; condition-matched P50B OCV/Rdc envelope; exact installed pack current-path resistance; usable-energy/cutoff; simultaneous auxiliary demand/conversion loss; current sharing; exact motor/prop/winding; phase-current/eRPM/PWM/loss/transient proof; exact U1 MOSFET/count/gate amplitude; G1/G2.
 
 ## Regressions or risks discovered
-The canonical traceability gap was a real repository consistency regression: future readers could have missed TR-081/TR-082 despite their controlled run records. It is repaired. No engineering-value regression was found. Physical evidence remains absent for P50B envelope and installed pack resistance, so no loaded-floor compliance can advance.
+No new repository consistency regression found. Main engineering risk remains that a favorable mass-only Quad/Hexa screen could be misused as an architecture decision; TR-085 explicitly prevents that semantic promotion by keeping `rotor_architecture_frozen=false` even on schema PASS. A populated mass record is still physical evidence and must match the actual configuration revision.
 
 ## Exact next recommended tasks
-1. Resume S1R.2 immediately when controlled custom ESC/baseplate/enclosure/harness/mount and structural evidence exists.
-2. Populate TR-081 only from exact primary-source P50B condition data or real controlled cell testing and run TR-082; never synthesize/interpolate mismatched conditions.
-3. When exact installed pack hardware exists, populate TR-079 and run TR-080 from controlled four-wire measurements.
-4. Extend installed pack mass/current-path and auxiliary ledgers only with exact selected hardware or evidence-backed simultaneous demand.
+1. Populate a copy of TR-084 only from controlled installed-axis and configuration-controlled Quad/Hexa structure weighing, then run TR-085.
+2. Close degraded-mode/single-motor-failure policy only from an explicit controlled system-safety requirement; do not infer it from rotor count.
+3. If physical mass evidence remains unavailable, continue independent pack evidence closure only when real TR-081/TR-079 inputs exist; otherwise improve only genuinely useful verification/traceability.
 
-Dependency chain: `PB-08 -> installed-axis/structural + complete installed-pack mass/condition-matched OCV-Rdc/installed-path resistance/usable-energy -> Quad/Hexa/MTOW -> exact propulsion + pack -> phase current/eRPM/PWM -> gate-drive/power-stage requalification -> G1 -> G2 -> U1-SCH-R001`.
+Dependency chain: `PB-08 -> TR-084 physical axis/structure mass + degraded-mode policy -> Quad/Hexa/MTOW -> exact propulsion + pack -> phase current/eRPM/PWM -> gate-drive/power-stage requalification -> G1 -> G2 -> U1-SCH-R001`.
 
 ## Next-run briefing
-Start from PB-08 and AUTO-STATE-81 and verify actual branch HEAD. Canonical traceability now includes TR-081, TR-082 and TR-083. S1R.2 remains primary and blocked. Preserve P50B 12S4P as reference-only. TR-081/TR-082 and TR-079/TR-080 are evidence schemas/verifiers, not measurements or qualification. Preserve 83.33 A as propulsion-only current lower bound; keep `P_aux,pack`, `M_cont`, exact pack, cutoff and usable energy OPEN. Do not allocate U1 or mutate A2/B1 electrical sources while G1/G2 remain open. Mandatory snapshot remains **Requirements structure 100% / G1 31.3% / Backlog DONE 4.0% / Major gates 0% / component-bearing U1 0%**.
+Start from PB-08 and AUTO-STATE-82; verify actual branch HEAD. TR-084/TR-085 now define the exact mass evidence interface and checker but contain no measurement. Do not fill them from catalog guesses or historical incompatible designs. S1R.2 remains primary and blocked until controlled mass plus degraded-mode evidence exists. Preserve P50B 12S4P as reference-only and A2/B1 electrical sources as immutable. Mandatory snapshot remains **Requirements structure 100% / G1 31.3% / Backlog DONE 4.0% / Major gates 0% / component-bearing U1 0%**.
