@@ -5,16 +5,8 @@ on:
     branches: [uav-rebaseline]
     paths:
       - 'ESC_V2/planning/test_pb08_fail_closed_templates.py'
-      - 'ESC_V2/planning/verify_pb08_axis_structure_mass.py'
-      - 'ESC_V2/planning/verify_pb08_degraded_mode_decision.py'
-      - 'ESC_V2/planning/verify_pb08_auxiliary_demand.py'
-      - 'ESC_V2/planning/verify_pb08_installed_pack_resistance.py'
-      - 'ESC_V2/planning/verify_pb08_p50b_ocv_rdc.py'
-      - 'ESC_V2/planning/PB08_INSTALLED_AXIS_STRUCTURE_MASS_RESULT.template.json'
-      - 'ESC_V2/planning/PB08_DEGRADED_MODE_DECISION_RESULT.template.json'
-      - 'ESC_V2/planning/PB08_TRACTION_PACK_AUXILIARY_DEMAND_RESULT.template.json'
-      - 'ESC_V2/planning/PB08_INSTALLED_PACK_RESISTANCE_MEASUREMENT_RESULT.template.json'
-      - 'ESC_V2/planning/PB08_P50B_OCV_RDC_MEASUREMENT_RESULT.template.json'
+      - 'ESC_V2/planning/verify_pb08_*.py'
+      - 'ESC_V2/planning/PB08_*RESULT.template.json'
       - '.github/workflows/pb08-fail-closed-regression.yml'
   pull_request:
     branches: [uav-rebaseline]
