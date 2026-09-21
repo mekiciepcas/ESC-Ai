@@ -9,6 +9,7 @@ Tarih: 21.09.2026
 | ID | Fonksiyon / karar | UAV rebaseline kararı | Sonraki kanıt |
 |---|---|---|---|
 | TR-104 | PB-08 rejection-error payload integrity closure | **REPOSITORY VERIFICATION OUTPUT-INTEGRITY REPAIR / NO GATE ADVANCE.** The TR-100 harness required a non-empty JSON `errors` list but did not require its members to contain usable diagnostic text; `[null]` or `[""]` could therefore satisfy the structural check. The harness now requires every rejection error to be a non-empty string after whitespace trimming. This strengthens fail-closed diagnostic evidence only and does not validate populated evidence, physical hardware, safety acceptance, G1 closure or release readiness. | `test_pb08_fail_closed_templates.py`; retain a subsequent successful `PB-08 Fail-Closed Regression Guard` Actions execution as bounded runtime evidence. |
+| TR-105 | Post-TR-104 fail-closed runtime evidence | **REPOSITORY CI RUNTIME EVIDENCE / NO GATE ADVANCE.** GitHub Actions check `fail-closed-regression` on TR-104 code commit `ba5dbad0b71a5669453cd548d5cf304659db66a4` completed successfully on 2026-09-21 15:20 UTC (check id `106394597582`, workflow run `35618291811`). This closes only the pending runtime-evidence item for TR-104. It does not validate populated PB-08 evidence, physical hardware, degraded-mode safety, G1 closure, flight qualification or production readiness. | Preserve the successful check-run reference; continue with controlled TR-084 physical mass and TR-092 degraded-mode evidence when available, otherwise audit independent verification contracts only for concrete defects. |
 
 ## Canonical PB-08 current state
 
@@ -16,4 +17,4 @@ PB-08 remains active authority. Requirements structure is 12/12 = 100%; G1 value
 
 ## History-preservation note
 
-Historical PB-01..PB-07 calculations and TR-001..TR-103 are not deleted or reinterpreted by this compact continuation. The canonical blobs above remain continuity anchors; commit history remains authoritative for earlier rows.
+Historical PB-01..PB-07 calculations and TR-001..PB-07 calculations and TR-001..TR-103 are not deleted or reinterpreted by this compact continuation. The canonical blobs above remain continuity anchors; commit history remains authoritative for earlier rows.
