@@ -1,0 +1,56 @@
+{
+  "schema_id": "PB08-AUX-DEMAND-RESULT-001",
+  "status": "UNPOPULATED_TEMPLATE",
+  "physical_measurement": false,
+  "configuration": {
+    "vehicle_configuration_id": null,
+    "esc_u1_revision": null,
+    "pack_configuration_id": null,
+    "operating_mode": null,
+    "loaded_pack_voltage_V": 36.0
+  },
+  "loads": [
+    {
+      "load_id": null,
+      "function": null,
+      "hardware_mpn_or_controlled_configuration": null,
+      "traction_pack_fed": null,
+      "applicable_in_operating_mode": null,
+      "load_side_voltage_V": null,
+      "load_side_current_A": null,
+      "load_side_power_W": null,
+      "conversion_path": null,
+      "path_efficiency_fraction": null,
+      "simultaneity_fraction": null,
+      "duty_fraction": null,
+      "condition_basis": null,
+      "evidence_reference": null,
+      "evidence_type": null,
+      "pack_input_power_W_reported": null,
+      "pack_current_A_reported": null
+    }
+  ],
+  "propulsion": {
+    "pack_input_power_W": 3000.0,
+    "basis": "PB-08 frozen propulsion-only lower-bound arithmetic at 36.0 V; not total pack demand"
+  },
+  "reported_totals": {
+    "auxiliary_pack_input_power_W": null,
+    "auxiliary_pack_current_A": null,
+    "total_pack_input_power_W": null,
+    "total_pack_current_A": null
+  },
+  "review": {
+    "all_simultaneously_active_traction_pack_loads_enumerated": false,
+    "unknown_loads_assigned_zero": false,
+    "reviewer": null,
+    "review_date": null,
+    "raw_data_or_source_bundle_reference": null
+  },
+  "qualification": {
+    "pack_current_frozen": false,
+    "physical_qualification": false,
+    "g1_advanced": false
+  },
+  "notes": "Populate only from controlled exact hardware/configuration evidence. Unknown demand, efficiency or simultaneity remains null/OPEN. Source capability ratings are not load demand."
+}
