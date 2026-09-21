@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-21T14:19:08+00:00",
-  "source_commit": "adcfb4f588ae",
+  "generated_at": "2026-09-21T14:19:25+00:00",
+  "source_commit": "a841a655661e",
   "plan_revision": "UAV-PLAN-10",
   "task_count": 25,
   "done_count": 1,
@@ -15,6 +15,6 @@
   "schematic_revision_control_percent": 0.0,
   "missing_g0_inputs": 12,
   "next_schematic_revision": "U1-SCH-R001",
-  "current_task": "S1R_2_BLOCKED_CONTINUING_INDEPENDENT_VERIFICATION_AND_REPORTING_RISK_REDUCTION",
-  "last_run_status": "TR102_DASHBOARD_VALIDATOR_SCHEMA_DRIFT_REPAIRED_NO_GATE_ADVANCE"
+  "current_task": "S1R_2_BLOCKED_CONTINUING_INDEPENDENT_VERIFICATION_AND_EVIDENCE_WORK",
+  "last_run_status": "TR103_DASHBOARD_VALIDATOR_RUNTIME_CLOSURE_RETAINED_NO_GATE_ADVANCE"
 }
