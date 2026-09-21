@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Regression harness: PB-08 evidence verifiers must reject their unpopulated templates.
+"""Regression harness: PB-08 evidence verifiers must reject unpopulated templates.
 
-This is a repository-safety test only. It does not validate physical evidence or advance gates.
+Repository-safety test only. It does not validate physical evidence or advance gates.
+The harness also fails when a new PB08_*RESULT.template.json is added without an
+explicit verifier mapping, preventing silent CI coverage drift.
 """
 from pathlib import Path
 import subprocess
@@ -19,9 +21,26 @@ CASES = [
 
 def main() -> int:
     failures = []
+    mapped_templates = {template for _, template in CASES}
+    discovered_templates = {p.name for p in ROOT.glob("PB08_*RESULT.template.json")}
+
+    unmapped = sorted(discovered_templates - mapped_templates)
+    stale = sorted(mapped_templates - discovered_templates)
+    if unmapped:
+        failures.append("unmapped PB-08 result template(s): " + ", ".join(unmapped))
+    if stale:
+        failures.append("mapped PB-08 result template(s) missing from repository: " + ", ".join(stale))
+
     for verifier, template in CASES:
+        verifier_path = ROOT / verifier
+        template_path = ROOT / template
+        if not verifier_path.is_file():
+            failures.append(f"mapped verifier missing: {verifier}")
+            continue
+        if not template_path.is_file():
+            continue
         proc = subprocess.run(
-            [sys.executable, str(ROOT / verifier), str(ROOT / template)],
+            [sys.executable, str(verifier_path), str(template_path)],
             cwd=ROOT,
             text=True,
             stdout=subprocess.PIPE,
@@ -32,13 +51,15 @@ def main() -> int:
             failures.append(f"{verifier} unexpectedly accepted unpopulated {template}")
         else:
             print(f"PASS fail-closed: {verifier} rejected {template} (rc={proc.returncode})")
+
     if failures:
-        print("FAIL: fail-closed regression detected", file=sys.stderr)
+        print("FAIL: PB-08 fail-closed/coverage regression detected", file=sys.stderr)
         for item in failures:
             print(f" - {item}", file=sys.stderr)
         return 1
-    print(f"PASS: all {len(CASES)} PB-08 unpopulated evidence templates were rejected")
-    print("NOTE: this proves fail-closed behavior only; it is not physical qualification or gate closure.")
+    print(f"PASS: all {len(CASES)} mapped PB-08 unpopulated evidence templates were rejected")
+    print("PASS: every discovered PB08_*RESULT.template.json has an explicit verifier mapping")
+    print("NOTE: this proves repository fail-closed/coverage behavior only; it is not physical qualification or gate closure.")
     return 0
 
 
