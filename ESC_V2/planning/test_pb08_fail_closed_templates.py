@@ -81,6 +81,11 @@ def main() -> int:
                 f"{verifier} controlled blank-template rejection must include a non-empty JSON errors list"
             )
             continue
+        if any(not isinstance(error, str) or not error.strip() for error in errors):
+            failures.append(
+                f"{verifier} controlled blank-template rejection errors must all be non-empty strings"
+            )
+            continue
         print(
             f"PASS fail-closed: {verifier} rejected {template} with controlled rc={expected_rc}, "
             f"{status_key}={expected_value!r}, errors={len(errors)}"
