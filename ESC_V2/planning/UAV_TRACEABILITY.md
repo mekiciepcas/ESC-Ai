@@ -17,4 +17,4 @@ PB-08 remains active authority. Requirements structure is 12/12 = 100%; G1 value
 
 ## History-preservation note
 
-Historical PB-01..PB-07 calculations and TR-001..PB-07 calculations and TR-001..TR-103 are not deleted or reinterpreted by this compact continuation. The canonical blobs above remain continuity anchors; commit history remains authoritative for earlier rows.
+Historical PB-01..PB-07 calculations and TR-001..TR-103 are not deleted or reinterpreted by this compact continuation. The canonical blobs above remain continuity anchors; commit history remains authoritative for earlier rows.
