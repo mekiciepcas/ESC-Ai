@@ -1,0 +1,70 @@
+{
+  "schema_id": "PB08-INSTALLED-AXIS-STRUCTURE-MASS-RESULT-01",
+  "purpose": "Controlled evidence record for S1R.2 Quad/Hexa mass closure. This template contains no measured mass result.",
+  "physical_measurement": false,
+  "article": {
+    "vehicle_configuration_revision": null,
+    "propulsion_axis_revision": null,
+    "frame_revision": null,
+    "measurement_date": null,
+    "operator": null
+  },
+  "instrumentation": {
+    "scale_make_model": null,
+    "scale_serial": null,
+    "resolution_g": null,
+    "calibration_reference": null,
+    "calibration_valid_on_measurement_date": null
+  },
+  "installed_axis_boundary": {
+    "motor_included": null,
+    "propeller_included": null,
+    "esc_included": null,
+    "esc_baseplate_enclosure_included": null,
+    "axis_harness_connectors_included": null,
+    "mounting_hardware_included": null,
+    "arm_structure_included": false,
+    "other_included": [],
+    "explicit_exclusions": []
+  },
+  "installed_axis_mass": {
+    "repeat_measurements_g": [],
+    "reported_mass_g": null,
+    "uncertainty_g": null,
+    "raw_data_ref": null
+  },
+  "structure_boundary": {
+    "quad_common_structure_revision": null,
+    "hexa_common_structure_revision": null,
+    "same_payload_battery_mission_equipment_basis": null,
+    "axis_hardware_excluded_from_structure_delta": null,
+    "boundary_notes": null
+  },
+  "structure_mass": {
+    "quad_repeat_measurements_g": [],
+    "quad_reported_mass_g": null,
+    "hexa_repeat_measurements_g": [],
+    "hexa_reported_mass_g": null,
+    "hexa_minus_quad_delta_g": null,
+    "uncertainty_g": null,
+    "raw_data_ref": null
+  },
+  "trade_context": {
+    "controlled_hexa_mtow_screen_gain_kg": 2.025,
+    "controlled_zero_structure_delta_axis_break_even_kg_per_added_axis": 1.0125,
+    "decision_equation": "2*installed_axis_mass_kg + hexa_minus_quad_structure_delta_kg compared with 2.025 kg screen gain",
+    "note": "2.025 kg and 1.0125 kg are PB-08 trade-screen values, not physical measurements or flight results. A rotor-architecture decision additionally requires degraded-mode policy and all applicable G0/G1 evidence."
+  },
+  "review": {
+    "boundary_reviewed": null,
+    "raw_data_reviewed": null,
+    "calibration_reviewed": null,
+    "reviewer": null,
+    "review_date": null
+  },
+  "qualification": {
+    "s1r2_mass_evidence_complete": false,
+    "rotor_architecture_frozen": false,
+    "flight_qualification": false
+  }
+}
